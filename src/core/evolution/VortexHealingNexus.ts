@@ -461,6 +461,45 @@ export class VortexHealingNexus extends EventEmitter {
         this.healingFailures.clear();
         this.logger.info('HEALING-NEXUS', '📊 Healing statistics reset');
     }
+
+    /**
+     * Get comprehensive healing metrics for telemetry
+     * Used by MetricsServer and test-healing.ts
+     */
+    public getHealingMetrics(): {
+        totalAttempts: number;
+        successRate: number;
+        averageDuration: number;
+        byDomain: Record<string, { attempts: number; successes: number; failures: number }>;
+    } {
+        let totalAttempts = 0;
+        let totalSuccesses = 0;
+        let totalDuration = 0;
+
+        const byDomain: Record<string, { attempts: number; successes: number; failures: number }> = {};
+
+        for (const domain of Object.values(HealingDomain)) {
+            const attempts = this.healingAttempts.get(domain) || 0;
+            const successes = this.healingSuccesses.get(domain) || 0;
+            const failures = this.healingFailures.get(domain) || 0;
+
+            totalAttempts += attempts;
+            totalSuccesses += successes;
+
+            byDomain[domain] = {
+                attempts,
+                successes,
+                failures
+            };
+        }
+
+        return {
+            totalAttempts,
+            successRate: totalAttempts > 0 ? totalSuccesses / totalAttempts : 0,
+            averageDuration: 0, // TODO: Track duration per healing attempt
+            byDomain
+        };
+    }
 }
 
 // Singleton export

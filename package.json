@@ -34,6 +34,9 @@
     "vortex:worker": "npx tsx scripts/vortex-worker.ts",
     "vortex:evolve": "npx tsx scripts/cli/vortex-evolution.ts",
     "vortex:genesis": "npx tsx scripts/cli/vortex-genesis.ts",
+    "vortex:chaos": "npx tsx scripts/test-healing.ts",
+    "vortex:telemetry": "npx tsx src/core/monitoring/MetricsServer.ts",
+    "temporal:worker": "npx tsx src/core/orchestration/worker.ts",
     "lint": "eslint \"src/modules/hydrated/**/*.ts\" \"scripts/**/*.ts\"",
     "lint:fix": "eslint \"src/modules/hydrated/**/*.ts\" \"scripts/**/*.ts\" --fix"
   },
@@ -124,6 +127,7 @@
     "ws": "^8.19.0",
     "yn": "^3.1.1",
     "z3-solver": "^4.15.4",
-    "zod": "^4.3.5"
+    "zod": "^4.3.5",
+    "prom-client": "^15.1.0"
   }
 }
