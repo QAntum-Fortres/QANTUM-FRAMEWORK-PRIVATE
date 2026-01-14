@@ -1,0 +1,1853 @@
+﻿{
+    "GitCommits":  [
+
+                   ],
+    "Folders":  [
+                    {
+                        "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE",
+                        "Name":  "QANTUM_VORTEX_CORE",
+                        "Type":  "Folder",
+                        "Size":  257114
+                    },
+                    {
+                        "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP",
+                        "Name":  "QANTUM_VORTEX_CORE_BACKUP",
+                        "Type":  "Folder",
+                        "Size":  257114
+                    },
+                    {
+                        "Path":  "C:\\Users\\papic\\source\\repos\\QANTUM_VORTEX_ENTERPRISE",
+                        "Name":  "QANTUM_VORTEX_ENTERPRISE",
+                        "Type":  "Folder",
+                        "Size":  217088
+                    },
+                    {
+                        "Path":  "C:\\Users\\papic\\Desktop\\VORTEX_SAFE",
+                        "Name":  "VORTEX_SAFE",
+                        "Type":  "Folder",
+                        "Size":  65243764
+                    },
+                    {
+                        "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE",
+                        "Name":  "VORTEX_CORE",
+                        "Type":  "Folder",
+                        "Size":  257034
+                    },
+                    {
+                        "Path":  "C:\\Users\\papic\\Desktop\\VORTEX_SAFE\\VORTEX",
+                        "Name":  "VORTEX",
+                        "Type":  "Folder",
+                        "Size":  3602984
+                    }
+                ],
+    "CodeReferences":  [
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\move_core_runner.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3220
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\awaken-vortex-full.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  1602
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\awaken-vortex.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  341
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\talk-to-vortex.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  17,
+                               "Size":  5476
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\verify-vortex-healing.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1851
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\vortex-launcher.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  523
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\awaken-vortex-full.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  1602
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\awaken-vortex.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  341
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\talk-to-vortex.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  17,
+                               "Size":  5476
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\verify-vortex-healing.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1851
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\vortex-launcher.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  523
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\main.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  4807
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\main_hex.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1784
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\core\\sys\\MagneticField.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  1697
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\core\\sys\\VortexAI.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  30,
+                               "Size":  11672
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\core\\sys\\VortexPersona.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2680
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\core\\sys\\VortexSwarm.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3017
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\utils\\TacticalDashboard.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1691
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\core\\SecureServer.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  4292
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\MEGA_AUDIT_REPORT.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  382840
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\SAAS_MODULE_ANALYSIS.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  115,
+                               "Size":  104696
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\CONFIG\\analysis.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  17683
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\CONFIG\\architecture-report.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  6,
+                               "Size":  1593058
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\CONFIG\\gamma-squad-manifest.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  389260
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\CONFIG\\magnet-registry.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  320675
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\CONFIG\\meditation-result.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  336874
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\CONFIG\\mega-map.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  473286
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\CONFIG\\nucleus-map-report.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  239005
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_CONFIG_HUB\\analysis.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  17683
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_CONFIG_HUB\\architecture-report.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  6,
+                               "Size":  1593058
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_CONFIG_HUB\\gamma-squad-manifest.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  389260
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_CONFIG_HUB\\magnet-registry.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  320675
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_CONFIG_HUB\\meditation-result.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  336874
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_CONFIG_HUB\\mega-map.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  473286
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_CONFIG_HUB\\nucleus-map-report.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  239005
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\INTEGRATION_USAGE.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  6512
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\README.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  7501
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\SAAS_INTEGRATION_CHECKLIST.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  15,
+                               "Size":  19022
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\ALL_CODE_CONTEXT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  145,
+                               "Size":  141166181
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\supreme-meditation\\dependency-graph\\report.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  1916
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\COVER_LETTER_AMUSNET.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  2804
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\COVER_LETTER_BINANCE_US.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2782
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_PORTFOLIOS\\01_VORTEX_AI.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  6,
+                               "Size":  2584
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_PORTFOLIOS\\03_VERITAS_DASHBOARD.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1911
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_FRAMEWORK\\DEPLOYMENT_INSTRUCTIONS.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3533
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_FRAMEWORK\\GITHUB_DEPLOYMENT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  8664
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_FRAMEWORK\\SAAS_MODULE_SUMMARY.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  15,
+                               "Size":  7320
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_FRAMEWORK\\DEPLOY_PRIVATE\\DEPLOYMENT_INSTRUCTIONS.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3533
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_FRAMEWORK\\DEPLOY_PRIVATE\\GITHUB_DEPLOYMENT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  8664
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_FRAMEWORK\\DEPLOY_PRIVATE\\SAAS_MODULE_SUMMARY.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  15,
+                               "Size":  7320
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_FRAMEWORK\\DEPLOY_PRIVATE\\PUBLIC_SHOWCASE\\GITHUB_DEPLOYMENT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  8664
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_FRAMEWORK\\DEPLOY_PUBLIC\\GITHUB_DEPLOYMENT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  8664
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_FRAMEWORK\\DEPLOY_PUBLIC\\SAAS_MODULE_SUMMARY.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  15,
+                               "Size":  7320
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_FRAMEWORK\\PUBLIC_SHOWCASE\\GITHUB_DEPLOYMENT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  8664
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\ISOLATION_COMPLETE.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  76
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\VORTEX_BLUEPRINT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  4,
+                               "Size":  2274
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\VORTEX_ENCYCLOPEDIA.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  3360
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\ISOLATION_COMPLETE.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  76
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\VORTEX_BLUEPRINT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  4,
+                               "Size":  2274
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\VORTEX_ENCYCLOPEDIA.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  3360
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\PROJECT_SCRIPTS_LIST.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  21,
+                               "Size":  2364090
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\LISTS\\HEAVY_SCRIPTS_LIST.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  557,
+                               "Size":  281712
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\LISTS\\VORTEX_FILES_LIST.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  33,
+                               "Size":  5193
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-outreach-1768037189359_Binance_Global.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  458
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-outreach-1768037219481_Tesla_Autopilot.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  447
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-outreach-1768037249557_SpaceX_Starlink.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  448
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-sales-1768037074899_Startup_620.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  491
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-sales-1768037090035_Startup_472.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  491
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-sales-1768037105091_Startup_194.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  496
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\.github\\workflows\\pipeline.yml",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  1711
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\COVER_LETTER_PATRIANNA_QA.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  5081
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\LINKEDIN_CONTENT.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  7050
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\RESUME_CRYPTO_ARCHITECT.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  12549
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\RESUME_PATRIANNA_JAVA.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  10482
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\RESUME_PATRIANNA_JAVA_MID.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  9242
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\RESUME_PATRIANNA_QA.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  10958
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\RESUME_SYNACK_RED_TEAM.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  11564
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\RESUME_VORTEX_PREMIUM.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  12931
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\QANTUM_SINGULARITY_5_PILLARS.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  6447
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\QANTUM_SINGULARITY_5_PILLARS.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  6447
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\source\\repos\\QANTUM_VORTEX_ENTERPRISE\\src\\index.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  4,
+                               "Size":  3590
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\source\\repos\\QANTUM_VORTEX_ENTERPRISE\\src\\core\\index.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  492
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\source\\repos\\QANTUM_VORTEX_ENTERPRISE\\src\\core\\talk-to-vortex.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  17,
+                               "Size":  5476
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\source\\repos\\GeminiBot\\src\\views\\chatPanel\\dist\\index.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  1225691
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\source\\repos\\QANTUM_VORTEX_ENTERPRISE\\package.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  1927
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\source\\repos\\papica777-eng\\QA-SAAS\\DEPLOYMENT_INSTRUCTIONS.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3447
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\source\\repos\\papica777-eng\\QA-SAAS\\DEPLOY_PRIVATE\\DEPLOYMENT_INSTRUCTIONS.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3447
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\source\\repos\\QANTUM_VORTEX_ENTERPRISE\\README.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  6,
+                               "Size":  4641
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\core\\sys\\MagneticField.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  1820
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\core\\sys\\VortexAI.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  30,
+                               "Size":  11759
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\core\\sys\\VortexSwarm.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3023
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\INTELLIGENCE\\Neural-Link-Vortex.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  127632
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\QANTUM_UNIFIED_PROJECT\\src\\agents\\telegram-uplink.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  551
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\QANTUM_UNIFIED_PROJECT\\src\\neural_library\\ArmedReaper.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  28795
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\generate_cv_pdf.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2774
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\magnet_activator.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  4499
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\MASTER_ORGANIZER.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  9,
+                               "Size":  6242
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\move_pillars.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3220
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\AGENTS\\ArmedReaper.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  28795
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\AGENTS\\ecosystem-guardian.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  3721
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\AGENTS\\OmniGuardAdapter.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  16520
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\AGENTS\\ReaperAdapter.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  23985
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\AGENTS\\ReaperEngine.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  10573
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\AI_AGENTS\\VortexAI.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  30,
+                               "Size":  11705
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\CONFIG\\REFACTORarchitect.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  2963
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\CONFIG\\RefactotArchitect.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  7,
+                               "Size":  4516
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\DOCS\\verify-sales-logic.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  3085
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\MagneticField.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  1697
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\MISSION_LAUNCHER.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2493
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\PhantomProtocol.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  4872
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\TRIGGER_DOX.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  402
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\TYPEchanger.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  5507
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\TypeEvolution_Adaptive.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3880
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\VortexArsenal.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  4,
+                               "Size":  4460
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\VortexPersona.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2680
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\VortexSwarm.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3023
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\MAINTENANCE\\CLEAN_ARSENAL.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  7629
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\MAINTENANCE\\FortressOrganizer.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  3097
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ENGINES\\adapters.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3778
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ENGINES\\DeepMindAdapter.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  4119
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ENGINES\\VitalityAdapter.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  8280
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\FILE_WIZARDS\\CLEAN_ARSENAL.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  7598
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\FILE_WIZARDS\\DocOrganizer.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3185
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\FILE_WIZARDS\\organize-scripts.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  2967
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\FILE_WIZARDS\\ORGANIZE_CHAOS.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  4426
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\FILE_WIZARDS\\ORGANIZE_ROOT.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  3129
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\FILE_WIZARDS\\REORGANIZE_SYSTEM.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  7,
+                               "Size":  2433
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\SECURITY\\VortexSecurity.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  5239
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TESTS\\mass-test-execution.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  2380
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TESTS\\stress-test.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1419
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TOOLS\\General\\CodeCollector.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  51,
+                               "Size":  3264815
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TOOLS\\General\\ETL_DEMONSTRATION.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2707
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TOOLS\\General\\GRAND_ACTIVATION.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  3631
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TOOLS\\General\\KNOW_THYSELF.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3583
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TOOLS\\General\\MISSION_LAUNCHER.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2499
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TOOLS\\General\\predictive-sales.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  3769
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TOOLS\\General\\TRIGGER_DOX.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  408
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TOOLS\\General\\unleash-sales.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  6570
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\UTILS\\STRATEGIC_ARCHITECTURE_MAP.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  4783
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\awaken-vortex-full.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  1598
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\awaken-vortex.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  341
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\talk-to-vortex.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  17,
+                               "Size":  5476
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\verify-vortex-healing.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1851
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\vortex-launcher.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  523
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\VORTEX_SAFE\\CodeCollector.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2489
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\VORTEX_SAFE\\VORTEX\\CodeCollector.ts",
+                               "Pattern":  "VORTEX",
+                               "Matches":  51,
+                               "Size":  3264815
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\QANTUM_UNIFIED_PROJECT\\src\\frontend\\veritas-injection.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  6591
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\AGENTS\\reaper-simulation-pro.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  4188
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\final_inflator.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  2432
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\god_mode_inflator.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  4439
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TESTS\\blitz-test.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  3748
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TESTS\\test-vortex.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  6,
+                               "Size":  1695
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TOOLS\\General\\LinkedIn_Proof_Runner.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  5229
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TOOLS\\General\\veritas-injection.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  6591
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_MIND_ENGINE_STANDALONE\\restore_script.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  966
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_MIND_ENGINE_STANDALONE\\DEPLOY_PRIVATE\\restore_script.js",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  966
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\INTELLIGENCE\\MISTER-MIND-LEGACY.json",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  591
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\OPTIMIZATION_ROADMAP.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  1606
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\PERFECT_CV.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3666
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_WHITEPAPER_BG.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  4931
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\INTERACTIVEDEMOS\\QAntum_SaaS_Pitch_BG.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  2683
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\README.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  3076
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\CV_DIMITAR_PRODROMOV.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  3033
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\ECOSYSTEM_RESTRUCTURED.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1824
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\GEMINI-TOOLKIT-MANIFEST.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1217
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\GRAND_PHOENIX_MASTER.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2540
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\INVENTORY-V5.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  112147
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\OPTIMIZATION_ROADMAP.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  1606
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\QANTUM-SINGULARITY-REPORT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  4761
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\VORTEX-BACKPACK.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1031
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\VORTEX_UPGRADE_LOG.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2233
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\0_GENERAL\\POCKET_ARSENAL.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  1921
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\0_GENERAL\\README_VORTEX.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  6,
+                               "Size":  4131
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\1_REPORTS\\INVESTOR_SUMMARY.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  2559
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\1_REPORTS\\MEGA_AUDIT_REPORT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  1532
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\5_SYSTEM\\SOCIAL_MEDIA_SQUAD.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  4891
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\EXPORT_CENTER\\RESUME_BINANCE_US.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3926
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\EXPORT_CENTER\\RESUME_COMPUTRITION_AI.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  4450
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\EXPORT_CENTER\\RESUME_DIMITAR_PRODROMOV.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  3591
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\EXPORT_CENTER\\RESUME_UNIVERSAL_ARCHITECT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  3749
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\REPORTS\\FULL_INVENTORY_REPORT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  791
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\REPORTS\\THE_QANTUM_BIBLE.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  15674
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\REPORTS\\VULNERABILITY_ASSESSMENT_REPORT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  618
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\INTELLIGENCE\\04_NEURAL_VAULT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2064
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\AGENTS\\ARMED_REAPER_MASTER_PLAN.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  2142
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ENGINES\\06_PINECONE_BRIDGE.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1987
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ENGINES\\07_OMEGA_ENGINE.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1841
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\original_scripts\\1_STRENGTH\\lint\\PROJECT-STATS.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  886
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\original_scripts\\1_STRENGTH\\QA_ARSENAL\\README_WEAPONRY.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  3318
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\original_scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\PUBLIC\\QAntum-Portfolio\\README.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  4462
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\original_scripts\\4_ENERGY\\sales-autopilot\\INVESTOR_OUTREACH_EMAILS.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  8941
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TESTS\\TESTING_INVENTORY.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  1775
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\UTILS\\MASTER_MAP.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  2986
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\UTILS\\SYSTEM_FOLDER_MAP.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  422,
+                               "Size":  57259
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\VORTEX_BLUEPRINT.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  4,
+                               "Size":  2274
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\VORTEX_ENCYCLOPEDIA.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  3360
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\VORTEX_SAFE\\MASTER_MAP.md",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  2449
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\3_APPLICATION_KIT\\EMAIL_TEXTS.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  3446
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\VORTEX_SAFE\\FINALITY\\WASTHYSTORY.txt",
+                               "Pattern":  "VORTEX",
+                               "Matches":  5,
+                               "Size":  9915
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\Dimitar Prodromov - AI Symbiote.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  3991
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\Dimitar Prodromov - The Architect.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  4933
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\JOB_MATCH_REPORT.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  6415
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QAntum Vortex _ Architect Portfolio.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  14718
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QAntum_Resume.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  6805
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\Sovereign QA Engineer _ QAntum Architect.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  6733
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\Strategic Engineering Prospectus_ Dimitar Prodromov.odf.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  6693
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\ALLforWORK\\JOB_MATCH_REPORT.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  6415
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\CV_READY_TO_PRINT\\COVER_LETTER_GENERIC.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  2375
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\CV_READY_TO_PRINT\\RESUME_BINANCE_SRE.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  8502
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\CV_READY_TO_PRINT\\RESUME_SYNACK_RED_TEAM.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  11087
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\CV_READY_TO_PRINT\\SITEGROUND_PROSPECTUS.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  6693
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\INTERACTIVEDEMOS\\QANTUM_FRAMEWORK_CORE.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  14734
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\INTERACTIVEDEMOS\\QANTUM_FRAMEWORK_CORE_EN.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  14410
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\INTERACTIVEDEMOS\\QANTUM_NEXUS_PRESENTATION.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  26403
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\INTERACTIVEDEMOS\\QANTUM_NEXUS_PRESENTATION_EN.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  25248
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\INTERACTIVEDEMOS\\QANTUM_WHITEPAPER_BG.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  2,
+                               "Size":  8878
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\3_APPLICATION_KIT\\QANTUM_INTERACTIVE_PROOF.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  14024
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\PORTFOLIO\\PORTFOLIO_PAGE_3_AI_LEARNING.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  2570
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\PORTFOLIO\\PORTFOLIO_PAGE_5_VORTEX_ORCHESTRATION.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  8164
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\PORTFOLIO\\RESUME_SYNACK_RED_TEAM.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  11087
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\INTELLIGENCE\\VORTEX_NEURAL_LINK.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  3,
+                               "Size":  7104
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ENGINES\\RESUME_QA_ENGINEER.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  12063
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\original_scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\PUBLIC\\QAntum-Portfolio\\index.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  11917
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TESTS\\PORTFOLIO_PAGE_4_TESTING_QA.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  1,
+                               "Size":  8340
+                           },
+                           {
+                               "File":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\QANTUM_SINGULARITY_5_PILLARS.html",
+                               "Pattern":  "VORTEX",
+                               "Matches":  0,
+                               "Size":  6447
+                           }
+                       ],
+    "Files":  [
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\CLEANUP_VORTEX_LINKS.ps1",
+                      "Name":  "CLEANUP_VORTEX_LINKS.ps1",
+                      "Type":  "File",
+                      "Size":  1626,
+                      "Extension":  ".ps1"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\FIND_ALL_VORTEX.ps1",
+                      "Name":  "FIND_ALL_VORTEX.ps1",
+                      "Type":  "File",
+                      "Size":  14908,
+                      "Extension":  ".ps1"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\FIND_VORTEX_FILES.ps1",
+                      "Name":  "FIND_VORTEX_FILES.ps1",
+                      "Type":  "File",
+                      "Size":  10460,
+                      "Extension":  ".ps1"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\VORTEX_TRADES_AUDIT.csv",
+                      "Name":  "VORTEX_TRADES_AUDIT.csv",
+                      "Type":  "File",
+                      "Size":  63519,
+                      "Extension":  ".csv"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\LISTS\\VORTEX_FILES_LIST.txt",
+                      "Name":  "VORTEX_FILES_LIST.txt",
+                      "Type":  "File",
+                      "Size":  5193,
+                      "Extension":  ".txt"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\LOGS\\VORTEX_TRADES.csv",
+                      "Name":  "VORTEX_TRADES.csv",
+                      "Type":  "File",
+                      "Size":  263,
+                      "Extension":  ".csv"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-outreach-1768037189359_Binance_Global.txt",
+                      "Name":  "vortex-outreach-1768037189359_Binance_Global.txt",
+                      "Type":  "File",
+                      "Size":  458,
+                      "Extension":  ".txt"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-outreach-1768037219481_Tesla_Autopilot.txt",
+                      "Name":  "vortex-outreach-1768037219481_Tesla_Autopilot.txt",
+                      "Type":  "File",
+                      "Size":  447,
+                      "Extension":  ".txt"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-outreach-1768037249557_SpaceX_Starlink.txt",
+                      "Name":  "vortex-outreach-1768037249557_SpaceX_Starlink.txt",
+                      "Type":  "File",
+                      "Size":  448,
+                      "Extension":  ".txt"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-sales-1768037074899_Startup_620.txt",
+                      "Name":  "vortex-sales-1768037074899_Startup_620.txt",
+                      "Type":  "File",
+                      "Size":  491,
+                      "Extension":  ".txt"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-sales-1768037090035_Startup_472.txt",
+                      "Name":  "vortex-sales-1768037090035_Startup_472.txt",
+                      "Type":  "File",
+                      "Size":  491,
+                      "Extension":  ".txt"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\data\\outbox\\vortex-sales-1768037105091_Startup_194.txt",
+                      "Name":  "vortex-sales-1768037105091_Startup_194.txt",
+                      "Type":  "File",
+                      "Size":  496,
+                      "Extension":  ".txt"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\RESUME_VORTEX_PREMIUM.html",
+                      "Name":  "RESUME_VORTEX_PREMIUM.html",
+                      "Type":  "File",
+                      "Size":  12931,
+                      "Extension":  ".html"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_APPLICATION_ASSETS\\RESUME_VORTEX_PREMIUM.pdf",
+                      "Name":  "RESUME_VORTEX_PREMIUM.pdf",
+                      "Type":  "File",
+                      "Size":  279518,
+                      "Extension":  ".pdf"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\JOB_PORTFOLIOS\\01_VORTEX_AI.md",
+                      "Name":  "01_VORTEX_AI.md",
+                      "Type":  "File",
+                      "Size":  2584,
+                      "Extension":  ".md"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\awaken-vortex-full.ts",
+                      "Name":  "awaken-vortex-full.ts",
+                      "Type":  "File",
+                      "Size":  1602,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\awaken-vortex.ts",
+                      "Name":  "awaken-vortex.ts",
+                      "Type":  "File",
+                      "Size":  341,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\LAUNCH_VORTEX_DASHBOARD.bat",
+                      "Name":  "LAUNCH_VORTEX_DASHBOARD.bat",
+                      "Type":  "File",
+                      "Size":  735,
+                      "Extension":  ".bat"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\LAUNCH_VORTEX_PERMANENT.bat",
+                      "Name":  "LAUNCH_VORTEX_PERMANENT.bat",
+                      "Type":  "File",
+                      "Size":  1020,
+                      "Extension":  ".bat"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\talk-to-vortex.ts",
+                      "Name":  "talk-to-vortex.ts",
+                      "Type":  "File",
+                      "Size":  5476,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\verify-vortex-healing.ts",
+                      "Name":  "verify-vortex-healing.ts",
+                      "Type":  "File",
+                      "Size":  1851,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\vortex-launcher.ts",
+                      "Name":  "vortex-launcher.ts",
+                      "Type":  "File",
+                      "Size":  523,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\VORTEX_BLUEPRINT.md",
+                      "Name":  "VORTEX_BLUEPRINT.md",
+                      "Type":  "File",
+                      "Size":  2274,
+                      "Extension":  ".md"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE\\VORTEX_ENCYCLOPEDIA.md",
+                      "Name":  "VORTEX_ENCYCLOPEDIA.md",
+                      "Type":  "File",
+                      "Size":  3360,
+                      "Extension":  ".md"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\awaken-vortex-full.ts",
+                      "Name":  "awaken-vortex-full.ts",
+                      "Type":  "File",
+                      "Size":  1602,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\awaken-vortex.ts",
+                      "Name":  "awaken-vortex.ts",
+                      "Type":  "File",
+                      "Size":  341,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\LAUNCH_VORTEX_DASHBOARD.bat",
+                      "Name":  "LAUNCH_VORTEX_DASHBOARD.bat",
+                      "Type":  "File",
+                      "Size":  735,
+                      "Extension":  ".bat"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\LAUNCH_VORTEX_PERMANENT.bat",
+                      "Name":  "LAUNCH_VORTEX_PERMANENT.bat",
+                      "Type":  "File",
+                      "Size":  1020,
+                      "Extension":  ".bat"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\talk-to-vortex.ts",
+                      "Name":  "talk-to-vortex.ts",
+                      "Type":  "File",
+                      "Size":  5476,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\verify-vortex-healing.ts",
+                      "Name":  "verify-vortex-healing.ts",
+                      "Type":  "File",
+                      "Size":  1851,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\vortex-launcher.ts",
+                      "Name":  "vortex-launcher.ts",
+                      "Type":  "File",
+                      "Size":  523,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\VORTEX_BLUEPRINT.md",
+                      "Name":  "VORTEX_BLUEPRINT.md",
+                      "Type":  "File",
+                      "Size":  2274,
+                      "Extension":  ".md"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\QANTUM_VORTEX_CORE_BACKUP\\VORTEX_ENCYCLOPEDIA.md",
+                      "Name":  "VORTEX_ENCYCLOPEDIA.md",
+                      "Type":  "File",
+                      "Size":  3360,
+                      "Extension":  ".md"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\core\\sys\\VortexAI.ts",
+                      "Name":  "VortexAI.ts",
+                      "Type":  "File",
+                      "Size":  11672,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\core\\sys\\VortexPersona.ts",
+                      "Name":  "VortexPersona.ts",
+                      "Type":  "File",
+                      "Size":  2680,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Downloads\\QAntumBVortex-main\\QAntumBVortex-main\\src\\core\\sys\\VortexSwarm.ts",
+                      "Name":  "VortexSwarm.ts",
+                      "Type":  "File",
+                      "Size":  3017,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\source\\repos\\QANTUM_VORTEX_ENTERPRISE\\src\\core\\talk-to-vortex.ts",
+                      "Name":  "talk-to-vortex.ts",
+                      "Type":  "File",
+                      "Size":  5476,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QAntum Vortex _ Architect Portfolio.html",
+                      "Name":  "QAntum Vortex _ Architect Portfolio.html",
+                      "Type":  "File",
+                      "Size":  14718,
+                      "Extension":  ".html"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\core\\sys\\VortexAI.ts",
+                      "Name":  "VortexAI.ts",
+                      "Type":  "File",
+                      "Size":  11759,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\core\\sys\\VortexSwarm.ts",
+                      "Name":  "VortexSwarm.ts",
+                      "Type":  "File",
+                      "Size":  3023,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\VORTEX-BACKPACK.md",
+                      "Name":  "VORTEX-BACKPACK.md",
+                      "Type":  "File",
+                      "Size":  1031,
+                      "Extension":  ".md"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\VORTEX_UPGRADE_LOG.md",
+                      "Name":  "VORTEX_UPGRADE_LOG.md",
+                      "Type":  "File",
+                      "Size":  2233,
+                      "Extension":  ".md"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\0_GENERAL\\README_VORTEX.md",
+                      "Name":  "README_VORTEX.md",
+                      "Type":  "File",
+                      "Size":  4131,
+                      "Extension":  ".md"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\docs\\PORTFOLIO\\PORTFOLIO_PAGE_5_VORTEX_ORCHESTRATION.html",
+                      "Name":  "PORTFOLIO_PAGE_5_VORTEX_ORCHESTRATION.html",
+                      "Type":  "File",
+                      "Size":  8164,
+                      "Extension":  ".html"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\INTELLIGENCE\\Neural-Link-Vortex.ts",
+                      "Name":  "Neural-Link-Vortex.ts",
+                      "Type":  "File",
+                      "Size":  127632,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\INTELLIGENCE\\VORTEX_NEURAL_LINK.html",
+                      "Name":  "VORTEX_NEURAL_LINK.html",
+                      "Type":  "File",
+                      "Size":  7104,
+                      "Extension":  ".html"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\AI_AGENTS\\VortexAI.ts",
+                      "Name":  "VortexAI.ts",
+                      "Type":  "File",
+                      "Size":  11705,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\VortexArsenal.ts",
+                      "Name":  "VortexArsenal.ts",
+                      "Type":  "File",
+                      "Size":  4460,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\VortexPersona.ts",
+                      "Name":  "VortexPersona.ts",
+                      "Type":  "File",
+                      "Size":  2680,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ALL_SCRIPTS_COLLECTION\\GENERAL_SCRIPTS\\VortexSwarm.ts",
+                      "Name":  "VortexSwarm.ts",
+                      "Type":  "File",
+                      "Size":  3023,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\ENGINES\\VORTEX_ENGINE.lock",
+                      "Name":  "VORTEX_ENGINE.lock",
+                      "Type":  "File",
+                      "Size":  5,
+                      "Extension":  ".lock"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\SECURITY\\VortexSecurity.ts",
+                      "Name":  "VortexSecurity.ts",
+                      "Type":  "File",
+                      "Size":  5239,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\SCRIPTS\\TESTS\\test-vortex.js",
+                      "Name":  "test-vortex.js",
+                      "Type":  "File",
+                      "Size":  1695,
+                      "Extension":  ".js"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\awaken-vortex-full.ts",
+                      "Name":  "awaken-vortex-full.ts",
+                      "Type":  "File",
+                      "Size":  1598,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\awaken-vortex.ts",
+                      "Name":  "awaken-vortex.ts",
+                      "Type":  "File",
+                      "Size":  341,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\LAUNCH_VORTEX_DASHBOARD.bat",
+                      "Name":  "LAUNCH_VORTEX_DASHBOARD.bat",
+                      "Type":  "File",
+                      "Size":  735,
+                      "Extension":  ".bat"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\LAUNCH_VORTEX_PERMANENT.bat",
+                      "Name":  "LAUNCH_VORTEX_PERMANENT.bat",
+                      "Type":  "File",
+                      "Size":  1020,
+                      "Extension":  ".bat"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\talk-to-vortex.ts",
+                      "Name":  "talk-to-vortex.ts",
+                      "Type":  "File",
+                      "Size":  5476,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\verify-vortex-healing.ts",
+                      "Name":  "verify-vortex-healing.ts",
+                      "Type":  "File",
+                      "Size":  1851,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\vortex-launcher.ts",
+                      "Name":  "vortex-launcher.ts",
+                      "Type":  "File",
+                      "Size":  523,
+                      "Extension":  ".ts"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\VORTEX_BLUEPRINT.md",
+                      "Name":  "VORTEX_BLUEPRINT.md",
+                      "Type":  "File",
+                      "Size":  2274,
+                      "Extension":  ".md"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\QANTUM_CORE_15M\\VORTEX_CORE\\VORTEX_ENCYCLOPEDIA.md",
+                      "Name":  "VORTEX_ENCYCLOPEDIA.md",
+                      "Type":  "File",
+                      "Size":  3360,
+                      "Extension":  ".md"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\VORTEX_SAFE\\START_VORTEX.bat",
+                      "Name":  "START_VORTEX.bat",
+                      "Type":  "File",
+                      "Size":  611,
+                      "Extension":  ".bat"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\VORTEX_SAFE\\VORTEX\\500modulaVORTEX.png",
+                      "Name":  "500modulaVORTEX.png",
+                      "Type":  "File",
+                      "Size":  330889,
+                      "Extension":  ".png"
+                  },
+                  {
+                      "Path":  "C:\\Users\\papic\\Desktop\\VORTEX_SAFE\\VORTEX\\VORTEX",
+                      "Name":  "VORTEX",
+                      "Type":  "File",
+                      "Size":  3246,
+                      "Extension":  ""
+                  }
+              ],
+    "TotalMatches":  71
+}

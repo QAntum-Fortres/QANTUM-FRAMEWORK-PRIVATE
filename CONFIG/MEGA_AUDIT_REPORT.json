@@ -1,0 +1,5592 @@
+{
+  "timestamp": "2026-01-10T04:53:14.922Z",
+  "metrics": {
+    "codeFiles": 464,
+    "allFiles": 676,
+    "locCode": 192783,
+    "locAll": 378580,
+    "modules": 391,
+    "readiness": 100,
+    "passedChecks": 11,
+    "totalChecks": 11,
+    "nodeModulesEstimate": 2150000,
+    "grandTotal": 2528580
+  },
+  "modules": [
+    {
+      "id": "index",
+      "path": "/src/accessibility/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumAccessibility",
+        "getQAntumA11y",
+        "configureQAntumA11y"
+      ],
+      "loc": 324
+    },
+    {
+      "id": "PineconeVectorStore",
+      "path": "/src/agents/PineconeVectorStore.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PineconeVectorStore",
+        "testPinecone"
+      ],
+      "loc": 396
+    },
+    {
+      "id": "index",
+      "path": "/src/ai/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumAI",
+        "qantumAI"
+      ],
+      "loc": 447
+    },
+    {
+      "id": "neural",
+      "path": "/src/ai/neural.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Activations",
+        "NeuralNetwork",
+        "TestIntelligence",
+        "getTestIntelligence"
+      ],
+      "loc": 578
+    },
+    {
+      "id": "OllamaManager",
+      "path": "/src/ai/OllamaManager.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "OllamaManager"
+      ],
+      "loc": 144
+    },
+    {
+      "id": "Orchestrator",
+      "path": "/src/ai/Orchestrator.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Orchestrator"
+      ],
+      "loc": 22
+    },
+    {
+      "id": "pattern-recognizer",
+      "path": "/src/ai/pattern-recognizer.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FeatureExtractor",
+        "SimilarityMetrics",
+        "PatternRecognizer",
+        "getPatternRecognizer"
+      ],
+      "loc": 630
+    },
+    {
+      "id": "self-healing",
+      "path": "/src/ai/self-healing.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SelectorGenerator",
+        "SelfHealingEngine",
+        "SelfHeal",
+        "getSelfHealingEngine"
+      ],
+      "loc": 646
+    },
+    {
+      "id": "index",
+      "path": "/src/api/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "APIClient",
+        "createAPIClient"
+      ],
+      "loc": 224
+    },
+    {
+      "id": "rate-limiter",
+      "path": "/src/api/rate-limiter.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TokenBucket",
+        "SlidingWindowCounter",
+        "RateLimiter",
+        "RateLimitError",
+        "RateLimit"
+      ],
+      "loc": 478
+    },
+    {
+      "id": "versioning",
+      "path": "/src/api/versioning.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VersionParser",
+        "APIVersionManager",
+        "MigrationManager",
+        "Version",
+        "Deprecated"
+      ],
+      "loc": 572
+    },
+    {
+      "id": "index",
+      "path": "/src/biology/evolution/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralIntegration",
+        "NeuralSystem"
+      ],
+      "loc": 351
+    },
+    {
+      "id": "MarketBlueprint",
+      "path": "/src/biology/evolution/MarketBlueprint.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MarketBlueprint",
+        "createMarketBlueprint"
+      ],
+      "loc": 1815
+    },
+    {
+      "id": "SelfCorrectionLoop",
+      "path": "/src/biology/evolution/SelfCorrectionLoop.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TypeScriptValidator",
+        "SelfCorrectionLoop",
+        "getSelfCorrectionLoop"
+      ],
+      "loc": 738
+    },
+    {
+      "id": "ProfitOptimizer",
+      "path": "/src/biology/metabolism/ProfitOptimizer.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ProfitOptimizer",
+        "createProfitOptimizer"
+      ],
+      "loc": 1151
+    },
+    {
+      "id": "SelfReinvestment",
+      "path": "/src/biology/metabolism/SelfReinvestment.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SelfReinvestment",
+        "createSelfReinvestment"
+      ],
+      "loc": 1130
+    },
+    {
+      "id": "deadline",
+      "path": "/src/chronos/deadline.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DeadlineManager",
+        "DeadlineContext",
+        "DeadlineExpiredError",
+        "WithDeadline",
+        "AdaptiveDeadline"
+      ],
+      "loc": 512
+    },
+    {
+      "id": "engine",
+      "path": "/src/chronos/engine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CronParser",
+        "ChronosEngine",
+        "Scheduled",
+        "getChronos"
+      ],
+      "loc": 500
+    },
+    {
+      "id": "index",
+      "path": "/src/chronos/index.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Chronos",
+        "chronos"
+      ],
+      "loc": 310
+    },
+    {
+      "id": "ParadoxEngine",
+      "path": "/src/chronos/ParadoxEngine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ParadoxEngine",
+        "applyTLSRotationPatch",
+        "applyFingerprintMutationPatch",
+        "applyTimingAdjustmentPatch",
+        "applyBehaviorModificationPatch"
+      ],
+      "loc": 1285
+    },
+    {
+      "id": "PriceOracle",
+      "path": "/src/chronos/PriceOracle.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PriceOracle",
+        "priceOracle"
+      ],
+      "loc": 606
+    },
+    {
+      "id": "time-traveler",
+      "path": "/src/chronos/time-traveler.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TimeTraveler",
+        "FrozenTime",
+        "MockTime",
+        "timeTraveler",
+        "freeze"
+      ],
+      "loc": 492
+    },
+    {
+      "id": "critique-distiller",
+      "path": "/src/cognition/critique-distiller.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "critiqueDistiller"
+      ],
+      "loc": 313
+    },
+    {
+      "id": "index",
+      "path": "/src/cognition/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CognitionEngine",
+        "createCognitionEngine"
+      ],
+      "loc": 260
+    },
+    {
+      "id": "self-critique",
+      "path": "/src/cognition/self-critique.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SelfCritique",
+        "DEFAULT_DIMENSIONS",
+        "createSelfCritique"
+      ],
+      "loc": 510
+    },
+    {
+      "id": "thought-chain",
+      "path": "/src/cognition/thought-chain.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ThoughtChain",
+        "createThoughtChain"
+      ],
+      "loc": 679
+    },
+    {
+      "id": "index",
+      "path": "/src/config/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumConfiguration",
+        "QANTUM_CONFIG_SCHEMA",
+        "getQAntumConfig",
+        "config"
+      ],
+      "loc": 417
+    },
+    {
+      "id": "loader",
+      "path": "/src/config/loader.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EnvSource",
+        "FileSource",
+        "ObjectSource",
+        "RemoteSource",
+        "ConfigLoader"
+      ],
+      "loc": 608
+    },
+    {
+      "id": "schema",
+      "path": "/src/config/schema.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SchemaValidator",
+        "SchemaBuilder",
+        "s"
+      ],
+      "loc": 607
+    },
+    {
+      "id": "ToolExecutor",
+      "path": "/src/core/agent/ToolExecutor.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ToolExecutor"
+      ],
+      "loc": 41
+    },
+    {
+      "id": "BiometricJitter",
+      "path": "/src/core/biology/BiometricJitter.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BiometricJitter"
+      ],
+      "loc": 41
+    },
+    {
+      "id": "NeuralContext",
+      "path": "/src/core/brain/NeuralContext.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralContext"
+      ],
+      "loc": 46
+    },
+    {
+      "id": "CableSystem",
+      "path": "/src/core/chemistry/CableSystem.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CableSystem",
+        "getCableSystem"
+      ],
+      "loc": 409
+    },
+    {
+      "id": "DatabaseService",
+      "path": "/src/core/db/DatabaseService.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DatabaseService"
+      ],
+      "loc": 6
+    },
+    {
+      "id": "DepartmentEngine",
+      "path": "/src/core/DepartmentEngine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DepartmentEngine"
+      ],
+      "loc": 188
+    },
+    {
+      "id": "Biology",
+      "path": "/src/core/departments/Biology.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BiologyDepartment"
+      ],
+      "loc": 135
+    },
+    {
+      "id": "Chemistry",
+      "path": "/src/core/departments/Chemistry.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ChemistryDepartment"
+      ],
+      "loc": 112
+    },
+    {
+      "id": "Fortress",
+      "path": "/src/core/departments/Fortress.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FortressDepartment"
+      ],
+      "loc": 156
+    },
+    {
+      "id": "Guardians",
+      "path": "/src/core/departments/Guardians.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GuardiansDepartment"
+      ],
+      "loc": 108
+    },
+    {
+      "id": "Intelligence",
+      "path": "/src/core/departments/Intelligence.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "IntelligenceDepartment"
+      ],
+      "loc": 144
+    },
+    {
+      "id": "Omega",
+      "path": "/src/core/departments/Omega.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "OmegaDepartment"
+      ],
+      "loc": 147
+    },
+    {
+      "id": "Physics",
+      "path": "/src/core/departments/Physics.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PhysicsDepartment"
+      ],
+      "loc": 122
+    },
+    {
+      "id": "Reality",
+      "path": "/src/core/departments/Reality.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "RealityDepartment"
+      ],
+      "loc": 112
+    },
+    {
+      "id": "di-container",
+      "path": "/src/core/di-container.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Container",
+        "BindingBuilder",
+        "Injectable",
+        "Inject",
+        "Optional"
+      ],
+      "loc": 484
+    },
+    {
+      "id": "event-bus",
+      "path": "/src/core/event-bus.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EventBus",
+        "EmitsEvent",
+        "OnEvent",
+        "QAntumEvents",
+        "getEventBus"
+      ],
+      "loc": 469
+    },
+    {
+      "id": "EventBus",
+      "path": "/src/core/events/EventBus.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EventBus"
+      ],
+      "loc": 136
+    },
+    {
+      "id": "EternalWatchdog",
+      "path": "/src/core/guardians/EternalWatchdog.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EternalWatchdog",
+        "getGlobalWatchdog",
+        "startEternalWatchdog"
+      ],
+      "loc": 467
+    },
+    {
+      "id": "StrictCollar",
+      "path": "/src/core/guardians/StrictCollar.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "StrictCollar",
+        "validateEmail"
+      ],
+      "loc": 485
+    },
+    {
+      "id": "immutable",
+      "path": "/src/core/immutable.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ImmutableState",
+        "deepFreeze",
+        "deepClone",
+        "merge",
+        "setIn"
+      ],
+      "loc": 407
+    },
+    {
+      "id": "Memoryals",
+      "path": "/src/core/memory/Memoryals.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "memoryals"
+      ],
+      "loc": 462
+    },
+    {
+      "id": "ModuleAdapter",
+      "path": "/src/core/ModuleAdapter.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ModuleAdapter",
+        "createAdapterFromMap"
+      ],
+      "loc": 153
+    },
+    {
+      "id": "ModuleClasses",
+      "path": "/src/core/ModuleClasses.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ClassOrchestrator",
+        "IntelligenceModule",
+        "GuardianModule",
+        "getOrchestrator",
+        "MODULE_CLASS_REGISTRY"
+      ],
+      "loc": 490
+    },
+    {
+      "id": "ModuleRegistry",
+      "path": "/src/core/ModuleRegistry.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ModuleRegistry"
+      ],
+      "loc": 88
+    },
+    {
+      "id": "NeuralHub",
+      "path": "/src/core/NeuralHub.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralHub",
+        "neuralHub"
+      ],
+      "loc": 100
+    },
+    {
+      "id": "QAntumMemory",
+      "path": "/src/core/QAntumMemory.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "rememberWhoIAm",
+        "QANTUM_MEMORY"
+      ],
+      "loc": 91
+    },
+    {
+      "id": "TestRunner",
+      "path": "/src/core/runner/TestRunner.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TestRunner"
+      ],
+      "loc": 40
+    },
+    {
+      "id": "SingularityServer",
+      "path": "/src/core/SingularityServer.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SingularityServer"
+      ],
+      "loc": 142
+    },
+    {
+      "id": "SystemOrchestrator",
+      "path": "/src/core/SystemOrchestrator.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SystemOrchestrator"
+      ],
+      "loc": 199
+    },
+    {
+      "id": "Telemetry",
+      "path": "/src/core/telemetry/Telemetry.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Telemetry"
+      ],
+      "loc": 121
+    },
+    {
+      "id": "tracing",
+      "path": "/src/core/tracing.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "startTracing"
+      ],
+      "loc": 30
+    },
+    {
+      "id": "factory",
+      "path": "/src/data/factory.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Factory",
+        "FactoryManager",
+        "FactoryBuilder",
+        "defineFactory",
+        "factory"
+      ],
+      "loc": 346
+    },
+    {
+      "id": "faker",
+      "path": "/src/data/faker.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Faker",
+        "faker",
+        "fake"
+      ],
+      "loc": 470
+    },
+    {
+      "id": "fixtures",
+      "path": "/src/data/fixtures.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FixtureManager",
+        "FixtureSet",
+        "getFixtureManager",
+        "configureFixtures",
+        "fixture"
+      ],
+      "loc": 467
+    },
+    {
+      "id": "index",
+      "path": "/src/data/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumData",
+        "getQAntumData",
+        "data"
+      ],
+      "loc": 291
+    },
+    {
+      "id": "bus",
+      "path": "/src/events/bus.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EventBus",
+        "getEventBus",
+        "events"
+      ],
+      "loc": 411
+    },
+    {
+      "id": "emitter",
+      "path": "/src/events/emitter.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TypedEmitter",
+        "ObservableEmitter",
+        "createEmitter",
+        "createObservable"
+      ],
+      "loc": 345
+    },
+    {
+      "id": "EventBus",
+      "path": "/src/events/EventBus.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EventBus"
+      ],
+      "loc": 29
+    },
+    {
+      "id": "index",
+      "path": "/src/events/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumEvents",
+        "getQAntumEvents"
+      ],
+      "loc": 273
+    },
+    {
+      "id": "index",
+      "path": "/src/extensibility/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Extensibility",
+        "getExtensibility"
+      ],
+      "loc": 103
+    },
+    {
+      "id": "theme-engine",
+      "path": "/src/extensibility/theme-engine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ThemeEngine",
+        "lightTheme",
+        "darkTheme",
+        "getThemeEngine"
+      ],
+      "loc": 548
+    },
+    {
+      "id": "anti-detection",
+      "path": "/src/ghost/anti-detection.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AntiDetection",
+        "getAntiDetection"
+      ],
+      "loc": 354
+    },
+    {
+      "id": "index",
+      "path": "/src/ghost/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Ghost",
+        "getGhost"
+      ],
+      "loc": 212
+    },
+    {
+      "id": "network-interceptor",
+      "path": "/src/ghost/network-interceptor.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NetworkInterceptor",
+        "getNetworkInterceptor"
+      ],
+      "loc": 523
+    },
+    {
+      "id": "protocol",
+      "path": "/src/ghost/protocol.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostProtocol",
+        "SelectorObfuscator",
+        "getGhostProtocol"
+      ],
+      "loc": 475
+    },
+    {
+      "id": "proxy-chain",
+      "path": "/src/ghost/proxy-chain.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ProxyChain",
+        "getProxyChain"
+      ],
+      "loc": 523
+    },
+    {
+      "id": "index",
+      "path": "/src/global-nexus/index.ts",
+      "type": "Autonomous",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "createGlobalNexusSystem",
+        "VERSION",
+        "CODENAME",
+        "MARKET_VALUE"
+      ],
+      "loc": 266
+    },
+    {
+      "id": "index",
+      "path": "/src/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "qantum",
+        "VERSION",
+        "CODENAME",
+        "BUILD_DATE",
+        "QANTUM_METADATA"
+      ],
+      "loc": 173
+    },
+    {
+      "id": "index",
+      "path": "/src/integration/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumIntegration",
+        "getIntegration"
+      ],
+      "loc": 237
+    },
+    {
+      "id": "CognitiveBridge",
+      "path": "/src/intelligence/CognitiveBridge.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CognitiveBridge",
+        "getCognitiveBridge"
+      ],
+      "loc": 527
+    },
+    {
+      "id": "decryption-engine",
+      "path": "/src/intelligence/decryption-engine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DecryptionEngine"
+      ],
+      "loc": 84
+    },
+    {
+      "id": "dsentinelp",
+      "path": "/src/intelligence/dsentinelp.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "dSENTINELp"
+      ],
+      "loc": 64
+    },
+    {
+      "id": "EcosystemRegistry",
+      "path": "/src/intelligence/EcosystemRegistry.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EcosystemRegistry"
+      ],
+      "loc": 114
+    },
+    {
+      "id": "entropy-harvester",
+      "path": "/src/intelligence/entropy-harvester.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EntropyHarvester"
+      ],
+      "loc": 78
+    },
+    {
+      "id": "AutonomousThoughtModule",
+      "path": "/src/intelligence/modules/AutonomousThoughtModule.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutonomousThoughtModule"
+      ],
+      "loc": 24
+    },
+    {
+      "id": "FortressModule",
+      "path": "/src/intelligence/modules/FortressModule.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FortressModule"
+      ],
+      "loc": 53
+    },
+    {
+      "id": "GhostReconModule",
+      "path": "/src/intelligence/modules/GhostReconModule.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostReconModule"
+      ],
+      "loc": 20
+    },
+    {
+      "id": "MapLookupModule",
+      "path": "/src/intelligence/modules/MapLookupModule.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MapLookupModule"
+      ],
+      "loc": 50
+    },
+    {
+      "id": "PatternAnalysisModule",
+      "path": "/src/intelligence/modules/PatternAnalysisModule.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PatternAnalysisModule"
+      ],
+      "loc": 68
+    },
+    {
+      "id": "PrecogModule",
+      "path": "/src/intelligence/modules/PrecogModule.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PrecogModule"
+      ],
+      "loc": 46
+    },
+    {
+      "id": "SelfAuditModule",
+      "path": "/src/intelligence/modules/SelfAuditModule.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SelfAuditModule"
+      ],
+      "loc": 22
+    },
+    {
+      "id": "SelfHealModule",
+      "path": "/src/intelligence/modules/SelfHealModule.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SelfHealModule"
+      ],
+      "loc": 45
+    },
+    {
+      "id": "SingularityModule",
+      "path": "/src/intelligence/modules/SingularityModule.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SingularityModule"
+      ],
+      "loc": 41
+    },
+    {
+      "id": "SymbolVerifierModule",
+      "path": "/src/intelligence/modules/SymbolVerifierModule.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SymbolVerifierModule"
+      ],
+      "loc": 30
+    },
+    {
+      "id": "neural-mesh",
+      "path": "/src/intelligence/neural-mesh.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralMesh"
+      ],
+      "loc": 45
+    },
+    {
+      "id": "pattern-engine",
+      "path": "/src/intelligence/pattern-engine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PatternEngine"
+      ],
+      "loc": 63
+    },
+    {
+      "id": "strike-orchestrator",
+      "path": "/src/intelligence/strike-orchestrator.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "StrikeOrchestrator"
+      ],
+      "loc": 71
+    },
+    {
+      "id": "types",
+      "path": "/src/intelligence/types.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DEFAULT_COGNITIVE_CONFIG"
+      ],
+      "loc": 103
+    },
+    {
+      "id": "ArbitrageLogic",
+      "path": "/src/math/ArbitrageLogic.ts",
+      "type": "FinTech",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ArbitrageLogic",
+        "arbitrageLogic"
+      ],
+      "loc": 202
+    },
+    {
+      "id": "react",
+      "path": "/src/modules/chronos/sync/src/adapters/react.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "createChronoStore",
+        "useChronoStore",
+        "useChronoSelector",
+        "useTimeline",
+        "useChronoActions"
+      ],
+      "loc": 190
+    },
+    {
+      "id": "vue",
+      "path": "/src/modules/chronos/sync/src/adapters/vue.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "createChronoStore",
+        "useChronoStore",
+        "useTimeline",
+        "createChronoComposables",
+        "ChronoSyncPlugin"
+      ],
+      "loc": 148
+    },
+    {
+      "id": "StateManager",
+      "path": "/src/modules/chronos/sync/src/core/StateManager.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "StateManager",
+        "createStore"
+      ],
+      "loc": 363
+    },
+    {
+      "id": "Timeline",
+      "path": "/src/modules/chronos/sync/src/core/Timeline.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Timeline"
+      ],
+      "loc": 351
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/chronos/sync/src/index.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VERSION"
+      ],
+      "loc": 61
+    },
+    {
+      "id": "GhostShield",
+      "path": "/src/modules/ghost/shield/GhostShield.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostShield"
+      ],
+      "loc": 126
+    },
+    {
+      "id": "anti-detection",
+      "path": "/src/modules/ghost/shield/src/core/anti-detection.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AntiDetection",
+        "getAntiDetection"
+      ],
+      "loc": 353
+    },
+    {
+      "id": "CloudflareBypass",
+      "path": "/src/modules/ghost/shield/src/core/CloudflareBypass.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CloudflareBypass",
+        "CLOUDFLARE_SIGNATURES"
+      ],
+      "loc": 502
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/ghost/shield/src/core/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Ghost",
+        "getGhost"
+      ],
+      "loc": 216
+    },
+    {
+      "id": "network-interceptor",
+      "path": "/src/modules/ghost/shield/src/core/network-interceptor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NetworkInterceptor",
+        "getNetworkInterceptor"
+      ],
+      "loc": 519
+    },
+    {
+      "id": "personality-engine",
+      "path": "/src/modules/ghost/shield/src/core/personality-engine.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostPersonalityEngine",
+        "createGhostPersonalityEngine"
+      ],
+      "loc": 1354
+    },
+    {
+      "id": "PhantomIntegration",
+      "path": "/src/modules/ghost/shield/src/core/PhantomIntegration.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PhantomModeController",
+        "createPhantomFixture",
+        "examplePhantomTest"
+      ],
+      "loc": 339
+    },
+    {
+      "id": "protocol",
+      "path": "/src/modules/ghost/shield/src/core/protocol.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostProtocol",
+        "SelectorObfuscator",
+        "getGhostProtocol"
+      ],
+      "loc": 466
+    },
+    {
+      "id": "proxy-chain",
+      "path": "/src/modules/ghost/shield/src/core/proxy-chain.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ProxyChain",
+        "getProxyChain"
+      ],
+      "loc": 523
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/ghost/shield/src/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostShield"
+      ],
+      "loc": 221
+    },
+    {
+      "id": "paddle",
+      "path": "/src/modules/ghost/shield/src/licensing/paddle.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LicenseValidator",
+        "PaddleCheckout",
+        "LicenseGenerator",
+        "PaddleWebhookHandler",
+        "GHOSTSHIELD_PRODUCTS"
+      ],
+      "loc": 422
+    },
+    {
+      "id": "biometric-engine",
+      "path": "/src/modules/ghost/shield/src/protocol/biometric-engine.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BiometricEngine"
+      ],
+      "loc": 414
+    },
+    {
+      "id": "chronos-paradox",
+      "path": "/src/modules/ghost/shield/src/protocol/chronos-paradox.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ChronosParadox",
+        "applyPatch"
+      ],
+      "loc": 472
+    },
+    {
+      "id": "demo",
+      "path": "/src/modules/ghost/shield/src/protocol/demo.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 312
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/ghost/shield/src/protocol/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostProtocolV2",
+        "PROTECTION_SIGNATURES"
+      ],
+      "loc": 497
+    },
+    {
+      "id": "tls-phantom",
+      "path": "/src/modules/ghost/shield/src/protocol/tls-phantom.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TLSPhantom"
+      ],
+      "loc": 211
+    },
+    {
+      "id": "visual-stealth",
+      "path": "/src/modules/ghost/shield/src/protocol/visual-stealth.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VisualStealth"
+      ],
+      "loc": 327
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/hydrated/api/unified/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "quickStart"
+      ],
+      "loc": 174
+    },
+    {
+      "id": "auth",
+      "path": "/src/modules/hydrated/api/unified/middleware/auth.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AuthMiddleware",
+        "createApiKey",
+        "createUser",
+        "createJWT"
+      ],
+      "loc": 581
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/hydrated/cognitive/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CognitiveOrchestrator",
+        "createCognitiveOrchestrator"
+      ],
+      "loc": 208
+    },
+    {
+      "id": "obfuscation-engine",
+      "path": "/src/modules/hydrated/fortress/obfuscation-engine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ObfuscationEngine",
+        "obfuscateDist"
+      ],
+      "loc": 500
+    },
+    {
+      "id": "biometric-jitter",
+      "path": "/src/modules/hydrated/ghost/biometric-jitter.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BiometricJitter",
+        "createBiometricJitter",
+        "createBiometricProfile"
+      ],
+      "loc": 748
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/hydrated/ghost/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostEngine",
+        "createGhostEngine"
+      ],
+      "loc": 372
+    },
+    {
+      "id": "ghost-recon",
+      "path": "/src/modules/hydrated/ghost-recon.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostRecon"
+      ],
+      "loc": 49
+    },
+    {
+      "id": "final-stress-test",
+      "path": "/src/modules/hydrated/singularity/final-stress-test.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FinalStressTest",
+        "createStressTest"
+      ],
+      "loc": 495
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/hydrated/singularity/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SingularityOrchestrator",
+        "createSingularity"
+      ],
+      "loc": 237
+    },
+    {
+      "id": "solana-provider",
+      "path": "/src/modules/hydrated/solana-provider.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SolanaProvider"
+      ],
+      "loc": 55
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/index.ts",
+      "type": "Unknown",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 179
+    },
+    {
+      "id": "cli",
+      "path": "/src/modules/intelligence/debugger/src/cli.ts",
+      "type": "Unknown",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 121
+    },
+    {
+      "id": "license",
+      "path": "/src/modules/intelligence/debugger/src/license.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LicenseManager"
+      ],
+      "loc": 336
+    },
+    {
+      "id": "qantum-debugger",
+      "path": "/src/modules/intelligence/debugger/src/qantum-debugger.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QantumDebugger"
+      ],
+      "loc": 891
+    },
+    {
+      "id": "RefactorEngine",
+      "path": "/src/modules/refactoring/RefactorEngine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "RefactorEngine"
+      ],
+      "loc": 195
+    },
+    {
+      "id": "cognitive-partner",
+      "path": "/src/modules/_root_migrated/agents/cognitive-partner.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CognitivePartner"
+      ],
+      "loc": 504
+    },
+    {
+      "id": "NeuralMapper",
+      "path": "/src/modules/_root_migrated/brain/learning/agility/NeuralMapper.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralMapper",
+        "getNeuralMapper"
+      ],
+      "loc": 357
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/_root_migrated/brain/learning/energy/index.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 429
+    },
+    {
+      "id": "phase2-evolution-auto.test",
+      "path": "/src/modules/_root_migrated/brain/logic/agility/phase2-evolution-auto.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1277
+    },
+    {
+      "id": "prisma",
+      "path": "/src/modules/_root_migrated/brain/logic/energy/prisma.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "prisma"
+      ],
+      "loc": 18
+    },
+    {
+      "id": "physics-engine.test",
+      "path": "/src/modules/_root_migrated/brain/logic/strength/physics-engine.test.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 320
+    },
+    {
+      "id": "reinforcement-learning-bridge",
+      "path": "/src/modules/_root_migrated/brain/memory/energy/reinforcement-learning-bridge.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ReinforcementLearningBridge",
+        "rlBridge"
+      ],
+      "loc": 667
+    },
+    {
+      "id": "phase1-core.test",
+      "path": "/src/modules/_root_migrated/brain/memory/strength/phase1-core.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 453
+    },
+    {
+      "id": "phase3-infrastructure.test",
+      "path": "/src/modules/_root_migrated/brain/memory/strength/phase3-infrastructure.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1384
+    },
+    {
+      "id": "UsageGuard",
+      "path": "/src/modules/_root_migrated/core/brain/agility/UsageGuard.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "UsageGuard",
+        "getUsageGuard",
+        "createUsageGuard",
+        "RATE_LIMIT_PLANS"
+      ],
+      "loc": 641
+    },
+    {
+      "id": "ArmedReaper",
+      "path": "/src/modules/_root_migrated/core/brain/energy/ArmedReaper.ts",
+      "type": "FinTech",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ArmedReaper",
+        "armedReaper"
+      ],
+      "loc": 591
+    },
+    {
+      "id": "container",
+      "path": "/src/modules/_root_migrated/core/brain/energy/container.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ServiceToken",
+        "DIContainer",
+        "storeInjectionMetadata",
+        "getInjectionMetadata",
+        "ServiceTokens"
+      ],
+      "loc": 754
+    },
+    {
+      "id": "ghost-execution-layer",
+      "path": "/src/modules/_root_migrated/core/brain/energy/ghost-execution-layer.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostExecutionLayer"
+      ],
+      "loc": 607
+    },
+    {
+      "id": "n-step-simulator",
+      "path": "/src/modules/_root_migrated/core/brain/energy/n-step-simulator.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NStepLookAheadSimulator",
+        "nStepSimulator"
+      ],
+      "loc": 648
+    },
+    {
+      "id": "test-prediction-matrix",
+      "path": "/src/modules/_root_migrated/core/brain/energy/test-prediction-matrix.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 169
+    },
+    {
+      "id": "bastion-controller",
+      "path": "/src/modules/_root_migrated/core/brain/strength/bastion-controller.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BastionController"
+      ],
+      "loc": 538
+    },
+    {
+      "id": "bastion.test",
+      "path": "/src/modules/_root_migrated/core/brain/strength/bastion.test.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 897
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/_root_migrated/core/brain/strength/index.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 142
+    },
+    {
+      "id": "license-manager",
+      "path": "/src/modules/_root_migrated/core/brain/strength/license-manager.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LicenseManager",
+        "requireLicense"
+      ],
+      "loc": 480
+    },
+    {
+      "id": "neural-backpack",
+      "path": "/src/modules/_root_migrated/core/brain/strength/neural-backpack.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FIFOBuffer",
+        "PersistenceLayer",
+        "ContextInjector",
+        "HallucinationGuard",
+        "NeuralBackpack"
+      ],
+      "loc": 964
+    },
+    {
+      "id": "phase2.test",
+      "path": "/src/modules/_root_migrated/core/brain/strength/phase2.test.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 758
+    },
+    {
+      "id": "phase3-index",
+      "path": "/src/modules/_root_migrated/core/brain/strength/phase3-index.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 329
+    },
+    {
+      "id": "phase3-intelligence.test",
+      "path": "/src/modules/_root_migrated/core/brain/strength/phase3-intelligence.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1327
+    },
+    {
+      "id": "phase3-production.test",
+      "path": "/src/modules/_root_migrated/core/brain/strength/phase3-production.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1125
+    },
+    {
+      "id": "runner",
+      "path": "/src/modules/_root_migrated/core/brain/strength/runner.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TestRunner",
+        "createRunner"
+      ],
+      "loc": 208
+    },
+    {
+      "id": "segc-controller",
+      "path": "/src/modules/_root_migrated/core/brain/strength/segc-controller.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SEGCController"
+      ],
+      "loc": 389
+    },
+    {
+      "id": "segc.test",
+      "path": "/src/modules/_root_migrated/core/brain/strength/segc.test.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 538
+    },
+    {
+      "id": "whisper-service",
+      "path": "/src/modules/_root_migrated/core/brain/strength/whisper-service.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "WhisperService"
+      ],
+      "loc": 581
+    },
+    {
+      "id": "worker-pool",
+      "path": "/src/modules/_root_migrated/core/brain/strength/worker-pool.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "WorkerPoolManager",
+        "workerMain"
+      ],
+      "loc": 816
+    },
+    {
+      "id": "billing",
+      "path": "/src/modules/_root_migrated/core/ears/agility/billing.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "billingRoutes"
+      ],
+      "loc": 331
+    },
+    {
+      "id": "error-handler",
+      "path": "/src/modules/_root_migrated/core/ears/agility/error-handler.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NetworkError",
+        "TimeoutError",
+        "ValidationError",
+        "ConfigurationError",
+        "AIServiceError"
+      ],
+      "loc": 677
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/_root_migrated/core/ears/agility/index.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TransformPipeline",
+        "JsonToMapAdapter",
+        "TypedAdapter",
+        "SchemaValidator",
+        "HttpBinding"
+      ],
+      "loc": 568
+    },
+    {
+      "id": "utils",
+      "path": "/src/modules/_root_migrated/core/ears/agility/utils.ts",
+      "type": "Utility",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "cn",
+        "formatDuration",
+        "formatDate",
+        "formatPercentage",
+        "getStatusColor"
+      ],
+      "loc": 67
+    },
+    {
+      "id": "auth",
+      "path": "/src/modules/_root_migrated/core/ears/energy/auth.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "login",
+        "logout",
+        "whoami"
+      ],
+      "loc": 108
+    },
+    {
+      "id": "AutoOnboarder",
+      "path": "/src/modules/_root_migrated/core/ears/energy/AutoOnboarder.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutoOnboarder",
+        "createAutoOnboarder"
+      ],
+      "loc": 1145
+    },
+    {
+      "id": "base-agent",
+      "path": "/src/modules/_root_migrated/core/ears/energy/base-agent.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 302
+    },
+    {
+      "id": "init",
+      "path": "/src/modules/_root_migrated/core/ears/energy/init.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "init"
+      ],
+      "loc": 212
+    },
+    {
+      "id": "PaymentGateway",
+      "path": "/src/modules/_root_migrated/core/ears/energy/PaymentGateway.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PaymentGateway",
+        "paymentGateway"
+      ],
+      "loc": 564
+    },
+    {
+      "id": "run",
+      "path": "/src/modules/_root_migrated/core/ears/energy/run.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "runTests"
+      ],
+      "loc": 223
+    },
+    {
+      "id": "SecureConfigLoader",
+      "path": "/src/modules/_root_migrated/core/ears/energy/SecureConfigLoader.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SecureConfigLoader",
+        "secureConfig"
+      ],
+      "loc": 446
+    },
+    {
+      "id": "site-mapper",
+      "path": "/src/modules/_root_migrated/core/ears/energy/site-mapper.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SiteMapper",
+        "createSiteMapper"
+      ],
+      "loc": 1090
+    },
+    {
+      "id": "agentic-orchestrator",
+      "path": "/src/modules/_root_migrated/core/ears/strength/agentic-orchestrator.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AgenticOrchestrator"
+      ],
+      "loc": 614
+    },
+    {
+      "id": "dashboard-server",
+      "path": "/src/modules/_root_migrated/core/ears/strength/dashboard-server.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DashboardServer"
+      ],
+      "loc": 1376
+    },
+    {
+      "id": "EnterpriseDiscovery",
+      "path": "/src/modules/_root_migrated/core/ears/strength/EnterpriseDiscovery.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EnterpriseDiscovery",
+        "getEnterpriseDiscovery",
+        "createEnterpriseDiscovery"
+      ],
+      "loc": 961
+    },
+    {
+      "id": "flaky-infrastructure.test",
+      "path": "/src/modules/_root_migrated/core/ears/strength/flaky-infrastructure.test.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 660
+    },
+    {
+      "id": "heavy-task-delegator",
+      "path": "/src/modules/_root_migrated/core/ears/strength/heavy-task-delegator.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "HeavyTaskDelegator"
+      ],
+      "loc": 737
+    },
+    {
+      "id": "reporter",
+      "path": "/src/modules/_root_migrated/core/ears/strength/reporter.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ReportGenerator",
+        "createReportGenerator"
+      ],
+      "loc": 278
+    },
+    {
+      "id": "semantic-core",
+      "path": "/src/modules/_root_migrated/core/ears/strength/semantic-core.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AdaptiveSemanticCore",
+        "CommonIntents"
+      ],
+      "loc": 1107
+    },
+    {
+      "id": "MemoryWatchdog",
+      "path": "/src/modules/_root_migrated/core/eyes/agility/MemoryWatchdog.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MemoryWatchdog",
+        "WorkerMemoryGuard",
+        "getGlobalWatchdog",
+        "startMemoryWatchdog"
+      ],
+      "loc": 626
+    },
+    {
+      "id": "anti-tamper",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/anti-tamper.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AntiTamper",
+        "getAntiTamper",
+        "createAntiTamper"
+      ],
+      "loc": 915
+    },
+    {
+      "id": "browser-pool",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/browser-pool.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BrowserPoolManager"
+      ],
+      "loc": 624
+    },
+    {
+      "id": "EmergencyKillSwitch",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/EmergencyKillSwitch.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EmergencyKillSwitch",
+        "emergencyKillSwitch"
+      ],
+      "loc": 602
+    },
+    {
+      "id": "genesis",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/genesis.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "genesisCreate",
+        "genesisManifest",
+        "genesisObserve",
+        "genesisList",
+        "genesisCollapse"
+      ],
+      "loc": 504
+    },
+    {
+      "id": "health-check",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/health-check.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "HealthCheckSystem"
+      ],
+      "loc": 582
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/index.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1073
+    },
+    {
+      "id": "MarketWatcher",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/MarketWatcher.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MarketWatcher",
+        "marketWatcher"
+      ],
+      "loc": 430
+    },
+    {
+      "id": "memory-hardening",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/memory-hardening.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MemoryHardeningManager",
+        "getGlobalMemoryManager"
+      ],
+      "loc": 447
+    },
+    {
+      "id": "neural-hud",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/neural-hud.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralHUD"
+      ],
+      "loc": 1288
+    },
+    {
+      "id": "OllamaAgent",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/OllamaAgent.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "OllamaAgent",
+        "ollamaAgent"
+      ],
+      "loc": 778
+    },
+    {
+      "id": "ReaperDashboard",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/ReaperDashboard.ts",
+      "type": "FinTech",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ReaperDashboard",
+        "reaperDashboard"
+      ],
+      "loc": 590
+    },
+    {
+      "id": "state-preloader",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/state-preloader.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PredictiveStatePreloader"
+      ],
+      "loc": 604
+    },
+    {
+      "id": "VSCodeBridge",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/VSCodeBridge.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VSCodeBridge",
+        "getVSCodeBridge",
+        "destroyVSCodeBridge"
+      ],
+      "loc": 696
+    },
+    {
+      "id": "websocket-bridge",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/websocket-bridge.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "WebSocketBridge"
+      ],
+      "loc": 449
+    },
+    {
+      "id": "ArbitrageOrchestrator",
+      "path": "/src/modules/_root_migrated/core/eyes/strength/ArbitrageOrchestrator.ts",
+      "type": "FinTech",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ArbitrageOrchestrator",
+        "arbitrageOrchestrator"
+      ],
+      "loc": 544
+    },
+    {
+      "id": "GenesisProcessor",
+      "path": "/src/modules/_root_migrated/core/eyes/strength/GenesisProcessor.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "processGenesisTestJob",
+        "executeHybridGenesisTest",
+        "startGenesisWorker"
+      ],
+      "loc": 561
+    },
+    {
+      "id": "hardware-telemetry",
+      "path": "/src/modules/_root_migrated/core/eyes/strength/hardware-telemetry.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "HardwareTelemetry",
+        "hardwareTelemetry"
+      ],
+      "loc": 566
+    },
+    {
+      "id": "phase1-async-healing.test",
+      "path": "/src/modules/_root_migrated/core/eyes/strength/phase1-async-healing.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 957
+    },
+    {
+      "id": "phase1-index",
+      "path": "/src/modules/_root_migrated/core/eyes/strength/phase1-index.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 450
+    },
+    {
+      "id": "phase2-index",
+      "path": "/src/modules/_root_migrated/core/eyes/strength/phase2-index.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 339
+    },
+    {
+      "id": "PhenomenonWeaver",
+      "path": "/src/modules/_root_migrated/core/eyes/strength/PhenomenonWeaver.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "RealityCohesionEngine",
+        "ObservationalBiasNeutralizer",
+        "PotentialManifestationInterface",
+        "PhenomenonWeaver",
+        "phenomenonWeaver"
+      ],
+      "loc": 863
+    },
+    {
+      "id": "reality",
+      "path": "/src/modules/_root_migrated/core/eyes/strength/reality.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TelemetryEngine",
+        "GlobalDashboardV3",
+        "EdgeCaseSimulator",
+        "NeonNotifier",
+        "createRealityLayer"
+      ],
+      "loc": 691
+    },
+    {
+      "id": "telemetry.test",
+      "path": "/src/modules/_root_migrated/core/eyes/strength/telemetry.test.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 296
+    },
+    {
+      "id": "api-handlers",
+      "path": "/src/modules/_root_migrated/core/mouth/agility/api-handlers.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "saasApiHandlers",
+        "rateLimitMiddleware",
+        "featureGateMiddleware"
+      ],
+      "loc": 258
+    },
+    {
+      "id": "BrainRouter",
+      "path": "/src/modules/_root_migrated/core/mouth/agility/BrainRouter.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BrainRouter",
+        "getBrainRouter"
+      ],
+      "loc": 659
+    },
+    {
+      "id": "dashboard",
+      "path": "/src/modules/_root_migrated/core/mouth/agility/dashboard.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "dashboardRoutes"
+      ],
+      "loc": 92
+    },
+    {
+      "id": "format",
+      "path": "/src/modules/_root_migrated/core/mouth/agility/format.js",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "formatDuration",
+        "formatResults"
+      ],
+      "loc": 86
+    },
+    {
+      "id": "format",
+      "path": "/src/modules/_root_migrated/core/mouth/agility/format.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "formatDuration",
+        "formatResults"
+      ],
+      "loc": 128
+    },
+    {
+      "id": "neural-mapper",
+      "path": "/src/modules/_root_migrated/core/mouth/agility/neural-mapper.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralMapper"
+      ],
+      "loc": 990
+    },
+    {
+      "id": "runs",
+      "path": "/src/modules/_root_migrated/core/mouth/agility/runs.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "runRoutes"
+      ],
+      "loc": 247
+    },
+    {
+      "id": "Scheduler",
+      "path": "/src/modules/_root_migrated/core/mouth/agility/Scheduler.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CronParser",
+        "Scheduler",
+        "TestScheduler",
+        "createScheduler",
+        "createTestScheduler"
+      ],
+      "loc": 568
+    },
+    {
+      "id": "AdaptiveOllamaAgent",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/AdaptiveOllamaAgent.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AdaptiveOllamaAgent",
+        "adaptiveAgent"
+      ],
+      "loc": 1157
+    },
+    {
+      "id": "ai",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/ai.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "aiRoutes"
+      ],
+      "loc": 371
+    },
+    {
+      "id": "api-ddt.test",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/api-ddt.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 201
+    },
+    {
+      "id": "auto-patcher",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/auto-patcher.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutoPatcher"
+      ],
+      "loc": 715
+    },
+    {
+      "id": "AutonomousFeedbackLoop",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/AutonomousFeedbackLoop.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutonomousFeedbackLoop",
+        "getFeedbackLoop",
+        "destroyFeedbackLoop"
+      ],
+      "loc": 515
+    },
+    {
+      "id": "biometric-jitter",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/biometric-jitter.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BiometricJitter",
+        "createBiometricJitter",
+        "createBiometricProfile"
+      ],
+      "loc": 790
+    },
+    {
+      "id": "bulgarian-tts",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/bulgarian-tts.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BulgarianTTS"
+      ],
+      "loc": 621
+    },
+    {
+      "id": "config",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/config.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ConfigManager",
+        "createConfigManager"
+      ],
+      "loc": 169
+    },
+    {
+      "id": "enterprise-logger",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/enterprise-logger.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EnterpriseLogger",
+        "getLogger",
+        "createLogger",
+        "configureLogger",
+        "logger"
+      ],
+      "loc": 431
+    },
+    {
+      "id": "entitlement",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/entitlement.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "checkEntitlements",
+        "checkGhostMode",
+        "checkSelfHealing",
+        "checkParallelism",
+        "checkApiAccess"
+      ],
+      "loc": 353
+    },
+    {
+      "id": "ExchangeConnectors",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/ExchangeConnectors.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ExchangeHub",
+        "exchangeHub"
+      ],
+      "loc": 785
+    },
+    {
+      "id": "genesis",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/genesis.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "genesisRoutes"
+      ],
+      "loc": 1049
+    },
+    {
+      "id": "hybrid.test",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/hybrid.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 366
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/index.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 768
+    },
+    {
+      "id": "InteractiveMode",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/InteractiveMode.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "InteractiveMode",
+        "createInteractiveMode"
+      ],
+      "loc": 514
+    },
+    {
+      "id": "IVeritasSDK",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/IVeritasSDK.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 265
+    },
+    {
+      "id": "kernel",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/kernel.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PantheonKernel",
+        "createPantheon"
+      ],
+      "loc": 914
+    },
+    {
+      "id": "LiveWalletManager",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/LiveWalletManager.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LiveWalletManager",
+        "liveWalletManager"
+      ],
+      "loc": 602
+    },
+    {
+      "id": "local.test",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/local.test.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 504
+    },
+    {
+      "id": "logic-discovery",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/logic-discovery.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LogicDiscoveryEngine",
+        "createLogicDiscovery"
+      ],
+      "loc": 1009
+    },
+    {
+      "id": "logic-gate",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/logic-gate.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AILogicGate"
+      ],
+      "loc": 788
+    },
+    {
+      "id": "markdown-builder",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/markdown-builder.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MarkdownBuilder"
+      ],
+      "loc": 481
+    },
+    {
+      "id": "MarketBlueprint",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/MarketBlueprint.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MarketBlueprint",
+        "createMarketBlueprint"
+      ],
+      "loc": 1815
+    },
+    {
+      "id": "multimodal.test",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/multimodal.test.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 556
+    },
+    {
+      "id": "neural-fingerprint-activator",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/neural-fingerprint-activator.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralFingerprintActivator",
+        "createNeuralFingerprintActivator"
+      ],
+      "loc": 887
+    },
+    {
+      "id": "neural-fingerprinting",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/neural-fingerprinting.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralFingerprintingEngine",
+        "createNeuralFingerprinting"
+      ],
+      "loc": 866
+    },
+    {
+      "id": "nexus-coordinator",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/nexus-coordinator.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NexusCoordinator"
+      ],
+      "loc": 912
+    },
+    {
+      "id": "OllamaAgent",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/OllamaAgent.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 693
+    },
+    {
+      "id": "ParanoidObfuscation",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/ParanoidObfuscation.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ParanoidObfuscator"
+      ],
+      "loc": 441
+    },
+    {
+      "id": "phase3.test",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/phase3.test.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 771
+    },
+    {
+      "id": "predictive-resource-allocation",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/predictive-resource-allocation.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PredictiveResourceEngine",
+        "createPredictiveResourceEngine"
+      ],
+      "loc": 865
+    },
+    {
+      "id": "sentinel-link",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/sentinel-link.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SentinelLink",
+        "getSentinelLink",
+        "createSentinelLink"
+      ],
+      "loc": 872
+    },
+    {
+      "id": "swarm-commander",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/swarm-commander.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Soldier",
+        "SwarmCommander"
+      ],
+      "loc": 743
+    },
+    {
+      "id": "typescript-analyzer",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/typescript-analyzer.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TypeScriptAnalyzer",
+        "Server",
+        "initialize"
+      ],
+      "loc": 501
+    },
+    {
+      "id": "upload",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/upload.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "upload"
+      ],
+      "loc": 91
+    },
+    {
+      "id": "ux-auditor.test",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/ux-auditor.test.ts",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 275
+    },
+    {
+      "id": "voice-commander",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/voice-commander.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VoiceCommander"
+      ],
+      "loc": 1065
+    },
+    {
+      "id": "automation",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/automation.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ScriptRunner",
+        "DocumentationScript",
+        "BuildScript",
+        "TestScript",
+        "DeployScript"
+      ],
+      "loc": 1006
+    },
+    {
+      "id": "AutonomousSalesForce",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/AutonomousSalesForce.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutonomousSalesForce",
+        "createAutonomousSalesForce"
+      ],
+      "loc": 1228
+    },
+    {
+      "id": "BaseElement",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/BaseElement.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BaseElement"
+      ],
+      "loc": 605
+    },
+    {
+      "id": "BillingPulse",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/BillingPulse.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BillingPulse",
+        "getBillingPulse",
+        "createBillingPulse"
+      ],
+      "loc": 892
+    },
+    {
+      "id": "branding",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/branding.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "printBanner",
+        "printHeader",
+        "printFooter",
+        "getVersionString",
+        "getCopyright"
+      ],
+      "loc": 193
+    },
+    {
+      "id": "ClientOrchestrator",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/ClientOrchestrator.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ClientOrchestrator",
+        "getClientOrchestrator",
+        "createClientOrchestrator",
+        "TIER_RATE_LIMITS"
+      ],
+      "loc": 943
+    },
+    {
+      "id": "ddt.test",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/ddt.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 235
+    },
+    {
+      "id": "DeepSearchEngine",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/DeepSearchEngine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DeepSearchEngine"
+      ],
+      "loc": 744
+    },
+    {
+      "id": "distillation-logger",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/distillation-logger.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DistillationLogger"
+      ],
+      "loc": 625
+    },
+    {
+      "id": "docker-manager",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/docker-manager.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DockerManager"
+      ],
+      "loc": 664
+    },
+    {
+      "id": "domain-mapper",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/domain-mapper.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DomainMapper",
+        "createDomainMapper"
+      ],
+      "loc": 902
+    },
+    {
+      "id": "EmailEngine",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/EmailEngine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EmailEngine",
+        "emailEngine"
+      ],
+      "loc": 745
+    },
+    {
+      "id": "executor-agent",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/executor-agent.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ExecutorAgent"
+      ],
+      "loc": 577
+    },
+    {
+      "id": "fatality-engine",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/fatality-engine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FatalityEngine",
+        "getFatalityEngine",
+        "createFatalityEngine",
+        "armFatality"
+      ],
+      "loc": 1320
+    },
+    {
+      "id": "final-stress-test",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/final-stress-test.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FinalStressTest",
+        "createStressTest"
+      ],
+      "loc": 506
+    },
+    {
+      "id": "fluent-chain",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/fluent-chain.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FluentChain"
+      ],
+      "loc": 307
+    },
+    {
+      "id": "hybrid-vision-controller",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/hybrid-vision-controller.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "HybridVisionController"
+      ],
+      "loc": 520
+    },
+    {
+      "id": "junit",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/junit.js",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "generateJUnit"
+      ],
+      "loc": 55
+    },
+    {
+      "id": "junit",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/junit.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "generateJUnit"
+      ],
+      "loc": 88
+    },
+    {
+      "id": "MainExecutor",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/MainExecutor.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MainExecutor",
+        "runAutomation",
+        "PredefinedTasks"
+      ],
+      "loc": 621
+    },
+    {
+      "id": "mister-mind.test",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/mister-mind.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 284
+    },
+    {
+      "id": "modules.test",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/modules.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 476
+    },
+    {
+      "id": "openapi-generator",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/openapi-generator.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "OpenAPIGenerator"
+      ],
+      "loc": 539
+    },
+    {
+      "id": "phase1-cognitive.test",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/phase1-cognitive.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 921
+    },
+    {
+      "id": "PhenomenonWeaver",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/PhenomenonWeaver.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "RealityCohesionEngine",
+        "ObservationalBiasNeutralizer",
+        "PotentialManifestationInterface",
+        "PhenomenonWeaver",
+        "phenomenonWeaver"
+      ],
+      "loc": 1073
+    },
+    {
+      "id": "qantum",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/qantum.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntum",
+        "createQA",
+        "createMM"
+      ],
+      "loc": 373
+    },
+    {
+      "id": "report-generator",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/report-generator.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SupremeReportGenerator",
+        "createReportGenerator"
+      ],
+      "loc": 1386
+    },
+    {
+      "id": "stream-processor",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/stream-processor.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "JSONLineParser",
+        "JSONArrayParser",
+        "BatchProcessor",
+        "MemoryThrottleTransform",
+        "StreamProcessor"
+      ],
+      "loc": 691
+    },
+    {
+      "id": "test",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 194
+    },
+    {
+      "id": "Orchestrator",
+      "path": "/src/modules/_root_migrated/JULES/src/ai/Orchestrator.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Orchestrator"
+      ],
+      "loc": 13
+    },
+    {
+      "id": "qantum-debugger",
+      "path": "/src/modules/_root_migrated/PRODUCTS/qantum-debugger/src/qantum-debugger.ts",
+      "type": "Product",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QantumDebugger"
+      ],
+      "loc": 891
+    },
+    {
+      "id": "checksum-validator",
+      "path": "/src/modules/_root_migrated/security/auth/agility/checksum-validator.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ChecksumValidator"
+      ],
+      "loc": 449
+    },
+    {
+      "id": "BasePage",
+      "path": "/src/modules/_root_migrated/security/auth/energy/BasePage.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BasePage"
+      ],
+      "loc": 520
+    },
+    {
+      "id": "circuit-breaker",
+      "path": "/src/modules/_root_migrated/security/auth/energy/circuit-breaker.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CircuitBreakerManager"
+      ],
+      "loc": 521
+    },
+    {
+      "id": "cognitive-ux-auditor",
+      "path": "/src/modules/_root_migrated/security/auth/energy/cognitive-ux-auditor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CognitiveUXAuditor",
+        "cognitiveUXAuditor"
+      ],
+      "loc": 709
+    },
+    {
+      "id": "critic-agent",
+      "path": "/src/modules/_root_migrated/security/auth/energy/critic-agent.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CriticAgent"
+      ],
+      "loc": 334
+    },
+    {
+      "id": "executor",
+      "path": "/src/modules/_root_migrated/security/auth/energy/executor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostExecutor",
+        "ghostExecutor"
+      ],
+      "loc": 430
+    },
+    {
+      "id": "FortressIntegration",
+      "path": "/src/modules/_root_migrated/security/auth/energy/FortressIntegration.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FortressIntegration",
+        "createFatalityHook",
+        "getFortressIntegration",
+        "createFortressIntegration"
+      ],
+      "loc": 765
+    },
+    {
+      "id": "GenesisRealityProvider",
+      "path": "/src/modules/_root_migrated/security/auth/energy/GenesisRealityProvider.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GenesisRealityProvider",
+        "genesisRealityProvider"
+      ],
+      "loc": 959
+    },
+    {
+      "id": "ghost-strategy",
+      "path": "/src/modules/_root_migrated/security/auth/energy/ghost-strategy.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TLSPhantomStrategy",
+        "BiometricJitterStrategy",
+        "WebGLMutatorStrategy",
+        "VisualStealthStrategy",
+        "TimingObfuscationStrategy"
+      ],
+      "loc": 488
+    },
+    {
+      "id": "hardware-lock",
+      "path": "/src/modules/_root_migrated/security/auth/energy/hardware-lock.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "HardwareLock",
+        "getHardwareLock",
+        "createHardwareLock"
+      ],
+      "loc": 700
+    },
+    {
+      "id": "malicious-intent.test",
+      "path": "/src/modules/_root_migrated/security/auth/energy/malicious-intent.test.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 374
+    },
+    {
+      "id": "module-loader",
+      "path": "/src/modules/_root_migrated/security/auth/energy/module-loader.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "HotSwapModuleLoader"
+      ],
+      "loc": 499
+    },
+    {
+      "id": "multi-language-cognition",
+      "path": "/src/modules/_root_migrated/security/auth/energy/multi-language-cognition.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MultiLanguageCognition",
+        "BULGARIAN_PATTERNS",
+        "ENGLISH_PATTERNS",
+        "CHINESE_PATTERNS",
+        "JAPANESE_PATTERNS"
+      ],
+      "loc": 1102
+    },
+    {
+      "id": "neural-optimizer",
+      "path": "/src/modules/_root_migrated/security/auth/energy/neural-optimizer.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LRUCache",
+        "PatternDeduplicator",
+        "NeuralOptimizer",
+        "neuralOptimizer"
+      ],
+      "loc": 760
+    },
+    {
+      "id": "neural-vault",
+      "path": "/src/modules/_root_migrated/security/auth/energy/neural-vault.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralVault"
+      ],
+      "loc": 568
+    },
+    {
+      "id": "neural.test",
+      "path": "/src/modules/_root_migrated/security/auth/energy/neural.test.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 318
+    },
+    {
+      "id": "observability-bridge",
+      "path": "/src/modules/_root_migrated/security/auth/energy/observability-bridge.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ObservabilityBridge"
+      ],
+      "loc": 578
+    },
+    {
+      "id": "planner-agent",
+      "path": "/src/modules/_root_migrated/security/auth/energy/planner-agent.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PlannerAgent"
+      ],
+      "loc": 391
+    },
+    {
+      "id": "resource-exhaustion.test",
+      "path": "/src/modules/_root_migrated/security/auth/energy/resource-exhaustion.test.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 477
+    },
+    {
+      "id": "sandbox-executor",
+      "path": "/src/modules/_root_migrated/security/auth/energy/sandbox-executor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SandboxExecutor"
+      ],
+      "loc": 446
+    },
+    {
+      "id": "state-versioner",
+      "path": "/src/modules/_root_migrated/security/auth/energy/state-versioner.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "StateVersioningSystem"
+      ],
+      "loc": 535
+    },
+    {
+      "id": "test-all",
+      "path": "/src/modules/_root_migrated/security/auth/energy/test-all.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 246
+    },
+    {
+      "id": "thermal-aware-pool",
+      "path": "/src/modules/_root_migrated/security/auth/energy/thermal-aware-pool.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ThermalAwarePool"
+      ],
+      "loc": 456
+    },
+    {
+      "id": "action-executor",
+      "path": "/src/modules/_root_migrated/security/auth/strength/action-executor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ActionExecutor",
+        "actionExecutor"
+      ],
+      "loc": 417
+    },
+    {
+      "id": "chronos-engine-v2",
+      "path": "/src/modules/_root_migrated/security/auth/strength/chronos-engine-v2.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ChronosEngine"
+      ],
+      "loc": 1036
+    },
+    {
+      "id": "core.test",
+      "path": "/src/modules/_root_migrated/security/auth/strength/core.test.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 774
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/_root_migrated/security/auth/strength/index.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 228
+    },
+    {
+      "id": "intelligence",
+      "path": "/src/modules/_root_migrated/security/auth/strength/intelligence.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralBackpack",
+        "SelfHealingV2",
+        "PreCogEngine",
+        "OmniscientCore",
+        "createIntelligenceLayer"
+      ],
+      "loc": 666
+    },
+    {
+      "id": "mutation-engine",
+      "path": "/src/modules/_root_migrated/security/auth/strength/mutation-engine.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GeneticMutationEngine"
+      ],
+      "loc": 509
+    },
+    {
+      "id": "persona-engine",
+      "path": "/src/modules/_root_migrated/security/auth/strength/persona-engine.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PersonaEngine",
+        "PERSONA_TEMPLATES",
+        "personaEngine"
+      ],
+      "loc": 660
+    },
+    {
+      "id": "persona.test",
+      "path": "/src/modules/_root_migrated/security/auth/strength/persona.test.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 367
+    },
+    {
+      "id": "phase2-nlu-shadow.test",
+      "path": "/src/modules/_root_migrated/security/auth/strength/phase2-nlu-shadow.test.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 542
+    },
+    {
+      "id": "video-replay-analyzer",
+      "path": "/src/modules/_root_migrated/security/auth/strength/video-replay-analyzer.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VideoReplayAnalyzer"
+      ],
+      "loc": 1142
+    },
+    {
+      "id": "tls-phantom",
+      "path": "/src/modules/_root_migrated/security/encryption/energy/tls-phantom.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TLSPhantomEngine",
+        "getTLSPhantom",
+        "createTLSPhantom"
+      ],
+      "loc": 552
+    },
+    {
+      "id": "dom-evolution-tracker",
+      "path": "/src/modules/_root_migrated/security/encryption/strength/dom-evolution-tracker.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DOMEvolutionTracker",
+        "domEvolutionTracker"
+      ],
+      "loc": 937
+    },
+    {
+      "id": "OntoGenerator",
+      "path": "/src/modules/_root_migrated/security/encryption/strength/OntoGenerator.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PrimordialAxiomSynthesis",
+        "ModalLogicConstructor",
+        "CausalityWeaving",
+        "ExistentialInstantiation",
+        "HyperDimensionalArchitect"
+      ],
+      "loc": 1086
+    },
+    {
+      "id": "AdaptiveOllamaAgent",
+      "path": "/src/modules/_root_migrated/security/guardians/energy/AdaptiveOllamaAgent.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1008
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/_root_migrated/security/guardians/energy/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SecurityFortress",
+        "getSecurityFortress",
+        "createSecurityFortress",
+        "activateFortress"
+      ],
+      "loc": 522
+    },
+    {
+      "id": "nexus",
+      "path": "/src/nexus.ts",
+      "type": "Autonomous",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QantumNexus"
+      ],
+      "loc": 64
+    },
+    {
+      "id": "ChronosEngine",
+      "path": "/src/omega/core/ChronosEngine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ChronosEngine"
+      ],
+      "loc": 252
+    },
+    {
+      "id": "SelfHealing",
+      "path": "/src/omega/core/SelfHealing.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SelfHealingV2"
+      ],
+      "loc": 161
+    },
+    {
+      "id": "index",
+      "path": "/src/oracle/market-intelligence/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "createMarketIntelligencePipeline",
+        "VERSION",
+        "CODENAME",
+        "MARKET_VALUE",
+        "FEATURES"
+      ],
+      "loc": 182
+    },
+    {
+      "id": "cache",
+      "path": "/src/performance/cache.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Cache",
+        "NamespacedCache",
+        "CacheRegistry",
+        "Memoize",
+        "getCache"
+      ],
+      "loc": 493
+    },
+    {
+      "id": "index",
+      "path": "/src/performance/index.ts",
+      "type": "Unknown",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 104
+    },
+    {
+      "id": "lazy-loader",
+      "path": "/src/performance/lazy-loader.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LazyLoader",
+        "lazyFn",
+        "lazyAsync",
+        "LazyProperty",
+        "QAntumModules"
+      ],
+      "loc": 385
+    },
+    {
+      "id": "profiler",
+      "path": "/src/performance/profiler.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PerformanceProfiler",
+        "Profile",
+        "ProfileSync",
+        "getProfiler"
+      ],
+      "loc": 474
+    },
+    {
+      "id": "AtomicTrader",
+      "path": "/src/physics/AtomicTrader.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AtomicTrader",
+        "atomicTrader"
+      ],
+      "loc": 586
+    },
+    {
+      "id": "index",
+      "path": "/src/plugins/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumPlugins",
+        "getQAntumPlugins",
+        "plugins"
+      ],
+      "loc": 153
+    },
+    {
+      "id": "plugin",
+      "path": "/src/plugins/plugin.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PluginManager",
+        "PluginBuilder",
+        "TimerPlugin",
+        "RetryPlugin",
+        "ConsoleReporterPlugin"
+      ],
+      "loc": 622
+    },
+    {
+      "id": "MathBot",
+      "path": "/src/products/MathBot/core/MathBot.ts",
+      "type": "Product",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MathBot"
+      ],
+      "loc": 70
+    },
+    {
+      "id": "Engine",
+      "path": "/src/products/RefactorX/core/Engine.ts",
+      "type": "Product",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Engine"
+      ],
+      "loc": 175
+    },
+    {
+      "id": "EmergencyKillSwitch",
+      "path": "/src/reality/economy/EmergencyKillSwitch.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EmergencyKillSwitch",
+        "emergencyKillSwitch"
+      ],
+      "loc": 602
+    },
+    {
+      "id": "index",
+      "path": "/src/reality/economy/index.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "initMoneyPipeline"
+      ],
+      "loc": 184
+    },
+    {
+      "id": "MarketWatcher",
+      "path": "/src/reality/economy/MarketWatcher.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MarketWatcher",
+        "marketWatcher"
+      ],
+      "loc": 429
+    },
+    {
+      "id": "SecureConfigLoader",
+      "path": "/src/reality/economy/SecureConfigLoader.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SecureConfigLoader",
+        "secureConfig"
+      ],
+      "loc": 446
+    },
+    {
+      "id": "AutonomousSalesForce",
+      "path": "/src/reality/gateway/AutonomousSalesForce.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutonomousSalesForce",
+        "createAutonomousSalesForce"
+      ],
+      "loc": 1228
+    },
+    {
+      "id": "AutoOnboarder",
+      "path": "/src/reality/gateway/AutoOnboarder.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutoOnboarder",
+        "createAutoOnboarder"
+      ],
+      "loc": 1145
+    },
+    {
+      "id": "GrowthHacker",
+      "path": "/src/reality/gateway/GrowthHacker.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GrowthHacker",
+        "createGrowthHacker"
+      ],
+      "loc": 1168
+    },
+    {
+      "id": "AutonomousFeedbackLoop",
+      "path": "/src/reality/kernel/AutonomousFeedbackLoop.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutonomousFeedbackLoop",
+        "getFeedbackLoop",
+        "destroyFeedbackLoop"
+      ],
+      "loc": 515
+    },
+    {
+      "id": "ParanoidObfuscation",
+      "path": "/src/reality/sdk/veritas/ParanoidObfuscation.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ParanoidObfuscator"
+      ],
+      "loc": 441
+    },
+    {
+      "id": "Veritas",
+      "path": "/src/reality/sdk/veritas/Veritas.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Veritas"
+      ],
+      "loc": 677
+    },
+    {
+      "id": "index",
+      "path": "/src/reporter/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumReporter",
+        "getReporter",
+        "report",
+        "metrics"
+      ],
+      "loc": 367
+    },
+    {
+      "id": "feature-flags",
+      "path": "/src/saas/feature-flags.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FeatureFlagService",
+        "Feature",
+        "createFlag",
+        "getFeatureFlags"
+      ],
+      "loc": 525
+    },
+    {
+      "id": "index",
+      "path": "/src/saas/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SaaS",
+        "getSaaS"
+      ],
+      "loc": 152
+    },
+    {
+      "id": "subscription",
+      "path": "/src/saas/subscription.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SubscriptionService",
+        "PLANS",
+        "getSubscriptions"
+      ],
+      "loc": 609
+    },
+    {
+      "id": "telemetry",
+      "path": "/src/saas/telemetry.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TelemetryService",
+        "Track",
+        "Timed",
+        "getTelemetry"
+      ],
+      "loc": 480
+    },
+    {
+      "id": "index",
+      "path": "/src/security/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Security",
+        "getSecurity",
+        "createSchema",
+        "Validators",
+        "Sanitizers"
+      ],
+      "loc": 218
+    },
+    {
+      "id": "index",
+      "path": "/src/security_core/ASCENSION_KERNEL/2025-12-30T19-06-20-229Z/src/future-practices/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FuturePracticesEngine",
+        "createFuturePractices"
+      ],
+      "loc": 474
+    },
+    {
+      "id": "network-interceptor",
+      "path": "/src/security_core/ASCENSION_KERNEL/2025-12-30T19-06-20-229Z/src/ghost-protocol/network-interceptor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NetworkInterceptor",
+        "createGhostInterceptor",
+        "withGhost",
+        "runGhostCapture"
+      ],
+      "loc": 625
+    },
+    {
+      "id": "index",
+      "path": "/src/security_core/ASCENSION_KERNEL/2025-12-30T19-06-20-229Z/src/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "mm",
+        "VERSION",
+        "CODENAME"
+      ],
+      "loc": 133
+    },
+    {
+      "id": "LocatorFactory",
+      "path": "/src/security_core/ASCENSION_KERNEL/2025-12-30T19-06-20-229Z/src/pom/LocatorFactory.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LocatorFactory",
+        "LocatorBuilder",
+        "locator",
+        "By"
+      ],
+      "loc": 416
+    },
+    {
+      "id": "capabilities-data",
+      "path": "/src/security_core/MrMindQATool/docs/cognitive/capabilities-data.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "getCapabilitiesByCategory",
+        "getCapabilitiesByTier",
+        "searchCapabilities",
+        "getCapabilityById",
+        "CATEGORIES"
+      ],
+      "loc": 1234
+    },
+    {
+      "id": "types",
+      "path": "/src/security_core/MrMindQATool/docs/cognitive/types.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 121
+    },
+    {
+      "id": "demo-test",
+      "path": "/src/security_core/MrMindQATool_ACTIVE/demo-test.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 112
+    },
+    {
+      "id": "qantum-cli",
+      "path": "/src/security_core/MrMindQATool_ACTIVE/tools/qantum-cli.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1426
+    },
+    {
+      "id": "evidence-collector",
+      "path": "/src/security_core/MrMindQATool_src/security/evidence-collector.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EvidenceCollector",
+        "createRevolutEvidenceCollector",
+        "quickCapture"
+      ],
+      "loc": 985
+    },
+    {
+      "id": "CaseStudyGenerator",
+      "path": "/src/security_core/src/docs/CaseStudyGenerator.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CaseStudyGenerator",
+        "createCaseStudyGenerator"
+      ],
+      "loc": 964
+    },
+    {
+      "id": "encryption",
+      "path": "/src/security_core/src/security/encryption.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EncryptionService",
+        "SecureVault",
+        "getEncryption"
+      ],
+      "loc": 448
+    },
+    {
+      "id": "GlobalThreatIntel",
+      "path": "/src/security_core/src/security/GlobalThreatIntel.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GlobalThreatIntel",
+        "createGlobalThreatIntel"
+      ],
+      "loc": 1191
+    },
+    {
+      "id": "index",
+      "path": "/src/security_core/src/security/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Security",
+        "getSecurity",
+        "createSchema",
+        "Validators",
+        "Sanitizers"
+      ],
+      "loc": 218
+    },
+    {
+      "id": "KillSwitchGracePeriod",
+      "path": "/src/security_core/src/security/KillSwitchGracePeriod.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "KillSwitch",
+        "killSwitchMiddleware",
+        "getGlobalKillSwitch"
+      ],
+      "loc": 729
+    },
+    {
+      "id": "validator",
+      "path": "/src/security_core/src/security/validator.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Schema",
+        "InputValidator",
+        "ValidateInput",
+        "validators",
+        "sanitizers"
+      ],
+      "loc": 644
+    },
+    {
+      "id": "index",
+      "path": "/src/sovereign-market/index.ts",
+      "type": "Autonomous",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "createSovereignMarketSystem",
+        "VERSION",
+        "CODENAME",
+        "MARKET_VALUE"
+      ],
+      "loc": 335
+    },
+    {
+      "id": "cache",
+      "path": "/src/storage/cache.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CacheStorage",
+        "memoize",
+        "Cached",
+        "ClearCache",
+        "createCache"
+      ],
+      "loc": 484
+    },
+    {
+      "id": "file-storage",
+      "path": "/src/storage/file-storage.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FileStorage",
+        "getFileStorage",
+        "file"
+      ],
+      "loc": 474
+    },
+    {
+      "id": "index",
+      "path": "/src/storage/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumStorage",
+        "getStorage",
+        "configureStorage",
+        "storage"
+      ],
+      "loc": 278
+    },
+    {
+      "id": "kv-store",
+      "path": "/src/storage/kv-store.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "KeyValueStore",
+        "createStore"
+      ],
+      "loc": 467
+    },
+    {
+      "id": "SwarmAgents",
+      "path": "/src/swarm/SwarmAgents.ts",
+      "type": "Autonomous",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SwarmQueen"
+      ],
+      "loc": 612
+    },
+    {
+      "id": "cross-module-sync",
+      "path": "/src/synthesis/cross-module-sync.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BillingPulse",
+        "AccessibilityBillingBridge",
+        "CrossModuleSyncOrchestrator",
+        "getSync",
+        "getBilling"
+      ],
+      "loc": 469
+    },
+    {
+      "id": "index",
+      "path": "/src/synthesis/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SynthesisFacade",
+        "Synthesis"
+      ],
+      "loc": 278
+    },
+    {
+      "id": "swarm-data-injection",
+      "path": "/src/synthesis/swarm-data-injection.ts",
+      "type": "Autonomous",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SwarmDataInjector",
+        "getSwarmDataInjector"
+      ],
+      "loc": 704
+    },
+    {
+      "id": "system-meditation",
+      "path": "/src/synthesis/system-meditation.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SystemMeditation",
+        "getMeditation"
+      ],
+      "loc": 556
+    },
+    {
+      "id": "visual-ghosting",
+      "path": "/src/synthesis/visual-ghosting.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VisualGhostEngine",
+        "VisualGhostBridge",
+        "getVisualGhost"
+      ],
+      "loc": 451
+    },
+    {
+      "id": "paths",
+      "path": "/src/utils/paths.ts",
+      "type": "Utility",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "pathJoin",
+        "getRelativePath",
+        "getDirname",
+        "getFilename",
+        "getExtension"
+      ],
+      "loc": 29
+    },
+    {
+      "id": "index",
+      "path": "/src/validation/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumValidation",
+        "getValidation",
+        "validate"
+      ],
+      "loc": 227
+    },
+    {
+      "id": "engine",
+      "path": "/src/visual/engine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VisualTestEngine",
+        "ViewportPresets",
+        "getVisualEngine",
+        "configureVisual",
+        "visual"
+      ],
+      "loc": 475
+    },
+    {
+      "id": "index",
+      "path": "/src/visual/index.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "QAntumVisual",
+        "getQAntumVisual",
+        "configureQAntumVisual"
+      ],
+      "loc": 282
+    },
+    {
+      "id": "snapshot",
+      "path": "/src/visual/snapshot.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SnapshotManager",
+        "getSnapshotManager",
+        "configureSnapshots",
+        "snapshot"
+      ],
+      "loc": 513
+    },
+    {
+      "id": "awaken-orchestrator",
+      "path": "/scripts/awaken-orchestrator.ts",
+      "type": "Utility",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 104
+    },
+    {
+      "id": "cartographer",
+      "path": "/scripts/cartographer.ts",
+      "type": "Utility",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 152
+    },
+    {
+      "id": "chaos-monkey",
+      "path": "/scripts/chaos-monkey.js",
+      "type": "Utility",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 220
+    },
+    {
+      "id": "chaos-monkey",
+      "path": "/scripts/chaos-monkey.ts",
+      "type": "Utility",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 187
+    },
+    {
+      "id": "mega-audit",
+      "path": "/scripts/mega-audit.js",
+      "type": "Utility",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 379
+    },
+    {
+      "id": "EmailEngine",
+      "path": "/scripts/sales-autopilot/EmailEngine.js",
+      "type": "Utility",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 133
+    },
+    {
+      "id": "human-sender",
+      "path": "/scripts/sales-autopilot/human-sender.ts",
+      "type": "Utility",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 167
+    },
+    {
+      "id": "squad-organizer",
+      "path": "/scripts/squad-organizer.ts",
+      "type": "Utility",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 140
+    },
+    {
+      "id": "gatekeeper",
+      "path": "/scripts/tools/gatekeeper.ts",
+      "type": "Utility",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 161
+    },
+    {
+      "id": "veritas-injection",
+      "path": "/scripts/veritas-injection.js",
+      "type": "Utility",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 149
+    }
+  ],
+  "readinessChecks": [
+    {
+      "name": "ArmedReaper (Trading Bot)",
+      "file": "src/modules/_root_migrated/core/brain/energy/ArmedReaper.ts",
+      "exists": true
+    },
+    {
+      "name": "ArbitrageOrchestrator",
+      "file": "src/modules/_root_migrated/core/eyes/strength/ArbitrageOrchestrator.ts",
+      "exists": true
+    },
+    {
+      "name": "PriceOracle (Chronos)",
+      "file": "src/chronos/PriceOracle.ts",
+      "exists": true
+    },
+    {
+      "name": "AtomicTrader",
+      "file": "src/physics/AtomicTrader.ts",
+      "exists": true
+    },
+    {
+      "name": "BiometricJitter",
+      "file": "src/modules/_root_migrated/core/mouth/energy/biometric-jitter.ts",
+      "exists": true
+    },
+    {
+      "name": "SentinelLink",
+      "file": "src/modules/_root_migrated/core/mouth/energy/sentinel-link.ts",
+      "exists": true
+    },
+    {
+      "name": "EmailEngine",
+      "file": "scripts/sales-autopilot/EmailEngine.js",
+      "exists": true
+    },
+    {
+      "name": "MathBot",
+      "file": "src/products/MathBot/core/MathBot.ts",
+      "exists": true
+    },
+    {
+      "name": "SelfHealing",
+      "file": "src/ai/self-healing.ts",
+      "exists": true
+    },
+    {
+      "name": "Swarm Agents",
+      "file": "src/swarm/SwarmAgents.ts",
+      "exists": true
+    },
+    {
+      "name": "mega-map.json",
+      "file": "mega-map.json",
+      "exists": true
+    }
+  ],
+  "byType": {
+    "Unknown": 93,
+    "God-Tier": 17,
+    "Core": 182,
+    "Autonomous": 5,
+    "Security": 75,
+    "FinTech": 4,
+    "Utility": 12,
+    "Product": 3
+  },
+  "topFiles": [
+    {
+      "id": "MarketBlueprint",
+      "path": "/src/biology/evolution/MarketBlueprint.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MarketBlueprint",
+        "createMarketBlueprint"
+      ],
+      "loc": 1815
+    },
+    {
+      "id": "MarketBlueprint",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/MarketBlueprint.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MarketBlueprint",
+        "createMarketBlueprint"
+      ],
+      "loc": 1815
+    },
+    {
+      "id": "qantum-cli",
+      "path": "/src/security_core/MrMindQATool_ACTIVE/tools/qantum-cli.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1426
+    },
+    {
+      "id": "report-generator",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/report-generator.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SupremeReportGenerator",
+        "createReportGenerator"
+      ],
+      "loc": 1386
+    },
+    {
+      "id": "phase3-infrastructure.test",
+      "path": "/src/modules/_root_migrated/brain/memory/strength/phase3-infrastructure.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1384
+    },
+    {
+      "id": "dashboard-server",
+      "path": "/src/modules/_root_migrated/core/ears/strength/dashboard-server.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DashboardServer"
+      ],
+      "loc": 1376
+    },
+    {
+      "id": "personality-engine",
+      "path": "/src/modules/ghost/shield/src/core/personality-engine.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostPersonalityEngine",
+        "createGhostPersonalityEngine"
+      ],
+      "loc": 1354
+    },
+    {
+      "id": "phase3-intelligence.test",
+      "path": "/src/modules/_root_migrated/core/brain/strength/phase3-intelligence.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1327
+    },
+    {
+      "id": "fatality-engine",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/fatality-engine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FatalityEngine",
+        "getFatalityEngine",
+        "createFatalityEngine",
+        "armFatality"
+      ],
+      "loc": 1320
+    },
+    {
+      "id": "neural-hud",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/neural-hud.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralHUD"
+      ],
+      "loc": 1288
+    },
+    {
+      "id": "ParadoxEngine",
+      "path": "/src/chronos/ParadoxEngine.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ParadoxEngine",
+        "applyTLSRotationPatch",
+        "applyFingerprintMutationPatch",
+        "applyTimingAdjustmentPatch",
+        "applyBehaviorModificationPatch"
+      ],
+      "loc": 1285
+    },
+    {
+      "id": "phase2-evolution-auto.test",
+      "path": "/src/modules/_root_migrated/brain/logic/agility/phase2-evolution-auto.test.js",
+      "type": "Core",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1277
+    },
+    {
+      "id": "capabilities-data",
+      "path": "/src/security_core/MrMindQATool/docs/cognitive/capabilities-data.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "getCapabilitiesByCategory",
+        "getCapabilitiesByTier",
+        "searchCapabilities",
+        "getCapabilityById",
+        "CATEGORIES"
+      ],
+      "loc": 1234
+    },
+    {
+      "id": "AutonomousSalesForce",
+      "path": "/src/modules/_root_migrated/core/mouth/strength/AutonomousSalesForce.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutonomousSalesForce",
+        "createAutonomousSalesForce"
+      ],
+      "loc": 1228
+    },
+    {
+      "id": "AutonomousSalesForce",
+      "path": "/src/reality/gateway/AutonomousSalesForce.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutonomousSalesForce",
+        "createAutonomousSalesForce"
+      ],
+      "loc": 1228
+    },
+    {
+      "id": "GlobalThreatIntel",
+      "path": "/src/security_core/src/security/GlobalThreatIntel.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GlobalThreatIntel",
+        "createGlobalThreatIntel"
+      ],
+      "loc": 1191
+    },
+    {
+      "id": "GrowthHacker",
+      "path": "/src/reality/gateway/GrowthHacker.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GrowthHacker",
+        "createGrowthHacker"
+      ],
+      "loc": 1168
+    },
+    {
+      "id": "AdaptiveOllamaAgent",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/AdaptiveOllamaAgent.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AdaptiveOllamaAgent",
+        "adaptiveAgent"
+      ],
+      "loc": 1157
+    },
+    {
+      "id": "ProfitOptimizer",
+      "path": "/src/biology/metabolism/ProfitOptimizer.ts",
+      "type": "Unknown",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ProfitOptimizer",
+        "createProfitOptimizer"
+      ],
+      "loc": 1151
+    },
+    {
+      "id": "AutoOnboarder",
+      "path": "/src/modules/_root_migrated/core/ears/energy/AutoOnboarder.ts",
+      "type": "Core",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutoOnboarder",
+        "createAutoOnboarder"
+      ],
+      "loc": 1145
+    }
+  ],
+  "godTierModules": [
+    {
+      "id": "deadline",
+      "path": "/src/chronos/deadline.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DeadlineManager",
+        "DeadlineContext",
+        "DeadlineExpiredError",
+        "WithDeadline",
+        "AdaptiveDeadline"
+      ],
+      "loc": 512
+    },
+    {
+      "id": "index",
+      "path": "/src/chronos/index.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Chronos",
+        "chronos"
+      ],
+      "loc": 310
+    },
+    {
+      "id": "PriceOracle",
+      "path": "/src/chronos/PriceOracle.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PriceOracle",
+        "priceOracle"
+      ],
+      "loc": 606
+    },
+    {
+      "id": "time-traveler",
+      "path": "/src/chronos/time-traveler.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TimeTraveler",
+        "FrozenTime",
+        "MockTime",
+        "timeTraveler",
+        "freeze"
+      ],
+      "loc": 492
+    },
+    {
+      "id": "react",
+      "path": "/src/modules/chronos/sync/src/adapters/react.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "createChronoStore",
+        "useChronoStore",
+        "useChronoSelector",
+        "useTimeline",
+        "useChronoActions"
+      ],
+      "loc": 190
+    },
+    {
+      "id": "vue",
+      "path": "/src/modules/chronos/sync/src/adapters/vue.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "createChronoStore",
+        "useChronoStore",
+        "useTimeline",
+        "createChronoComposables",
+        "ChronoSyncPlugin"
+      ],
+      "loc": 148
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/chronos/sync/src/index.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VERSION"
+      ],
+      "loc": 61
+    },
+    {
+      "id": "EmergencyKillSwitch",
+      "path": "/src/reality/economy/EmergencyKillSwitch.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EmergencyKillSwitch",
+        "emergencyKillSwitch"
+      ],
+      "loc": 602
+    },
+    {
+      "id": "index",
+      "path": "/src/reality/economy/index.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "initMoneyPipeline"
+      ],
+      "loc": 184
+    },
+    {
+      "id": "MarketWatcher",
+      "path": "/src/reality/economy/MarketWatcher.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MarketWatcher",
+        "marketWatcher"
+      ],
+      "loc": 429
+    },
+    {
+      "id": "SecureConfigLoader",
+      "path": "/src/reality/economy/SecureConfigLoader.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SecureConfigLoader",
+        "secureConfig"
+      ],
+      "loc": 446
+    },
+    {
+      "id": "AutonomousSalesForce",
+      "path": "/src/reality/gateway/AutonomousSalesForce.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutonomousSalesForce",
+        "createAutonomousSalesForce"
+      ],
+      "loc": 1228
+    },
+    {
+      "id": "AutoOnboarder",
+      "path": "/src/reality/gateway/AutoOnboarder.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutoOnboarder",
+        "createAutoOnboarder"
+      ],
+      "loc": 1145
+    },
+    {
+      "id": "GrowthHacker",
+      "path": "/src/reality/gateway/GrowthHacker.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GrowthHacker",
+        "createGrowthHacker"
+      ],
+      "loc": 1168
+    },
+    {
+      "id": "AutonomousFeedbackLoop",
+      "path": "/src/reality/kernel/AutonomousFeedbackLoop.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AutonomousFeedbackLoop",
+        "getFeedbackLoop",
+        "destroyFeedbackLoop"
+      ],
+      "loc": 515
+    },
+    {
+      "id": "ParanoidObfuscation",
+      "path": "/src/reality/sdk/veritas/ParanoidObfuscation.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ParanoidObfuscator"
+      ],
+      "loc": 441
+    },
+    {
+      "id": "Veritas",
+      "path": "/src/reality/sdk/veritas/Veritas.ts",
+      "type": "God-Tier",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Veritas"
+      ],
+      "loc": 677
+    }
+  ],
+  "finTechModules": [
+    {
+      "id": "ArbitrageLogic",
+      "path": "/src/math/ArbitrageLogic.ts",
+      "type": "FinTech",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ArbitrageLogic",
+        "arbitrageLogic"
+      ],
+      "loc": 202
+    },
+    {
+      "id": "ArmedReaper",
+      "path": "/src/modules/_root_migrated/core/brain/energy/ArmedReaper.ts",
+      "type": "FinTech",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ArmedReaper",
+        "armedReaper"
+      ],
+      "loc": 591
+    },
+    {
+      "id": "ReaperDashboard",
+      "path": "/src/modules/_root_migrated/core/eyes/energy/ReaperDashboard.ts",
+      "type": "FinTech",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ReaperDashboard",
+        "reaperDashboard"
+      ],
+      "loc": 590
+    },
+    {
+      "id": "ArbitrageOrchestrator",
+      "path": "/src/modules/_root_migrated/core/eyes/strength/ArbitrageOrchestrator.ts",
+      "type": "FinTech",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ArbitrageOrchestrator",
+        "arbitrageOrchestrator"
+      ],
+      "loc": 544
+    }
+  ],
+  "securityModules": [
+    {
+      "id": "dsentinelp",
+      "path": "/src/intelligence/dsentinelp.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "dSENTINELp"
+      ],
+      "loc": 64
+    },
+    {
+      "id": "GhostShield",
+      "path": "/src/modules/ghost/shield/GhostShield.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostShield"
+      ],
+      "loc": 126
+    },
+    {
+      "id": "anti-detection",
+      "path": "/src/modules/ghost/shield/src/core/anti-detection.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AntiDetection",
+        "getAntiDetection"
+      ],
+      "loc": 353
+    },
+    {
+      "id": "CloudflareBypass",
+      "path": "/src/modules/ghost/shield/src/core/CloudflareBypass.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CloudflareBypass",
+        "CLOUDFLARE_SIGNATURES"
+      ],
+      "loc": 502
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/ghost/shield/src/core/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Ghost",
+        "getGhost"
+      ],
+      "loc": 216
+    },
+    {
+      "id": "network-interceptor",
+      "path": "/src/modules/ghost/shield/src/core/network-interceptor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NetworkInterceptor",
+        "getNetworkInterceptor"
+      ],
+      "loc": 519
+    },
+    {
+      "id": "personality-engine",
+      "path": "/src/modules/ghost/shield/src/core/personality-engine.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostPersonalityEngine",
+        "createGhostPersonalityEngine"
+      ],
+      "loc": 1354
+    },
+    {
+      "id": "PhantomIntegration",
+      "path": "/src/modules/ghost/shield/src/core/PhantomIntegration.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PhantomModeController",
+        "createPhantomFixture",
+        "examplePhantomTest"
+      ],
+      "loc": 339
+    },
+    {
+      "id": "protocol",
+      "path": "/src/modules/ghost/shield/src/core/protocol.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostProtocol",
+        "SelectorObfuscator",
+        "getGhostProtocol"
+      ],
+      "loc": 466
+    },
+    {
+      "id": "proxy-chain",
+      "path": "/src/modules/ghost/shield/src/core/proxy-chain.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ProxyChain",
+        "getProxyChain"
+      ],
+      "loc": 523
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/ghost/shield/src/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostShield"
+      ],
+      "loc": 221
+    },
+    {
+      "id": "paddle",
+      "path": "/src/modules/ghost/shield/src/licensing/paddle.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LicenseValidator",
+        "PaddleCheckout",
+        "LicenseGenerator",
+        "PaddleWebhookHandler",
+        "GHOSTSHIELD_PRODUCTS"
+      ],
+      "loc": 422
+    },
+    {
+      "id": "biometric-engine",
+      "path": "/src/modules/ghost/shield/src/protocol/biometric-engine.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BiometricEngine"
+      ],
+      "loc": 414
+    },
+    {
+      "id": "chronos-paradox",
+      "path": "/src/modules/ghost/shield/src/protocol/chronos-paradox.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ChronosParadox",
+        "applyPatch"
+      ],
+      "loc": 472
+    },
+    {
+      "id": "demo",
+      "path": "/src/modules/ghost/shield/src/protocol/demo.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 312
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/ghost/shield/src/protocol/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostProtocolV2",
+        "PROTECTION_SIGNATURES"
+      ],
+      "loc": 497
+    },
+    {
+      "id": "tls-phantom",
+      "path": "/src/modules/ghost/shield/src/protocol/tls-phantom.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TLSPhantom"
+      ],
+      "loc": 211
+    },
+    {
+      "id": "visual-stealth",
+      "path": "/src/modules/ghost/shield/src/protocol/visual-stealth.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VisualStealth"
+      ],
+      "loc": 327
+    },
+    {
+      "id": "auth",
+      "path": "/src/modules/hydrated/api/unified/middleware/auth.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "AuthMiddleware",
+        "createApiKey",
+        "createUser",
+        "createJWT"
+      ],
+      "loc": 581
+    },
+    {
+      "id": "auth",
+      "path": "/src/modules/_root_migrated/core/ears/energy/auth.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "login",
+        "logout",
+        "whoami"
+      ],
+      "loc": 108
+    },
+    {
+      "id": "sentinel-link",
+      "path": "/src/modules/_root_migrated/core/mouth/energy/sentinel-link.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SentinelLink",
+        "getSentinelLink",
+        "createSentinelLink"
+      ],
+      "loc": 872
+    },
+    {
+      "id": "checksum-validator",
+      "path": "/src/modules/_root_migrated/security/auth/agility/checksum-validator.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ChecksumValidator"
+      ],
+      "loc": 449
+    },
+    {
+      "id": "BasePage",
+      "path": "/src/modules/_root_migrated/security/auth/energy/BasePage.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "BasePage"
+      ],
+      "loc": 520
+    },
+    {
+      "id": "circuit-breaker",
+      "path": "/src/modules/_root_migrated/security/auth/energy/circuit-breaker.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CircuitBreakerManager"
+      ],
+      "loc": 521
+    },
+    {
+      "id": "cognitive-ux-auditor",
+      "path": "/src/modules/_root_migrated/security/auth/energy/cognitive-ux-auditor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CognitiveUXAuditor",
+        "cognitiveUXAuditor"
+      ],
+      "loc": 709
+    },
+    {
+      "id": "critic-agent",
+      "path": "/src/modules/_root_migrated/security/auth/energy/critic-agent.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CriticAgent"
+      ],
+      "loc": 334
+    },
+    {
+      "id": "executor",
+      "path": "/src/modules/_root_migrated/security/auth/energy/executor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GhostExecutor",
+        "ghostExecutor"
+      ],
+      "loc": 430
+    },
+    {
+      "id": "FortressIntegration",
+      "path": "/src/modules/_root_migrated/security/auth/energy/FortressIntegration.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FortressIntegration",
+        "createFatalityHook",
+        "getFortressIntegration",
+        "createFortressIntegration"
+      ],
+      "loc": 765
+    },
+    {
+      "id": "GenesisRealityProvider",
+      "path": "/src/modules/_root_migrated/security/auth/energy/GenesisRealityProvider.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GenesisRealityProvider",
+        "genesisRealityProvider"
+      ],
+      "loc": 959
+    },
+    {
+      "id": "ghost-strategy",
+      "path": "/src/modules/_root_migrated/security/auth/energy/ghost-strategy.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TLSPhantomStrategy",
+        "BiometricJitterStrategy",
+        "WebGLMutatorStrategy",
+        "VisualStealthStrategy",
+        "TimingObfuscationStrategy"
+      ],
+      "loc": 488
+    },
+    {
+      "id": "hardware-lock",
+      "path": "/src/modules/_root_migrated/security/auth/energy/hardware-lock.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "HardwareLock",
+        "getHardwareLock",
+        "createHardwareLock"
+      ],
+      "loc": 700
+    },
+    {
+      "id": "malicious-intent.test",
+      "path": "/src/modules/_root_migrated/security/auth/energy/malicious-intent.test.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 374
+    },
+    {
+      "id": "module-loader",
+      "path": "/src/modules/_root_migrated/security/auth/energy/module-loader.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "HotSwapModuleLoader"
+      ],
+      "loc": 499
+    },
+    {
+      "id": "multi-language-cognition",
+      "path": "/src/modules/_root_migrated/security/auth/energy/multi-language-cognition.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "MultiLanguageCognition",
+        "BULGARIAN_PATTERNS",
+        "ENGLISH_PATTERNS",
+        "CHINESE_PATTERNS",
+        "JAPANESE_PATTERNS"
+      ],
+      "loc": 1102
+    },
+    {
+      "id": "neural-optimizer",
+      "path": "/src/modules/_root_migrated/security/auth/energy/neural-optimizer.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LRUCache",
+        "PatternDeduplicator",
+        "NeuralOptimizer",
+        "neuralOptimizer"
+      ],
+      "loc": 760
+    },
+    {
+      "id": "neural-vault",
+      "path": "/src/modules/_root_migrated/security/auth/energy/neural-vault.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralVault"
+      ],
+      "loc": 568
+    },
+    {
+      "id": "neural.test",
+      "path": "/src/modules/_root_migrated/security/auth/energy/neural.test.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 318
+    },
+    {
+      "id": "observability-bridge",
+      "path": "/src/modules/_root_migrated/security/auth/energy/observability-bridge.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ObservabilityBridge"
+      ],
+      "loc": 578
+    },
+    {
+      "id": "planner-agent",
+      "path": "/src/modules/_root_migrated/security/auth/energy/planner-agent.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PlannerAgent"
+      ],
+      "loc": 391
+    },
+    {
+      "id": "resource-exhaustion.test",
+      "path": "/src/modules/_root_migrated/security/auth/energy/resource-exhaustion.test.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 477
+    },
+    {
+      "id": "sandbox-executor",
+      "path": "/src/modules/_root_migrated/security/auth/energy/sandbox-executor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SandboxExecutor"
+      ],
+      "loc": 446
+    },
+    {
+      "id": "state-versioner",
+      "path": "/src/modules/_root_migrated/security/auth/energy/state-versioner.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "StateVersioningSystem"
+      ],
+      "loc": 535
+    },
+    {
+      "id": "test-all",
+      "path": "/src/modules/_root_migrated/security/auth/energy/test-all.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 246
+    },
+    {
+      "id": "thermal-aware-pool",
+      "path": "/src/modules/_root_migrated/security/auth/energy/thermal-aware-pool.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ThermalAwarePool"
+      ],
+      "loc": 456
+    },
+    {
+      "id": "action-executor",
+      "path": "/src/modules/_root_migrated/security/auth/strength/action-executor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ActionExecutor",
+        "actionExecutor"
+      ],
+      "loc": 417
+    },
+    {
+      "id": "chronos-engine-v2",
+      "path": "/src/modules/_root_migrated/security/auth/strength/chronos-engine-v2.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "ChronosEngine"
+      ],
+      "loc": 1036
+    },
+    {
+      "id": "core.test",
+      "path": "/src/modules/_root_migrated/security/auth/strength/core.test.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 774
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/_root_migrated/security/auth/strength/index.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 228
+    },
+    {
+      "id": "intelligence",
+      "path": "/src/modules/_root_migrated/security/auth/strength/intelligence.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NeuralBackpack",
+        "SelfHealingV2",
+        "PreCogEngine",
+        "OmniscientCore",
+        "createIntelligenceLayer"
+      ],
+      "loc": 666
+    },
+    {
+      "id": "mutation-engine",
+      "path": "/src/modules/_root_migrated/security/auth/strength/mutation-engine.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GeneticMutationEngine"
+      ],
+      "loc": 509
+    },
+    {
+      "id": "persona-engine",
+      "path": "/src/modules/_root_migrated/security/auth/strength/persona-engine.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PersonaEngine",
+        "PERSONA_TEMPLATES",
+        "personaEngine"
+      ],
+      "loc": 660
+    },
+    {
+      "id": "persona.test",
+      "path": "/src/modules/_root_migrated/security/auth/strength/persona.test.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 367
+    },
+    {
+      "id": "phase2-nlu-shadow.test",
+      "path": "/src/modules/_root_migrated/security/auth/strength/phase2-nlu-shadow.test.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 542
+    },
+    {
+      "id": "video-replay-analyzer",
+      "path": "/src/modules/_root_migrated/security/auth/strength/video-replay-analyzer.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "VideoReplayAnalyzer"
+      ],
+      "loc": 1142
+    },
+    {
+      "id": "tls-phantom",
+      "path": "/src/modules/_root_migrated/security/encryption/energy/tls-phantom.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "TLSPhantomEngine",
+        "getTLSPhantom",
+        "createTLSPhantom"
+      ],
+      "loc": 552
+    },
+    {
+      "id": "dom-evolution-tracker",
+      "path": "/src/modules/_root_migrated/security/encryption/strength/dom-evolution-tracker.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "DOMEvolutionTracker",
+        "domEvolutionTracker"
+      ],
+      "loc": 937
+    },
+    {
+      "id": "OntoGenerator",
+      "path": "/src/modules/_root_migrated/security/encryption/strength/OntoGenerator.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "PrimordialAxiomSynthesis",
+        "ModalLogicConstructor",
+        "CausalityWeaving",
+        "ExistentialInstantiation",
+        "HyperDimensionalArchitect"
+      ],
+      "loc": 1086
+    },
+    {
+      "id": "AdaptiveOllamaAgent",
+      "path": "/src/modules/_root_migrated/security/guardians/energy/AdaptiveOllamaAgent.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1008
+    },
+    {
+      "id": "index",
+      "path": "/src/modules/_root_migrated/security/guardians/energy/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "SecurityFortress",
+        "getSecurityFortress",
+        "createSecurityFortress",
+        "activateFortress"
+      ],
+      "loc": 522
+    },
+    {
+      "id": "index",
+      "path": "/src/security/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Security",
+        "getSecurity",
+        "createSchema",
+        "Validators",
+        "Sanitizers"
+      ],
+      "loc": 218
+    },
+    {
+      "id": "index",
+      "path": "/src/security_core/ASCENSION_KERNEL/2025-12-30T19-06-20-229Z/src/future-practices/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "FuturePracticesEngine",
+        "createFuturePractices"
+      ],
+      "loc": 474
+    },
+    {
+      "id": "network-interceptor",
+      "path": "/src/security_core/ASCENSION_KERNEL/2025-12-30T19-06-20-229Z/src/ghost-protocol/network-interceptor.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "NetworkInterceptor",
+        "createGhostInterceptor",
+        "withGhost",
+        "runGhostCapture"
+      ],
+      "loc": 625
+    },
+    {
+      "id": "index",
+      "path": "/src/security_core/ASCENSION_KERNEL/2025-12-30T19-06-20-229Z/src/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "mm",
+        "VERSION",
+        "CODENAME"
+      ],
+      "loc": 133
+    },
+    {
+      "id": "LocatorFactory",
+      "path": "/src/security_core/ASCENSION_KERNEL/2025-12-30T19-06-20-229Z/src/pom/LocatorFactory.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "LocatorFactory",
+        "LocatorBuilder",
+        "locator",
+        "By"
+      ],
+      "loc": 416
+    },
+    {
+      "id": "capabilities-data",
+      "path": "/src/security_core/MrMindQATool/docs/cognitive/capabilities-data.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "getCapabilitiesByCategory",
+        "getCapabilitiesByTier",
+        "searchCapabilities",
+        "getCapabilityById",
+        "CATEGORIES"
+      ],
+      "loc": 1234
+    },
+    {
+      "id": "types",
+      "path": "/src/security_core/MrMindQATool/docs/cognitive/types.ts",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 121
+    },
+    {
+      "id": "demo-test",
+      "path": "/src/security_core/MrMindQATool_ACTIVE/demo-test.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 112
+    },
+    {
+      "id": "qantum-cli",
+      "path": "/src/security_core/MrMindQATool_ACTIVE/tools/qantum-cli.js",
+      "type": "Security",
+      "status": "🟡 UNKNOWN",
+      "exports": [],
+      "loc": 1426
+    },
+    {
+      "id": "evidence-collector",
+      "path": "/src/security_core/MrMindQATool_src/security/evidence-collector.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EvidenceCollector",
+        "createRevolutEvidenceCollector",
+        "quickCapture"
+      ],
+      "loc": 985
+    },
+    {
+      "id": "CaseStudyGenerator",
+      "path": "/src/security_core/src/docs/CaseStudyGenerator.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "CaseStudyGenerator",
+        "createCaseStudyGenerator"
+      ],
+      "loc": 964
+    },
+    {
+      "id": "encryption",
+      "path": "/src/security_core/src/security/encryption.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "EncryptionService",
+        "SecureVault",
+        "getEncryption"
+      ],
+      "loc": 448
+    },
+    {
+      "id": "GlobalThreatIntel",
+      "path": "/src/security_core/src/security/GlobalThreatIntel.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "GlobalThreatIntel",
+        "createGlobalThreatIntel"
+      ],
+      "loc": 1191
+    },
+    {
+      "id": "index",
+      "path": "/src/security_core/src/security/index.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Security",
+        "getSecurity",
+        "createSchema",
+        "Validators",
+        "Sanitizers"
+      ],
+      "loc": 218
+    },
+    {
+      "id": "KillSwitchGracePeriod",
+      "path": "/src/security_core/src/security/KillSwitchGracePeriod.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "KillSwitch",
+        "killSwitchMiddleware",
+        "getGlobalKillSwitch"
+      ],
+      "loc": 729
+    },
+    {
+      "id": "validator",
+      "path": "/src/security_core/src/security/validator.ts",
+      "type": "Security",
+      "status": "🟢 ALIVE",
+      "exports": [
+        "Schema",
+        "InputValidator",
+        "ValidateInput",
+        "validators",
+        "sanitizers"
+      ],
+      "loc": 644
+    }
+  ]
+}

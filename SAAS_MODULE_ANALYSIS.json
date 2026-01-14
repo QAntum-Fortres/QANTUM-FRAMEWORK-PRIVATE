@@ -1,0 +1,2762 @@
+﻿[
+    {
+        "LOC":  1815,
+        "FileName":  "MarketBlueprint.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\energy\\MarketBlueprint.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1815,
+        "FileName":  "MarketBlueprint.ts",
+        "Path":  "src\\DELTA_SCIENCE\\biology\\evolution\\MarketBlueprint.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1815,
+        "FileName":  "MarketBlueprint.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO\\MarketBlueprint.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1815,
+        "FileName":  "MarketBlueprint.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\biology\\evolution\\MarketBlueprint.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1815,
+        "FileName":  "MarketBlueprint.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\MarketBlueprint.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1518,
+        "FileName":  "OntoGenerator.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\brain\\logic\\strength\\OntoGenerator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1452,
+        "FileName":  "SelfHealingSales.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\sales\\SelfHealingSales.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1452,
+        "FileName":  "SelfHealingSales.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\SelfHealingSales.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1299,
+        "FileName":  "ZeroKnowledgeLicense.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\ZeroKnowledgeLicense.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔐 Licensing - SaaS business model",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1299,
+        "FileName":  "ZeroKnowledgeLicense.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\licensing\\ZeroKnowledgeLicense.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔐 Licensing - SaaS business model",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1228,
+        "FileName":  "AutonomousSalesForce.ts",
+        "Path":  "VORTEX_ARSENAL\\HACK\\AutonomousSalesForce.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1228,
+        "FileName":  "AutonomousSalesForce.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\AutonomousSalesForce.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1228,
+        "FileName":  "AutonomousSalesForce.ts",
+        "Path":  "src\\GAMMA_INFRA\\reality\\gateway\\AutonomousSalesForce.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1228,
+        "FileName":  "AutonomousSalesForce.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\reality\\gateway\\AutonomousSalesForce.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1228,
+        "FileName":  "AutonomousSalesForce.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\strength\\AutonomousSalesForce.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1151,
+        "FileName":  "ProfitOptimizer.ts",
+        "Path":  "src\\DELTA_SCIENCE\\biology\\metabolism\\ProfitOptimizer.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1121,
+        "FileName":  "ProfitOptimizer.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\biology\\metabolism\\ProfitOptimizer.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1121,
+        "FileName":  "ProfitOptimizer.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\ProfitOptimizer.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1120,
+        "FileName":  "MarketplaceConnector.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\reality\\gateway\\MarketplaceConnector.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1120,
+        "FileName":  "MarketplaceConnector.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\MarketplaceConnector.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1120,
+        "FileName":  "MarketplaceConnector.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO\\MarketplaceConnector.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1105,
+        "FileName":  "MisteMind_brain_logic_strength_TranscendenceCore.ts",
+        "Path":  "VORTEX_ARSENAL\\ORGANIZER\\MisteMind_brain_logic_strength_TranscendenceCore.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1105,
+        "FileName":  "MisteMind_brain_logic_strength_TranscendenceCore.ts",
+        "Path":  "scripts\\1_STRENGTH\\MisteMind_brain_logic_strength_TranscendenceCore.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1105,
+        "FileName":  "MisteMind_brain_logic_strength_TranscendenceCore.ts",
+        "Path":  "JOB_APPLICATION_ASSETS\\MisteMind_brain_logic_strength_TranscendenceCore.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1086,
+        "FileName":  "OntoGenerator.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\BETA_SECURITY\\security\\encryption\\strength\\OntoGenerator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1009,
+        "FileName":  "logic-discovery.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\oracle\\logic-discovery.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1009,
+        "FileName":  "logic-discovery.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\energy\\logic-discovery.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1009,
+        "FileName":  "logic-discovery.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\logic-discovery.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1009,
+        "FileName":  "logic-discovery.ts",
+        "Path":  "VORTEX_ARSENAL\\ORGANIZER\\logic-discovery.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1005,
+        "FileName":  "qantum-marketing.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\scripts\\qantum-marketing.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1005,
+        "FileName":  "qantum-marketing.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO\\qantum-marketing.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💰 Revenue Generation - Direct monetization",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1001,
+        "FileName":  "OntoGenerator.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\OntoGenerator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1001,
+        "FileName":  "OntoGenerator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\QANTUM-NEXUS\\apps\\api\\src\\engines\\OntoGenerator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1001,
+        "FileName":  "OntoGenerator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\QA-SAAS\\apps\\api\\src\\engines\\OntoGenerator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1001,
+        "FileName":  "OntoGenerator.ts",
+        "Path":  "VORTEX_ARSENAL\\CREATE\\OntoGenerator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🔥 Core Logic - Decision making engine",
+        "Priority":  "HIGH"
+    },
+    {
+        "LOC":  1583,
+        "FileName":  "swarm-orchestrator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\swarm\\swarm-orchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1583,
+        "FileName":  "swarm-orchestrator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\swarm\\swarm-orchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1583,
+        "FileName":  "swarm-orchestrator.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\swarm\\swarm-orchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1583,
+        "FileName":  "swarm-orchestrator.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\swarm\\swarm-orchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1583,
+        "FileName":  "swarm-orchestrator.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\swarm-orchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1583,
+        "FileName":  "swarm-orchestrator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\swarm\\swarm-orchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1442,
+        "FileName":  "NexusOrchestrator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\swarm\\mesh\\NexusOrchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1442,
+        "FileName":  "NexusOrchestrator.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\NexusOrchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1386,
+        "FileName":  "report-generator.ts",
+        "Path":  "VORTEX_ARSENAL\\CREATE\\report-generator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1386,
+        "FileName":  "report-generator.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\strength\\report-generator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1386,
+        "FileName":  "report-generator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\oracle\\report-generator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1386,
+        "FileName":  "report-generator.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\report-generator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1376,
+        "FileName":  "dashboard-server.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\enterprise\\dashboard-server.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1376,
+        "FileName":  "dashboard-server.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\dashboard-server.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1376,
+        "FileName":  "dashboard-server.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\ears\\strength\\dashboard-server.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1320,
+        "FileName":  "DatabaseHandler.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\data\\DatabaseHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1320,
+        "FileName":  "DatabaseHandler.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\data\\DatabaseHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1319,
+        "FileName":  "DatabaseHandler.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\data\\DatabaseHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1319,
+        "FileName":  "DatabaseHandler.ts",
+        "Path":  "VORTEX_ARSENAL\\ORGANIZER\\DatabaseHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1319,
+        "FileName":  "DatabaseHandler.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\data\\DatabaseHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1319,
+        "FileName":  "DatabaseHandler.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\DatabaseHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1319,
+        "FileName":  "DatabaseHandler.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\data\\DatabaseHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1317,
+        "FileName":  "SingularityDashboard.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\SingularityDashboard.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1317,
+        "FileName":  "Swarm-Engine-V2.ts",
+        "Path":  "scripts\\QA_ARSENAL\\1_STRESS_ENGINES\\K6_ALTERNATIVES\\Swarm-Engine-V2.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1317,
+        "FileName":  "swarm-stress-test-v2-GOLD-STANDARD.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\_ARCHIVE\\swarm-stress-test-v2-GOLD-STANDARD.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1317,
+        "FileName":  "swarm-stress-test-v2.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\swarm-stress-test-v2.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1317,
+        "FileName":  "SingularityDashboard.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\dashboard\\SingularityDashboard.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1317,
+        "FileName":  "swarm-stress-test-v2-GOLD-STANDARD.ts",
+        "Path":  "JOB_APPLICATION_ASSETS\\swarm-stress-test-v2-GOLD-STANDARD.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1317,
+        "FileName":  "swarm-stress-test-v2.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\tests\\swarm-stress-test-v2.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1317,
+        "FileName":  "swarm-stress-test-v2.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\tests\\swarm-stress-test-v2.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1317,
+        "FileName":  "swarm-stress-test-v2.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\tests\\swarm-stress-test-v2.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1188,
+        "FileName":  "swarm-stress-test.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\tests\\swarm-stress-test.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1188,
+        "FileName":  "swarm-stress-test.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\tests\\swarm-stress-test.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1188,
+        "FileName":  "swarm-stress-test.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\tests\\swarm-stress-test.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1188,
+        "FileName":  "swarm-stress-test.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\swarm-stress-test.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1188,
+        "FileName":  "swarm-stress-test.ts",
+        "Path":  "JOB_APPLICATION_ASSETS\\swarm-stress-test.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1125,
+        "FileName":  "security-baseline.js",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\security-baseline.js",
+        "SaasSuitable":  true,
+        "Reason":  "🛡️ Security - Data protection",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  983,
+        "FileName":  "singularity-dashboard.js",
+        "Path":  "scripts\\1_STRENGTH\\archive\\singularity-dashboard.js",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  983,
+        "FileName":  "singularity-dashboard.js",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\singularity-dashboard.js",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  983,
+        "FileName":  "singularity-dashboard.js",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\scripts\\archive\\singularity-dashboard.js",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  968,
+        "FileName":  "StorageService.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\StorageService.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  968,
+        "FileName":  "StorageService.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\session\\StorageService.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  968,
+        "FileName":  "StorageService.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\session\\StorageService.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  968,
+        "FileName":  "StorageService.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\session\\StorageService.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  968,
+        "FileName":  "StorageService.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\session\\StorageService.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  968,
+        "FileName":  "StorageService.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\session\\StorageService.ts",
+        "SaasSuitable":  true,
+        "Reason":  "💾 Data Layer - Multi-tenant storage",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  943,
+        "FileName":  "ClientOrchestrator.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\strength\\ClientOrchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  940,
+        "FileName":  "SecurityTesting.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\security\\SecurityTesting.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🛡️ Security - Data protection",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  940,
+        "FileName":  "SecurityTesting.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\security\\SecurityTesting.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🛡️ Security - Data protection",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  940,
+        "FileName":  "SecurityTesting.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\security\\SecurityTesting.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🛡️ Security - Data protection",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  940,
+        "FileName":  "SecurityTesting.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\SecurityTesting.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🛡️ Security - Data protection",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  932,
+        "FileName":  "ClientOrchestrator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\reality\\gateway\\ClientOrchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  932,
+        "FileName":  "ClientOrchestrator.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\ClientOrchestrator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  921,
+        "FileName":  "ControlDashboard.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\dashboard\\ControlDashboard.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  921,
+        "FileName":  "ControlDashboard.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\ControlDashboard.ts",
+        "SaasSuitable":  true,
+        "Reason":  "📊 Analytics - Customer insights",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  912,
+        "FileName":  "nexus-coordinator.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\energy\\nexus-coordinator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  912,
+        "FileName":  "nexus-coordinator.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\nexus-coordinator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🐝 Multi-tenant - Agent coordination",
+        "Priority":  "MEDIUM"
+    },
+    {
+        "LOC":  1614,
+        "FileName":  "Sovereign-AI-Agent.spec.ts",
+        "Path":  "scripts\\QA_ARSENAL\\4_AUTOMATION_SQUADS\\Sovereign-AI-Agent.spec.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1613,
+        "FileName":  "Neural-Link-Vortex.ts",
+        "Path":  "scripts\\QA_ARSENAL\\3_AI_ANALYSIS\\Neural-Link-Vortex.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1457,
+        "FileName":  "i18n-manager.ts",
+        "Path":  "VORTEX_ARSENAL\\ORGANIZER\\i18n-manager.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🌍 Localization - Global reach",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1457,
+        "FileName":  "i18n-manager.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\i18n-manager.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🌍 Localization - Global reach",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1457,
+        "FileName":  "i18n-manager.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\enterprise\\i18n-manager.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🌍 Localization - Global reach",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1402,
+        "FileName":  "ErrorFactory.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\core\\errors\\ErrorFactory.ts",
+        "SaasSuitable":  true,
+        "Reason":  "⚠️ Error Handling - Reliability",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1402,
+        "FileName":  "ErrorFactory.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\ErrorFactory.ts",
+        "SaasSuitable":  true,
+        "Reason":  "⚠️ Error Handling - Reliability",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1402,
+        "FileName":  "ErrorFactory.ts",
+        "Path":  "VORTEX_ARSENAL\\BUILD\\ErrorFactory.ts",
+        "SaasSuitable":  true,
+        "Reason":  "⚠️ Error Handling - Reliability",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1327,
+        "FileName":  "phase3-intelligence.test.js",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\brain\\strength\\phase3-intelligence.test.js",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1319,
+        "FileName":  "phase3-intelligence.test.js",
+        "Path":  "VORTEX_ARSENAL\\CREATE\\phase3-intelligence.test.js",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1319,
+        "FileName":  "phase3-intelligence.test.js",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\phase3-intelligence.test.js",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1288,
+        "FileName":  "neural-hud.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\eyes\\energy\\neural-hud.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1284,
+        "FileName":  "NeuralAccelerator.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\NeuralAccelerator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1284,
+        "FileName":  "NeuralAccelerator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\physics\\NeuralAccelerator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1284,
+        "FileName":  "NeuralAccelerator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\physics\\NeuralAccelerator.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1252,
+        "FileName":  "neural-hud.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\neural-hud.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1201,
+        "FileName":  "NeuralSelfEvolver.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\biology\\evolution\\NeuralSelfEvolver.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1201,
+        "FileName":  "NeuralSelfEvolver.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\NeuralSelfEvolver.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1107,
+        "FileName":  "ScenarioBuilder.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\scenario\\ScenarioBuilder.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🎨 UI/UX - User experience",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1107,
+        "FileName":  "ScenarioBuilder.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\scenario\\ScenarioBuilder.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🎨 UI/UX - User experience",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1106,
+        "FileName":  "ScenarioBuilder.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\ScenarioBuilder.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🎨 UI/UX - User experience",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1106,
+        "FileName":  "ScenarioBuilder.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\scenario\\ScenarioBuilder.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🎨 UI/UX - User experience",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1106,
+        "FileName":  "ScenarioBuilder.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\scenario\\ScenarioBuilder.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🎨 UI/UX - User experience",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1106,
+        "FileName":  "ScenarioBuilder.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\scenario\\ScenarioBuilder.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🎨 UI/UX - User experience",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1102,
+        "FileName":  "multi-language-cognition.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\BETA_SECURITY\\security\\auth\\energy\\multi-language-cognition.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🌍 Localization - Global reach",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1102,
+        "FileName":  "multi-language-cognition.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\multi-language-cognition.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🌍 Localization - Global reach",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1065,
+        "FileName":  "neural-map-engine.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\cognitive\\neural-map-engine.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1065,
+        "FileName":  "neural-map-engine.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\cognitive\\neural-map-engine.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1064,
+        "FileName":  "neural-map-engine.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\cognitive\\neural-map-engine.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1064,
+        "FileName":  "neural-map-engine.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\cognitive\\neural-map-engine.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1064,
+        "FileName":  "neural-map-engine.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\cognitive\\neural-map-engine.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1064,
+        "FileName":  "neural-map-engine.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\neural-map-engine.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  1021,
+        "FileName":  "neural-hud.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\multimodal\\neural-hud.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  999,
+        "FileName":  "ErrorHandler.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\error\\ErrorHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "⚠️ Error Handling - Reliability",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  999,
+        "FileName":  "ErrorHandler.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\error\\ErrorHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "⚠️ Error Handling - Reliability",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  999,
+        "FileName":  "ErrorHandler.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\error\\ErrorHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "⚠️ Error Handling - Reliability",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  999,
+        "FileName":  "ErrorHandler.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\security\\auth\\energy\\ErrorHandler.ts",
+        "SaasSuitable":  true,
+        "Reason":  "⚠️ Error Handling - Reliability",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  990,
+        "FileName":  "neural-mapper.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\core\\neural-mapper.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  990,
+        "FileName":  "neural-mapper.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\agility\\neural-mapper.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  990,
+        "FileName":  "neural-mapper.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\neural-mapper.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  989,
+        "FileName":  "neural-mapper.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\core\\neural-mapper.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  989,
+        "FileName":  "neural-mapper.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\security\\auth\\energy\\neural-mapper.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  989,
+        "FileName":  "neural-mapper.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\core\\neural-mapper.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  989,
+        "FileName":  "neural-mapper.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\core\\neural-mapper.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  971,
+        "FileName":  "AIIntegration.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\AIIntegration.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  971,
+        "FileName":  "AIIntegration.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\ai\\AIIntegration.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  971,
+        "FileName":  "AIIntegration.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\ai\\AIIntegration.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  971,
+        "FileName":  "AIIntegration.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\security\\auth\\strength\\AIIntegration.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  964,
+        "FileName":  "neural-backpack.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\intelligence\\neural-backpack.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  964,
+        "FileName":  "neural-backpack.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\neural-backpack.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  964,
+        "FileName":  "neural-backpack.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\brain\\strength\\neural-backpack.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  922,
+        "FileName":  "phase1-cognitive.test.js",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\phase1-cognitive.test.js",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  921,
+        "FileName":  "phase1-cognitive.test.js",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\strength\\phase1-cognitive.test.js",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  902,
+        "FileName":  "domain-mapper.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\strength\\domain-mapper.ts",
+        "SaasSuitable":  true,
+        "Reason":  "🧠 AI Features - Competitive advantage",
+        "Priority":  "LOW"
+    },
+    {
+        "LOC":  89898,
+        "FileName":  "index.js",
+        "Path":  "VORTEX_ARSENAL\\UNCATEGORIZED_FORTRESS\\index.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  50209,
+        "FileName":  "CodeCollector.ts",
+        "Path":  "scripts\\5_INTELLIGENCE\\CodeCollector.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  10717,
+        "FileName":  "jquery.js",
+        "Path":  "VORTEX_ARSENAL\\UNCATEGORIZED_FORTRESS\\jquery.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  8618,
+        "FileName":  "jquery.slim.js",
+        "Path":  "VORTEX_ARSENAL\\UNCATEGORIZED_FORTRESS\\jquery.slim.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  6315,
+        "FileName":  "bootstrap.bundle.js",
+        "Path":  "VORTEX_ARSENAL\\UNCATEGORIZED_FORTRESS\\bootstrap.bundle.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  4576,
+        "FileName":  "index.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\index.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  4495,
+        "FileName":  "bootstrap.js",
+        "Path":  "VORTEX_ARSENAL\\UNCATEGORIZED_FORTRESS\\bootstrap.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  4448,
+        "FileName":  "bootstrap.esm.js",
+        "Path":  "VORTEX_ARSENAL\\UNCATEGORIZED_FORTRESS\\bootstrap.esm.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1703,
+        "FileName":  "jquery.validate.js",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\jquery.validate.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1611,
+        "FileName":  "Fault-Injection-Engine.ts",
+        "Path":  "scripts\\QA_ARSENAL\\2_CHAOS_WEAPONS\\Fault-Injection-Engine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1505,
+        "FileName":  "additional-methods.js",
+        "Path":  "VORTEX_ARSENAL\\SECURITY_CORE\\additional-methods.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1481,
+        "FileName":  "HiveMind.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\biology\\evolution\\HiveMind.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1481,
+        "FileName":  "HiveMind.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\biology\\evolution\\HiveMind.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1481,
+        "FileName":  "HiveMind.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\HiveMind.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1426,
+        "FileName":  "qantum-cli.js",
+        "Path":  "src\\BETA_SECURITY\\security_core\\MrMindQATool_ACTIVE\\tools\\qantum-cli.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1363,
+        "FileName":  "virtual-material-sync.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\future-practices\\virtual-material-sync.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1363,
+        "FileName":  "virtual-material-sync.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\future-practices\\virtual-material-sync.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1362,
+        "FileName":  "virtual-material-sync.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\future-practices\\virtual-material-sync.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1362,
+        "FileName":  "virtual-material-sync.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\virtual-material-sync.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1362,
+        "FileName":  "virtual-material-sync.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\future-practices\\virtual-material-sync.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1362,
+        "FileName":  "virtual-material-sync.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\future-practices\\virtual-material-sync.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1354,
+        "FileName":  "personality-engine.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\personality-engine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1354,
+        "FileName":  "personality-engine.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\BETA_SECURITY\\ghost\\shield\\src\\core\\personality-engine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1354,
+        "FileName":  "personality-engine.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\ghost\\personality-engine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1329,
+        "FileName":  "PredictiveScaler.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\PredictiveScaler.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1329,
+        "FileName":  "PredictiveScaler.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\chronos\\PredictiveScaler.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1320,
+        "FileName":  "fatality-engine.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\security\\fatality-engine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1320,
+        "FileName":  "fatality-engine.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\fatality-engine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1320,
+        "FileName":  "fatality-engine.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\strength\\fatality-engine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1308,
+        "FileName":  "cybercody-cli.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\security\\cybercody-cli.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1293,
+        "FileName":  "capabilities-data.ts",
+        "Path":  "VORTEX_ARSENAL\\ORGANIZER\\capabilities-data.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1293,
+        "FileName":  "capabilities-data.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\docs\\cognitive\\capabilities-data.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1285,
+        "FileName":  "paradox-engine.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\paradox-engine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1285,
+        "FileName":  "ParadoxEngine.ts",
+        "Path":  "src\\OMEGA_MIND\\chronos\\ParadoxEngine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1285,
+        "FileName":  "paradox-engine.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\chronos\\paradox-engine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1234,
+        "FileName":  "capabilities-data.ts",
+        "Path":  "src\\BETA_SECURITY\\security_core\\MrMindQATool\\docs\\cognitive\\capabilities-data.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1219,
+        "FileName":  "script-god.js",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\script-god.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1219,
+        "FileName":  "script-god.js",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\tools\\script-god.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1219,
+        "FileName":  "script-god.js",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\security\\auth\\energy\\script-god.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1219,
+        "FileName":  "script-god.js",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\tools\\script-god.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1216,
+        "FileName":  "HardwareBridge.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\HardwareBridge.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1216,
+        "FileName":  "HardwareBridge.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\physics\\HardwareBridge.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1214,
+        "FileName":  "CosmicTaxonomy.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\CosmicTaxonomy.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1214,
+        "FileName":  "CosmicTaxonomy.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\QA-SAAS\\apps\\api\\src\\engines\\CosmicTaxonomy.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1214,
+        "FileName":  "CosmicTaxonomy.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\QANTUM-NEXUS\\apps\\api\\src\\engines\\CosmicTaxonomy.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1191,
+        "FileName":  "GlobalThreatIntel.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\GlobalThreatIntel.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1191,
+        "FileName":  "GlobalThreatIntel.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\security\\GlobalThreatIntel.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1191,
+        "FileName":  "GlobalThreatIntel.ts",
+        "Path":  "src\\BETA_SECURITY\\security_core\\src\\security\\GlobalThreatIntel.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1174,
+        "FileName":  "SeleniumAdapter.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\adapters\\SeleniumAdapter.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1174,
+        "FileName":  "SeleniumAdapter.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\SeleniumAdapter.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1174,
+        "FileName":  "SeleniumAdapter.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\adapters\\SeleniumAdapter.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1174,
+        "FileName":  "SeleniumAdapter.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\adapters\\SeleniumAdapter.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1168,
+        "FileName":  "GrowthHacker.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\GrowthHacker.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1168,
+        "FileName":  "GrowthHacker.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\reality\\gateway\\GrowthHacker.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1168,
+        "FileName":  "GrowthHacker.ts",
+        "Path":  "src\\GAMMA_INFRA\\reality\\gateway\\GrowthHacker.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1168,
+        "FileName":  "GrowthHacker.ts",
+        "Path":  "VORTEX_ARSENAL\\HACK\\GrowthHacker.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1157,
+        "FileName":  "AdaptiveOllamaAgent.ts",
+        "Path":  "VORTEX_ARSENAL\\CREATE\\AdaptiveOllamaAgent.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1157,
+        "FileName":  "AdaptiveOllamaAgent.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\energy\\AdaptiveOllamaAgent.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1157,
+        "FileName":  "AdaptiveOllamaAgent.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\AdaptiveOllamaAgent.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1145,
+        "FileName":  "AutoOnboarder.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\ears\\energy\\AutoOnboarder.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1145,
+        "FileName":  "AutoOnboarder.ts",
+        "Path":  "src\\GAMMA_INFRA\\reality\\gateway\\AutoOnboarder.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1145,
+        "FileName":  "AutoOnboarder.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\AutoOnboarder.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1145,
+        "FileName":  "AutoOnboarder.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\reality\\gateway\\AutoOnboarder.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1142,
+        "FileName":  "video-replay-analyzer.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\multimodal\\video-replay-analyzer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1142,
+        "FileName":  "video-replay-analyzer.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\video-replay-analyzer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1142,
+        "FileName":  "video-replay-analyzer.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\BETA_SECURITY\\security\\auth\\strength\\video-replay-analyzer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1132,
+        "FileName":  "SelfReinvestment.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\SelfReinvestment.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1132,
+        "FileName":  "SelfReinvestment.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\biology\\metabolism\\SelfReinvestment.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1130,
+        "FileName":  "SelfReinvestment.ts",
+        "Path":  "src\\DELTA_SCIENCE\\biology\\metabolism\\SelfReinvestment.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1119,
+        "FileName":  "VerificationService.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\verification\\VerificationService.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1119,
+        "FileName":  "VerificationService.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\VerificationService.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1119,
+        "FileName":  "VerificationService.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\verification\\VerificationService.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1119,
+        "FileName":  "VerificationService.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\verification\\VerificationService.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1118,
+        "FileName":  "SupremeMeditation.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\SupremeMeditation.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1118,
+        "FileName":  "SupremeMeditation.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\QA-SAAS\\packages\\pinecone-bridge\\src\\daemon\\SupremeMeditation.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1107,
+        "FileName":  "semantic-core.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\semantic-core.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1107,
+        "FileName":  "semantic-core.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\ears\\strength\\semantic-core.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1107,
+        "FileName":  "semantic-core.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\asc\\semantic-core.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1105,
+        "FileName":  "TranscendenceCore.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\TranscendenceCore.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1090,
+        "FileName":  "site-mapper.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\oracle\\site-mapper.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1090,
+        "FileName":  "site-mapper.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\site-mapper.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1090,
+        "FileName":  "site-mapper.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\ears\\energy\\site-mapper.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1084,
+        "FileName":  "FormAutomation.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\forms\\FormAutomation.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1084,
+        "FileName":  "FormAutomation.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\forms\\FormAutomation.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1084,
+        "FileName":  "FormAutomation.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\FormAutomation.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1084,
+        "FileName":  "FormAutomation.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\security\\auth\\energy\\FormAutomation.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1077,
+        "FileName":  "PhenomenonWeaver.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\core\\mouth\\strength\\PhenomenonWeaver.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1073,
+        "FileName":  "index.js",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\PRIVATE\\api-sensei\\index.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1073,
+        "FileName":  "PhenomenonWeaver.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\strength\\PhenomenonWeaver.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1073,
+        "FileName":  "index.js",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\eyes\\energy\\index.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1073,
+        "FileName":  "index.js",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\core\\eyes\\energy\\index.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1065,
+        "FileName":  "voice-commander.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\energy\\voice-commander.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1065,
+        "FileName":  "voice-commander.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\voice-commander.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1065,
+        "FileName":  "voice-commander.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\multimodal\\voice-commander.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1049,
+        "FileName":  "genesis.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\QANTUM-NEXUS\\apps\\api\\src\\routes\\genesis.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1049,
+        "FileName":  "genesis.ts",
+        "Path":  "VORTEX_ARSENAL\\CREATE\\genesis.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1049,
+        "FileName":  "genesis.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\energy\\genesis.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1049,
+        "FileName":  "genesis.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\QA-SAAS\\apps\\api\\src\\routes\\genesis.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1049,
+        "FileName":  "genesis.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\core\\mouth\\energy\\genesis.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1037,
+        "FileName":  "BehaviorAnalysis.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\BehaviorAnalysis.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1037,
+        "FileName":  "BehaviorAnalysis.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\behavior\\BehaviorAnalysis.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1037,
+        "FileName":  "BehaviorAnalysis.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\behavior\\BehaviorAnalysis.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1037,
+        "FileName":  "BehaviorAnalysis.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\behavior\\BehaviorAnalysis.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1036,
+        "FileName":  "chronos-engine-v2.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\chronos-engine-v2.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1036,
+        "FileName":  "chronos-engine-v2.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\BETA_SECURITY\\security\\auth\\strength\\chronos-engine-v2.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1033,
+        "FileName":  "qantum-cli.js",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\qantum-cli.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1033,
+        "FileName":  "qantum-cli.js",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\tools\\qantum-cli.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1023,
+        "FileName":  "distiller.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\cognition\\distiller.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1023,
+        "FileName":  "distiller.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\distiller.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1023,
+        "FileName":  "distiller.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\cognition\\distiller.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1014,
+        "FileName":  "QAntumChatPanel.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\ide\\QAntumChatPanel.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1012,
+        "FileName":  "self-healing-v2.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\cognitive\\self-healing-v2.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1012,
+        "FileName":  "self-healing-v2.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\cognitive\\self-healing-v2.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1011,
+        "FileName":  "self-healing-v2.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\cognitive\\self-healing-v2.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1011,
+        "FileName":  "self-healing-v2.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\cognitive\\self-healing-v2.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1011,
+        "FileName":  "self-healing-v2.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\cognitive\\self-healing-v2.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1011,
+        "FileName":  "self-healing-v2.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\self-healing-v2.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1008,
+        "FileName":  "AdaptiveOllamaAgent.js",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\AdaptiveOllamaAgent.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1008,
+        "FileName":  "AdaptiveOllamaAgent.js",
+        "Path":  "src\\GAMMA_INFRA\\modules\\BETA_SECURITY\\security\\guardians\\energy\\AdaptiveOllamaAgent.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1008,
+        "FileName":  "AdaptiveOllamaAgent.js",
+        "Path":  "VORTEX_ARSENAL\\CREATE\\AdaptiveOllamaAgent.js",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1006,
+        "FileName":  "automation.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\strength\\automation.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1006,
+        "FileName":  "automation.ts",
+        "Path":  "scripts\\4_ENERGY\\automation.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1006,
+        "FileName":  "automation.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\scripts\\automation.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1006,
+        "FileName":  "automation.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\automation.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1004,
+        "FileName":  "ThirdPartyIntegrations.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\integrations\\ThirdPartyIntegrations.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1004,
+        "FileName":  "ThirdPartyIntegrations.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\integrations\\ThirdPartyIntegrations.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1004,
+        "FileName":  "DependencyGraph.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\cognition\\DependencyGraph.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1004,
+        "FileName":  "ThirdPartyIntegrations.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\ThirdPartyIntegrations.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1004,
+        "FileName":  "DependencyGraph.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\cognition\\DependencyGraph.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1004,
+        "FileName":  "DependencyGraph.ts",
+        "Path":  "src\\OMEGA_MIND\\cognition\\DependencyGraph.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1004,
+        "FileName":  "DependencyGraph.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\DependencyGraph.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1004,
+        "FileName":  "ThirdPartyIntegrations.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\integrations\\ThirdPartyIntegrations.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1002,
+        "FileName":  "ToolRegistry.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\chemistry\\tool-orchestrator\\ToolRegistry.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  985,
+        "FileName":  "evidence-collector.ts",
+        "Path":  "VORTEX_ARSENAL\\ORGANIZER\\evidence-collector.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  985,
+        "FileName":  "evidence-collector.ts",
+        "Path":  "src\\BETA_SECURITY\\security_core\\MrMindQATool_src\\security\\evidence-collector.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  985,
+        "FileName":  "evidence-collector.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\security\\evidence-collector.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  971,
+        "FileName":  "ContextInjector.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\cognition\\ContextInjector.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  971,
+        "FileName":  "ContextInjector.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\cognition\\ContextInjector.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  971,
+        "FileName":  "ContextInjector.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\ContextInjector.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  964,
+        "FileName":  "CaseStudyGenerator.ts",
+        "Path":  "src\\BETA_SECURITY\\security_core\\src\\docs\\CaseStudyGenerator.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  964,
+        "FileName":  "CaseStudyGenerator.ts",
+        "Path":  "VORTEX_ARSENAL\\CREATE\\CaseStudyGenerator.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  964,
+        "FileName":  "CaseStudyGenerator.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\docs\\CaseStudyGenerator.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  964,
+        "FileName":  "CaseStudyGenerator.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\CaseStudyGenerator.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  961,
+        "FileName":  "EnterpriseDiscovery.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\oracle\\EnterpriseDiscovery.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  961,
+        "FileName":  "EnterpriseDiscovery.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\ears\\strength\\EnterpriseDiscovery.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  961,
+        "FileName":  "EnterpriseDiscovery.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\EnterpriseDiscovery.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  959,
+        "FileName":  "GenesisRealityProvider.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\QANTUM-NEXUS\\apps\\worker\\src\\genesis\\GenesisRealityProvider.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  959,
+        "FileName":  "GenesisRealityProvider.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\QA-SAAS\\apps\\worker\\src\\genesis\\GenesisRealityProvider.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  959,
+        "FileName":  "GenesisRealityProvider.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\BETA_SECURITY\\security\\auth\\energy\\GenesisRealityProvider.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  959,
+        "FileName":  "MindEngine.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\MindEngine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  959,
+        "FileName":  "GenesisRealityProvider.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\GenesisRealityProvider.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  959,
+        "FileName":  "GenesisRealityProvider.ts",
+        "Path":  "VORTEX_ARSENAL\\CREATE\\GenesisRealityProvider.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  959,
+        "FileName":  "MindEngine.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\data\\MindEngine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  959,
+        "FileName":  "MindEngine.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\data\\MindEngine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  959,
+        "FileName":  "MindEngine.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\data\\MindEngine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  954,
+        "FileName":  "know-thyself.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\scripts\\know-thyself.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  954,
+        "FileName":  "know-thyself.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\scripts\\know-thyself.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  954,
+        "FileName":  "GenesisEngine.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\src\\biology\\evolution\\GenesisEngine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  954,
+        "FileName":  "know-thyself.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\know-thyself.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  954,
+        "FileName":  "GenesisEngine.ts",
+        "Path":  "VORTEX_ARSENAL\\CREATE\\GenesisEngine.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  954,
+        "FileName":  "know-thyself.ts",
+        "Path":  "scripts\\1_STRENGTH\\know-thyself.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  949,
+        "FileName":  "OracleHumanizer.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\OracleHumanizer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  949,
+        "FileName":  "OracleHumanizer.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\biology\\evolution\\OracleHumanizer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  942,
+        "FileName":  "autonomous-explorer.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\cognitive\\autonomous-explorer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  942,
+        "FileName":  "autonomous-explorer.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\cognitive\\autonomous-explorer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  941,
+        "FileName":  "autonomous-explorer.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\cognitive\\autonomous-explorer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  941,
+        "FileName":  "autonomous-explorer.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\cognitive\\autonomous-explorer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  941,
+        "FileName":  "autonomous-explorer.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\cognitive\\autonomous-explorer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  941,
+        "FileName":  "autonomous-explorer.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\autonomous-explorer.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  937,
+        "FileName":  "dom-evolution-tracker.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\PROJECT\\PRIVATE\\QA-Framework\\src\\prediction-matrix\\dom-evolution-tracker.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  937,
+        "FileName":  "dom-evolution-tracker.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\BETA_SECURITY\\security\\encryption\\strength\\dom-evolution-tracker.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  937,
+        "FileName":  "dom-evolution-tracker.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\dom-evolution-tracker.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  915,
+        "FileName":  "anti-tamper.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\anti-tamper.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  915,
+        "FileName":  "anti-tamper.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\security\\anti-tamper.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  915,
+        "FileName":  "anti-tamper.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\eyes\\energy\\anti-tamper.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  914,
+        "FileName":  "kernel.ts",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\mouth\\energy\\kernel.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  905,
+        "FileName":  "index.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\layers\\biology\\index.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  905,
+        "FileName":  "index.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\layers\\biology\\index.ts",
+        "SaasSuitable":  false,
+        "Reason":  "❓ Unknown - Needs review",
+        "Priority":  "REVIEW"
+    },
+    {
+        "LOC":  1384,
+        "FileName":  "phase3-infrastructure.test.js",
+        "Path":  "src\\GAMMA_INFRA\\modules\\OMEGA_MIND\\brain\\memory\\strength\\phase3-infrastructure.test.js",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  1305,
+        "FileName":  "phase3-infrastructure.test.js",
+        "Path":  "VORTEX_ARSENAL\\SECURITY_CORE\\phase3-infrastructure.test.js",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  1277,
+        "FileName":  "phase2-evolution-auto.test.js",
+        "Path":  "src\\GAMMA_INFRA\\modules\\OMEGA_MIND\\brain\\logic\\agility\\phase2-evolution-auto.test.js",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  1227,
+        "FileName":  "phase2-evolution-auto.test.js",
+        "Path":  "VORTEX_ARSENAL\\NEXUS_INTEL\\phase2-evolution-auto.test.js",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  1125,
+        "FileName":  "phase3-production.test.js",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\phase3-production.test.js",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  1125,
+        "FileName":  "phase3-production.test.js",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\brain\\strength\\phase3-production.test.js",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  1074,
+        "FileName":  "auto-test-factory.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\oracle\\auto-test-factory.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  1074,
+        "FileName":  "auto-test-factory.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\oracle\\auto-test-factory.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  974,
+        "FileName":  "auto-test-factory.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\src\\cognitive\\auto-test-factory.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  974,
+        "FileName":  "auto-test-factory.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\src\\cognitive\\auto-test-factory.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  973,
+        "FileName":  "auto-test-factory.ts",
+        "Path":  "QAntum-Fortres-7\\QA-SAAS\\PROJECT\\PRIVATE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\cognitive\\auto-test-factory.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  973,
+        "FileName":  "auto-test-factory.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.purge-backup\\2025-12-30T19-06-20-663Z\\src\\cognitive\\auto-test-factory.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  973,
+        "FileName":  "auto-test-factory.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\Mind-Engine-Core\\.ascension-backup\\2025-12-30T19-06-20-229Z\\src\\cognitive\\auto-test-factory.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  973,
+        "FileName":  "auto-test-factory.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\auto-test-factory.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  973,
+        "FileName":  "auto-test-factory.ts",
+        "Path":  "VORTEX_ARSENAL\\BUILD\\auto-test-factory.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  970,
+        "FileName":  "SpectatorMode.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\SpectatorMode.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  970,
+        "FileName":  "SpectatorMode.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MisteMind.-star\\src\\swarm\\SpectatorMode.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  959,
+        "FileName":  "phase1-async-healing.test.js",
+        "Path":  "VORTEX_ARSENAL\\NEXUS_INTEL\\phase1-async-healing.test.js",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  957,
+        "FileName":  "phase1-async-healing.test.js",
+        "Path":  "src\\GAMMA_INFRA\\modules\\GAMMA_INFRA\\core\\eyes\\strength\\phase1-async-healing.test.js",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  907,
+        "FileName":  "bastion.test.ts",
+        "Path":  "VORTEX_ARSENAL\\CRYPTO_VAULT\\bastion.test.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    },
+    {
+        "LOC":  907,
+        "FileName":  "bastion.test.ts",
+        "Path":  "scripts\\1_STRENGTH\\_ARCHIVE\\QAntum-Empire-1M-CODE-2026-01-02\\MrMindQATool\\tests\\bastion.test.ts",
+        "SaasSuitable":  false,
+        "Reason":  "🧪 Testing - Dev tool only",
+        "Priority":  "SKIP"
+    }
+]

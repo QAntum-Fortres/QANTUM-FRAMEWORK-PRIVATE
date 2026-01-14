@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIMITAR PRODROMOV // JAVA ENGINEER</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            /* Indigo */
+            --dark: #1e1b4b;
+            --text: #374151;
+            --light: #e0e7ff;
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            color: var(--text);
+            margin: 0;
+            padding: 50px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            display: block;
+            color: var(--text);
+            text-decoration: none;
+            margin-bottom: 3px;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary);
+        }
+
+        /* SECTION HEADERS */
+        .section-header {
+            background: var(--light);
+            padding: 8px 15px;
+            border-left: 4px solid var(--primary);
+            color: var(--dark);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        /* SKILLS */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .skill-badge {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        /* EXPERIENCE */
+        .job {
+            margin-bottom: 30px;
+            border-bottom: 1px dashed #d1d5db;
+            padding-bottom: 20px;
+        }
+
+        .job:last-child {
+            border-bottom: none;
+        }
+
+        .job-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .job-company {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .job-date {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* SUMMARY */
+        .summary p {
+            font-style: italic;
+            color: #4b5563;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .section-header {
+                background-color: #e0e7ff !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Dimitar Prodromov</h1>
+                <div class="subtitle">Middle/Strong Middle Backend Engineer</div>
+            </div>
+            <div class="contact-info">
+                <a href="mailto:papica777@gmail.com">papica777@gmail.com</a>
+                <a
+                    href="https://www.linkedin.com/in/dimitar-prodromov-1818b3399/">linkedin/dimitar-prodromov-1818b3399</a>
+                <a href="https://qantum-fortres.github.io/PORTFOLIO/">qantum-fortres.github.io</a>
+                <a href="https://github.com/qantum-fortres">github.com/qantum-fortres</a>
+                <span>Sofia, Bulgaria</span>
+            </div>
+        </header>
+
+        <div class="summary">
+            <p>
+                <strong>Backend Engineer with 4+ years of experience</strong> working in high-pace Product Companies
+                (Gaming/Betting). Specialized in building <strong>High-Load, Multithreaded systems</strong> that handle
+                millions of users. Deep expertise in <strong>SQL Optimization</strong>, <strong>Kafka</strong>
+                integrations, and <strong>WebSockets</strong>. Passionate about writing clean, testable code and
+                optimizing system performance (Metrics/Profiling).
+            </p>
+        </div>
+
+        <h3 class="section-header">Technical Stack</h3>
+        <div class="skills-container">
+            <span class="skill-badge">Java Core / Multithreading</span>
+            <span class="skill-badge">Spring Boot</span>
+            <span class="skill-badge">Kafka / Event-Driven</span>
+            <span class="skill-badge">PostgreSQL / SQL Optimization</span>
+            <span class="skill-badge">WebSockets / Socket.io</span>
+            <span class="skill-badge">Docker / GCP</span>
+            <span class="skill-badge">ELK / Grafana</span>
+        </div>
+
+        <h3 class="section-header">Professional Experience</h3>
+
+        <!-- QANTUM VORTEX (R&D) -->
+        <div class="job">
+            <div class="job-title-row">
+                <div>
+                    <span class="job-title">Backend Engineer (Multithreading Focus)</span>
+                    <span class="job-company"> // QANTUM VORTEX (R&D)</span>
+                </div>
+                <span class="job-date">2023 — Present</span>
+            </div>
+            <ul>
+                <li>Designed a <strong>High-Load HFT (High-Frequency Trading) Engine</strong> using advanced Concurrency
+                    patterns to process 10k+ events/sec without race conditions.</li>
+                <li>Implemented <strong>WebSocket Connectors</strong> (Netty-based architecture) for real-time data
+                    streaming from Binance, ensuring &lt;10ms processing latency.</li>
+                <li>Optimized <strong>PostgreSQL</strong> queries and indexing strategies to handle high-volume write
+                    operations during market volatility (similar to transaction spikes).</li>
+                <li>Integrated <strong>Telegram Intelligence</strong> via REST APIs, handling asynchronous notifications
+                    and alerts.</li>
+                <li>Configured <strong>Docker</strong> containers for scalable deployment across cloud environments.
+                </li>
+            </ul>
+        </div>
+
+        <!-- DRAFTKINGS -->
+        <div class="job">
+            <div class="job-title-row">
+                <div>
+                    <span class="job-title">Software Engineer (Automated Systems)</span>
+                    <span class="job-company"> // DRAFTKINGS INC.</span>
+                </div>
+                <span class="job-date">2021 — 2023</span>
+            </div>
+            <ul>
+                <li>Contributed to the core backend services of a global <strong>Sportsbook Platform</strong>, ensuring
+                    stability during peak load events (Super Bowl).</li>
+                <li>Worked with <strong>Kafka</strong> for asynchronous messaging between Betting Engine and Wallet
+                    Services, ensuring data consistency.</li>
+                <li>Participated in <strong>Cross-Functional Teams</strong> (Product, QA, Ops) to deliver features like
+                    "Cash Out" and "Live Betting".</li>
+                <li>Performed <strong>Troubleshooting & Profiling</strong> using Kibana/ELK to identify and resolve
+                    production bottlenecks.</li>
+                <li>Wrote extensive Unit and Integration tests to maintain high code quality and prevent regression.
+                </li>
+            </ul>
+        </div>
+
+        <h3 class="section-header">Key Competencies</h3>
+        <ul>
+            <li><strong>Multithreading:</strong> Deep understanding of concurrent programming, locks, and thread safety.
+            </li>
+            <li><strong>Database:</strong> Experience with complex SQL joins, indexes, and Ebean-ORM concepts.</li>
+            <li><strong>Observability:</strong> Proficient in using Metrics (Micrometer), Alerts, and Logging for
+                diagnostics.</li>
+            <li><strong>Teamwork:</strong> Strong believer in Code Reviews and knowledge sharing within the team.</li>
+        </ul>
+
+    </div>
+
+</body>
+
+</html>

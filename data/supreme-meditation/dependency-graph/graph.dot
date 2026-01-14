@@ -1,0 +1,14 @@
+digraph DependencyGraph {
+    rankdir=TB;
+    node [shape=box, style=filled];
+    edge [color="#666666"];
+
+    "ALPHA_FINANCE" [label="ALPHA_FINANCE\n8 files", fillcolor="#e9ecef"];
+    "BETA_SECURITY" [label="BETA_SECURITY\n23 files", fillcolor="#e9ecef"];
+    "DELTA_SCIENCE" [label="DELTA_SCIENCE\n7 files", fillcolor="#e9ecef"];
+    "GAMMA_INFRA" [label="GAMMA_INFRA\n386 files", fillcolor="#e9ecef"];
+    "index.ts" [label="index.ts\n1 files", fillcolor="#e9ecef"];
+    "nexus.ts" [label="nexus.ts\n1 files", fillcolor="#e9ecef"];
+    "OMEGA_MIND" [label="OMEGA_MIND\n40 files", fillcolor="#e9ecef"];
+
+}
