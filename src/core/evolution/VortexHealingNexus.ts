@@ -17,6 +17,7 @@ import { EventEmitter } from 'events';
 import { Logger } from '../telemetry/Logger';
 import { NeuralMapEngine } from '../engines/neural-map-engine';
 import * as crypto from 'crypto';
+import { LivenessTokenManager } from './LivenessTokenManager';
 
 /**
  * Healing domains that map to specialized repair subsystems
@@ -130,7 +131,10 @@ export class VortexHealingNexus extends EventEmitter {
         super();
         this.logger = Logger.getInstance();
         this.neuralMap = new NeuralMapEngine();
-        this.TOKEN_SECRET = process.env.LIVENESS_TOKEN_SECRET || crypto.randomBytes(32).toString('hex');
+
+        // Use shared secret manager for consistent signing/verification
+        const tokenManager = LivenessTokenManager.getInstance();
+        this.TOKEN_SECRET = tokenManager.getSecret();
 
         this.logger.info('HEALING-NEXUS', '🩺 Immune System Orchestrator initialized');
     }

@@ -15,6 +15,7 @@ import { EventEmitter } from 'events';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 import * as crypto from 'crypto';
+import { LivenessTokenManager } from './LivenessTokenManager';
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // TYPES: The Language of Digital Mortality
@@ -209,28 +210,59 @@ export class ApoptosisModule extends EventEmitter {
      * that certifies its health. This method parses the token and resets entropy,
      * effectively extending the module's lifespan.
      * 
+     * SECURITY:
+     * ❌ Forged Tokens: HMAC-SHA256 signature prevents unauthorized vitality registration
+     * ❌ Replay Attacks: Timestamp validation ensures tokens are time-bound (5-minute window)
+     * ❌ Module ID Spoofing: Token verification checks moduleId match
+     * 
      * @param moduleId - Module identifier
      * @param livenessToken - Base64-encoded LivenessToken from VortexHealingNexus
+     * @throws Error if token validation fails
      */
     public async registerVitality(moduleId: string, livenessToken: string): Promise<void> {
         try {
-            // Parse LivenessToken
+            // Step 1: Decode Base64 token
             const decoded = Buffer.from(livenessToken, 'base64').toString('utf-8');
-            const [tokenModuleId, timestampStr, status, signature] = decoded.split(':');
+            const [tokenModuleId, timestampStr, status, providedSignature] = decoded.split(':');
 
-            // Verify token is for this module
+            // Step 2: Verify module ID match (防止 Module ID Spoofing)
             if (tokenModuleId !== moduleId) {
-                console.warn(`⚠️ [APOPTOSIS] LivenessToken moduleId mismatch: expected ${moduleId}, got ${tokenModuleId}`);
-                return;
+                throw new Error(
+                    `LivenessToken moduleId mismatch: expected ${moduleId}, got ${tokenModuleId}`
+                );
             }
 
-            // Verify signature (basic validation)
-            if (!signature || signature.length < 16) {
-                console.warn('⚠️ [APOPTOSIS] Invalid LivenessToken signature');
-                return;
+            // Step 3: Verify timestamp to prevent replay attacks
+            const tokenTimestamp = parseInt(timestampStr, 10);
+            const now = Date.now();
+            const tokenAgeMs = now - tokenTimestamp;
+            const MAX_TOKEN_AGE_MS = 5 * 60 * 1000; // 5 minutes
+
+            if (tokenAgeMs > MAX_TOKEN_AGE_MS) {
+                throw new Error(
+                    `LivenessToken expired: token is ${Math.floor(tokenAgeMs / 1000)}s old (max: ${MAX_TOKEN_AGE_MS / 1000}s)`
+                );
             }
 
-            const timestamp = parseInt(timestampStr, 10);
+            if (tokenTimestamp > now + 60000) {
+                throw new Error('LivenessToken from future - possible clock skew attack');
+            }
+
+            // Step 4: Cryptographically verify HMAC-SHA256 signature
+            const tokenManager = LivenessTokenManager.getInstance();
+            const TOKEN_SECRET = tokenManager.getSecret();
+            const payload = `${tokenModuleId}:${timestampStr}:${status}`;
+            const expectedSignature = crypto
+                .createHmac('sha256', TOKEN_SECRET)
+                .update(payload)
+                .digest('hex');
+
+            if (providedSignature !== expectedSignature) {
+                throw new Error('LivenessToken signature verification FAILED - token is forged or corrupted');
+            }
+
+            // ✅ ALL SECURITY CHECKS PASSED - Token is AUTHENTIC
+
             const id = this.pathToId(moduleId);
 
             // Get or create entity
@@ -261,14 +293,16 @@ export class ApoptosisModule extends EventEmitter {
             if (log.length > 1000) log.shift();
             this.accessLog.set(id, log);
 
-            console.log(`💚 [APOPTOSIS] Vitality registered for ${moduleId} (status: ${status}) - Entropy RESET`);
-            this.emit('vitality:registered', { moduleId, status, timestamp });
+            console.log(`💚 [APOPTOSIS] Vitality registered for ${moduleId} (status: ${status}) - Entropy RESET ✅`);
+            this.emit('vitality:registered', { moduleId, status, timestamp: tokenTimestamp });
 
             // Save state after vitality registration
             await this.saveState();
 
-        } catch (error) {
-            console.error('❌ [APOPTOSIS] Failed to register vitality:', error);
+        } catch (error: any) {
+            console.error(`❌ [APOPTOSIS] Vitality registration FAILED: ${error.message}`);
+            this.emit('vitality:rejected', { moduleId, reason: error.message });
+            throw error; // Re-throw to propagate security failures
         }
     }
 
