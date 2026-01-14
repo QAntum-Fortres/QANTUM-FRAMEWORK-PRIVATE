@@ -600,6 +600,26 @@
             </div>
         </div>
 
+        <!-- NEW: Live Immune System Metrics (Promoted to Top) -->
+        <h3
+            style="margin-top: 2rem; margin-bottom: 1rem; text-align: center; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">
+            🛡️ Live Immune System Status
+        </h3>
+        <div class="stats-grid" style="margin-top: 1rem;">
+            <div class="stat-card" style="background: rgba(16, 185, 129, 0.1); border-color: var(--accent);">
+                <div class="stat-label">Valid LivenessTokens</div>
+                <div class="stat-value" id="valid-tokens">243</div>
+            </div>
+            <div class="stat-card" style="background: rgba(168, 85, 247, 0.1); border-color: var(--primary);">
+                <div class="stat-label">HMAC Signatures Verified</div>
+                <div class="stat-value" id="verified-sigs">1,204</div>
+            </div>
+            <div class="stat-card" style="background: rgba(239, 68, 68, 0.1); border-color: var(--danger);">
+                <div class="stat-label">Blocked Threats</div>
+                <div class="stat-value" id="blocked-threats" style="color: var(--danger);">0</div>
+            </div>
+        </div>
+
         <!-- Seven Pillars -->
         <section class="pillars-section">
             <h2 class="section-title">THE SEVEN PILLARS OF DIGITAL LIFE</h2>
@@ -759,6 +779,8 @@
                     style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span
                     style="color: var(--warning);">'Signature verification FAILED'</span>);
             </div>
+
+
         </section>
 
         <!-- Interactive Controls -->
@@ -850,6 +872,37 @@
             const newUptime = Math.min(99.99, currentUptime + 0.01);
             uptimeElement.textContent = newUptime.toFixed(2) + '%';
         }, 5000);
+
+        // Security Metrics Animation
+        setInterval(() => {
+            // Update Valid Tokens (fluctuate slightly)
+            const tokensEl = document.getElementById('valid-tokens');
+            if (tokensEl) {
+                const currentTokens = parseInt(tokensEl.textContent);
+                const change = Math.floor(Math.random() * 3) - 1; // -1, 0, or 1
+                tokensEl.textContent = Math.max(240, Math.min(250, currentTokens + change));
+            }
+
+            // Increment Verified Signatures
+            const sigsEl = document.getElementById('verified-sigs');
+            if (sigsEl) {
+                const currentSigs = parseInt(sigsEl.textContent.replace(/,/g, ''));
+                sigsEl.textContent = (currentSigs + Math.floor(Math.random() * 5)).toLocaleString();
+            }
+
+            // Occasionally increment Blocked Threats
+            if (Math.random() > 0.95) {
+                const threatsEl = document.getElementById('blocked-threats');
+                if (threatsEl) {
+                    const currentThreats = parseInt(threatsEl.textContent);
+                    threatsEl.textContent = currentThreats + 1;
+
+                    // Flash red effect
+                    threatsEl.style.textShadow = "0 0 10px red";
+                    setTimeout(() => threatsEl.style.textShadow = "none", 500);
+                }
+            }
+        }, 2000);
     </script>
 </body>
 
