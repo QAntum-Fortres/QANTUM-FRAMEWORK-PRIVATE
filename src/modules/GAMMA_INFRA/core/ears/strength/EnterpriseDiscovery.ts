@@ -640,7 +640,7 @@ export class EnterpriseDiscovery extends EventEmitter {
   private generateDiscoveredPage(baseUrl: string, index: number): DiscoveredPage {
     const pageId = `PAGE_${crypto.randomBytes(4).toString('hex')}`;
     const paths = ['/home', '/about', '/contact', '/products', '/services', '/login', '/signup', '/dashboard', '/settings', '/checkout'];
-    const pagePath = paths[index % paths.length] + (index >= paths.length ? `/${index}` : ');
+    const pagePath = paths[index % paths.length] + (index >= paths.length ? `/${index}` : '');
 
     const elements: DiscoveredElement[] = [];
     const issues: DiscoveredIssue[] = [];
@@ -744,8 +744,8 @@ export class EnterpriseDiscovery extends EventEmitter {
    */
   private analyzeSiteStructure(pages: DiscoveredPage[]): SiteStructure {
     const complexity = pages.length > 50 ? 'enterprise' :
-                       pages.length > 20 ? 'complex' :
-                       pages.length > 10 ? 'medium' : 'simple';
+      pages.length > 20 ? 'complex' :
+        pages.length > 10 ? 'medium' : 'simple';
 
     return {
       entryPoints: [pages[0]?.url || '/'],
@@ -846,7 +846,7 @@ export class EnterpriseDiscovery extends EventEmitter {
 
     // Recommend tier
     const recommendedTier = estimatedWorkers > 20 ? 'enterprise' :
-                            estimatedWorkers > 5 ? 'professional' : 'starter';
+      estimatedWorkers > 5 ? 'professional' : 'starter';
 
     return {
       estimatedWorkers,
@@ -897,9 +897,9 @@ export class EnterpriseDiscovery extends EventEmitter {
       issues,
       estimatedValue,
       recommendations: [
-        criticalCount > 0 ? 'Address critical security issues immediately' : ',
-        highCount > 0 ? 'Review high-priority performance issues' : ',
-        mediumCount > 0 ? 'Schedule medium issues for next sprint' : '
+        criticalCount > 0 ? 'Address critical security issues immediately' : '',
+        highCount > 0 ? 'Review high-priority performance issues' : '',
+        mediumCount > 0 ? 'Schedule medium issues for next sprint' : ''
       ].filter(Boolean)
     };
   }
@@ -915,7 +915,7 @@ export class EnterpriseDiscovery extends EventEmitter {
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
       url = 'https://' + url;
     }
-    return url.replace(/\/$/, ');
+    return url.replace(/\/$/, '');
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Orchestrator } from '../../../src/ai/Orchestrator';
+import { Orchestrator } from '@modules/OMEGA_MIND/JULES/src/ai/Orchestrator';
 
 describe('Orchestrator', () => {
   it('should return a mock response', async () => {

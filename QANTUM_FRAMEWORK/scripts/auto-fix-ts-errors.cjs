@@ -42,7 +42,7 @@ function log(msg, color = 'reset') {
 
 function findErrors() {
   log('\n🔍 СТЪПКА 1: Локализиране на TypeScript грешки...', 'cyan');
-  
+
   try {
     execSync('npx tsc --noEmit 2>&1', { encoding: 'utf8' });
     log('✅ Няма грешки!', 'green');
@@ -57,7 +57,7 @@ function parseErrors(output) {
   const errorRegex = /^(.+\.ts)\((\d+),(\d+)\): error (TS\d+): (.+)$/gm;
   const errors = [];
   let match;
-  
+
   while ((match = errorRegex.exec(output)) !== null) {
     errors.push({
       file: match[1],
@@ -67,19 +67,19 @@ function parseErrors(output) {
       message: match[5],
     });
   }
-  
+
   log(`📊 Намерени ${errors.length} грешки`, 'yellow');
-  
+
   // Групиране по тип
   const byCode = {};
   errors.forEach(e => {
     byCode[e.code] = (byCode[e.code] || 0) + 1;
   });
-  
+
   Object.entries(byCode).forEach(([code, count]) => {
     log(`   ${code}: ${count} грешки`, 'blue');
   });
-  
+
   return errors;
 }
 
@@ -91,7 +91,7 @@ const fixStrategies = {
   // TS2307: Cannot find module - поправка на import пътища
   TS2307: (error, content, lines) => {
     const line = lines[error.line - 1];
-    
+
     // Проверка за voice-commander
     if (error.message.includes('voice-commander')) {
       const fixed = line.replace('./voice-commander', '../multimodal/voice-commander');
@@ -100,14 +100,44 @@ const fixStrategies = {
         return { fixed: true, description: 'Поправен import път за voice-commander' };
       }
     }
-    
+
+    // Fix relative paths in tests
+    if (error.file.includes('tests/') && line.includes('src/')) {
+      // Legacy JULES src/ai Fix
+      if (error.file.includes('tests/jules') && line.includes('src/ai/')) {
+        const fixed = line.replace(/.*src\/ai\//, "import { Orchestrator } from '@modules/OMEGA_MIND/JULES/src/ai/");
+        // RegEx replacement might be safer to preserve variable names?
+        // But simpler: replace the path part.
+        // import ... from '../../../src/ai/Orchestrator'
+        // replace '../../../src/ai/' with '@modules/OMEGA_MIND/JULES/src/ai/'
+        // But the path structure might vary (../../.. or ../...).
+        // So replacing everything from Quote to src/ai/ with the new prefix.
+
+        // Safer strategy:
+        // Match: /['"](\.\.\/)+src\/ai\//
+        const fixedRegex = line.replace(/['"](\.\.\/)+src\/ai\//, "'@modules/OMEGA_MIND/JULES/src/ai/");
+        if (fixedRegex !== line) {
+          lines[error.line - 1] = fixedRegex;
+          return { fixed: true, description: 'Updated JULES import path to @modules' };
+        }
+      }
+
+      if (line.includes("'../../../src")) {
+        const fixed = line.replace("'../../../src", "'../../../../src");
+        if (fixed !== line) {
+          lines[error.line - 1] = fixed;
+          return { fixed: true, description: 'Korigiran pat kam src v testovete (added ../)' };
+        }
+      }
+    }
+
     return { fixed: false };
   },
-  
+
   // TS4114: Override modifier missing
   TS4114: (error, content, lines) => {
     const line = lines[error.line - 1];
-    
+
     // Добавяне на override пред метода
     if (!line.includes('override') && (line.includes('_transform') || line.includes('_flush') || line.includes('_read') || line.includes('_write'))) {
       const fixed = line.replace(/(\s+)(async\s+)?(_\w+)/, '$1override $2$3');
@@ -116,14 +146,14 @@ const fixStrategies = {
         return { fixed: true, description: 'Добавен override modifier' };
       }
     }
-    
+
     return { fixed: false };
   },
-  
+
   // TS4023: Re-exporting type requires export type
   TS4023: (error, content, lines) => {
     const line = lines[error.line - 1];
-    
+
     if (line.includes('export {') && !line.includes('export type')) {
       // Извличане на името от грешката
       const typeMatch = error.message.match(/'(\w+)'/);
@@ -139,14 +169,14 @@ const fixStrategies = {
         }
       }
     }
-    
+
     return { fixed: false };
   },
-  
+
   // TS2769: No overload matches - премахване на типове от callback параметри
   TS2769: (error, content, lines) => {
     const line = lines[error.line - 1];
-    
+
     // Премахване на типова анотация от callback параметри
     if (line.includes('.evaluate(') && line.includes(': string') || line.includes(': number')) {
       const fixed = line
@@ -154,20 +184,20 @@ const fixStrategies = {
         .replace(/\((\w+): number\)/g, '($1)')
         .replace(/\((\w+): string,/g, '($1,')
         .replace(/\((\w+): number,/g, '($1,');
-      
+
       if (fixed !== line) {
         lines[error.line - 1] = fixed;
         return { fixed: true, description: 'Премахнати типови анотации от evaluate callback' };
       }
     }
-    
+
     return { fixed: false };
   },
-  
+
   // TS2322: Type not assignable - добавяне на type assertion
   TS2322: (error, content, lines) => {
     const line = lines[error.line - 1];
-    
+
     // За unknown[] към конкретен тип
     if (error.message.includes("'unknown[]'") && line.includes('const') && line.includes('[]')) {
       // Намиране на правилния тип от грешката
@@ -181,14 +211,14 @@ const fixStrategies = {
         }
       }
     }
-    
+
     return { fixed: false };
   },
-  
+
   // TS2339: Property does not exist
   TS2339: (error, content, lines) => {
     const line = lines[error.line - 1];
-    
+
     // За error.message на unknown
     if (error.message.includes("'message'") && error.message.includes("'unknown'")) {
       if (line.includes('error.message')) {
@@ -200,17 +230,17 @@ const fixStrategies = {
             const errorVar = line.match(/(\w+)\.message/)?.[1] || 'error';
             const typeGuard = `${indent}const errorMessage = ${errorVar} instanceof Error ? ${errorVar}.message : String(${errorVar});`;
             const fixed = line.replace(`${errorVar}.message`, 'errorMessage');
-            
+
             // Вмъкване на type guard
             lines.splice(error.line - 1, 0, typeGuard);
             lines[error.line] = fixed;
-            
+
             return { fixed: true, description: 'Добавен type guard за error.message' };
           }
         }
       }
     }
-    
+
     // За metadata property
     if (error.message.includes("'metadata'")) {
       if (line.includes('.metadata')) {
@@ -221,14 +251,14 @@ const fixStrategies = {
         }
       }
     }
-    
+
     return { fixed: false };
   },
-  
+
   // TS2345: Argument type mismatch
   TS2345: (error, content, lines) => {
     const line = lines[error.line - 1];
-    
+
     // За WorkerTask generic mismatch
     if (error.message.includes('WorkerTask')) {
       // Добавяне на type assertion
@@ -240,71 +270,71 @@ const fixStrategies = {
         }
       }
     }
-    
+
     // За Map type mismatch
     if (error.message.includes("Map<string, string>") && error.message.includes("Map<string, number>")) {
       // Това изисква промяна на интерфейса или cast
       return { fixed: false, suggestion: 'Промени интерфейса CompressedHeuristics или deduplicate метода' };
     }
-    
+
     return { fixed: false };
   },
-  
+
   // TS2532: Object is possibly undefined
   TS2532: (error, content, lines) => {
     const line = lines[error.line - 1];
-    
+
     // Добавяне на optional chaining
     const propMatch = error.message.match(/'(\w+)'/);
     if (propMatch) {
       const prop = propMatch[1];
       const regex = new RegExp(`(\\w+)\\.${prop}(?!\\?)`, 'g');
       const fixed = line.replace(regex, `$1?.${prop}`);
-      
+
       if (fixed !== line) {
         lines[error.line - 1] = fixed;
         return { fixed: true, description: `Добавен optional chaining за ${prop}` };
       }
     }
-    
+
     return { fixed: false };
   },
 };
 
 function applyFixes(errors) {
   log('\n🔧 СТЪПКА 2: Автоматично коригиране...', 'cyan');
-  
+
   // Групиране по файл
   const byFile = {};
   errors.forEach(e => {
     if (!byFile[e.file]) byFile[e.file] = [];
     byFile[e.file].push(e);
   });
-  
+
   let totalFixed = 0;
   let totalFailed = 0;
-  
+
   for (const [file, fileErrors] of Object.entries(byFile)) {
     const fullPath = path.resolve(file);
-    
+
     if (!fs.existsSync(fullPath)) {
       log(`⚠️ Файлът не съществува: ${file}`, 'yellow');
       continue;
     }
-    
+
     let content = fs.readFileSync(fullPath, 'utf8');
     let lines = content.split('\n');
     let modified = false;
-    
+
     // Сортиране по ред в обратен ред (за да не се разминават индексите)
     fileErrors.sort((a, b) => b.line - a.line);
-    
+
     for (const error of fileErrors) {
       const strategy = fixStrategies[error.code];
-      
+
       if (strategy) {
         const result = strategy(error, content, lines);
-        
+
         if (result.fixed) {
           log(`  ✅ ${file}:${error.line} [${error.code}] - ${result.description}`, 'green');
           modified = true;
@@ -321,13 +351,13 @@ function applyFixes(errors) {
         totalFailed++;
       }
     }
-    
+
     if (modified) {
       fs.writeFileSync(fullPath, lines.join('\n'), 'utf8');
       log(`  💾 Записан: ${file}`, 'blue');
     }
   }
-  
+
   return { totalFixed, totalFailed };
 }
 
@@ -337,9 +367,9 @@ function applyFixes(errors) {
 
 function verify() {
   log('\n✔️ СТЪПКА 3: Верификация...', 'cyan');
-  
+
   const remainingErrors = findErrors();
-  
+
   if (remainingErrors.length === 0) {
     log('\n🎉 УСПЕХ! Всички грешки са коригирани!', 'green');
     return true;
@@ -361,19 +391,19 @@ function main() {
   log('║     🧠 QAntum TypeScript Auto-Fixer v1.0                          ║', 'cyan');
   log('║     Автоматично локализиране и коригиране на TS грешки               ║', 'cyan');
   log('╚═══════════════════════════════════════════════════════════════════════╝', 'cyan');
-  
+
   // Стъпка 1: Намиране на грешки
   const errors = findErrors();
-  
+
   if (errors.length === 0) {
     return;
   }
-  
+
   // Стъпка 2: Прилагане на корекции
   const { totalFixed, totalFailed } = applyFixes(errors);
-  
+
   log(`\n📈 Резултат: ${totalFixed} коригирани, ${totalFailed} неуспешни`, 'blue');
-  
+
   // Стъпка 3: Верификация
   verify();
 }

@@ -1,2 +1,2 @@
 // Type re-export for Logger from utils
-export { Logger } from '../utils/Logger';
+export { Logger } from '../../utils/Logger';

@@ -19,7 +19,7 @@ import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { logger } from '../api/unified/utils/logger';
+import logger from '../../utils/Logger';
 // ============================================================
 // TYPES
 // ============================================================
@@ -27,19 +27,19 @@ interface CognitiveAnchor {
     id: string;
     name: string;
     type: 'button' | 'input' | 'link' | 'form' | 'container' | 'text' | 'interactive';
-    
+
     // Multi-signal selectors (prioritized)
     selectors: SelectorSignal[];
-    
+
     // Visual fingerprint
     visual: VisualFingerprint;
-    
+
     // Semantic context
     semantic: SemanticContext;
-    
+
     // Learning data
     learning: LearningData;
-    
+
     // Metadata
     createdAt: number;
     lastSeen: number;
@@ -59,7 +59,7 @@ interface SelectorSignal {
 interface VisualFingerprint {
     // Bounding box (relative to viewport)
     bounds: { x: number; y: number; width: number; height: number };
-    
+
     // Relative position
     relativePosition: {
         nearestLandmark: string;    // "below header", "inside form#login"
@@ -67,16 +67,16 @@ interface VisualFingerprint {
         percentFromTop: number;
         percentFromLeft: number;
     };
-    
+
     // Visual characteristics
     colors: { background: string; text: string; border: string };
     fontSize: number;
     isVisible: boolean;
     zIndex: number;
-    
+
     // Screenshot hash for visual comparison
     visualHash?: string;
-    
+
     // Fingerprint data for visual matching
     fingerprint?: string;
 }
@@ -88,16 +88,16 @@ interface SemanticContext {
     labelText?: string;
     ariaLabel?: string;
     title?: string;
-    
+
     // Semantic role
     role: string;
     purpose: 'navigation' | 'action' | 'input' | 'display' | 'container';
-    
+
     // Context clues
     nearbyText: string[];
     formContext?: string;
     headingContext?: string;
-    
+
     // Business logic hints
     businessFunction?: string;    // "login", "checkout", "search"
 }
@@ -107,14 +107,14 @@ interface LearningData {
     successfulFinds: number;
     failedFinds: number;
     healingEvents: number;
-    
+
     // Pattern recognition
     failurePatterns: FailurePattern[];
     successPatterns: string[];
-    
+
     // Confidence evolution
     confidenceHistory: Array<{ timestamp: number; confidence: number }>;
-    
+
     // Recommended alternatives
     alternatives: SelectorSignal[];
 }
@@ -185,7 +185,7 @@ export class NeuralMapEngine {
         logger.debug(`🧠 [NEURAL] Creating Cognitive Anchor: ${name}`);
 
         // Get element handle if Locator
-        const handle = 'elementHandle' in element 
+        const handle = 'elementHandle' in element
             ? await (element as Locator).elementHandle()
             : element as ElementHandle;
 
@@ -244,7 +244,7 @@ export class NeuralMapEngine {
         anchor.learning.totalAttempts++;
 
         // Try selectors in order of confidence
-        const sortedSelectors = [...anchor.selectors].sort((a, b) => 
+        const sortedSelectors = [...anchor.selectors].sort((a, b) =>
             (b.confidence * b.successRate) - (a.confidence * a.successRate)
         );
 
@@ -322,7 +322,7 @@ export class NeuralMapEngine {
             function buildNode(element: Element, depth: number, index: number): any {
                 const rect = element.getBoundingClientRect();
                 const computed = window.getComputedStyle(element);
-                
+
                 return {
                     tagName: element.tagName.toLowerCase(),
                     id: element.id || undefined,
@@ -341,9 +341,9 @@ export class NeuralMapEngine {
                         width: rect.width,
                         height: rect.height
                     },
-                    isVisible: computed.display !== 'none' && 
-                               computed.visibility !== 'hidden' &&
-                               rect.width > 0 && rect.height > 0,
+                    isVisible: computed.display !== 'none' &&
+                        computed.visibility !== 'hidden' &&
+                        rect.width > 0 && rect.height > 0,
                     children: Array.from(element.children)
                         .map((child, i) => buildNode(child, depth + 1, i))
                 };
@@ -374,9 +374,9 @@ export class NeuralMapEngine {
             }
 
             // Data-testid
-            const testId = el.getAttribute('data-testid') || 
-                          el.getAttribute('data-test-id') ||
-                          el.getAttribute('data-cy');
+            const testId = el.getAttribute('data-testid') ||
+                el.getAttribute('data-test-id') ||
+                el.getAttribute('data-cy');
             if (testId) {
                 result.testid = `[data-testid="${testId}"]`;
             }
@@ -413,23 +413,23 @@ export class NeuralMapEngine {
             function getCssPath(element: Element): string {
                 const path: string[] = [];
                 let current: Element | null = element;
-                
+
                 while (current && current !== document.body) {
                     let selector = current.tagName.toLowerCase();
-                    
+
                     if (current.id) {
                         selector = `#${current.id}`;
                         path.unshift(selector);
                         break;
                     }
-                    
+
                     if (current.className && typeof current.className === 'string') {
                         const classes = current.className.trim().split(/\s+/).slice(0, 2);
                         if (classes.length > 0) {
                             selector += '.' + classes.join('.');
                         }
                     }
-                    
+
                     // Add nth-child if needed
                     const parent = current.parentElement;
                     if (parent) {
@@ -439,11 +439,11 @@ export class NeuralMapEngine {
                             selector += `:nth-child(${index + 1})`;
                         }
                     }
-                    
+
                     path.unshift(selector);
                     current = current.parentElement;
                 }
-                
+
                 return path.join(' > ');
             }
 
@@ -453,14 +453,14 @@ export class NeuralMapEngine {
             function getXPath(element: Element): string {
                 const parts: string[] = [];
                 let current: Element | null = element;
-                
+
                 while (current && current !== document.body) {
                     let part = current.tagName.toLowerCase();
-                    
+
                     if (current.id) {
                         return `//*[@id="${current.id}"]/${parts.reverse().join('/')}`;
                     }
-                    
+
                     const parent = current.parentElement;
                     if (parent) {
                         const siblings = Array.from(parent.children)
@@ -470,11 +470,11 @@ export class NeuralMapEngine {
                             part += `[${index}]`;
                         }
                     }
-                    
+
                     parts.unshift(part);
                     current = current.parentElement;
                 }
-                
+
                 return '//' + parts.join('/');
             }
 
@@ -494,14 +494,14 @@ export class NeuralMapEngine {
             signals.push(this.createSignal('aria', selectors.aria, 85));
         }
         if (selectors.role && selectors.text) {
-            signals.push(this.createSignal('role', 
+            signals.push(this.createSignal('role',
                 `role=${selectors.role}:has-text("${selectors.text}")`, 80));
         }
         if (selectors.text) {
             signals.push(this.createSignal('text', `text="${selectors.text}"`, 75));
         }
         if (selectors.placeholder) {
-            signals.push(this.createSignal('css', 
+            signals.push(this.createSignal('css',
                 `[placeholder="${selectors.placeholder}"]`, 70));
         }
         if (selectors.name) {
@@ -590,7 +590,7 @@ export class NeuralMapEngine {
     // ============================================================
 
     private async extractSemanticContext(
-        page: Page, 
+        page: Page,
         element: ElementHandle,
         businessFunction?: string
     ): Promise<SemanticContext> {
@@ -631,7 +631,7 @@ export class NeuralMapEngine {
                 // Previous sibling text
                 const prev = (el as HTMLElement).previousElementSibling;
                 if (prev?.textContent) nearbyText.push(prev.textContent.trim().slice(0, 50));
-                
+
                 // Next sibling text
                 const next = (el as HTMLElement).nextElementSibling;
                 if (next?.textContent) nearbyText.push(next.textContent.trim().slice(0, 50));
@@ -751,10 +751,10 @@ export class NeuralMapEngine {
                 const positionScore = 1 - (xDiff + yDiff) / 2;
 
                 // Calculate size similarity
-                const widthRatio = Math.min(rect.width, visual.bounds.width) / 
-                                   Math.max(rect.width, visual.bounds.width);
-                const heightRatio = Math.min(rect.height, visual.bounds.height) / 
-                                    Math.max(rect.height, visual.bounds.height);
+                const widthRatio = Math.min(rect.width, visual.bounds.width) /
+                    Math.max(rect.width, visual.bounds.width);
+                const heightRatio = Math.min(rect.height, visual.bounds.height) /
+                    Math.max(rect.height, visual.bounds.height);
                 const sizeScore = (widthRatio + heightRatio) / 2;
 
                 const totalScore = (positionScore * 0.6 + sizeScore * 0.4);
@@ -781,7 +781,7 @@ export class NeuralMapEngine {
             try {
                 const element = await page.$(candidate.selector);
                 if (element) return element;
-            } catch {}
+            } catch { }
         }
 
         return null;
@@ -799,7 +799,7 @@ export class NeuralMapEngine {
             // By placeholder
             semantic.placeholderText ? `[placeholder="${semantic.placeholderText}"]` : null,
             // By role + text
-            semantic.role && semantic.innerText ? 
+            semantic.role && semantic.innerText ?
                 `${semantic.role}:has-text("${semantic.innerText.slice(0, 30)}")` : null,
         ].filter(Boolean);
 
@@ -807,7 +807,7 @@ export class NeuralMapEngine {
             try {
                 const element = await page.$(selector as string);
                 if (element) return element;
-            } catch {}
+            } catch { }
         }
 
         return null;
@@ -823,7 +823,7 @@ export class NeuralMapEngine {
 
             for (const el of elements) {
                 const text = el.textContent?.toLowerCase().trim() || '';
-                
+
                 // Simple fuzzy matching (Levenshtein-like)
                 let matches = 0;
                 const words = target.split(/\s+/);
@@ -836,7 +836,7 @@ export class NeuralMapEngine {
                     let selector = '';
                     if (el.id) selector = `#${el.id}`;
                     else selector = `:text("${text.slice(0, 30)}")`;
-                    
+
                     results.push({ selector, score });
                 }
             }
@@ -847,7 +847,7 @@ export class NeuralMapEngine {
         if (matches.length > 0) {
             try {
                 return await page.$(matches[0].selector);
-            } catch {}
+            } catch { }
         }
 
         return null;
@@ -924,10 +924,10 @@ export class NeuralMapEngine {
         const actual = await this.extractVisualFingerprint(page, element);
 
         // Check position (allow 20% drift)
-        const xDrift = Math.abs(actual.relativePosition.percentFromLeft - 
-                                expected.relativePosition.percentFromLeft);
-        const yDrift = Math.abs(actual.relativePosition.percentFromTop - 
-                                expected.relativePosition.percentFromTop);
+        const xDrift = Math.abs(actual.relativePosition.percentFromLeft -
+            expected.relativePosition.percentFromLeft);
+        const yDrift = Math.abs(actual.relativePosition.percentFromTop -
+            expected.relativePosition.percentFromTop);
 
         if (xDrift > 20 || yDrift > 20) return false;
 
@@ -987,17 +987,17 @@ export class NeuralMapEngine {
 
     private calculateOverallConfidence(selectors: SelectorSignal[]): number {
         if (selectors.length === 0) return 0;
-        
+
         // Weighted average of top 3 selectors
         const top3 = selectors.slice(0, 3);
         const weights = [0.5, 0.3, 0.2];
-        
-        return top3.reduce((sum, sel, i) => 
+
+        return top3.reduce((sum, sel, i) =>
             sum + (sel.confidence * sel.successRate * (weights[i] || 0.1)), 0);
     }
 
     private getBestSelector(anchor: CognitiveAnchor): SelectorSignal | null {
-        return anchor.selectors.sort((a, b) => 
+        return anchor.selectors.sort((a, b) =>
             (b.confidence * b.successRate) - (a.confidence * a.successRate)
         )[0] || null;
     }

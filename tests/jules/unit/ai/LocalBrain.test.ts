@@ -1,4 +1,4 @@
-import { LocalBrain } from '../../../src/ai/LocalBrain';
+import { LocalBrain } from '@modules/OMEGA_MIND/JULES/src/ai/LocalBrain';
 import * as fs from 'fs';
 import * as path from 'path';
 

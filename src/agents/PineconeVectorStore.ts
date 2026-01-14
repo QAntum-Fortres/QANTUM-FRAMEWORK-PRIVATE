@@ -271,8 +271,8 @@ export class PineconeVectorStore {
 
     return Object.entries(response.records || {}).map(([id, record]) => ({
       id,
-      content: (record.metadata as any)?.content || '',
-      metadata: record.metadata as Record<string, any>,
+      content: (record.params as any)?.content || '',
+      metadata: record.params as Record<string, any>,
       embedding: record.values
     }));
   }

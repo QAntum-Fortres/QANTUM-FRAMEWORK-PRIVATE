@@ -227,8 +227,9 @@ export class ApoptosisModule extends EventEmitter {
 
             // Step 2: Verify module ID match (防止 Module ID Spoofing)
             if (tokenModuleId !== moduleId) {
+                const safeTokenId = tokenModuleId.replace(/[^\x20-\x7E]/g, '?');
                 throw new Error(
-                    `LivenessToken moduleId mismatch: expected ${moduleId}, got ${tokenModuleId}`
+                    `Security Alert: LivenessToken moduleId mismatch. Expected '${moduleId}', got '${safeTokenId}'`
                 );
             }
 

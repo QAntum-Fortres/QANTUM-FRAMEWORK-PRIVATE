@@ -21,7 +21,7 @@
 import * as crypto from 'crypto';
 import { EventEmitter } from 'events';
 
-import { logger } from '../api/unified/utils/logger';
+import logger from '../../utils/Logger';
 // ============================================================
 // TYPES
 // ============================================================
@@ -31,19 +31,19 @@ interface NeuralFingerprint {
     sessionId: string;
     createdAt: number;
     expiresAt: number;
-    
+
     // Device fingerprint
     device: DeviceFingerprint;
-    
+
     // Behavioral patterns
     behavior: BehavioralProfile;
-    
+
     // Network characteristics
     network: NetworkProfile;
-    
+
     // Browser characteristics
     browser: BrowserProfile;
-    
+
     // Usage statistics
     stats: FingerprintStats;
 }
@@ -76,19 +76,19 @@ interface BehavioralProfile {
     doubleClickSpeed: number;
     scrollSpeed: { min: number; max: number };
     scrollPattern: 'smooth' | 'stepped' | 'variable';
-    
+
     // Keyboard behavior
     typingSpeed: { wpm: number; variance: number };
     keyHoldDuration: { min: number; max: number };
     keyInterval: { min: number; max: number };
     errorRate: number;
     correctionPattern: 'backspace' | 'select-delete' | 'mixed';
-    
+
     // Navigation patterns
     readingSpeed: number; // chars per second
     dwellTime: { min: number; max: number };
     tabSwitchFrequency: number;
-    
+
     // Interaction quirks
     hesitationProbability: number;
     microPauseDuration: { min: number; max: number };
@@ -191,7 +191,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
     private config: FingerprintConfig;
     private fingerprints: Map<string, NeuralFingerprint> = new Map();
     private activeFingerprint: NeuralFingerprint | null = null;
-    
+
     // Data pools for realistic generation
     private static readonly USER_AGENTS = [
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -275,7 +275,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
      */
     async generateFingerprint(sessionId?: string): Promise<NeuralFingerprint> {
         const id = sessionId || crypto.randomBytes(16).toString('hex');
-        
+
         logger.debug(`\n🎭 Generating neural fingerprint for session: ${id.substring(0, 8)}...`);
 
         const fingerprint: NeuralFingerprint = {
@@ -316,7 +316,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
         const resolution = this.pickRandom(NeuralFingerprintingEngine.SCREEN_RESOLUTIONS);
         const timezone = this.config.region || this.pickRandom(NeuralFingerprintingEngine.TIMEZONES);
         const languages = this.pickRandom(NeuralFingerprintingEngine.LANGUAGES);
-        
+
         return {
             screenResolution: resolution,
             colorDepth: this.pickRandom([24, 30, 32]),
@@ -430,7 +430,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
      */
     private generateBrowserProfile(): BrowserProfile {
         const userAgent = this.pickRandom(NeuralFingerprintingEngine.USER_AGENTS);
-        
+
         return {
             userAgent,
             appVersion: userAgent.split('Mozilla/')[1] || '5.0',
@@ -512,7 +512,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
     ): { x: number; y: number; timestamp: number }[] {
         const steps = options.steps || Math.ceil(Math.random() * 20 + 10);
         const path: { x: number; y: number; timestamp: number }[] = [];
-        
+
         const behavior = this.activeFingerprint?.behavior || this.generateBehavioralProfile();
         let timestamp = Date.now();
 
@@ -528,10 +528,10 @@ export class NeuralFingerprintingEngine extends EventEmitter {
 
         for (let i = 0; i <= steps; i++) {
             const t = i / steps;
-            
+
             // Cubic Bezier curve
             const point = this.cubicBezier(start, controlPoint1, controlPoint2, end, t);
-            
+
             // Add micro-jitter for realism
             point.x += (Math.random() - 0.5) * 2;
             point.y += (Math.random() - 0.5) * 2;
@@ -601,20 +601,20 @@ export class NeuralFingerprintingEngine extends EventEmitter {
     ): { char: string; delay: number; isBackspace?: boolean }[] {
         const sequence: { char: string; delay: number; isBackspace?: boolean }[] = [];
         const behavior = this.activeFingerprint?.behavior || this.generateBehavioralProfile();
-        
+
         const baseDelay = 60000 / (behavior.typingSpeed.wpm * 5); // ms per character
 
         for (let i = 0; i < text.length; i++) {
             const char = text[i];
-            
+
             // Calculate delay with variance
             let delay = baseDelay + (Math.random() - 0.5) * behavior.typingSpeed.variance * 10;
-            
+
             // Longer delay after punctuation
             if (['.', ',', '!', '?', ';', ':'].includes(text[i - 1])) {
                 delay *= 1.5 + Math.random() * 0.5;
             }
-            
+
             // Longer delay for capital letters (shift key)
             if (char !== char.toLowerCase()) {
                 delay *= 1.2;
@@ -632,7 +632,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
                     char.charCodeAt(0) + (Math.random() > 0.5 ? 1 : -1)
                 );
                 sequence.push({ char: wrongChar, delay });
-                
+
                 // Correction
                 if (options.includeCorrections) {
                     sequence.push({
@@ -662,7 +662,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
     ): { delta: number; timestamp: number }[] {
         const sequence: { delta: number; timestamp: number }[] = [];
         const behavior = this.activeFingerprint?.behavior || this.generateBehavioralProfile();
-        
+
         let remaining = Math.abs(totalDistance);
         let timestamp = Date.now();
         const sign = direction === 'down' ? 1 : -1;
@@ -670,7 +670,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
         while (remaining > 0) {
             // Variable scroll distance
             let delta: number;
-            
+
             switch (behavior.scrollPattern) {
                 case 'smooth':
                     delta = this.randomInRange(30, 80);
@@ -712,7 +712,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
      */
     async rotateFingerprint(): Promise<NeuralFingerprint> {
         logger.debug('🔄 Rotating fingerprint...');
-        
+
         if (this.activeFingerprint) {
             // Update stats before rotation
             this.activeFingerprint.stats.lastUsed = Date.now();
@@ -746,7 +746,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
                 cookieEnabled: fp.browser.cookieEnabled,
                 plugins: fp.browser.plugins
             },
-            
+
             // Screen overrides
             screen: {
                 width: fp.device.screenResolution.width,
@@ -756,17 +756,17 @@ export class NeuralFingerprintingEngine extends EventEmitter {
                 colorDepth: fp.device.colorDepth,
                 pixelDepth: fp.device.colorDepth
             },
-            
+
             // WebGL overrides
             webgl: {
                 vendor: fp.browser.webGL.vendor,
                 renderer: fp.browser.webGL.renderer
             },
-            
+
             // Timezone
             timezone: fp.device.timezone,
             timezoneOffset: fp.device.timezoneOffset,
-            
+
             // Connection
             connection: {
                 effectiveType: fp.network.effectiveType,

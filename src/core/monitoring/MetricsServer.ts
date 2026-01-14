@@ -10,8 +10,8 @@
 
 import express from 'express';
 import { register, Counter, Gauge, Histogram } from 'prom-client';
-import { VortexHealingNexus } from '../core/evolution/VortexHealingNexus';
-import { ApoptosisModule } from '../core/evolution/ApoptosisModule';
+import { VortexHealingNexus } from '../evolution/VortexHealingNexus';
+import { ApoptosisModule } from '../evolution/ApoptosisModule';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 🎯 PROMETHEUS METRICS DEFINITIONS
