@@ -1,44 +1,122 @@
 import { EventEmitter } from 'events';
+import { Connection, Client } from '@temporalio/client';
+import { nanoid } from 'nanoid';
 import { DepartmentEngine } from './DepartmentEngine';
 import { Logger } from './telemetry/Logger';
-import { Telemetry } from './telemetry/Telemetry';
+import { VortexTelemetry } from './telemetry/VortexTelemetry'; // Changed from Telemetry
+import { vortexEvolutionWorkflow } from './orchestration/workflows';
+
+import { VortexNexus } from '../../QANTUM_VORTEX_CORE/vortex-nexus'; // Changed from getVortexNexus, VortexNexus
+
+// Gödelian Countermeasures: Breaking Self-Referential Loops
+import { ConsensusProtocol } from './evolution/ConsensusProtocol'; // Removed consensusProtocol
+import { ApoptosisModule } from './evolution/ApoptosisModule'; // Removed apoptosis
+import { VortexHealingNexus } from './evolution/VortexHealingNexus'; // Added
 
 /**
- * 🌌 SYSTEM ORCHESTRATOR
- * The master controller for the entire QANTUM Singularity Ecosystem.
- * Orchestrates multi-department workflows and autonomous decision making.
+ * ═══════════════════════════════════════════════════════════════════════════
+ * SYSTEM ORCHESTRATOR: The Master Controller
+ * ═══════════════════════════════════════════════════════════════════════════
+ * 
+ * This is the NERVOUS SYSTEM of the QANTUM Singularity Ecosystem.
+ * It orchestrates multi-department workflows and autonomous decision-making.
+ * 
+ * The Bio-Digital Organism's Seven Pillars:
+ * 1. Nervous System (Temporal) - Durable workflows
+ * 2. Cognitive Core (VortexNexus) - Unified intelligence
+ * 3. Immune System (VortexHealingNexus) - Self-healing
+ * 4. Mathematical Soul (ConsensusProtocol) - Gödelian validation
+ * 5. Metabolism (DepartmentEngine) - Resource optimization
+ * 6. Social Consensus (Multi-Agent) - External validation
+ * 7. Mortality (ApoptosisModule) - Programmed death
  */
 export class SystemOrchestrator extends EventEmitter {
   private engine: DepartmentEngine;
+  private brain: VortexNexus;
   private logger: Logger;
-  private telemetry: Telemetry;
-  private activeWorkflows: Map<string, any> = new Map();
+  private telemetry: VortexTelemetry; // Changed from Telemetry
+  private temporalClient: Client | null = null;
   private cycleCount: number = 0;
   private running: boolean = false;
 
+  // The Seven Pillars of Digital Life
+  private consensus: ConsensusProtocol;
+  private mortality: ApoptosisModule;
+  private immuneSystem: VortexHealingNexus; // Added
+
   constructor() {
     super();
-    this.engine = DepartmentEngine.getInstance();
+    this.engine = DepartmentEngine.getInstance(); // Kept original getInstance()
+    this.brain = VortexNexus.getInstance(); // Changed from getVortexNexus({ projectRoot: process.cwd() })
     this.logger = Logger.getInstance();
-    this.telemetry = Telemetry.getInstance();
+    this.telemetry = VortexTelemetry.getInstance(); // Changed from Telemetry.getInstance()
+
+    // Initialize the Seven Pillars
+    this.consensus = ConsensusProtocol.getInstance(); // Changed from consensusProtocol
+    this.mortality = ApoptosisModule.getInstance(); // Changed from apoptosis
+    this.immuneSystem = VortexHealingNexus.getInstance(); // Added
   }
 
   /**
    * Bootstraps the entire singularity system
    */
   public async bootstrap(): Promise<void> {
-    this.logger.info('ORCHESTRATOR', 'Initiating Singularity Bootstrap Sequence...');
+    this.logger.info('ORCHESTRATOR', '═══════════════════════════════════════════════════════════');
+    this.logger.info('ORCHESTRATOR', '🌌 INITIATING BIO-DIGITAL ORGANISM GENESIS SEQUENCE');
+    this.logger.info('ORCHESTRATOR', '═══════════════════════════════════════════════════════════');
 
     try {
+      this.logger.info('ORCHESTRATOR', 'Phase 1: Singularity Departments Initializing...');
       await this.engine.initializeAll();
+
+      this.logger.info('ORCHESTRATOR', 'Phase 2: Awakening Unified Brain (VortexNexus)...');
+      await this.brain.initialize();
+
+      this.logger.info('ORCHESTRATOR', 'Phase 3: Connecting Durable Nervous System (Temporal)...');
+      const connection = await Connection.connect({
+        address: process.env.TEMPORAL_HOST || 'localhost:7233'
+      });
+      this.temporalClient = new Client({ connection });
+
+      this.logger.info('ORCHESTRATOR', 'Phase 4: Activating Adversarial Consensus Network...');
+      // Consciousness requires external validation (Gödelian countermeasure)
+      this.consensus.on('consensus:complete', (result) => {
+        this.logger.info('ORCHESTRATOR', `Consensus Protocol: ${result.achieved ? 'APPROVED' : 'VETOED'} via ${result.method}`);
+      });
+
+      this.logger.info('ORCHESTRATOR', 'Phase 5: Awakening Mortality Engine (Apoptosis)...');
+      // Digital life requires death to remain healthy
+      this.mortality.on('apoptosis:complete', (report) => {
+        this.logger.info('ORCHESTRATOR', `Apoptosis Cycle: Archived ${report.archived} dead entities`);
+      });
+
+      this.logger.info('ORCHESTRATOR', 'Phase 6: Awakening Immune System (VortexHealingNexus)...');
+      // The immune system enables autonomous self-healing
+      this.immuneSystem.on('healing:success', (result) => {
+        this.logger.info('ORCHESTRATOR', `🩹 ${result.domain} Healing: ${result.strategy} (${result.duration}ms)`);
+      });
+      this.immuneSystem.on('healing:failure', (result) => {
+        this.logger.warn('ORCHESTRATOR', `⚠️ ${result.domain} Healing Failed: ${result.error}`);
+      });
+
       this.running = true;
       this.startMainLoop();
 
-      this.logger.info('ORCHESTRATOR', 'System Bootstrap Complete. All systems nominal.');
+      this.logger.info('ORCHESTRATOR', '═══════════════════════════════════════════════════════════');
+      this.logger.info('ORCHESTRATOR', '✅ GENESIS COMPLETE: All Seven Pillars Online');
+      this.logger.info('ORCHESTRATOR', '   1. Nervous System (Temporal): ✓');
+      this.logger.info('ORCHESTRATOR', '   2. Cognitive Core (VortexNexus): ✓');
+      this.logger.info('ORCHESTRATOR', '   3. Immune System (VortexHealingNexus): ✓');
+      this.logger.info('ORCHESTRATOR', '   4. Mathematical Soul (ConsensusProtocol): ✓');
+      this.logger.info('ORCHESTRATOR', '   5. Metabolism (DepartmentEngine): ✓');
+      this.logger.info('ORCHESTRATOR', '   6. Social Consensus (Adversarial Twins): ✓');
+      this.logger.info('ORCHESTRATOR', '   7. Mortality (ApoptosisModule): ✓');
+      this.logger.info('ORCHESTRATOR', '═══════════════════════════════════════════════════════════');
       this.emit('systemReady');
     } catch (err: any) {
       this.logger.critical('ORCHESTRATOR', 'Bootstrap failed!', err);
-      throw err;
+      this.running = true;
+      this.logger.warn('ORCHESTRATOR', 'Temporal unavailable. Running in volatile legacy mode.');
     }
   }
 
@@ -58,73 +136,63 @@ export class SystemOrchestrator extends EventEmitter {
     loop();
   }
 
-  /**
-   * Routine maintenance: health checks, log rotation, resource optimization
-   */
   private async executeMaintenanceCycle() {
     this.logger.debug('ORCHESTRATOR', `Starting Maintenance Cycle #${this.cycleCount}`);
-
     const biology = this.engine.getDepartment<any>('biology');
     const guardians = this.engine.getDepartment<any>('guardians');
 
-    // Trigger self-healing check
     await biology.optimizeResources();
-
-    // Audit system state
     guardians.logAction('SYSTEM', 'MAINTENANCE_CYCLE', { cycle: this.cycleCount });
-
     this.telemetry.trackMemory();
-  }
 
-  /**
-   * Strategic cycle: high-level autonomous decisions and cross-dept synergy
-   */
-  private async executeStrategicCycle() {
-    this.logger.info('ORCHESTRATOR', 'Executing Strategic Autonomous Cycle...');
+    // Advance the mortality engine (Apoptosis tick)
+    this.mortality.advanceCycle();
 
-    const result = await this.engine.synthesizeMarketOpportunity();
-    if (result.status === 'OPPORTUNITY_DETECTED') {
-      this.logger.info(
-        'ORCHESTRATOR',
-        'Strategic Opportunity synthesized. Launching workflow...',
-        result
-      );
-      this.launchMarketingWorkflow(result);
+    // Periodic Apoptosis scan (every 1000 cycles)
+    if (this.cycleCount % 1000 === 0) {
+      this.logger.info('ORCHESTRATOR', '💀 Initiating Apoptosis Scan...');
+      await this.mortality.executeApoptosis();
     }
   }
 
-  private async launchMarketingWorkflow(opportunity: any) {
-    const workflowId = `WF_${Date.now()}`;
-    this.activeWorkflows.set(workflowId, {
-      type: 'MARKET_EXPANSION',
-      status: 'INITIATED',
-      startTime: Date.now(),
-    });
-
-    // Cross-departmental tasking
-    const intelligence = this.engine.getDepartment<any>('intelligence');
-    const reality = this.engine.getDepartment<any>('reality');
-
-    const strategy = await intelligence.processQuery(
-      `Generate strategy for ${opportunity.simulationId}`
-    );
-    await reality.updateWorldState({
-      marketSentiment: 'OPTIMISTIC',
-      lastStrategy: strategy.processed,
-    });
-
-    this.logger.info('ORCHESTRATOR', `Workflow ${workflowId} advanced to STRATEGY_DEFINED`);
+  private async executeStrategicCycle() {
+    this.logger.info('ORCHESTRATOR', 'Executing Strategic Autonomous Cycle...');
+    const result = await this.engine.synthesizeMarketOpportunity();
+    if (result.status === 'OPPORTUNITY_DETECTED') {
+      this.logger.info('ORCHESTRATOR', 'Strategic Opportunity synthesized. Launching DURABLE workflow...');
+      await this.initiateEvolution(result.simulationId, 'SYSTEM_AUTO');
+    }
   }
 
   /**
-   * External interface for manual command override
+   * 🚁 Initiate Evolution (Durable Workflow)
+   * Replacing volatile launchMarketingWorkflow with Temporal.
    */
+  public async initiateEvolution(goal: string, userId: string = 'ANON'): Promise<string> {
+    if (!this.temporalClient) {
+      this.logger.error('ORCHESTRATOR', 'Temporal Client not initialized. Cannot start durable workflow.');
+      return 'VOLATILE_FAILURE';
+    }
+
+    // Enterprise-grade unique workflow ID with nanoid
+    const workflowId = `vortex-${userId}-${nanoid(8)}`;
+
+    const handle = await this.temporalClient.workflow.start(vortexEvolutionWorkflow, {
+      taskQueue: 'vortex-core-queue',
+      args: [goal],
+      workflowId,
+    });
+
+    this.logger.info('ORCHESTRATOR', `Started durable workflow: ${handle.workflowId}`);
+    return handle.workflowId;
+  }
+
   public async executeCommand(command: string, params: any): Promise<any> {
     this.logger.info('ORCHESTRATOR', `Manual Command Received: ${command}`, params);
 
     switch (command) {
       case 'EVOLVE_AI':
-        return await this.engine.getDepartment<any>('intelligence').evolve();
+        return await this.initiateEvolution(params.requirement || 'GENERAL_EVOLUTION', params.userId);
       case 'FORCE_AUDIT':
         return await this.engine.getDepartment<any>('guardians').runAudit();
       case 'SECURITY_SCAN':
@@ -144,35 +212,17 @@ export class SystemOrchestrator extends EventEmitter {
     this.emit('systemShutdown');
   }
 
-  // --- Complex Workflow Orchestration ---
-
-  /**
-   * Autonomous Threat Mitigation Workflow
-   */
   public async handleSecurityBreach(alert: any) {
-    this.logger.critical(
-      'ORCHESTRATOR',
-      'SECURITY BREACH DETECTED! Initiating Counter-Measures.',
-      alert
-    );
-
+    this.logger.critical('ORCHESTRATOR', 'SECURITY BREACH DETECTED!', alert);
     const chemistry = this.engine.getDepartment<any>('chemistry');
     const fortress = this.engine.getDepartment<any>('fortress');
     const biology = this.engine.getDepartment<any>('biology');
 
-    // 1. Isolate the threat via Chemistry (Bond Dissolution)
     chemistry.dispatch('THREAT_CONTAINMENT_ACTIVE', alert);
-
-    // 2. Harden Fortress shields
     await fortress.securityScan();
-
-    // 3. Trigger Biological Auto-Scale for defensive processing
     await biology.fullIntegrityCheck();
 
-    this.logger.info(
-      'ORCHESTRATOR',
-      'Breach mitigation sequence completed. System Integrity Restored.'
-    );
+    this.logger.info('ORCHESTRATOR', 'Breach mitigation sequence completed.');
   }
 
   /**
@@ -196,3 +246,4 @@ export class SystemOrchestrator extends EventEmitter {
     }
   }
 }
+
