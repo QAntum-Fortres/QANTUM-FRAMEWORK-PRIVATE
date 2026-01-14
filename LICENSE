@@ -1,76 +1,39 @@
-# Proprietary License
+PROPRIETARY LICENSE
 
-## QAntum Vortex Enterprise
+Copyright (c) 2026 QAntum-Fortres. All rights reserved.
 
-**© 2025-2026 Dimitar Prodromov. All Rights Reserved.**
+================================================================================
+                    VORTEX GENESIS - SHOWCASE LICENSE
+================================================================================
 
----
+This repository contains DEMONSTRATION MATERIALS ONLY.
+The actual source code is PROPRIETARY and NOT included in this repository.
 
-## Terms and Conditions
+PERMITTED USES:
+✓ View documentation and diagrams for educational purposes
+✓ Reference architecture concepts in academic research (with citation)
+✓ Share links to this repository for demonstration purposes
 
-### 1. Ownership
+PROHIBITED USES:
+✗ Commercial use of any materials without written permission
+✗ Reproduction or redistribution of documentation
+✗ Claiming ownership or authorship of concepts
+✗ Using materials to create competing products
+✗ Reverse engineering or attempting to recreate the system
 
-This software, including all source code, documentation, designs, algorithms, and associated intellectual property, is the exclusive property of Dimitar Prodromov (hereinafter "the Owner").
+INTELLECTUAL PROPERTY:
+All concepts, algorithms, architectures, and designs described in this
+repository are the exclusive intellectual property of QAntum-Fortres.
 
-### 2. Grant of License
+DISCLAIMER:
+THE MATERIALS ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
-No license is granted by this document. All rights are reserved. Any use, reproduction, modification, distribution, or exploitation of this software requires explicit written permission from the Owner.
+================================================================================
 
-### 3. Prohibited Actions
+For licensing inquiries, collaboration, or commercial use:
+Contact: [Your Email or Contact Information]
 
-Without explicit written authorization from the Owner, you may NOT:
-
-- Copy, reproduce, or duplicate any part of this software
-- Modify, adapt, or create derivative works
-- Distribute, publish, or share this software
-- Reverse engineer, decompile, or disassemble the software
-- Use this software for commercial purposes
-- Sublicense or transfer any rights to this software
-- Remove or alter any proprietary notices or labels
-
-### 4. Confidentiality
-
-All code, documentation, and materials contained within this software are strictly confidential. Recipients of this software must maintain its confidentiality and not disclose any information to third parties.
-
-### 5. No Warranty
-
-THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
-
-### 6. Limitation of Liability
-
-IN NO EVENT SHALL THE OWNER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-### 7. Termination
-
-Any unauthorized use of this software will result in automatic termination of any implied permissions and may result in legal action.
-
-### 8. Governing Law
-
-This license shall be governed by and construed in accordance with the laws of Bulgaria, without regard to its conflict of law provisions.
-
-### 9. Contact
-
-For licensing inquiries, please contact:
-
-**Dimitar Prodromov**
-- GitHub: [QAntum-Fortres](https://github.com/QAntum-Fortres)
-
----
-
-## Third-Party Components
-
-This software may include third-party open-source components. Such components are subject to their respective licenses:
-
-| Component | License |
-|-----------|---------|
-| @google/generative-ai | Apache 2.0 |
-| @pinecone-database/pinecone | MIT |
-| ws | MIT |
-| typescript | Apache 2.0 |
-
----
-
-**QAntum Vortex Enterprise**
-*"The Vortex sees all, knows all, protects all."*
-
-© 2025-2026 Dimitar Prodromov. All Rights Reserved.
+For source code access or enterprise licensing:
+This software is available for licensing. Contact us for details.

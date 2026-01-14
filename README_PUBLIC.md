@@ -1,4 +1,14 @@
-# 🌌 VORTEX GENESIS
+# 🌌 VORTEX GENESIS - Showcase
+
+> **⚠️ SHOWCASE REPOSITORY - DOCUMENTATION ONLY**
+>
+> **Copyright © 2026 QAntum-Fortres. All rights reserved.**
+>
+> This repository contains **demonstration materials and documentation** for the Vortex Genesis system.
+> The actual **source code is proprietary** and not publicly available.
+> See [LICENSE](LICENSE) for terms of use.
+
+---
 
 > **The World's First Autonomous Bio-Digital Organism**
 
@@ -25,6 +35,33 @@ Think of it as a **living digital organism** that can:
 - Evolve and adapt to new challenges
 - Protect itself from security threats
 - Manage its own lifecycle and resources
+
+---
+
+## 🎯 What You'll Find in This Repository
+
+This is a **showcase repository** containing:
+
+- 📊 **Architecture Diagrams** - Complete system design visualizations
+- 🎬 **Demo Materials** - Screenshots and test results
+- 📈 **Performance Metrics** - 100% chaos test success rate
+- 🔐 **Security Documentation** - Military-grade validation architecture
+- 🎨 **Interactive Dashboard** - Live system visualization (HTML/CSS/JS)
+- 📚 **Technical Documentation** - Comprehensive walkthroughs
+
+## 🚫 What's NOT in This Repository
+
+The actual **source code** (TypeScript implementation) is **proprietary and confidential**.
+
+This includes:
+
+- ❌ Core algorithms and implementation files
+- ❌ Business logic and trading strategies
+- ❌ API keys, secrets, and credentials
+- ❌ Production deployment configurations
+- ❌ Database schemas and migrations
+
+**For source code access or commercial licensing**: See [LICENSE](LICENSE) for contact information.
 
 ---
 
