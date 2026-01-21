@@ -177,7 +177,6 @@
             border-radius: 16px;
             padding: 1.5rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
         }
 
         .stat-card:hover {
@@ -549,17 +548,29 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--secondary);
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            .particle,
+            .hero,
+            .stats-grid,
+            .pillar-card,
+            .pillar-icon,
+            .status-indicator {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- Particle Background -->
-    <div class="particles" id="particles"></div>
+    <div class="particles" id="particles" aria-hidden="true"></div>
 
     <div class="container">
         <!-- Hero Section -->
         <div class="hero">
-            <div class="ascii-logo">╔═══════════════════════════════════════════════════════════════════════════════╗
+            <div class="ascii-logo" aria-hidden="true">╔═══════════════════════════════════════════════════════════════════════════════╗
                 ║ ║
                 ║ ██╗ ██╗ ██████╗ ██████╗ ████████╗███████╗██╗ ██╗ ║
                 ║ ██║ ██║██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝╚██╗██╔╝ ║
@@ -819,15 +830,30 @@
 
         // Interactive Functions
         function simulateHealing() {
+            const btn = document.querySelector('button[onclick="simulateHealing()"]');
+            const originalBtnText = btn.innerHTML;
             const statusText = document.querySelector('.status-text');
-            const originalText = statusText.textContent;
+            const originalStatus = statusText.textContent;
+
+            // Loading state
+            btn.disabled = true;
+            btn.innerHTML = '⚙️ Healing...';
+            btn.style.cursor = 'not-allowed';
+            btn.style.opacity = '0.7';
 
             statusText.textContent = '🔄 HEALING IN PROGRESS...';
 
             setTimeout(() => {
                 statusText.textContent = '✅ HEALING COMPLETE';
+
+                // Reset button
+                btn.disabled = false;
+                btn.innerHTML = originalBtnText;
+                btn.style.cursor = 'pointer';
+                btn.style.opacity = '1';
+
                 setTimeout(() => {
-                    statusText.textContent = originalText;
+                    statusText.textContent = originalStatus;
                 }, 2000);
             }, 3000);
         }
