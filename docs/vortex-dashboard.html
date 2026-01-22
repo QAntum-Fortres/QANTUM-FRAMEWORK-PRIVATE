@@ -549,6 +549,67 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--secondary);
         }
+
+        /* Modal Dialog */
+        dialog {
+            background: rgba(17, 24, 39, 0.95);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            margin: auto;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        dialog h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        dialog ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        dialog li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        dialog li::before {
+            content: '•';
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        dialog .modal-footer {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1rem;
+        }
+
+        dialog .modal-actions {
+            margin-top: 1.5rem;
+            text-align: right;
+        }
+
+        dialog .btn-close {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 
@@ -559,7 +620,7 @@
     <div class="container">
         <!-- Hero Section -->
         <div class="hero">
-            <div class="ascii-logo">╔═══════════════════════════════════════════════════════════════════════════════╗
+            <div class="ascii-logo" role="img" aria-label="Vortex Genesis ASCII Logo">╔═══════════════════════════════════════════════════════════════════════════════╗
                 ║ ║
                 ║ ██╗ ██╗ ██████╗ ██████╗ ████████╗███████╗██╗ ██╗ ║
                 ║ ██║ ██║██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝╚██╗██╔╝ ║
@@ -797,6 +858,25 @@
         </div>
     </div>
 
+    <!-- Architecture Modal -->
+    <dialog id="architecture-modal">
+        <h3>🏗️ System Architecture</h3>
+        <ul>
+            <li><strong>VortexHealingNexus:</strong> Orchestrates autonomous healing</li>
+            <li><strong>ApoptosisModule:</strong> Manages programmed death</li>
+            <li><strong>LivenessTokenManager:</strong> Centralized cryptographic secrets</li>
+            <li><strong>SystemOrchestrator:</strong> Coordinates all seven pillars</li>
+            <li><strong>ConsensusProtocol:</strong> Adversarial validation</li>
+        </ul>
+        <div class="modal-footer">
+            Total Modules: <span style="color: var(--accent)">243</span> | Active Healing Strategies: <span
+                style="color: var(--accent)">7</span>
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-secondary btn-close" onclick="this.closest('dialog').close()">Close</button>
+        </div>
+    </dialog>
+
     <!-- Status Bar -->
     <div class="status-bar">
         <div class="status-indicator"></div>
@@ -833,13 +913,7 @@
         }
 
         function viewArchitecture() {
-            alert('🏗️ System Architecture:\n\n' +
-                '• VortexHealingNexus: Orchestrates autonomous healing\n' +
-                '• ApoptosisModule: Manages programmed death\n' +
-                '• LivenessTokenManager: Centralized cryptographic secrets\n' +
-                '• SystemOrchestrator: Coordinates all seven pillars\n' +
-                '• ConsensusProtocol: Adversarial validation\n\n' +
-                'Total Modules: 243 | Active Healing Strategies: 7');
+            document.getElementById('architecture-modal').showModal();
         }
 
         function runDiagnostics() {
