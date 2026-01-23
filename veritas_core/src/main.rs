@@ -2,22 +2,21 @@ mod engine;
 
 use std::io::{self, BufRead};
 use serde::{Deserialize, Serialize};
-use engine::neural_locator::{NeuralLocator, VisionRequest, VisionResult};
+use engine::neural_locator::{NeuralLocator, VisionRequest};
+use engine::semantic_healer::{SemanticHealer, HealRequest};
+use engine::agent::{GoalOrientedAgent, GoalRequest};
+use engine::observer::{StateChangeObserver, ObserverRequest};
+use engine::swarm::{DistributedSwarm, SwarmRequest};
 
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(tag = "command", content = "payload")]
 enum Command {
     Locate(VisionRequest),
     Heal(HealRequest),
-    // Distributed Swarm commands would go here
+    Goal(GoalRequest),
+    Observe(ObserverRequest),
+    Swarm(SwarmRequest),
     Ping,
-}
-
-#[derive(Serialize, Deserialize, Debug)]
-struct HealRequest {
-    failed_selector: String,
-    last_known_embedding: Vec<f32>,
-    current_image: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -29,6 +28,11 @@ struct Response<T> {
 
 fn main() {
     let locator = NeuralLocator::new();
+    let healer = SemanticHealer::new();
+    let agent = GoalOrientedAgent::new();
+    let observer = StateChangeObserver::new();
+    let swarm = DistributedSwarm::new();
+
     let stdin = io::stdin();
 
     // Simple JSON-RPC loop over Stdin
@@ -41,37 +45,26 @@ fn main() {
                     match command {
                         Command::Locate(req) => {
                             let result = locator.analyze(&req);
-                            let response = Response {
-                                status: "success".to_string(),
-                                data: Some(result),
-                                error: None,
-                            };
-                            println!("{}", serde_json::to_string(&response).unwrap());
+                            print_response(result);
                         },
                         Command::Heal(req) => {
-                            // SIMULATION: Semantic Healing
-                            // In reality, we would compare embeddings using Cosine Similarity.
-                            // Here we simulate a successful match.
-
-                            let response = Response {
-                                status: "success".to_string(),
-                                data: Some(serde_json::json!({
-                                    "healed": true,
-                                    "new_selector": format!("xpath: //*[contains(@class, 'semantic-match-{}')]", req.failed_selector),
-                                    "similarity_score": 0.98,
-                                    "reason": "Visual embedding match > threshold"
-                                })),
-                                error: None,
-                            };
-                             println!("{}", serde_json::to_string(&response).unwrap());
+                            let result = healer.heal(&req);
+                            print_response(result);
+                        },
+                         Command::Goal(req) => {
+                            let result = agent.execute(&req);
+                            print_response(result);
+                        },
+                        Command::Observe(req) => {
+                            let result = observer.observe(&req);
+                            print_response(result);
+                        },
+                         Command::Swarm(req) => {
+                            let result = swarm.launch(&req);
+                            print_response(result);
                         },
                         Command::Ping => {
-                             let response = Response::<String> {
-                                status: "success".to_string(),
-                                data: Some("Pong".to_string()),
-                                error: None,
-                            };
-                            println!("{}", serde_json::to_string(&response).unwrap());
+                             print_response("Pong".to_string());
                         }
                     }
                 },
@@ -86,4 +79,13 @@ fn main() {
             }
         }
     }
+}
+
+fn print_response<T: Serialize>(data: T) {
+    let response = Response {
+        status: "success".to_string(),
+        data: Some(data),
+        error: None,
+    };
+    println!("{}", serde_json::to_string(&response).unwrap());
 }
