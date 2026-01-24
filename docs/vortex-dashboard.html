@@ -1,563 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VORTEX GENESIS | Autonomous Bio-Digital Organism</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #a855f7;
-            --secondary: #06b6d4;
-            --accent: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --surface: rgba(17, 24, 39, 0.8);
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-primary: #f9fafb;
-            --text-secondary: #d1d5db;
-            --text-dim: #9ca3af;
-            --shadow-glow: 0 0 40px rgba(168, 85, 247, 0.3);
+            --primary: #a855f7; --secondary: #06b6d4; --accent: #10b981; --warning: #f59e0b;
+            --danger: #ef4444; --surface: rgba(17, 24, 39, 0.8); --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1); --text-primary: #f9fafb; --text-secondary: #d1d5db;
+            --text-dim: #9ca3af; --shadow-glow: 0 0 40px rgba(168, 85, 247, 0.3);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'JetBrains Mono', monospace;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1e293b 100%);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
+            font-family: 'JetBrains Mono', monospace; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1e293b 100%);
+            color: var(--text-primary); min-height: 100vh; overflow-x: hidden; position: relative;
         }
-
-        /* Animated Background Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-        }
-
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; pointer-events: none; }
         .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--secondary);
-            border-radius: 50%;
-            animation: float 20s infinite;
-            opacity: 0.4;
+            position: absolute; width: 2px; height: 2px; background: var(--secondary); border-radius: 50%;
+            animation: float 20s infinite; opacity: 0.4;
         }
-
         @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.4;
-            }
-
-            90% {
-                opacity: 0.4;
-            }
-
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.4; } 90% { opacity: 0.4; } 100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Hero Banner */
+        .container { position: relative; z-index: 1; max-width: 1600px; margin: 0 auto; padding: 2rem; }
         .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-glow);
-            animation: slideDown 0.8s ease-out;
+            text-align: center; padding: 4rem 2rem; background: var(--glass); backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border); border-radius: 24px; margin-bottom: 3rem;
+            box-shadow: var(--shadow-glow); animation: slideDown 0.8s ease-out;
         }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
         .ascii-logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.5rem;
-            line-height: 1.2;
-            color: var(--primary);
-            font-weight: 800;
-            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-            white-space: pre;
-            overflow-x: auto;
-            margin: 0 auto 2rem;
-            display: inline-block;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; line-height: 1.2; color: var(--primary);
+            font-weight: 800; text-shadow: 0 0 20px rgba(168, 85, 247, 0.5); white-space: pre; overflow-x: auto;
+            margin: 0 auto 2rem; display: inline-block;
         }
-
         .tagline {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 500;
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 500;
             background: linear-gradient(135deg, var(--secondary), var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem;
         }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--warning);
-            font-style: italic;
-            margin-bottom: 2rem;
-        }
-
-        /* Stats Grid */
+        .subtitle { font-size: 1.2rem; color: var(--warning); font-style: italic; margin-bottom: 2rem; }
         .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-            animation: fadeIn 1s ease-out 0.3s both;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;
+            margin-bottom: 3rem; animation: fadeIn 1s ease-out 0.3s both;
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
         .stat-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
+            background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+            border-radius: 16px; padding: 1.5rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;
         }
-
         .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(168, 85, 247, 0.2);
+            transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(168, 85, 247, 0.2);
             border-color: var(--primary);
         }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent);
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* Pillars Section */
-        .pillars-section {
-            margin-bottom: 3rem;
-        }
-
+        .stat-label { font-size: 0.9rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .stat-value { font-size: 2rem; font-weight: 800; color: var(--accent); font-family: 'Space Grotesk', sans-serif; }
+        .pillars-section { margin-bottom: 3rem; }
         .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2rem;
+            font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem;
             background: linear-gradient(135deg, var(--secondary), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
+        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
         .pillar-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.6s ease-out both;
+            background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+            border-radius: 20px; padding: 2rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden; animation: fadeInUp 0.6s ease-out both;
         }
-
         .pillar-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
+            transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
         }
-
-        .pillar-card:hover::before {
-            transform: scaleX(1);
-        }
-
+        .pillar-card:hover::before { transform: scaleX(1); }
         .pillar-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(6, 182, 212, 0.3);
+            transform: translateY(-8px) scale(1.02); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(6, 182, 212, 0.3);
             border-color: var(--secondary);
         }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .pillar-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .pillar-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .pillar-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .pillar-card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .pillar-card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        .pillar-card:nth-child(6) {
-            animation-delay: 0.6s;
-        }
-
-        .pillar-card:nth-child(7) {
-            animation-delay: 0.7s;
-        }
-
-        .pillar-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        .pillar-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-
-        .pillar-tech {
-            font-size: 1rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .pillar-description {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Security Section */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .pillar-card:nth-child(1) { animation-delay: 0.1s; } .pillar-card:nth-child(2) { animation-delay: 0.2s; }
+        .pillar-card:nth-child(3) { animation-delay: 0.3s; } .pillar-card:nth-child(4) { animation-delay: 0.4s; }
+        .pillar-card:nth-child(5) { animation-delay: 0.5s; } .pillar-card:nth-child(6) { animation-delay: 0.6s; }
+        .pillar-card:nth-child(7) { animation-delay: 0.7s; }
+        .pillar-icon { font-size: 3rem; margin-bottom: 1rem; display: inline-block; animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .pillar-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent); }
+        .pillar-tech { font-size: 1rem; color: var(--secondary); margin-bottom: 1rem; font-weight: 600; }
+        .pillar-description { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
         .security-section {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-glow);
+            background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+            border-radius: 24px; padding: 3rem; margin-bottom: 3rem; box-shadow: var(--shadow-glow);
         }
-
-        .threat-matrix {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
+        .threat-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
         .threat-card {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border); border-radius: 12px;
+            padding: 1.5rem; transition: all 0.3s ease;
         }
-
-        .threat-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
-        }
-
+        .threat-card:hover { border-color: var(--accent); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2); }
         .threat-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.2);
-            border: 1px solid var(--accent);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 1rem;
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem;
+            background: rgba(16, 185, 129, 0.2); border: 1px solid var(--accent); border-radius: 20px;
+            font-size: 0.85rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem;
         }
-
-        .threat-status::before {
-            content: '🔒';
-            font-size: 1rem;
-        }
-
-        .threat-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
+        .threat-status::before { content: '🔒'; font-size: 1rem; }
+        .threat-title { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
         .threat-method {
-            font-size: 0.85rem;
-            color: var(--secondary);
-            font-family: 'JetBrains Mono', monospace;
-            background: rgba(6, 182, 212, 0.1);
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            display: inline-block;
+            font-size: 0.85rem; color: var(--secondary); font-family: 'JetBrains Mono', monospace;
+            background: rgba(6, 182, 212, 0.1); padding: 0.25rem 0.5rem; border-radius: 4px; display: inline-block;
         }
-
-        /* Code Block */
         .code-block {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            overflow-x: auto;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: var(--accent);
+            background: rgba(0, 0, 0, 0.5); border: 1px solid var(--glass-border); border-radius: 12px;
+            padding: 1.5rem; margin: 1rem 0; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; color: var(--accent);
         }
-
-        /* Interactive Controls */
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
+        .controls { display: flex; justify-content: center; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
         .btn {
-            font-family: 'Space Grotesk', sans-serif;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-family: 'Space Grotesk', sans-serif; padding: 1rem 2rem; font-size: 1rem; font-weight: 600;
+            border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
-        }
-
-        /* Status Indicator */
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4); }
+        .btn-secondary { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); color: var(--text-primary); }
+        .btn-secondary:hover { border-color: var(--accent); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
         .status-bar {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            z-index: 1000;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: fixed; bottom: 2rem; right: 2rem; background: var(--glass); backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border); border-radius: 50px; padding: 1rem 1.5rem;
+            display: flex; align-items: center; gap: 1rem; z-index: 1000; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         }
-
         .status-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 20px var(--accent);
-            animation: blink 2s ease-in-out infinite;
+            width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
+            box-shadow: 0 0 20px var(--accent); animation: blink 2s ease-in-out infinite;
         }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.3;
-            }
-        }
-
-        .status-text {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* Responsive */
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .status-text { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
         @media (max-width: 768px) {
-            .ascii-logo {
-                font-size: 0.35rem;
-            }
-
-            .tagline {
-                font-size: 1.2rem;
-            }
-
-            .pillars-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .status-bar {
-                bottom: 1rem;
-                right: 1rem;
-            }
+            .ascii-logo { font-size: 0.35rem; } .tagline { font-size: 1.2rem; }
+            .pillars-grid, .stats-grid { grid-template-columns: 1fr; } .status-bar { bottom: 1rem; right: 1rem; }
         }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--secondary); }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
+        /* Dialog Styles */
+        dialog {
+            background: transparent; border: none; padding: 0; margin: auto;
+            color: var(--text-primary); max-width: 600px; width: 90%;
         }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
+        dialog::backdrop { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); }
+        .modal-content {
+            background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+            border-radius: 24px; padding: 2rem; box-shadow: var(--shadow-glow); animation: fadeIn 0.3s ease-out;
         }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
+        .modal-title {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: var(--accent);
+            margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;
         }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary);
+        .modal-list li { margin-bottom: 0.8rem; line-height: 1.6; color: var(--text-secondary); list-style: none; }
+        .modal-list strong { color: var(--primary); font-family: 'JetBrains Mono', monospace; }
+        .modal-footer {
+            margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; color: var(--text-dim);
         }
+        .close-btn {
+            position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none;
+            color: var(--text-dim); font-size: 1.5rem; cursor: pointer; transition: color 0.3s ease;
+        }
+        .close-btn:hover { color: var(--danger); }
     </style>
 </head>
-
 <body>
-    <!-- Particle Background -->
     <div class="particles" id="particles"></div>
-
     <div class="container">
-        <!-- Hero Section -->
         <div class="hero">
             <div class="ascii-logo">╔═══════════════════════════════════════════════════════════════════════════════╗
                 ║ ║
@@ -579,320 +199,97 @@
             <h1 class="tagline">THE AUTONOMOUS BIO-DIGITAL ORGANISM</h1>
             <p class="subtitle">Verified. Consolidated. Sovereign.</p>
         </div>
-
-        <!-- Stats Grid -->
         <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-label">🔬 Consensus Success Rate</div>
-                <div class="stat-value">99.7%</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">💀 Apoptosis Cycle</div>
-                <div class="stat-value">Phase 7</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">🛡️ Active Modules</div>
-                <div class="stat-value">243</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">⚡ Uptime</div>
-                <div class="stat-value">99.99%</div>
-            </div>
+            <div class="stat-card"><div class="stat-label">🔬 Consensus Success Rate</div><div class="stat-value">99.7%</div></div>
+            <div class="stat-card"><div class="stat-label">💀 Apoptosis Cycle</div><div class="stat-value">Phase 7</div></div>
+            <div class="stat-card"><div class="stat-label">🛡️ Active Modules</div><div class="stat-value">243</div></div>
+            <div class="stat-card"><div class="stat-label">⚡ Uptime</div><div class="stat-value">99.99%</div></div>
         </div>
-
-        <!-- NEW: Live Immune System Metrics (Promoted to Top) -->
-        <h3
-            style="margin-top: 2rem; margin-bottom: 1rem; text-align: center; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">
-            🛡️ Live Immune System Status
-        </h3>
+        <h3 style="margin: 2rem 0 1rem; text-align: center; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">🛡️ Live Immune System Status</h3>
         <div class="stats-grid" style="margin-top: 1rem;">
             <div class="stat-card" style="background: rgba(16, 185, 129, 0.1); border-color: var(--accent);">
-                <div class="stat-label">Valid LivenessTokens</div>
-                <div class="stat-value" id="valid-tokens">243</div>
+                <div class="stat-label">Valid LivenessTokens</div><div class="stat-value" id="valid-tokens">243</div>
             </div>
             <div class="stat-card" style="background: rgba(168, 85, 247, 0.1); border-color: var(--primary);">
-                <div class="stat-label">HMAC Signatures Verified</div>
-                <div class="stat-value" id="verified-sigs">1,204</div>
+                <div class="stat-label">HMAC Signatures Verified</div><div class="stat-value" id="verified-sigs">1,204</div>
             </div>
             <div class="stat-card" style="background: rgba(239, 68, 68, 0.1); border-color: var(--danger);">
-                <div class="stat-label">Blocked Threats</div>
-                <div class="stat-value" id="blocked-threats" style="color: var(--danger);">0</div>
+                <div class="stat-label">Blocked Threats</div><div class="stat-value" id="blocked-threats" style="color: var(--danger);">0</div>
             </div>
         </div>
-
-        <!-- Seven Pillars -->
         <section class="pillars-section">
             <h2 class="section-title">THE SEVEN PILLARS OF DIGITAL LIFE</h2>
             <div class="pillars-grid">
-                <div class="pillar-card">
-                    <div class="pillar-icon">⚡</div>
-                    <h3 class="pillar-title">1. NERVOUS SYSTEM</h3>
-                    <p class="pillar-tech">Temporal.io Durable Execution</p>
-                    <p class="pillar-description">
-                        Resilience through persistent workflows. Ensures your code survives failures and maintains state
-                        across restarts, providing unbreakable execution guarantees.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">🧠</div>
-                    <h3 class="pillar-title">2. COGNITIVE CORE</h3>
-                    <p class="pillar-tech">VortexNexus + MetaLogicEngine</p>
-                    <p class="pillar-description">
-                        Intelligence through hybrid reasoning. Combines neural pattern recognition with formal logic for
-                        transcendent decision-making capabilities.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">🛡️</div>
-                    <h3 class="pillar-title">3. IMMUNE SYSTEM</h3>
-                    <p class="pillar-tech">Git-based Versioning & Guardians</p>
-                    <p class="pillar-description">
-                        Security through immutable history. Every change is tracked, verified, and protected by
-                        cryptographic guardians ensuring sovereignty.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">🔮</div>
-                    <h3 class="pillar-title">4. MATHEMATICAL SOUL</h3>
-                    <p class="pillar-tech">Z3 Formal Verification + Catuskoti Logic</p>
-                    <p class="pillar-description">
-                        Truth through transcendent reasoning. Goes beyond binary logic to handle paradoxes and prove
-                        correctness at the deepest mathematical level.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">⚙️</div>
-                    <h3 class="pillar-title">5. METABOLISM</h3>
-                    <p class="pillar-tech">Resource Optimization & Biology Department</p>
-                    <p class="pillar-description">
-                        Efficiency through adaptive resource management. Self-regulating systems that optimize
-                        performance and eliminate waste automatically.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">🤝</div>
-                    <h3 class="pillar-title">6. SOCIAL CONSENSUS</h3>
-                    <p class="pillar-tech">Adversarial Twin Protocol</p>
-                    <p class="pillar-description">
-                        Gödelian countermeasure providing external reality checks. Two independent agents verify each
-                        other, preventing self-referential collapse.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">💀</div>
-                    <h3 class="pillar-title">7. MORTALITY</h3>
-                    <p class="pillar-tech">Apoptosis Module - Programmed Death</p>
-                    <p class="pillar-description">
-                        Digital necrosis prevention through controlled decay. Automatically archives stale code,
-                        preventing entropy and maintaining system vitality.
-                    </p>
-                </div>
+                <div class="pillar-card"><div class="pillar-icon">⚡</div><h3 class="pillar-title">1. NERVOUS SYSTEM</h3><p class="pillar-tech">Temporal.io Durable Execution</p><p class="pillar-description">Resilience through persistent workflows. Ensures your code survives failures and maintains state across restarts, providing unbreakable execution guarantees.</p></div>
+                <div class="pillar-card"><div class="pillar-icon">🧠</div><h3 class="pillar-title">2. COGNITIVE CORE</h3><p class="pillar-tech">VortexNexus + MetaLogicEngine</p><p class="pillar-description">Intelligence through hybrid reasoning. Combines neural pattern recognition with formal logic for transcendent decision-making capabilities.</p></div>
+                <div class="pillar-card"><div class="pillar-icon">🛡️</div><h3 class="pillar-title">3. IMMUNE SYSTEM</h3><p class="pillar-tech">Git-based Versioning & Guardians</p><p class="pillar-description">Security through immutable history. Every change is tracked, verified, and protected by cryptographic guardians ensuring sovereignty.</p></div>
+                <div class="pillar-card"><div class="pillar-icon">🔮</div><h3 class="pillar-title">4. MATHEMATICAL SOUL</h3><p class="pillar-tech">Z3 Formal Verification + Catuskoti Logic</p><p class="pillar-description">Truth through transcendent reasoning. Goes beyond binary logic to handle paradoxes and prove correctness at the deepest mathematical level.</p></div>
+                <div class="pillar-card"><div class="pillar-icon">⚙️</div><h3 class="pillar-title">5. METABOLISM</h3><p class="pillar-tech">Resource Optimization & Biology Department</p><p class="pillar-description">Efficiency through adaptive resource management. Self-regulating systems that optimize performance and eliminate waste automatically.</p></div>
+                <div class="pillar-card"><div class="pillar-icon">🤝</div><h3 class="pillar-title">6. SOCIAL CONSENSUS</h3><p class="pillar-tech">Adversarial Twin Protocol</p><p class="pillar-description">Gödelian countermeasure providing external reality checks. Two independent agents verify each other, preventing self-referential collapse.</p></div>
+                <div class="pillar-card"><div class="pillar-icon">💀</div><h3 class="pillar-title">7. MORTALITY</h3><p class="pillar-tech">Apoptosis Module - Programmed Death</p><p class="pillar-description">Digital necrosis prevention through controlled decay. Automatically archives stale code, preventing entropy and maintaining system vitality.</p></div>
             </div>
         </section>
-
-        <!-- NEW: Neural Map Section -->
-        <section class="pillars-section" style="margin-top: 3rem;">
-            <h2 class="section-title">👁️ VISION-TRANSFORMER NEURAL MAP</h2>
-            <div
-                style="position: relative; height: 500px; background: #000; border: 1px solid var(--primary); border-radius: 16px; overflow: hidden; box-shadow: 0 0 30px rgba(168, 85, 247, 0.2);">
-                <canvas id="neuralMapCanvas"></canvas>
-                <div
-                    style="position: absolute; top: 20px; left: 20px; background: rgba(0,0,0,0.7); padding: 10px; border-radius: 8px; border: 1px solid var(--accent); color: var(--accent); font-size: 0.8rem;">
-                    <div>ViT LAYER: ACTIVE</div>
-                    <div>NODES DETECTED: <span id="node-count">0</span></div>
-                    <div>SEMANTIC CONFIDENCE: 99.8%</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Distributed Swarm Section -->
-        <section class="pillars-section">
-            <h2 class="section-title">🐝 DISTRIBUTED SWARM MESH (1000 AGENTS)</h2>
-            <div style="display: grid; grid-template-columns: 3fr 1fr; gap: 2rem;">
-                <!-- Map/Grid -->
-                <div
-                    style="height: 400px; background: rgba(17, 24, 39, 0.8); border: 1px solid var(--secondary); border-radius: 16px; padding: 1rem; overflow: hidden;">
-                    <canvas id="swarmCanvas"></canvas>
-                </div>
-                <!-- Swarm Stats -->
-                <div style="display: flex; flex-direction: column; gap: 1rem;">
-                    <div class="stat-card" style="padding: 1rem;">
-                        <div class="stat-label">Active Agents</div>
-                        <div class="stat-value" id="active-agents">0</div>
-                    </div>
-                    <div class="stat-card" style="padding: 1rem;">
-                        <div class="stat-label">TPS</div>
-                        <div class="stat-value" id="swarm-tps">0</div>
-                    </div>
-                    <div class="stat-card" style="padding: 1rem;">
-                        <div class="stat-label">Regions</div>
-                        <div class="stat-value" style="font-size: 1.2rem;">US-E, EU-W, AP-S</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- NEW: Singularity Audit Log -->
-        <section class="pillars-section">
-            <h2 class="section-title">📜 SINGULARITY AUDIT LOG</h2>
-            <div class="code-block" id="audit-log"
-                style="height: 300px; overflow-y: auto; font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--text-primary); border: 1px solid var(--glass-border);">
-                <!-- Logs will be injected here -->
-            </div>
-        </section>
-
-        <!-- NEW: Enterprise Governance Section -->
-        <section class="pillars-section">
-            <h2 class="section-title">🏛️ ENTERPRISE GOVERNANCE & COMPLIANCE</h2>
-            <div class="stats-grid">
-                <div class="stat-card" style="border-color: var(--primary);">
-                    <div class="stat-label">Encryption (Data-at-Rest)</div>
-                    <div class="stat-value" style="font-size: 1.5rem;">AES-256-GCM</div>
-                </div>
-                <div class="stat-card" style="border-color: var(--secondary);">
-                    <div class="stat-label">Identity Provider</div>
-                    <div class="stat-value" style="font-size: 1.5rem;">SAML 2.0 / OIDC</div>
-                </div>
-                <div class="stat-card" style="border-color: var(--accent);">
-                    <div class="stat-label">Compliance Status</div>
-                    <div class="stat-value" style="font-size: 1.5rem; color: var(--accent);">SOC2 TYPE II</div>
-                </div>
-                <div class="stat-card" style="border-color: var(--warning);">
-                    <div class="stat-label">SLA Uptime (90d)</div>
-                    <div class="stat-value" style="font-size: 1.5rem;">99.999%</div>
-                </div>
-            </div>
-
-            <div style="background: var(--glass); padding: 1rem; border-radius: 12px; border: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">GDPR / CCPA Guard</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Real-time PII Redaction Active. All datasets anonymized.</p>
-                </div>
-                <div style="background: rgba(16, 185, 129, 0.2); color: var(--accent); padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold;">
-                    ACTIVE
-                </div>
-            </div>
-        </section>
-
-        <!-- Security Section -->
         <section class="security-section">
             <h2 class="section-title">🔐 LIVENESS TOKEN SECURITY ARCHITECTURE</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
-                Military-grade cryptographic protection ensuring autonomous module vitality
-            </p>
-
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Military-grade cryptographic protection ensuring autonomous module vitality</p>
             <div class="threat-matrix">
-                <div class="threat-card">
-                    <div class="threat-status">PROTECTED</div>
-                    <h3 class="threat-title">Forged Tokens</h3>
-                    <p class="threat-method">HMAC-SHA256 Verification</p>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
-                        Every token signature is cryptographically verified against the secret key. Forged tokens are
-                        instantly rejected.
-                    </p>
-                </div>
-
-                <div class="threat-card">
-                    <div class="threat-status">PROTECTED</div>
-                    <h3 class="threat-title">Replay Attacks</h3>
-                    <p class="threat-method">5-Minute Expiry Window</p>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
-                        Timestamps ensure tokens expire after 5 minutes. Old tokens cannot be reused to spoof vitality.
-                    </p>
-                </div>
-
-                <div class="threat-card">
-                    <div class="threat-status">PROTECTED</div>
-                    <h3 class="threat-title">Module ID Spoofing</h3>
-                    <p class="threat-method">Strict ID Matching</p>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
-                        Module IDs embedded in tokens are verified. Module A cannot use tokens generated for Module B.
-                    </p>
-                </div>
-
-                <div class="threat-card">
-                    <div class="threat-status">PROTECTED</div>
-                    <h3 class="threat-title">Clock Skew Attacks</h3>
-                    <p class="threat-method">Future Token Rejection</p>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
-                        Tokens with timestamps from the future (>60s ahead) are rejected to prevent time manipulation.
-                    </p>
-                </div>
+                <div class="threat-card"><div class="threat-status">PROTECTED</div><h3 class="threat-title">Forged Tokens</h3><p class="threat-method">HMAC-SHA256 Verification</p><p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Every token signature is cryptographically verified against the secret key. Forged tokens are instantly rejected.</p></div>
+                <div class="threat-card"><div class="threat-status">PROTECTED</div><h3 class="threat-title">Replay Attacks</h3><p class="threat-method">5-Minute Expiry Window</p><p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Timestamps ensure tokens expire after 5 minutes. Old tokens cannot be reused to spoof vitality.</p></div>
+                <div class="threat-card"><div class="threat-status">PROTECTED</div><h3 class="threat-title">Module ID Spoofing</h3><p class="threat-method">Strict ID Matching</p><p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Module IDs embedded in tokens are verified. Module A cannot use tokens generated for Module B.</p></div>
+                <div class="threat-card"><div class="threat-status">PROTECTED</div><h3 class="threat-title">Clock Skew Attacks</h3><p class="threat-method">Future Token Rejection</p><p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Tokens with timestamps from the future (>60s ahead) are rejected to prevent time manipulation.</p></div>
             </div>
-
             <div class="code-block">
                 <span style="color: var(--text-dim);">// LivenessToken Validation Flow</span>
-                <span style="color: var(--primary);">const</span> tokenManager = LivenessTokenManager.<span
-                    style="color: var(--secondary);">getInstance</span>();
-                <span style="color: var(--primary);">const</span> TOKEN_SECRET = tokenManager.<span
-                    style="color: var(--secondary);">getSecret</span>();
+                <span style="color: var(--primary);">const</span> tokenManager = LivenessTokenManager.<span style="color: var(--secondary);">getInstance</span>();
+                <span style="color: var(--primary);">const</span> TOKEN_SECRET = tokenManager.<span style="color: var(--secondary);">getSecret</span>();
 
                 <span style="color: var(--text-dim);">// Step 1: Parse token components</span>
-                <span style="color: var(--primary);">const</span> [moduleId, timestamp, status, signature] = token.<span
-                    style="color: var(--secondary);">split</span>(<span style="color: var(--warning);">':'</span>);
+                <span style="color: var(--primary);">const</span> [moduleId, timestamp, status, signature] = token.<span style="color: var(--secondary);">split</span>(<span style="color: var(--warning);">':'</span>);
 
                 <span style="color: var(--text-dim);">// Step 2: Verify module ID match</span>
-                <span style="color: var(--primary);">if</span> (moduleId !== expectedModuleId) <span
-                    style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span
-                    style="color: var(--warning);">'Module ID mismatch'</span>);
+                <span style="color: var(--primary);">if</span> (moduleId !== expectedModuleId) <span style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span style="color: var(--warning);">'Module ID mismatch'</span>);
 
                 <span style="color: var(--text-dim);">// Step 3: Validate timestamp (5-minute window)</span>
-                <span style="color: var(--primary);">const</span> age = Date.<span
-                    style="color: var(--secondary);">now</span>() - <span
-                    style="color: var(--secondary);">parseInt</span>(timestamp);
-                <span style="color: var(--primary);">if</span> (age > <span style="color: var(--accent);">300000</span>)
-                <span style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span
-                    style="color: var(--warning);">'Token expired'</span>);
+                <span style="color: var(--primary);">const</span> age = Date.<span style="color: var(--secondary);">now</span>() - <span style="color: var(--secondary);">parseInt</span>(timestamp);
+                <span style="color: var(--primary);">if</span> (age > <span style="color: var(--accent);">300000</span>) <span style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span style="color: var(--warning);">'Token expired'</span>);
 
                 <span style="color: var(--text-dim);">// Step 4: Cryptographic signature verification</span>
-                <span style="color: var(--primary);">const</span> expectedSig = crypto
-                .<span style="color: var(--secondary);">createHmac</span>(<span
-                    style="color: var(--warning);">'sha256'</span>, TOKEN_SECRET)
-                .<span style="color: var(--secondary);">update</span>(<span
-                    style="color: var(--warning);">`${moduleId}:${timestamp}:${status}`</span>)
-                .<span style="color: var(--secondary);">digest</span>(<span
-                    style="color: var(--warning);">'hex'</span>);
+                <span style="color: var(--primary);">const</span> expectedSig = crypto.<span style="color: var(--secondary);">createHmac</span>(<span style="color: var(--warning);">'sha256'</span>, TOKEN_SECRET).<span style="color: var(--secondary);">update</span>(<span style="color: var(--warning);">`${moduleId}:${timestamp}:${status}`</span>).<span style="color: var(--secondary);">digest</span>(<span style="color: var(--warning);">'hex'</span>);
 
-                <span style="color: var(--primary);">if</span> (signature !== expectedSig) <span
-                    style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span
-                    style="color: var(--warning);">'Signature verification FAILED'</span>);
+                <span style="color: var(--primary);">if</span> (signature !== expectedSig) <span style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span style="color: var(--warning);">'Signature verification FAILED'</span>);
             </div>
-
-
         </section>
-
-        <!-- Interactive Controls -->
         <div class="controls">
-            <button class="btn btn-primary" onclick="simulateHealing()">
-                🔬 Simulate Autonomous Healing
-            </button>
-            <button class="btn btn-secondary" onclick="viewArchitecture()">
-                📊 View System Architecture
-            </button>
-            <button class="btn btn-secondary" onclick="runDiagnostics()">
-                🔍 Run System Diagnostics
-            </button>
+            <button class="btn btn-primary" onclick="simulateHealing()">🔬 Simulate Autonomous Healing</button>
+            <button class="btn btn-secondary" onclick="viewArchitecture()">📊 View System Architecture</button>
+            <button class="btn btn-secondary" onclick="runDiagnostics()">🔍 Run System Diagnostics</button>
         </div>
     </div>
-
-    <!-- Status Bar -->
     <div class="status-bar">
-        <div class="status-indicator"></div>
-        <span class="status-text">SYSTEM ONLINE</span>
+        <div class="status-indicator"></div><span class="status-text">SYSTEM ONLINE</span>
     </div>
 
-    <script>
-        // Generate Particle Background
-        const particlesContainer = document.getElementById('particles');
-        const particleCount = 50;
+    <dialog id="architecture-modal" onclick="if(event.target===this)this.close()">
+        <div class="modal-content">
+            <button class="close-btn" onclick="this.closest('dialog').close()" aria-label="Close modal">×</button>
+            <h3 class="modal-title">🏗️ System Architecture</h3>
+            <ul class="modal-list">
+                <li><strong>• VortexHealingNexus:</strong> Orchestrates autonomous healing</li>
+                <li><strong>• ApoptosisModule:</strong> Manages programmed death</li>
+                <li><strong>• LivenessTokenManager:</strong> Centralized cryptographic secrets</li>
+                <li><strong>• SystemOrchestrator:</strong> Coordinates all seven pillars</li>
+                <li><strong>• ConsensusProtocol:</strong> Adversarial validation</li>
+            </ul>
+            <div class="modal-footer">
+                <span>Total Modules: 243 | Active Healing Strategies: 7</span>
+                <button class="btn btn-secondary" onclick="this.closest('dialog').close()">Close</button>
+            </div>
+        </div>
+    </dialog>
 
-        for (let i = 0; i < particleCount; i++) {
+    <script>
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.style.left = Math.random() * 100 + '%';
@@ -901,87 +298,49 @@
             particlesContainer.appendChild(particle);
         }
 
-        // Interactive Functions
         function simulateHealing() {
             const statusText = document.querySelector('.status-text');
             const originalText = statusText.textContent;
-
             statusText.textContent = '🔄 HEALING IN PROGRESS...';
-
             setTimeout(() => {
                 statusText.textContent = '✅ HEALING COMPLETE';
-                setTimeout(() => {
-                    statusText.textContent = originalText;
-                }, 2000);
+                setTimeout(() => statusText.textContent = originalText, 2000);
             }, 3000);
         }
 
         function viewArchitecture() {
-            alert('🏗️ System Architecture:\n\n' +
-                '• VortexHealingNexus: Orchestrates autonomous healing\n' +
-                '• ApoptosisModule: Manages programmed death\n' +
-                '• LivenessTokenManager: Centralized cryptographic secrets\n' +
-                '• SystemOrchestrator: Coordinates all seven pillars\n' +
-                '• ConsensusProtocol: Adversarial validation\n\n' +
-                'Total Modules: 243 | Active Healing Strategies: 7');
+            document.getElementById('architecture-modal').showModal();
         }
 
         function runDiagnostics() {
             const statusText = document.querySelector('.status-text');
-            const tests = [
-                '🔍 Checking module vitality...',
-                '🔐 Verifying cryptographic signatures...',
-                '⚡ Testing Temporal workflows...',
-                '🧠 Analyzing cognitive patterns...',
-                '✅ ALL SYSTEMS OPERATIONAL'
-            ];
-
+            const tests = ['🔍 Checking module vitality...', '🔐 Verifying cryptographic signatures...', '⚡ Testing Temporal workflows...', '🧠 Analyzing cognitive patterns...', '✅ ALL SYSTEMS OPERATIONAL'];
             let index = 0;
             const interval = setInterval(() => {
-                statusText.textContent = tests[index];
-                index++;
+                statusText.textContent = tests[index++];
                 if (index >= tests.length) {
                     clearInterval(interval);
-                    setTimeout(() => {
-                        statusText.textContent = 'SYSTEM ONLINE';
-                    }, 2000);
+                    setTimeout(() => statusText.textContent = 'SYSTEM ONLINE', 2000);
                 }
             }, 800);
         }
 
-        // Auto-update stats
         setInterval(() => {
             const uptimeElement = document.querySelector('.stat-card:last-child .stat-value');
-            const currentUptime = parseFloat(uptimeElement.textContent.replace('%', ''));
-            const newUptime = Math.min(99.99, currentUptime + 0.01);
-            uptimeElement.textContent = newUptime.toFixed(2) + '%';
+            uptimeElement.textContent = Math.min(99.99, parseFloat(uptimeElement.textContent) + 0.01).toFixed(2) + '%';
         }, 5000);
 
-        // Security Metrics Animation
         setInterval(() => {
-            // Update Valid Tokens (fluctuate slightly)
             const tokensEl = document.getElementById('valid-tokens');
-            if (tokensEl) {
-                const currentTokens = parseInt(tokensEl.textContent);
-                const change = Math.floor(Math.random() * 3) - 1; // -1, 0, or 1
-                tokensEl.textContent = Math.max(240, Math.min(250, currentTokens + change));
-            }
+            if (tokensEl) tokensEl.textContent = Math.max(240, Math.min(250, parseInt(tokensEl.textContent) + Math.floor(Math.random() * 3) - 1));
 
-            // Increment Verified Signatures
             const sigsEl = document.getElementById('verified-sigs');
-            if (sigsEl) {
-                const currentSigs = parseInt(sigsEl.textContent.replace(/,/g, ''));
-                sigsEl.textContent = (currentSigs + Math.floor(Math.random() * 5)).toLocaleString();
-            }
+            if (sigsEl) sigsEl.textContent = (parseInt(sigsEl.textContent.replace(/,/g, '')) + Math.floor(Math.random() * 5)).toLocaleString();
 
-            // Occasionally increment Blocked Threats
             if (Math.random() > 0.95) {
                 const threatsEl = document.getElementById('blocked-threats');
                 if (threatsEl) {
-                    const currentThreats = parseInt(threatsEl.textContent);
-                    threatsEl.textContent = currentThreats + 1;
-
-                    // Flash red effect
+                    threatsEl.textContent = parseInt(threatsEl.textContent) + 1;
                     threatsEl.style.textShadow = "0 0 10px red";
                     setTimeout(() => threatsEl.style.textShadow = "none", 500);
                 }
@@ -1139,5 +498,4 @@
         }, 600);
     </script>
 </body>
-
 </html>
