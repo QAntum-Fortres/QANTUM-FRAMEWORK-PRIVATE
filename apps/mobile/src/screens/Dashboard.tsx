@@ -31,7 +31,7 @@ export default function Dashboard() {
             style={styles.container}
             refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         >
-            <Text style={styles.header}>⚡ QAntum Dashboard</Text>
+            <Text style={styles.header} accessibilityRole="header">⚡ QAntum Dashboard</Text>
 
             {/* Stats Grid */}
             <View style={styles.statsGrid}>
@@ -58,10 +58,15 @@ export default function Dashboard() {
             </View>
 
             {/* Health Status */}
-            <Text style={styles.sectionTitle}>🛡️ Service Health</Text>
+            <Text style={styles.sectionTitle} accessibilityRole="header">🛡️ Service Health</Text>
             <View style={styles.healthContainer}>
                 {health?.services.map((service, index) => (
-                    <View key={index} style={styles.healthRow}>
+                    <View
+                        key={index}
+                        style={styles.healthRow}
+                        accessible={true}
+                        accessibilityLabel={`${service.name}, status: ${service.status}, latency: ${service.latency} milliseconds`}
+                    >
                         <Text style={styles.serviceName}>{service.name}</Text>
                         <Text style={[
                             styles.serviceStatus,
@@ -74,7 +79,11 @@ export default function Dashboard() {
             </View>
 
             {/* Uptime */}
-            <View style={styles.uptimeContainer}>
+            <View
+                style={styles.uptimeContainer}
+                accessible={true}
+                accessibilityLabel={`System Uptime: ${stats?.uptime || 'loading'}`}
+            >
                 <Text style={styles.uptimeLabel}>Uptime</Text>
                 <Text style={styles.uptimeValue}>{stats?.uptime || '...'}</Text>
             </View>
@@ -84,7 +93,11 @@ export default function Dashboard() {
 
 function StatCard({ title, value, icon }: { title: string; value: string; icon: string }) {
     return (
-        <View style={styles.statCard}>
+        <View
+            style={styles.statCard}
+            accessible={true}
+            accessibilityLabel={`${title}: ${value}`}
+        >
             <Text style={styles.statIcon}>{icon}</Text>
             <Text style={styles.statValue}>{value}</Text>
             <Text style={styles.statTitle}>{title}</Text>

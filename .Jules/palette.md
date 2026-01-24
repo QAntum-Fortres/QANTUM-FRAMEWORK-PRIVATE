@@ -1,4 +1,4 @@
-## 2024-05-23 - ASCII Art & Native Dialogs
+## 2025-05-23 - ASCII Art & Native Dialogs
 **Learning:** ASCII art used for decoration creates a severe accessibility barrier for screen reader users as every character is announced.
 **Action:** Always wrap ASCII art containers with `role="img"` and provide a meaningful `aria-label`.
 
