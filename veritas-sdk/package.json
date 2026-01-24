@@ -1,0 +1,19 @@
+{
+  "name": "veritas-sdk",
+  "version": "1.0.0",
+  "description": "Veritas Cognitive QA Framework SDK",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["qa", "testing", "ai", "rust", "vision"],
+  "author": "Dimitar Prodromov",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}

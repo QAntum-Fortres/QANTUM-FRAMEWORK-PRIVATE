@@ -1,3 +1,10 @@
-## 2025-01-20 - Mobile Dashboard Accessibility
-**Learning:** Mobile dashboards often treat stats as separate visual elements (Icon, Value, Label) which forces screen reader users to swipe 3 times for one piece of info.
-**Action:** Always group related visual elements into a single accessible container with a combined `accessibilityLabel` (e.g., "Lines of Code: 12,345").
+## 2025-05-23 - ASCII Art & Native Dialogs
+**Learning:** ASCII art used for decoration creates a severe accessibility barrier for screen reader users as every character is announced.
+**Action:** Always wrap ASCII art containers with `role="img"` and provide a meaningful `aria-label`.
+
+**Learning:** Native browser `alert()` and `confirm()` block the main thread and break the visual immersion of the application.
+**Action:** Replace blocking alerts with the native HTML `<dialog>` element, which supports `::backdrop` styling for glassmorphism and maintains keyboard accessibility.
+
+## 2024-05-23 - Developer Experience (DX)
+**Learning:** Developers and security auditors frequently need to copy tokens and configs. Select-copy-paste is error-prone.
+**Action:** Always provide a "Copy to Clipboard" button for code blocks, with a fallback for non-secure contexts to ensure reliability (Enterprise Grade).
