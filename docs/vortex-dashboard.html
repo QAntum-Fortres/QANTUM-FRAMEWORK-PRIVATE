@@ -549,10 +549,33 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--secondary);
         }
+
+        /* Glass Modal */
+        dialog { background: transparent; border: none; padding: 0; color: var(--text-primary); margin: auto; max-width: 600px; width: 90%; }
+        dialog::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); }
     </style>
 </head>
 
 <body>
+    <!-- Architecture Modal -->
+    <dialog id="architecture-modal">
+        <div class="stat-card" style="cursor: default; border-color: var(--primary);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;">
+                <h3 style="font-family: 'Space Grotesk'; font-size: 1.5rem; color: var(--accent);">🏗️ System Architecture</h3>
+                <button onclick="closeArchitectureModal()" aria-label="Close modal" style="background:none; border:none; color:var(--text-dim); font-size:1.5rem; cursor:pointer;">×</button>
+            </div>
+            <ul style="list-style: none; margin-bottom: 1.5rem;">
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>VortexHealingNexus:</strong> Orchestrates autonomous healing</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>ApoptosisModule:</strong> Manages programmed death</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>LivenessTokenManager:</strong> Centralized cryptographic secrets</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>SystemOrchestrator:</strong> Coordinates all seven pillars</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>ConsensusProtocol:</strong> Adversarial validation</span></li>
+            </ul>
+            <div style="text-align: center; color: var(--secondary); font-size: 0.9rem; border-top: 1px solid var(--glass-border); padding-top: 1rem;">
+                Total Modules: 243 | Active Healing Strategies: 7
+            </div>
+        </div>
+    </dialog>
     <!-- Particle Background -->
     <div class="particles" id="particles"></div>
 
@@ -833,14 +856,22 @@
         }
 
         function viewArchitecture() {
-            alert('🏗️ System Architecture:\n\n' +
-                '• VortexHealingNexus: Orchestrates autonomous healing\n' +
-                '• ApoptosisModule: Manages programmed death\n' +
-                '• LivenessTokenManager: Centralized cryptographic secrets\n' +
-                '• SystemOrchestrator: Coordinates all seven pillars\n' +
-                '• ConsensusProtocol: Adversarial validation\n\n' +
-                'Total Modules: 243 | Active Healing Strategies: 7');
+            const modal = document.getElementById('architecture-modal');
+            modal.showModal();
         }
+
+        function closeArchitectureModal() {
+            const modal = document.getElementById('architecture-modal');
+            modal.close();
+        }
+
+        // Close when clicking outside
+        document.getElementById('architecture-modal').addEventListener('click', (event) => {
+            const modal = document.getElementById('architecture-modal');
+            if (event.target === modal) {
+                modal.close();
+            }
+        });
 
         function runDiagnostics() {
             const statusText = document.querySelector('.status-text');
