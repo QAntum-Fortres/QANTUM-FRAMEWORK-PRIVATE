@@ -140,42 +140,72 @@
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         .status-text { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
         @media (max-width: 768px) {
-            .ascii-logo { font-size: 0.35rem; } .tagline { font-size: 1.2rem; }
-            .pillars-grid, .stats-grid { grid-template-columns: 1fr; } .status-bar { bottom: 1rem; right: 1rem; }
-        }
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--secondary); }
+            .ascii-logo {
+                font-size: 0.35rem;
+            }
 
-        /* Dialog Styles */
-        dialog {
-            background: transparent; border: none; padding: 0; margin: auto;
-            color: var(--text-primary); max-width: 600px; width: 90%;
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .status-bar {
+                bottom: 1rem;
+                right: 1rem;
+            }
         }
-        dialog::backdrop { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px); }
-        .modal-content {
-            background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
-            border-radius: 24px; padding: 2rem; box-shadow: var(--shadow-glow); animation: fadeIn 0.3s ease-out;
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
         }
-        .modal-title {
-            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; color: var(--accent);
-            margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
         }
-        .modal-list li { margin-bottom: 0.8rem; line-height: 1.6; color: var(--text-secondary); list-style: none; }
-        .modal-list strong { color: var(--primary); font-family: 'JetBrains Mono', monospace; }
-        .modal-footer {
-            margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--glass-border);
-            display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; color: var(--text-dim);
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
         }
-        .close-btn {
-            position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none;
-            color: var(--text-dim); font-size: 1.5rem; cursor: pointer; transition: color 0.3s ease;
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
         }
-        .close-btn:hover { color: var(--danger); }
+
+        /* Glass Modal */
+        dialog { background: transparent; border: none; padding: 0; color: var(--text-primary); margin: auto; max-width: 600px; width: 90%; }
+        dialog::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); }
     </style>
 </head>
 <body>
+    <!-- Architecture Modal -->
+    <dialog id="architecture-modal">
+        <div class="stat-card" style="cursor: default; border-color: var(--primary);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;">
+                <h3 style="font-family: 'Space Grotesk'; font-size: 1.5rem; color: var(--accent);">🏗️ System Architecture</h3>
+                <button onclick="closeArchitectureModal()" aria-label="Close modal" style="background:none; border:none; color:var(--text-dim); font-size:1.5rem; cursor:pointer;">×</button>
+            </div>
+            <ul style="list-style: none; margin-bottom: 1.5rem;">
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>VortexHealingNexus:</strong> Orchestrates autonomous healing</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>ApoptosisModule:</strong> Manages programmed death</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>LivenessTokenManager:</strong> Centralized cryptographic secrets</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>SystemOrchestrator:</strong> Coordinates all seven pillars</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>ConsensusProtocol:</strong> Adversarial validation</span></li>
+            </ul>
+            <div style="text-align: center; color: var(--secondary); font-size: 0.9rem; border-top: 1px solid var(--glass-border); padding-top: 1rem;">
+                Total Modules: 243 | Active Healing Strategies: 7
+            </div>
+        </div>
+    </dialog>
+    <!-- Particle Background -->
     <div class="particles" id="particles"></div>
     <div class="container">
         <div class="hero">
@@ -309,8 +339,22 @@
         }
 
         function viewArchitecture() {
-            document.getElementById('architecture-modal').showModal();
+            const modal = document.getElementById('architecture-modal');
+            modal.showModal();
         }
+
+        function closeArchitectureModal() {
+            const modal = document.getElementById('architecture-modal');
+            modal.close();
+        }
+
+        // Close when clicking outside
+        document.getElementById('architecture-modal').addEventListener('click', (event) => {
+            const modal = document.getElementById('architecture-modal');
+            if (event.target === modal) {
+                modal.close();
+            }
+        });
 
         function runDiagnostics() {
             const statusText = document.querySelector('.status-text');
