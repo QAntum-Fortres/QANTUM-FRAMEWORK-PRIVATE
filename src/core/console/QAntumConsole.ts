@@ -96,16 +96,14 @@ class QAntumAgent {
   /**
    * Запазване на историята
    */
-  private saveConversationHistory(): void {
+  private async saveConversationHistory(): Promise<void> {
     const historyDir = path.join(this.basePath, 'data');
     const historyPath = path.join(historyDir, 'console-history.json');
     
     try {
-      if (!fs.existsSync(historyDir)) {
-        fs.mkdirSync(historyDir, { recursive: true });
-      }
+      await fs.promises.mkdir(historyDir, { recursive: true });
       
-      fs.writeFileSync(historyPath, JSON.stringify({
+      await fs.promises.writeFile(historyPath, JSON.stringify({
         lastSession: this.sessionId,
         lastUpdate: new Date().toISOString(),
         messages: this.conversationHistory.slice(-100), // Пазим последните 100
@@ -143,7 +141,7 @@ class QAntumAgent {
       content: response.response,
       timestamp: new Date(),
     });
-    this.saveConversationHistory();
+    await this.saveConversationHistory();
 
     return response;
   }

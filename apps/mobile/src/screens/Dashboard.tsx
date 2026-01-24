@@ -65,7 +65,7 @@ export default function Dashboard() {
                         key={index}
                         style={styles.healthRow}
                         accessible={true}
-                        accessibilityLabel={`Service ${service.name} is ${service.status === 'up' ? 'Online' : 'Offline'}, latency ${service.latency} milliseconds`}
+                        accessibilityLabel={`${service.name}, status: ${service.status}, latency: ${service.latency} milliseconds`}
                     >
                         <Text style={styles.serviceName}>{service.name}</Text>
                         <Text style={[
@@ -82,7 +82,7 @@ export default function Dashboard() {
             <View
                 style={styles.uptimeContainer}
                 accessible={true}
-                accessibilityLabel={`System Uptime: ${stats?.uptime || 'Loading'}`}
+                accessibilityLabel={`System Uptime: ${stats?.uptime || 'loading'}`}
             >
                 <Text style={styles.uptimeLabel}>Uptime</Text>
                 <Text style={styles.uptimeValue}>{stats?.uptime || 'Loading...'}</Text>
@@ -96,7 +96,6 @@ function StatCard({ title, value, icon }: { title: string; value: string; icon: 
         <View
             style={styles.statCard}
             accessible={true}
-            accessibilityRole="text"
             accessibilityLabel={`${title}: ${value}`}
         >
             <Text style={styles.statIcon}>{icon}</Text>
