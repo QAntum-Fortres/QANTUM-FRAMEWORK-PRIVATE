@@ -57,6 +57,24 @@ def process_payment():
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
 
+@app.route('/api/checkout', methods=['POST'])
+def create_checkout():
+    """
+    Endpoint to create a Hosted Checkout Page.
+    Expected JSON: { "priceId": "price_...", "successUrl": "...", "cancelUrl": "..." }
+    """
+    try:
+        data = request.json
+        price_id = data.get('priceId', 'price_fake_123')
+        success_url = data.get('successUrl', 'http://localhost:5173/success')
+        cancel_url = data.get('cancelUrl', 'http://localhost:5173/cancel')
+        mode = data.get('mode', 'payment')
+
+        result = payment_gw.create_checkout_session(price_id, success_url, cancel_url, mode)
+        return jsonify(result), 200 if result['success'] else 400
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
 if __name__ == "__main__":
     print("[OMNICORE-SCRIBE] Initializing certificate endpoint on port 5050...")
     app.run(host='0.0.0.0', port=5050, debug=False)
