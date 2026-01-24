@@ -5,6 +5,7 @@ import { ReaperAdapter } from './modules/ARMED_REAPER/ReaperAdapter.ts';
 import { VitalityAdapter } from './modules/VITALITY/VitalityAdapter.ts';
 import { OmniGuardAdapter } from './modules/OmniGuardAdapter.ts';
 import { GhostAdapter } from './modules/GhostAdapter.ts';
+import { AutonomousAgent } from './veritas_sdk/Agent.ts';
 import { metaLogic } from '../scripts/3_VITALITY/MisteMind_brain_logic_MetaLogicEngine.ts';
 import * as os from 'os';
 
@@ -80,8 +81,20 @@ async function igniteSingularity() {
         process.exit(1);
     }
 
-    // --- PHASE 5: POST-STABILITY OPS ---
-    Logger.info(">>> STEP 5: SINGULARITY STABLE. ENTERING AUTONOMOUS MODE.");
+    // --- PHASE 5: VERITAS QA FRAMEWORK ACTIVATION ---
+    Logger.info(">>> STEP 5: ACTIVATING VERITAS COGNITIVE QA FRAMEWORK...");
+    try {
+        const veritasAgent = new AutonomousAgent("VERITAS-OMEGA-01");
+        // Running a background diagnostic goal
+        veritasAgent.executeGoal({ description: "Verify that a user can complete a purchase with a 10% discount code." })
+            .then(() => Logger.info("[VERITAS] Initial Diagnostic Goal Accomplished."))
+            .catch(err => Logger.error("[VERITAS] Diagnostic Failed", err));
+    } catch (err) {
+        Logger.warn("[VERITAS] Framework initialization warning (Rust core might be compiling). Continuing...", err);
+    }
+
+    // --- PHASE 6: POST-STABILITY OPS ---
+    Logger.info(">>> STEP 6: SINGULARITY STABLE. ENTERING AUTONOMOUS MODE.");
 
     // Self-Healing Trigger
     setInterval(async () => {

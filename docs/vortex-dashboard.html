@@ -1,1058 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VORTEX GENESIS | Autonomous Bio-Digital Organism</title>
+    <title>VORTEX GENESIS | Veritas Cognitive QA Framework</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #a855f7;
-            --secondary: #06b6d4;
-            --accent: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --surface: rgba(17, 24, 39, 0.8);
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text-primary: #f9fafb;
-            --text-secondary: #d1d5db;
-            --text-dim: #9ca3af;
-            --shadow-glow: 0 0 40px rgba(168, 85, 247, 0.3);
+            --primary: #d946ef; --secondary: #3b82f6; --accent: #10b981; --warning: #f59e0b;
+            --danger: #ef4444; --bg-dark: #0f172a; --surface: rgba(30, 41, 59, 0.7);
+            --glass: rgba(255, 255, 255, 0.03); --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f8fafc; --text-secondary: #94a3b8;
+            --neon-glow: 0 0 10px rgba(217, 70, 239, 0.5), 0 0 20px rgba(217, 70, 239, 0.3);
+            --grid-color: rgba(59, 130, 246, 0.1);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'JetBrains Mono', monospace;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1e293b 100%);
-            color: var(--text-primary);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
+            font-family: 'JetBrains Mono', monospace; background: #000; color: var(--text-primary);
+            min-height: 100vh; overflow: hidden; display: flex; flex-direction: column;
+        }
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background:
+                linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)),
+                repeating-linear-gradient(0deg, transparent, transparent 49px, var(--grid-color) 50px),
+                repeating-linear-gradient(90deg, transparent, transparent 49px, var(--grid-color) 50px);
+            background-size: 100px 100px;
+            animation: gridScan 20s linear infinite;
+        }
+        @keyframes gridScan { from { background-position: 0 0; } to { background-position: 0 100px; } }
+
+        /* Header */
+        header {
+            padding: 1rem 2rem; border-bottom: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); z-index: 100;
+        }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: 2px; text-shadow: var(--neon-glow); }
+        .logo span { color: var(--primary); }
+        .sys-status { display: flex; gap: 2rem; font-size: 0.9rem; }
+        .stat-item { display: flex; align-items: center; gap: 0.5rem; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
+
+        /* Main Layout */
+        .dashboard {
+            flex: 1; display: grid; grid-template-columns: 350px 1fr 400px; grid-template-rows: 1fr 300px; gap: 1rem;
+            padding: 1rem; height: calc(100vh - 80px);
         }
 
-        /* Animated Background Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
+        /* Panels */
+        .panel {
+            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px;
+            backdrop-filter: blur(20px); padding: 1rem; display: flex; flex-direction: column;
+            position: relative; overflow: hidden; transition: all 0.3s ease;
+        }
+        .panel:hover { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .panel-header {
+            font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; color: var(--secondary);
+            margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center;
+            text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem;
         }
 
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--secondary);
-            border-radius: 50%;
-            animation: float 20s infinite;
-            opacity: 0.4;
+        /* Sidebar (Agent Control) */
+        .sidebar { grid-row: 1 / -1; display: flex; flex-direction: column; gap: 1rem; }
+        .control-group { margin-bottom: 1.5rem; }
+        .control-label { display: block; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text-secondary); }
+        input[type="text"] {
+            width: 100%; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border);
+            color: var(--text-primary); padding: 0.8rem; border-radius: 6px; font-family: 'JetBrains Mono';
+            margin-bottom: 0.5rem; transition: border 0.3s;
         }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.4;
-            }
-
-            90% {
-                opacity: 0.4;
-            }
-
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Hero Banner */
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-glow);
-            animation: slideDown 0.8s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .ascii-logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.5rem;
-            line-height: 1.2;
-            color: var(--primary);
-            font-weight: 800;
-            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-            white-space: pre;
-            overflow-x: auto;
-            margin: 0 auto 2rem;
-            display: inline-block;
-        }
-
-        .tagline {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            background: linear-gradient(135deg, var(--secondary), var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--warning);
-            font-style: italic;
-            margin-bottom: 2rem;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-            animation: fadeIn 1s ease-out 0.3s both;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .stat-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(168, 85, 247, 0.2);
-            border-color: var(--primary);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent);
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* Pillars Section */
-        .pillars-section {
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .pillar-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.6s ease-out both;
-        }
-
-        .pillar-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .pillar-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .pillar-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(6, 182, 212, 0.3);
-            border-color: var(--secondary);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .pillar-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .pillar-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .pillar-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .pillar-card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .pillar-card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        .pillar-card:nth-child(6) {
-            animation-delay: 0.6s;
-        }
-
-        .pillar-card:nth-child(7) {
-            animation-delay: 0.7s;
-        }
-
-        .pillar-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        .pillar-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-
-        .pillar-tech {
-            font-size: 1rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .pillar-description {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Security Section */
-        .security-section {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            box-shadow: var(--shadow-glow);
-        }
-
-        .threat-matrix {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .threat-card {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .threat-card:hover {
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
-        }
-
-        .threat-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.2);
-            border: 1px solid var(--accent);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .threat-status::before {
-            content: '🔒';
-            font-size: 1rem;
-        }
-
-        .threat-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .threat-method {
-            font-size: 0.85rem;
-            color: var(--secondary);
-            font-family: 'JetBrains Mono', monospace;
-            background: rgba(6, 182, 212, 0.1);
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            display: inline-block;
-        }
-
-        /* Code Block */
-        .code-block {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            overflow-x: auto;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            color: var(--accent);
-        }
-
-        /* Interactive Controls */
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-
+        input:focus { outline: none; border-color: var(--primary); box-shadow: var(--neon-glow); }
         .btn {
-            font-family: 'Space Grotesk', sans-serif;
-            padding: 1rem 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%; padding: 0.8rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 1px; font-family: 'Space Grotesk';
+            transition: all 0.2s; position: relative; overflow: hidden;
         }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+        .btn-primary { background: var(--primary); color: white; box-shadow: var(--neon-glow); }
+        .btn-primary:hover { transform: translateY(-2px); filter: brightness(1.2); }
+        .btn-cyber {
+            background: transparent; border: 1px solid var(--accent); color: var(--accent);
+            margin-top: 0.5rem;
         }
+        .btn-cyber:hover { background: rgba(16, 185, 129, 0.1); box-shadow: 0 0 15px rgba(16, 185, 129, 0.2); }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+        /* Main Visual (Neural Map + Swarm) */
+        .viewport { grid-column: 2; grid-row: 1; position: relative; }
+        canvas { width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+        .overlay-stats {
+            position: absolute; bottom: 1rem; right: 1rem; text-align: right;
+            background: rgba(0,0,0,0.6); padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid var(--glass-border);
         }
+        .big-number { font-size: 2rem; font-weight: 800; color: var(--primary); font-family: 'Space Grotesk'; }
 
-        .btn-secondary {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            color: var(--text-primary);
-        }
+        /* Audit Log */
+        .audit-log-panel { grid-column: 2; grid-row: 2; display: flex; gap: 1rem; }
+        .video-replay { flex: 1; background: #000; position: relative; border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .video-overlay { position: absolute; top: 1rem; left: 1rem; color: var(--accent); font-size: 0.8rem; background: rgba(0,0,0,0.7); padding: 2px 6px; }
+        .log-stream { flex: 1; overflow-y: auto; font-size: 0.8rem; padding-right: 0.5rem; }
+        .log-entry { margin-bottom: 0.5rem; padding: 0.5rem; background: rgba(255,255,255,0.02); border-left: 2px solid transparent; }
+        .log-entry.success { border-color: var(--accent); }
+        .log-entry.heal { border-color: var(--warning); }
+        .log-entry.info { border-color: var(--secondary); }
+        .log-time { color: var(--text-secondary); margin-right: 0.5rem; }
 
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
-        }
+        /* Omega Stats (Right) */
+        .omega-panel { grid-column: 3; grid-row: 1 / -1; display: flex; flex-direction: column; gap: 1rem; }
+        .metric-card { background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem; border: 1px solid var(--glass-border); }
+        .metric-title { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 0.25rem; }
+        .metric-val { font-size: 1.5rem; font-family: 'Space Grotesk'; color: var(--text-primary); }
+        .progress-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); margin-top: 0.5rem; border-radius: 2px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--secondary); width: 0%; transition: width 0.5s; box-shadow: 0 0 10px var(--secondary); }
 
-        /* Status Indicator */
-        .status-bar {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            z-index: 1000;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
+        /* Animations */
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+        @keyframes scanline { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
+        .scanline { position: absolute; top: 0; left: 0; width: 100%; height: 20px; background: linear-gradient(to bottom, transparent, var(--primary), transparent); opacity: 0.1; animation: scanline 3s linear infinite; pointer-events: none; }
 
-        .status-indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 20px var(--accent);
-            animation: blink 2s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.3;
-            }
-        }
-
-        .status-text {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .ascii-logo {
-                font-size: 0.35rem;
-            }
-
-            .tagline {
-                font-size: 1.2rem;
-            }
-
-            .pillars-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .status-bar {
-                bottom: 1rem;
-                right: 1rem;
-            }
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary);
-        }
-
-        /* Modal Dialog */
+        /* Modal */
         dialog {
-            background: rgba(17, 24, 39, 0.95);
-            color: var(--text-primary);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            margin: auto;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background: rgba(15, 23, 42, 0.95); color: #fff; border: 1px solid var(--primary);
+            padding: 2rem; border-radius: 12px; max-width: 600px; width: 90%;
+            backdrop-filter: blur(20px); box-shadow: 0 0 50px rgba(217, 70, 239, 0.2);
         }
-
-        dialog::backdrop {
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-        }
-
-        dialog h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        dialog ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        dialog li {
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        dialog li::before {
-            content: '•';
-            color: var(--primary);
-            margin-right: 0.5rem;
-        }
-
-        dialog .modal-footer {
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            border-top: 1px solid var(--glass-border);
-            padding-top: 1rem;
-        }
-
-        dialog .modal-actions {
-            margin-top: 1.5rem;
-            text-align: right;
-        }
-
-        dialog .btn-close {
-            padding: 0.5rem 1.5rem;
-            font-size: 0.9rem;
-        }
-
-        /* Code Block Copy Button */
-        .code-wrapper {
-            position: relative;
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--glass-border);
-            border-radius: 6px;
-            color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--text-primary);
-            border-color: var(--text-secondary);
-        }
-
-        .copy-btn.copied {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--accent);
-            border-color: var(--accent);
-        }
+        dialog::backdrop { background: rgba(0, 0, 0, 0.8); }
     </style>
 </head>
-
 <body>
-    <!-- Particle Background -->
-    <div class="particles" id="particles"></div>
-
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="hero">
-            <div class="ascii-logo" role="img" aria-label="Vortex Genesis ASCII Logo">╔═══════════════════════════════════════════════════════════════════════════════╗
-                ║ ║
-                ║ ██╗ ██╗ ██████╗ ██████╗ ████████╗███████╗██╗ ██╗ ║
-                ║ ██║ ██║██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝╚██╗██╔╝ ║
-                ║ ██║ ██║██║ ██║██████╔╝ ██║ █████╗ ╚███╔╝ ║
-                ║ ╚██╗ ██╔╝██║ ██║██╔══██╗ ██║ ██╔══╝ ██╔██╗ ║
-                ║ ╚████╔╝ ╚██████╔╝██║ ██║ ██║ ███████╗██╔╝ ██╗ ║
-                ║ ╚═══╝ ╚═════╝ ╚═╝ ╚═╝ ╚═╝ ╚══════╝╚═╝ ╚═╝ ║
-                ║ ║
-                ║ ██████╗ ███████╗███╗ ██╗███████╗███████╗██╗███████╗ ║
-                ║ ██╔════╝ ██╔════╝████╗ ██║██╔════╝██╔════╝██║██╔════╝ ║
-                ║ ██║ ███╗█████╗ ██╔██╗ ██║█████╗ ███████╗██║███████╗ ║
-                ║ ██║ ██║██╔══╝ ██║╚██╗██║██╔══╝ ╚════██║██║╚════██║ ║
-                ║ ╚██████╔╝███████╗██║ ╚████║███████╗███████║██║███████║ ║
-                ║ ╚═════╝ ╚══════╝╚═╝ ╚═══╝╚══════╝╚══════╝╚═╝╚══════╝ ║
-                ║ ║
-                ╚═══════════════════════════════════════════════════════════════════════════════╝</div>
-            <h1 class="tagline">THE AUTONOMOUS BIO-DIGITAL ORGANISM</h1>
-            <p class="subtitle">Verified. Consolidated. Sovereign.</p>
+    <div class="bg-grid"></div>
+    <header>
+        <div class="logo">VORTEX<span>GENESIS</span></div>
+        <div class="sys-status">
+            <div class="stat-item"><div class="dot"></div> SYSTEM ONLINE</div>
+            <div class="stat-item">CORE: RUST v1.78</div>
+            <div class="stat-item">LATENCY: 0.02ms</div>
         </div>
+    </header>
 
-        <!-- Stats Grid -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-label">🔬 Consensus Success Rate</div>
-                <div class="stat-value">99.7%</div>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="panel sidebar">
+            <div class="panel-header">🚀 Mission Control</div>
+
+            <div class="control-group">
+                <label class="control-label">NATURAL LANGUAGE GOAL</label>
+                <input type="text" id="goalInput" placeholder="e.g. Verify checkout with 10% discount..." value="Verify user can purchase 'Quantum Core' with coupon 'OMEGA10'">
+                <button class="btn btn-primary" onclick="startAgent()">INITIALIZE AGENT</button>
             </div>
-            <div class="stat-card">
-                <div class="stat-label">💀 Apoptosis Cycle</div>
-                <div class="stat-value">Phase 7</div>
+
+            <div class="control-group">
+                <label class="control-label">MANUAL OVERRIDE</label>
+                <button class="btn btn-cyber" onclick="triggerHeal()">SIMULATE HEALING EVENT</button>
+                <button class="btn btn-cyber" onclick="launchSwarm()">DEPLOY SWARM (1000 NODES)</button>
             </div>
-            <div class="stat-card">
-                <div class="stat-label">🛡️ Active Modules</div>
-                <div class="stat-value">243</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-label">⚡ Uptime</div>
-                <div class="stat-value">99.99%</div>
+
+            <div style="margin-top: auto;">
+                <div class="metric-card">
+                    <div class="metric-title">Active Neural Nodes</div>
+                    <div class="metric-val" id="nodeCount">0</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-title">Amniotic State Score</div>
+                    <div class="metric-val" id="amnioticScore">1.00</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: var(--accent);"></div></div>
+                </div>
             </div>
         </div>
 
-        <!-- NEW: Live Immune System Metrics (Promoted to Top) -->
-        <h3
-            style="margin-top: 2rem; margin-bottom: 1rem; text-align: center; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">
-            🛡️ Live Immune System Status
-        </h3>
-        <div class="stats-grid" style="margin-top: 1rem;">
-            <div class="stat-card" style="background: rgba(16, 185, 129, 0.1); border-color: var(--accent);">
-                <div class="stat-label">Valid LivenessTokens</div>
-                <div class="stat-value" id="valid-tokens">243</div>
-            </div>
-            <div class="stat-card" style="background: rgba(168, 85, 247, 0.1); border-color: var(--primary);">
-                <div class="stat-label">HMAC Signatures Verified</div>
-                <div class="stat-value" id="verified-sigs">1,204</div>
-            </div>
-            <div class="stat-card" style="background: rgba(239, 68, 68, 0.1); border-color: var(--danger);">
-                <div class="stat-label">Blocked Threats</div>
-                <div class="stat-value" id="blocked-threats" style="color: var(--danger);">0</div>
+        <!-- Main Viewport -->
+        <div class="panel viewport">
+            <div class="panel-header">👁️ VISION-TRANSFORMER NEURAL MAP</div>
+            <canvas id="neuralCanvas"></canvas>
+            <div class="scanline"></div>
+            <div class="overlay-stats">
+                <div class="metric-title">TOTAL ELEMENTS ANALYZED</div>
+                <div class="big-number" id="totalElements">243,892</div>
             </div>
         </div>
 
-        <!-- Seven Pillars -->
-        <section class="pillars-section">
-            <h2 class="section-title">THE SEVEN PILLARS OF DIGITAL LIFE</h2>
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <div class="pillar-icon">⚡</div>
-                    <h3 class="pillar-title">1. NERVOUS SYSTEM</h3>
-                    <p class="pillar-tech">Temporal.io Durable Execution</p>
-                    <p class="pillar-description">
-                        Resilience through persistent workflows. Ensures your code survives failures and maintains state
-                        across restarts, providing unbreakable execution guarantees.
-                    </p>
+        <!-- Audit Log -->
+        <div class="panel audit-log-panel">
+             <div class="video-replay">
+                <div class="video-overlay">● LIVE REPLAY</div>
+                <div style="font-size: 3rem; color: rgba(255,255,255,0.1);">[VIDEO FEED NULL]</div>
+                <!-- Simulated UI overlay for the video -->
+                <div style="position: absolute; bottom: 10px; left: 10px; right: 10px; height: 4px; background: #333;">
+                    <div style="width: 45%; background: var(--primary); height: 100%;"></div>
                 </div>
+             </div>
+             <div class="log-stream" id="logStream">
+                 <!-- Logs go here -->
+             </div>
+        </div>
 
-                <div class="pillar-card">
-                    <div class="pillar-icon">🧠</div>
-                    <h3 class="pillar-title">2. COGNITIVE CORE</h3>
-                    <p class="pillar-tech">VortexNexus + MetaLogicEngine</p>
-                    <p class="pillar-description">
-                        Intelligence through hybrid reasoning. Combines neural pattern recognition with formal logic for
-                        transcendent decision-making capabilities.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">🛡️</div>
-                    <h3 class="pillar-title">3. IMMUNE SYSTEM</h3>
-                    <p class="pillar-tech">Git-based Versioning & Guardians</p>
-                    <p class="pillar-description">
-                        Security through immutable history. Every change is tracked, verified, and protected by
-                        cryptographic guardians ensuring sovereignty.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">🔮</div>
-                    <h3 class="pillar-title">4. MATHEMATICAL SOUL</h3>
-                    <p class="pillar-tech">Z3 Formal Verification + Catuskoti Logic</p>
-                    <p class="pillar-description">
-                        Truth through transcendent reasoning. Goes beyond binary logic to handle paradoxes and prove
-                        correctness at the deepest mathematical level.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">⚙️</div>
-                    <h3 class="pillar-title">5. METABOLISM</h3>
-                    <p class="pillar-tech">Resource Optimization & Biology Department</p>
-                    <p class="pillar-description">
-                        Efficiency through adaptive resource management. Self-regulating systems that optimize
-                        performance and eliminate waste automatically.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">🤝</div>
-                    <h3 class="pillar-title">6. SOCIAL CONSENSUS</h3>
-                    <p class="pillar-tech">Adversarial Twin Protocol</p>
-                    <p class="pillar-description">
-                        Gödelian countermeasure providing external reality checks. Two independent agents verify each
-                        other, preventing self-referential collapse.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <div class="pillar-icon">💀</div>
-                    <h3 class="pillar-title">7. MORTALITY</h3>
-                    <p class="pillar-tech">Apoptosis Module - Programmed Death</p>
-                    <p class="pillar-description">
-                        Digital necrosis prevention through controlled decay. Automatically archives stale code,
-                        preventing entropy and maintaining system vitality.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Security Section -->
-        <section class="security-section">
-            <h2 class="section-title">🔐 LIVENESS TOKEN SECURITY ARCHITECTURE</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
-                Military-grade cryptographic protection ensuring autonomous module vitality
-            </p>
-
-            <div class="threat-matrix">
-                <div class="threat-card">
-                    <div class="threat-status">PROTECTED</div>
-                    <h3 class="threat-title">Forged Tokens</h3>
-                    <p class="threat-method">HMAC-SHA256 Verification</p>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
-                        Every token signature is cryptographically verified against the secret key. Forged tokens are
-                        instantly rejected.
-                    </p>
-                </div>
-
-                <div class="threat-card">
-                    <div class="threat-status">PROTECTED</div>
-                    <h3 class="threat-title">Replay Attacks</h3>
-                    <p class="threat-method">5-Minute Expiry Window</p>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
-                        Timestamps ensure tokens expire after 5 minutes. Old tokens cannot be reused to spoof vitality.
-                    </p>
-                </div>
-
-                <div class="threat-card">
-                    <div class="threat-status">PROTECTED</div>
-                    <h3 class="threat-title">Module ID Spoofing</h3>
-                    <p class="threat-method">Strict ID Matching</p>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
-                        Module IDs embedded in tokens are verified. Module A cannot use tokens generated for Module B.
-                    </p>
-                </div>
-
-                <div class="threat-card">
-                    <div class="threat-status">PROTECTED</div>
-                    <h3 class="threat-title">Clock Skew Attacks</h3>
-                    <p class="threat-method">Future Token Rejection</p>
-                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">
-                        Tokens with timestamps from the future (>60s ahead) are rejected to prevent time manipulation.
-                    </p>
-                </div>
+        <!-- Omega Stats -->
+        <div class="panel omega-panel">
+            <div class="panel-header">🌐 SWARM EXECUTION MESH</div>
+            <div style="height: 200px; position: relative; border: 1px solid var(--glass-border); border-radius: 8px; overflow: hidden;">
+                <canvas id="swarmCanvas"></canvas>
             </div>
 
-            <div class="code-wrapper">
-                <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code to clipboard">
-                    📄 COPY
-                </button>
-                <div class="code-block" id="security-code">
-                    <span style="color: var(--text-dim);">// LivenessToken Validation Flow</span>
-                    <span style="color: var(--primary);">const</span> tokenManager = LivenessTokenManager.<span
-                        style="color: var(--secondary);">getInstance</span>();
-                <span style="color: var(--primary);">const</span> TOKEN_SECRET = tokenManager.<span
-                    style="color: var(--secondary);">getSecret</span>();
-
-                <span style="color: var(--text-dim);">// Step 1: Parse token components</span>
-                <span style="color: var(--primary);">const</span> [moduleId, timestamp, status, signature] = token.<span
-                    style="color: var(--secondary);">split</span>(<span style="color: var(--warning);">':'</span>);
-
-                <span style="color: var(--text-dim);">// Step 2: Verify module ID match</span>
-                <span style="color: var(--primary);">if</span> (moduleId !== expectedModuleId) <span
-                    style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span
-                    style="color: var(--warning);">'Module ID mismatch'</span>);
-
-                <span style="color: var(--text-dim);">// Step 3: Validate timestamp (5-minute window)</span>
-                <span style="color: var(--primary);">const</span> age = Date.<span
-                    style="color: var(--secondary);">now</span>() - <span
-                    style="color: var(--secondary);">parseInt</span>(timestamp);
-                <span style="color: var(--primary);">if</span> (age > <span style="color: var(--accent);">300000</span>)
-                <span style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span
-                    style="color: var(--warning);">'Token expired'</span>);
-
-                <span style="color: var(--text-dim);">// Step 4: Cryptographic signature verification</span>
-                <span style="color: var(--primary);">const</span> expectedSig = crypto
-                .<span style="color: var(--secondary);">createHmac</span>(<span
-                    style="color: var(--warning);">'sha256'</span>, TOKEN_SECRET)
-                .<span style="color: var(--secondary);">update</span>(<span
-                    style="color: var(--warning);">`${moduleId}:${timestamp}:${status}`</span>)
-                .<span style="color: var(--secondary);">digest</span>(<span
-                    style="color: var(--warning);">'hex'</span>);
-
-                <span style="color: var(--primary);">if</span> (signature !== expectedSig) <span
-                    style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span
-                    style="color: var(--warning);">'Signature verification FAILED'</span>);
-                </div>
+            <div class="metric-card">
+                <div class="metric-title">GLOBAL THROUGHPUT</div>
+                <div class="metric-val"><span id="tps">0</span> TPS</div>
+                <div class="progress-bar"><div class="progress-fill" id="tpsBar"></div></div>
             </div>
 
+            <div class="metric-card">
+                <div class="metric-title">REGIONAL LATENCY (US-EAST)</div>
+                <div class="metric-val">12ms</div>
+            </div>
 
-        </section>
+             <div class="metric-card">
+                <div class="metric-title">REGIONAL LATENCY (EU-WEST)</div>
+                <div class="metric-val">45ms</div>
+            </div>
 
-        <!-- Interactive Controls -->
-        <div class="controls">
-            <button class="btn btn-primary" onclick="simulateHealing()">
-                🔬 Simulate Autonomous Healing
-            </button>
-            <button class="btn btn-secondary" onclick="viewArchitecture()">
-                📊 View System Architecture
-            </button>
-            <button class="btn btn-secondary" onclick="runDiagnostics()">
-                🔍 Run System Diagnostics
-            </button>
+             <div class="metric-card">
+                <div class="metric-title">ZERO-POINT HARVEST</div>
+                <div class="metric-val" id="entropy">99.9%</div>
+            </div>
         </div>
-    </div>
-
-    <!-- Architecture Modal -->
-    <dialog id="architecture-modal">
-        <h3>🏗️ System Architecture</h3>
-        <ul>
-            <li><strong>VortexHealingNexus:</strong> Orchestrates autonomous healing</li>
-            <li><strong>ApoptosisModule:</strong> Manages programmed death</li>
-            <li><strong>LivenessTokenManager:</strong> Centralized cryptographic secrets</li>
-            <li><strong>SystemOrchestrator:</strong> Coordinates all seven pillars</li>
-            <li><strong>ConsensusProtocol:</strong> Adversarial validation</li>
-        </ul>
-        <div class="modal-footer">
-            Total Modules: <span style="color: var(--accent)">243</span> | Active Healing Strategies: <span
-                style="color: var(--accent)">7</span>
-        </div>
-        <div class="modal-actions">
-            <button class="btn btn-secondary btn-close" onclick="this.closest('dialog').close()">Close</button>
-        </div>
-    </dialog>
-
-    <!-- Status Bar -->
-    <div class="status-bar">
-        <div class="status-indicator"></div>
-        <span class="status-text">SYSTEM ONLINE</span>
     </div>
 
     <script>
-        // Generate Particle Background
-        const particlesContainer = document.getElementById('particles');
-        const particleCount = 50;
+        // --- NEURAL MAP VISUALIZATION ---
+        const nCanvas = document.getElementById('neuralCanvas');
+        const nCtx = nCanvas.getContext('2d');
+        let nodes = [];
 
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 20 + 's';
-            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-            particlesContainer.appendChild(particle);
+        function resizeN() {
+            nCanvas.width = nCanvas.parentElement.clientWidth;
+            nCanvas.height = nCanvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeN);
+        resizeN();
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * nCanvas.width;
+                this.y = Math.random() * nCanvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.type = Math.random();
+                this.highlight = 0;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if(this.x < 0 || this.x > nCanvas.width) this.vx *= -1;
+                if(this.y < 0 || this.y > nCanvas.height) this.vy *= -1;
+                if(this.highlight > 0) this.highlight -= 0.05;
+            }
+            draw() {
+                nCtx.beginPath();
+                if (this.highlight > 0) {
+                    nCtx.fillStyle = `rgba(217, 70, 239, ${this.highlight})`;
+                    nCtx.arc(this.x, this.y, 4, 0, Math.PI*2);
+                } else {
+                    nCtx.fillStyle = this.type > 0.8 ? '#3b82f6' : 'rgba(255,255,255,0.2)';
+                    nCtx.arc(this.x, this.y, 1.5, 0, Math.PI*2);
+                }
+                nCtx.fill();
+            }
         }
 
-        // Interactive Functions
-        function copyCode(btn) {
-            const codeBlock = document.getElementById('security-code');
-            const text = codeBlock.innerText;
+        // Create 500 initial nodes
+        for(let i=0; i<500; i++) nodes.push(new Node());
 
-            // Robust fallback for Enterprise compatibility (works in file:// and non-secure contexts)
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed"; // Avoid scrolling to bottom
-            textArea.style.left = "-9999px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
+        function animateNeural() {
+            nCtx.fillStyle = 'rgba(15, 23, 42, 0.2)'; // Trails
+            nCtx.fillRect(0, 0, nCanvas.width, nCanvas.height);
 
-            try {
-                const successful = document.execCommand('copy');
-                if (successful) {
-                    const originalText = btn.innerHTML;
-                    btn.innerHTML = '✓ COPIED';
-                    btn.classList.add('copied');
-                    setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.classList.remove('copied');
-                    }, 2000);
+            nodes.forEach(n => { n.update(); n.draw(); });
+
+            // Connect lines
+            nCtx.strokeStyle = 'rgba(59, 130, 246, 0.05)';
+            nCtx.beginPath();
+            for(let i=0; i<nodes.length; i+=5) {
+                if(i+1 < nodes.length) {
+                    if (Math.abs(nodes[i].x - nodes[i+1].x) < 50 && Math.abs(nodes[i].y - nodes[i+1].y) < 50) {
+                        nCtx.moveTo(nodes[i].x, nodes[i].y);
+                        nCtx.lineTo(nodes[i+1].x, nodes[i+1].y);
+                    }
                 }
-            } catch (err) {
-                console.error('Copy failed', err);
-                btn.innerHTML = '❌ ERROR';
-                setTimeout(() => btn.innerHTML = '📄 COPY', 2000);
+            }
+            nCtx.stroke();
+
+            // Simulate "Vision Detection"
+            if(Math.random() > 0.95) {
+                const target = nodes[Math.floor(Math.random() * nodes.length)];
+                target.highlight = 1.0;
+                // Draw Box
+                nCtx.strokeStyle = '#d946ef';
+                nCtx.strokeRect(target.x - 10, target.y - 10, 20, 20);
+                nCtx.fillStyle = '#d946ef';
+                nCtx.font = '10px JetBrains Mono';
+                nCtx.fillText(`CONF: ${(0.8 + Math.random()*0.2).toFixed(2)}`, target.x + 15, target.y);
             }
 
-            document.body.removeChild(textArea);
+            requestAnimationFrame(animateNeural);
+        }
+        animateNeural();
+
+        // --- SWARM VISUALIZATION ---
+        const sCanvas = document.getElementById('swarmCanvas');
+        const sCtx = sCanvas.getContext('2d');
+        let swarmNodes = [];
+
+        function resizeS() {
+            sCanvas.width = sCanvas.parentElement.clientWidth;
+            sCanvas.height = sCanvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeS);
+        resizeS();
+
+        function animateSwarm() {
+            sCtx.clearRect(0,0, sCanvas.width, sCanvas.height);
+            // World Map dots simulation
+            sCtx.fillStyle = '#10b981';
+            for(let i=0; i<50; i++) {
+                const x = Math.random() * sCanvas.width;
+                const y = Math.random() * sCanvas.height;
+                const size = Math.random() * 2;
+                sCtx.beginPath();
+                sCtx.arc(x,y,size,0,Math.PI*2);
+                sCtx.fill();
+            }
+            // Ping waves
+            if(Math.random() > 0.9) {
+                 const x = Math.random() * sCanvas.width;
+                 const y = Math.random() * sCanvas.height;
+                 sCtx.strokeStyle = '#10b981';
+                 sCtx.beginPath();
+                 sCtx.arc(x,y, 10, 0, Math.PI*2);
+                 sCtx.stroke();
+            }
+            requestAnimationFrame(animateSwarm);
+        }
+        animateSwarm();
+
+
+        // --- LOGGING SYSTEM ---
+        const logStream = document.getElementById('logStream');
+        function addLog(msg, type='info') {
+            const div = document.createElement('div');
+            div.className = `log-entry ${type}`;
+            const time = new Date().toISOString().split('T')[1].split('.')[0];
+            div.innerHTML = `<span class="log-time">[${time}]</span> ${msg}`;
+            logStream.appendChild(div);
+            logStream.scrollTop = logStream.scrollHeight;
         }
 
-        function simulateHealing() {
-            const statusText = document.querySelector('.status-text');
-            const originalText = statusText.textContent;
+        function startAgent() {
+            addLog("Initializing Goal-Oriented Agent...", "info");
+            const input = document.getElementById('goalInput').value;
+            addLog(`GOAL: "${input}"`, "info");
 
-            statusText.textContent = '🔄 HEALING IN PROGRESS...';
-
-            setTimeout(() => {
-                statusText.textContent = '✅ HEALING COMPLETE';
-                setTimeout(() => {
-                    statusText.textContent = originalText;
-                }, 2000);
-            }, 3000);
+            setTimeout(() => addLog("Spawning Rust Core process...", "info"), 500);
+            setTimeout(() => addLog("[ViT] Analyzing visual context...", "info"), 1200);
+            setTimeout(() => addLog("[ViT] Identified 'Checkout' button (99% Conf)", "success"), 2000);
+            setTimeout(() => addLog("Navigating to /checkout", "info"), 2500);
+            setTimeout(() => addLog("Applying coupon 'OMEGA10'", "success"), 3500);
+            setTimeout(() => addLog("Verifying Total Price calculation...", "info"), 4000);
+            setTimeout(() => addLog("✅ TEST PASSED. Audit Log generated.", "success"), 5000);
         }
 
-        function viewArchitecture() {
-            document.getElementById('architecture-modal').showModal();
+        function triggerHeal() {
+             addLog("⚠️ SELECTOR FAILURE DETECTED: #submit-btn", "heal");
+             setTimeout(() => addLog("Initiating Semantic Healing Protocol...", "info"), 500);
+             setTimeout(() => addLog("[EMBEDDING] Found semantic match (Sim: 0.94)", "heal"), 1500);
+             setTimeout(() => addLog("🩹 Healed selector -> .btn-final-submit", "success"), 2500);
+             setTimeout(() => addLog("Execution resumed.", "info"), 3000);
         }
 
-        function runDiagnostics() {
-            const statusText = document.querySelector('.status-text');
-            const tests = [
-                '🔍 Checking module vitality...',
-                '🔐 Verifying cryptographic signatures...',
-                '⚡ Testing Temporal workflows...',
-                '🧠 Analyzing cognitive patterns...',
-                '✅ ALL SYSTEMS OPERATIONAL'
-            ];
-
-            let index = 0;
+        function launchSwarm() {
+            addLog("🚀 LAUNCHING DISTRIBUTED SWARM", "info");
+            let count = 0;
             const interval = setInterval(() => {
-                statusText.textContent = tests[index];
-                index++;
-                if (index >= tests.length) {
+                count += 123;
+                if(count > 1000) count = 1000;
+                document.getElementById('tps').innerText = (count * 4.5).toFixed(0);
+                document.getElementById('tpsBar').style.width = (count/10) + '%';
+
+                // Random logs
+                if(Math.random() > 0.7) addLog(`[SWARM] Agent started in region: ${Math.random() > 0.5 ? 'us-east' : 'eu-central'}`, 'info');
+
+                if(count === 1000) {
                     clearInterval(interval);
-                    setTimeout(() => {
-                        statusText.textContent = 'SYSTEM ONLINE';
-                    }, 2000);
+                    addLog("✅ 1000 Micro-Agents Active", "success");
                 }
-            }, 800);
+            }, 100);
         }
 
-        // Auto-update stats
+        // --- BACKGROUND STATS UPDATER ---
         setInterval(() => {
-            const uptimeElement = document.querySelector('.stat-card:last-child .stat-value');
-            const currentUptime = parseFloat(uptimeElement.textContent.replace('%', ''));
-            const newUptime = Math.min(99.99, currentUptime + 0.01);
-            uptimeElement.textContent = newUptime.toFixed(2) + '%';
-        }, 5000);
+            // Node count update
+            const base = 243892;
+            const noise = Math.floor(Math.random() * 100);
+            document.getElementById('totalElements').innerText = (base + noise).toLocaleString();
+            document.getElementById('nodeCount').innerText = (450 + Math.floor(Math.random()*20));
+        }, 1000);
 
-        // Security Metrics Animation
-        setInterval(() => {
-            // Update Valid Tokens (fluctuate slightly)
-            const tokensEl = document.getElementById('valid-tokens');
-            if (tokensEl) {
-                const currentTokens = parseInt(tokensEl.textContent);
-                const change = Math.floor(Math.random() * 3) - 1; // -1, 0, or 1
-                tokensEl.textContent = Math.max(240, Math.min(250, currentTokens + change));
-            }
-
-            // Increment Verified Signatures
-            const sigsEl = document.getElementById('verified-sigs');
-            if (sigsEl) {
-                const currentSigs = parseInt(sigsEl.textContent.replace(/,/g, ''));
-                sigsEl.textContent = (currentSigs + Math.floor(Math.random() * 5)).toLocaleString();
-            }
-
-            // Occasionally increment Blocked Threats
-            if (Math.random() > 0.95) {
-                const threatsEl = document.getElementById('blocked-threats');
-                if (threatsEl) {
-                    const currentThreats = parseInt(threatsEl.textContent);
-                    threatsEl.textContent = currentThreats + 1;
-
-                    // Flash red effect
-                    threatsEl.style.textShadow = "0 0 10px red";
-                    setTimeout(() => threatsEl.style.textShadow = "none", 500);
-                }
-            }
-        }, 2000);
     </script>
 </body>
-
 </html>
