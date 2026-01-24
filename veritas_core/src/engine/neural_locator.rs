@@ -26,6 +26,7 @@ pub struct VisionResult {
 
 pub struct NeuralLocator {
     // In a real implementation, this would hold the loaded ONNX/PyTorch model
+    #[allow(dead_code)]
     model_loaded: bool,
 }
 
