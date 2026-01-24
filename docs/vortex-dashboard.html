@@ -747,6 +747,31 @@
             </div>
         </section>
 
+        <!-- NEW: OMEGA R&D (2125) -->
+        <section class="pillars-section" style="border: 1px solid var(--accent);">
+            <h2 class="section-title">🔮 OMEGA PROTOCOL (YEAR 2125)</h2>
+            <div class="stats-grid">
+                <div class="stat-card" style="border-color: #ec4899;">
+                    <div class="stat-label">Vacuum Flux (VEI)</div>
+                    <div class="stat-value" id="vacuum-flux" style="font-size: 1.5rem; color: #ec4899;">0.00 TW</div>
+                </div>
+                <div class="stat-card" style="border-color: #8b5cf6;">
+                    <div class="stat-label">Reality Integrity</div>
+                    <div class="stat-value" style="font-size: 1.5rem; color: #8b5cf6;">100.00%</div>
+                </div>
+                <div class="stat-card" style="border-color: #f59e0b;">
+                    <div class="stat-label">Noetic Link</div>
+                    <div class="stat-value" style="font-size: 1.5rem; color: #f59e0b;">CONNECTED</div>
+                </div>
+            </div>
+
+            <div style="font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--text-dim); margin-top: 1rem;">
+                > SPATIAL FOLDER: <span style="color: var(--accent);">READY</span><br>
+                > PRESCIENT LATTICE: <span style="color: var(--accent);">ANTICIPATING</span><br>
+                > ONTOLOGY ANCHOR: <span style="color: var(--accent);">STABLE</span>
+            </div>
+        </section>
+
         <!-- NEW: Enterprise Governance Section -->
         <section class="pillars-section">
             <h2 class="section-title">🏛️ ENTERPRISE GOVERNANCE & COMPLIANCE</h2>
@@ -1101,6 +1126,15 @@
             setTimeout(() => requestAnimationFrame(animateSwarm), 150);
         }
         animateSwarm();
+
+        // OMEGA ANIMATION
+        setInterval(() => {
+            const fluxEl = document.getElementById('vacuum-flux');
+            if (fluxEl) {
+                const flux = (Math.random() * 5000 + 4000).toFixed(2);
+                fluxEl.innerText = flux + " TW";
+            }
+        }, 100);
 
         // LOGS
         const logs = document.getElementById('audit-log');
