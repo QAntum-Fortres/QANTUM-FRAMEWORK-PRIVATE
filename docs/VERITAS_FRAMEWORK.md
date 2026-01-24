@@ -1,47 +1,38 @@
-# VERITAS COGNITIVE QA FRAMEWORK (v1.0)
+# Veritas Cognitive QA Framework (v1.0)
 
 ## Overview
-Veritas is a Post-Scriptum QA Framework designed to render Selenium, Cypress, and Playwright obsolete. It utilizes a biological metaphor for its architecture, featuring "Eyes" (Vision), "Brain" (Agents), and "Immune System" (Healing).
+Veritas is a "Post-Scriptum" QA framework designed to render legacy tools like Selenium, Cypress, and Playwright obsolete. It employs a **Zero-Wait Architecture**, **Vision-Based Neural Locators**, and **Goal-Oriented Autonomous Agents**.
 
 ## Core Architecture
 
 ### 1. Vision-Based Interface (The Eyes)
-Veritas does not rely on the DOM tree (IDs, XPaths) as a primary source. Instead, it uses a **Vision-Transformer (ViT) Layer** to analyze screenshots in real-time.
--   **Neural Locator**: Identifies elements based on visual intent (e.g., "Buy Button", "Checkout Form") rather than HTML attributes.
--   **Tech**: Rust-based inference engine.
+Veritas does not rely on fragile DOM selectors (IDs, XPaths, Classes). Instead, it uses a simulated **Vision-Transformer (ViT)** layer (`NeuralLocator`) to analyze screenshots in real-time.
+- **Intent-Based Location:** You ask to find "Buy Button", and the ViT finds it based on visual features (shape, color, icon, context), just like a human.
+- **Robustness:** UI refactors that change HTML structure but keep visual appearance do not break tests.
 
 ### 2. Semantic Healing (The Immune System)
-Veritas possesses a self-healing capability. If a button's ID changes, the framework uses **Semantic Embedding Mapping**.
--   **Process**: It compares the visual embedding of the missing element with current elements on the screen.
--   **Result**: Automatic recovery and update of the internal "Neural Map".
+When a selector *does* fail (e.g., in legacy mode), the **Semantic Healer** kicks in.
+- **Embedding Comparison:** It compares the vector embedding of the missing element with current elements on the screen.
+- **Auto-Recovery:** If a sufficiently similar element is found (e.g., `id="submit-v2"` instead of `id="submit"`), the test continues, and the "Neural Map" is updated.
 
-### 3. Autonomous Exploratory Agents (The Brain)
-Tests are not static scripts. They are **Goal-Oriented Agents**.
--   **Input**: Natural language goals (e.g., "Verify purchase with 10% discount").
--   **Behavior**: Agents navigate, explore, and generate assertions autonomously based on the observed state.
+### 3. Goal-Oriented Agents (The Brain)
+Tests are no longer static scripts. They are goals.
+- **Input:** "Verify that a user can complete a purchase with a 10% discount code."
+- **Execution:** The agent autonomously navigates, identifies fields (Checkout, Coupon), inputs data, and generates assertions based on the state change (Price drop).
 
 ### 4. Zero-Wait Architecture (The Omega Layer)
-Veritas eliminates explicit `wait()` or `sleep()` calls.
--   **State-Change Observer**: Hooks into the browser's rendering engine and network stack.
--   **Amniotic State**: The framework acts only when the UI is mathematically stable.
+Veritas hooks directly into the browser's rendering engine and network stack via the **StateChangeObserver**.
+- **No `wait()`:** The framework only acts when the "Amniotic State" (Visual Stability + Network Idle) is achieved.
+- **Faster Execution:** Eliminates arbitrary sleep times and flaky `waitFor` loops.
 
 ### 5. Distributed Swarm Execution
-Veritas supports parallel execution via a **Headless Rust-based Container Mesh**.
--   **Scale**: Capable of spinning up 1000 micro-agents.
--   **Simulation**: Tests across different regions and network latencies (3G, 5G, Fiber).
+The framework allows spinning up thousands of micro-agents in a headless Rust-based container mesh (`DistributedSwarm`).
+- **Global Testing:** Agents can be deployed to different regions (simulated) to test latency and localization.
 
-## Singularity Audit Log
-The output is not a green/red report but a video replay with AI-annotated logic:
--   "Clicked here because I recognized the payment pattern."
--   "Verified total price using OBI logic."
+## Tech Stack
+- **Core:** Rust (`veritas_core`) - High performance, memory safety.
+- **SDK:** TypeScript (`veritas-sdk`) - Developer-friendly API.
+- **Protocol:** JSON-RPC over Standard I/O (SecureCommand).
 
-## Getting Started
-The core is written in Rust (`veritas_core`).
-Build and run:
-```bash
-cd veritas_core
-cargo build
-cargo run
-```
-
-Send JSON commands via Stdin to interact with the engine.
+## Usage
+See `SDK_REFERENCE.md` for API details.
