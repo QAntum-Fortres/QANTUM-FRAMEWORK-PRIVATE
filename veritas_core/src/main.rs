@@ -1,5 +1,6 @@
 mod engine;
 mod enterprise;
+mod omega;
 
 use std::io::{self, BufRead};
 use std::collections::HashSet;
@@ -11,6 +12,9 @@ use engine::observer::{StateChangeObserver, ObserverRequest};
 use engine::swarm::{DistributedSwarm, SwarmRequest};
 use enterprise::security::{RBAC, AuditLogger, UserContext, Role};
 use enterprise::compliance::{GDPRGuard, ComplianceMonitor};
+use omega::physics::{SpatialFolder, ZeroPointHarvester};
+use omega::psionics::{NoeticLayer, PrescientLattice};
+use omega::ontology::RealityAnchor;
 
 #[derive(Serialize, Deserialize, Debug)]
 struct SecureCommand {
@@ -27,7 +31,18 @@ enum Command {
     Goal(GoalRequest),
     Observe(ObserverRequest),
     Swarm(SwarmRequest),
+    Omega(OmegaRequest),
     Ping,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(tag = "type")]
+enum OmegaRequest {
+    Fold { coords: [f64; 11] },
+    InvertEntropy,
+    TransmitQualia { concept: String },
+    Anticipate { subject_id: String },
+    VerifyReality { entity_id: String },
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -49,6 +64,13 @@ fn main() {
     let logger = AuditLogger::new();
     let gdpr = GDPRGuard::new();
     let _monitor = ComplianceMonitor::new();
+
+    // Omega Modules (Experimental)
+    let folder = SpatialFolder::new();
+    let harvester = ZeroPointHarvester::new();
+    let noetic = NoeticLayer::new();
+    let lattice = PrescientLattice::new();
+    let anchor = RealityAnchor::new();
 
     let stdin = io::stdin();
 
@@ -116,6 +138,18 @@ fn main() {
                                 let result = swarm.launch(&req);
                                 print_response(result);
                              } else { print_error("Access Denied: Admin only"); }
+                        },
+                        Command::Omega(req) => {
+                            if rbac.authorize(&user_ctx, Role::Admin) {
+                                let result = match req {
+                                    OmegaRequest::Fold { coords } => folder.remap(coords),
+                                    OmegaRequest::InvertEntropy => harvester.invert_entropy(),
+                                    OmegaRequest::TransmitQualia { concept } => noetic.transmit_qualia(&concept),
+                                    OmegaRequest::Anticipate { subject_id } => lattice.anticipate(&subject_id),
+                                    OmegaRequest::VerifyReality { entity_id } => anchor.verify_existence(&entity_id),
+                                };
+                                print_response(result);
+                            } else { print_error("Access Denied: Omega Clearance Required"); }
                         },
                         Command::Ping => {
                              print_response("Pong".to_string());

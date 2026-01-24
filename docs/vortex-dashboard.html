@@ -505,6 +505,15 @@
         }
         animateSwarm();
 
+        // OMEGA ANIMATION
+        setInterval(() => {
+            const fluxEl = document.getElementById('vacuum-flux');
+            if (fluxEl) {
+                const flux = (Math.random() * 5000 + 4000).toFixed(2);
+                fluxEl.innerText = flux + " TW";
+            }
+        }, 100);
+
         // LOGS
         const logs = document.getElementById('audit-log');
         const logMsg = [
