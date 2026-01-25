@@ -57,7 +57,7 @@ ${this.config.language === 'bilingual' ? `
 🇧🇬 *В QAntum не лъжем. Само истински стойности.*
 
 🇬🇧 *In QAntum we don't lie. Only real values.*
-` : '}
+` : ''}
 `.trim();
   }
 
@@ -156,7 +156,7 @@ npm install ${this.config.projectName.toLowerCase()}
     const mainClass = analysis.classes[0];
     const mainFunction = analysis.functions[0];
 
-    let example = ';
+    let example = '';
 
     if (mainClass) {
       example = `
@@ -245,8 +245,8 @@ See [Examples](#examples) for more detailed usage.
 
 ${cls.description || `${cls.name} class implementation.`}
 
-${cls.extends ? `**Extends:** \`${cls.extends}\`` : '}
-${cls.implements?.length ? `**Implements:** \`${cls.implements.join(', ')}\`` : '}
+${cls.extends ? `**Extends:** \`${cls.extends}\`` : ''}
+${cls.implements?.length ? `**Implements:** \`${cls.implements.join(', ')}\`` : ''}
 
 **Methods:**
 ${cls.methods.map(m => `- \`${m.name}()\` - ${m.description || 'Method implementation'}`).join('\n') || '- See source code for methods'}
@@ -257,7 +257,7 @@ ${cls.methods.map(m => `- \`${m.name}()\` - ${m.description || 'Method implement
 
   private buildFunctionReference(func: FunctionInfo): string {
     const params = func.parameters.map(p =>
-      `- \`${p.name}\` (\`${p.type}\`${p.optional ? ', optional' : '}) - ${p.defaultValue ? `Default: ${p.defaultValue}` : 'Required parameter'}`
+      `- \`${p.name}\` (\`${p.type}\`${p.optional ? ', optional' : ''}) - ${p.defaultValue ? `Default: ${p.defaultValue}` : 'Required parameter'}`
     ).join('\n');
 
     return `
@@ -265,7 +265,7 @@ ${cls.methods.map(m => `- \`${m.name}()\` - ${m.description || 'Method implement
 
 ${func.description || `Performs ${func.name} operation.`}
 
-${func.async ? '**Async:** Yes' : '}
+${func.async ? '**Async:** Yes' : ''}
 
 **Parameters:**
 ${params || '- No parameters'}
@@ -470,7 +470,7 @@ MIT License © ${year} ${author}
 
 ${this.config.language === 'bilingual' ? `
 🇧🇬 *В QAntum не лъжем. Само истински стойности.*
-` : '}
+` : ''}
 
 </div>
 `.trim();

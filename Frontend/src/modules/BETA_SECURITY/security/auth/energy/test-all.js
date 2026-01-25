@@ -22,11 +22,11 @@
 const { QAntum } = require('./dist/index.js');
 
 async function runTests() {
-  console.log(');
+  console.log('');
   console.log('╔═══════════════════════════════════════════════════════════════╗');
   console.log('║           🧪 QANTUM - FULL TEST SUITE                    ║');
   console.log('╚═══════════════════════════════════════════════════════════════╝');
-  console.log(');
+  console.log('');
 
   let passed = 0;
   let failed = 0;
@@ -225,19 +225,19 @@ async function runTests() {
   // ═══════════════════════════════════════════════════════════════
   // SUMMARY
   // ═══════════════════════════════════════════════════════════════
-  console.log(');
+  console.log('');
   console.log('═══════════════════════════════════════════════════════════════');
   console.log(`   📊 RESULTS: ${passed} passed, ${failed} failed`);
   console.log('═══════════════════════════════════════════════════════════════');
   
   if (failed === 0) {
-    console.log(');
+    console.log('');
     console.log('   🎉 ALL TESTS PASSED! Product is ready for sale!');
-    console.log(');
+    console.log('');
   } else {
-    console.log(');
+    console.log('');
     console.log('   ⚠️  SOME TESTS FAILED! Fix before release!');
-    console.log(');
+    console.log('');
     process.exit(1);
   }
 }

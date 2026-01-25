@@ -204,7 +204,7 @@ export class LoadBalancer {
                 selected = this.weightedLeastConnections(healthyWorkers);
                 break;
             case 'ip-hash':
-                selected = this.ipHash(healthyWorkers, sessionId || ');
+                selected = this.ipHash(healthyWorkers, sessionId || '');
                 break;
             case 'random':
                 selected = this.random(healthyWorkers);

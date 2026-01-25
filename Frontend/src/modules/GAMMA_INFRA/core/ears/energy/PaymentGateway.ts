@@ -215,7 +215,7 @@ class PayPalAdapter {
   private clientId: string;
   private clientSecret: string;
   private mode: 'sandbox' | 'live';
-  private accessToken: string = ';
+  private accessToken: string = '';
   private tokenExpiry: number = 0;
 
   constructor(clientId: string, clientSecret: string, mode: 'sandbox' | 'live') {

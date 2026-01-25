@@ -363,7 +363,7 @@ class OllamaAgent {
             const { stdout: jsCount } = await execAsync(`cd ${this.workspacePath} && dir /s /b *.js 2>nul | find /c /v ""`);
             // Try to read PROJECT-STATS.md if exists
             const statsPath = path.join(this.workspacePath, 'PROJECT-STATS.md');
-            let statsContent = ';
+            let statsContent = '';
             if (fs.existsSync(statsPath)) {
                 statsContent = fs.readFileSync(statsPath, 'utf-8');
             }
@@ -382,7 +382,7 @@ TypeScript Files: ${stats.typescript_files}
 JavaScript Files: ${stats.javascript_files}
 Total Code Files: ${stats.total_files}
 Workspace: ${stats.workspace}
-${statsContent ? '\n' + statsContent.substring(0, 500) : '}
+${statsContent ? '\n' + statsContent.substring(0, 500) : ''}
 `,
                 data: stats
             };
@@ -416,7 +416,7 @@ ${statsContent ? '\n' + statsContent.substring(0, 500) : '}
         try {
             const srcPath = path.join(this.workspacePath, 'src');
             const modules = {};
-            const scanDir = (dir, prefix = ') => {
+            const scanDir = (dir, prefix = '') => {
                 if (!fs.existsSync(dir))
                     return;
                 const items = fs.readdirSync(dir, { withFileTypes: true });
@@ -536,7 +536,7 @@ Classes: ${classes}
             return { success: false, output: 'Missing required parameters: type, name' };
         }
         const { type, name, description } = params;
-        let template = ';
+        let template = '';
         switch (type) {
             case 'component':
                 template = `import React from 'react';

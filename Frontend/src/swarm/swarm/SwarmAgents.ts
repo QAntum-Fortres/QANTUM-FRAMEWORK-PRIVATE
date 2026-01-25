@@ -221,7 +221,7 @@ class MicroAgent extends EventEmitter {
                     // Analyze context and extract insights
                     const { content } = task.payload;
                     const words = content?.split(/\s+/).length || 0;
-                    const keywords = this.extractKeywords(content || ');
+                    const keywords = this.extractKeywords(content || '');
                     return { words, keywords, sentiment: 'neutral' };
                 });
                 break;

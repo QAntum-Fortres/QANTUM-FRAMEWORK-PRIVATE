@@ -121,7 +121,7 @@ describe('🧠 QANTUM Core Tests', () => {
         };
         
         test('should reject empty selectors', () => {
-            expect(isValidSelector(')).toBe(false);
+            expect(isValidSelector('')).toBe(false);
             expect(isValidSelector(null)).toBe(false);
             expect(isValidSelector(undefined)).toBe(false);
         });

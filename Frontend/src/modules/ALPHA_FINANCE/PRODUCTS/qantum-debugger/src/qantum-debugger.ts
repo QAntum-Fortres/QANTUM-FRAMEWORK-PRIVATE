@@ -313,7 +313,7 @@ export class QantumDebugger extends EventEmitter {
         stdio: 'pipe'
       });
     } catch (e: any) {
-      const output = e.stdout || e.stderr || ';
+      const output = e.stdout || e.stderr || '';
       const lines = output.split('\n');
 
       for (const line of lines) {
@@ -494,7 +494,7 @@ export class QantumDebugger extends EventEmitter {
 
     const originalCode = error.file && fs.existsSync(error.file)
       ? fs.readFileSync(error.file, 'utf-8')
-      : ';
+      : '';
 
     let fixedCode = originalCode;
     let success = false;

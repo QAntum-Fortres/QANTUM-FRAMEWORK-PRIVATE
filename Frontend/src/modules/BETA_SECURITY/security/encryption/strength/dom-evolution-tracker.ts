@@ -168,7 +168,7 @@ export class DOMEvolutionTracker extends EventEmitter {
             if (p) {
               const sibs = Array.from(p.children).filter(s => s.tagName === cur!.tagName);
               const idx = sibs.indexOf(cur);
-              parts.unshift(`${cur.tagName.toLowerCase()}${sibs.length > 1 ? `:nth-of-type(${idx + 1})` : '}`);
+              parts.unshift(`${cur.tagName.toLowerCase()}${sibs.length > 1 ? `:nth-of-type(${idx + 1})` : ''}`);
             }
             cur = cur.parentElement;
           }
@@ -234,7 +234,7 @@ export class DOMEvolutionTracker extends EventEmitter {
       const rect = el.getBoundingClientRect();
 
       // Calculate content hash
-      const contentHash = (el.textContent || ').trim().slice(0, 100);
+      const contentHash = (el.textContent || '').trim().slice(0, 100);
 
       return {
         attributes: getAttributes(el),
@@ -578,8 +578,8 @@ export class DOMEvolutionTracker extends EventEmitter {
     return {
       timestamp,
       type,
-      before: before || ',
-      after: after || ',
+      before: before || '',
+      after: after || '',
       affectedSelectors: this.getAffectedSelectors(type)
     };
   }
@@ -711,18 +711,18 @@ export class DOMEvolutionTracker extends EventEmitter {
   private generateTrackingId(elementData: any): string {
     // Create stable ID from element characteristics
     const signature = [
-      elementData.structure?.tagName || ',
-      elementData.attributes?.id || ',
-      elementData.attributes?.name || ',
-      elementData.attributes?.dataAttributes?.['data-testid'] || ',
-      elementData.structure?.path || '
+      elementData.structure?.tagName || '',
+      elementData.attributes?.id || '',
+      elementData.attributes?.name || '',
+      elementData.attributes?.dataAttributes?.['data-testid'] || '',
+      elementData.structure?.path || ''
     ].join('|');
 
     return createHash('md5').update(signature).digest('hex').slice(0, 16);
   }
 
   private hashContent(content: string): string {
-    return createHash('md5').update(content || ').digest('hex').slice(0, 8);
+    return createHash('md5').update(content || '').digest('hex').slice(0, 8);
   }
 
   // ═══════════════════════════════════════════════════════════════════════════════

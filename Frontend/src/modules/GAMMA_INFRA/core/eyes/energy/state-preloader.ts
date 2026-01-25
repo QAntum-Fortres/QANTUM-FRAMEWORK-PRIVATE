@@ -451,7 +451,7 @@ export class PredictiveStatePreloader extends EventEmitter {
     if (!transitions || transitions.size === 0) return null;
 
     let maxProbability = 0;
-    let mostLikelyState = ';
+    let mostLikelyState = '';
 
     for (const [state, data] of transitions) {
       if (data.probability > maxProbability) {

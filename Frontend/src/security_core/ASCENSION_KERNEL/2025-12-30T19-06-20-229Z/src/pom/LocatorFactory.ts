@@ -282,7 +282,7 @@ export const By = LocatorFactory;
 
 export class LocatorBuilder {
   private strategies: LocatorStrategy[] = [];
-  private currentSelector = ';
+  private currentSelector = '';
 
   /**
    * Start with CSS selector
@@ -366,7 +366,7 @@ export class LocatorBuilder {
   or(): this {
     if (this.currentSelector) {
       this.strategies.push({ type: 'css', value: this.currentSelector });
-      this.currentSelector = ';
+      this.currentSelector = '';
     }
     return this;
   }

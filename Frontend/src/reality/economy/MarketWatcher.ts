@@ -112,7 +112,7 @@ export class MarketWatcher extends EventEmitter {
 
   private generateFingerprint(): string {
     const chars = 'abcdef0123456789';
-    let fingerprint = ';
+    let fingerprint = '';
     for (let i = 0; i < 32; i++) {
       fingerprint += chars[Math.floor(Math.random() * chars.length)];
     }

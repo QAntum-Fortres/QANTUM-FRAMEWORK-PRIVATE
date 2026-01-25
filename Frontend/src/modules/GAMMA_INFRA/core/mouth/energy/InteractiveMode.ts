@@ -193,9 +193,9 @@ export class InteractiveMode extends EventEmitter {
 
   private parseInput(input: string): string[] {
     const parts: string[] = [];
-    let current = ';
+    let current = '';
     let inQuote = false;
-    let quoteChar = ';
+    let quoteChar = '';
 
     for (const char of input) {
       if ((char === '"' || char === "'") && !inQuote) {
@@ -203,11 +203,11 @@ export class InteractiveMode extends EventEmitter {
         quoteChar = char;
       } else if (char === quoteChar && inQuote) {
         inQuote = false;
-        quoteChar = ';
+        quoteChar = '';
       } else if (char === ' ' && !inQuote) {
         if (current) {
           parts.push(current);
-          current = ';
+          current = '';
         }
       } else {
         current += char;
@@ -256,8 +256,8 @@ ${c.cyan}╔══════════════════════�
           if (cmd) {
             return `
 ${c.bright}${cmd.name}${c.reset} - ${cmd.description}
-${cmd.usage ? `Usage: ${cmd.usage}` : '}
-${cmd.aliases ? `Aliases: ${cmd.aliases.join(', ')}` : '}
+${cmd.usage ? `Usage: ${cmd.usage}` : ''}
+${cmd.aliases ? `Aliases: ${cmd.aliases.join(', ')}` : ''}
 `;
           }
         }
@@ -490,7 +490,7 @@ ${cmd.aliases ? `Aliases: ${cmd.aliases.join(', ')}` : '}
           `  Work Dir:   ${c.cyan}${ctx.workDir}${c.reset}`,
           `  Variables:  ${ctx.variables.size}`,
           `  History:    ${ctx.history.length} commands`,
-          '
+          ''
         ];
 
         return lines.join('\n');

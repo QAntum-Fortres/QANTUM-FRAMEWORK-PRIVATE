@@ -214,13 +214,13 @@ const DEFAULT_CONFIG: LogicDiscoveryConfig = {
 
 // Test data generators
 const TEST_DATA: Record<string, string[]> = {
-  email: ['test@example.com', 'invalid-email', ', 'admin@test.com'],
-  password: ['Password123!', '123', ', 'verylongpassword'.repeat(10)],
-  username: ['testuser', 'admin', ', 'a', 'test@user'],
-  phone: ['+1234567890', '123', ', 'not-a-phone'],
-  name: ['John Doe', ', 'A', 'Test'.repeat(100)],
+  email: ['test@example.com', 'invalid-email', '', 'admin@test.com'],
+  password: ['Password123!', '123', '', 'verylongpassword'.repeat(10)],
+  username: ['testuser', 'admin', '', 'a', 'test@user'],
+  phone: ['+1234567890', '123', '', 'not-a-phone'],
+  name: ['John Doe', '', 'A', 'Test'.repeat(100)],
   number: ['123', '0', '-1', 'abc', '999999999'],
-  text: ['Test input', ', ' ', '<script>alert(1)</script>'],
+  text: ['Test input', '', ' ', '<script>alert(1)</script>'],
 };
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -368,7 +368,7 @@ export class LogicDiscoveryEngine extends EventEmitter {
         for (const testValue of testValues) {
           try {
             // Clear and fill field
-            await playwrightPage.locator(field.selector).fill(');
+            await playwrightPage.locator(field.selector).fill('');
             await playwrightPage.locator(field.selector).fill(testValue);
 
             // Trigger validation (blur)
@@ -700,7 +700,7 @@ export class LogicDiscoveryEngine extends EventEmitter {
 
     // Find related API endpoints
     const relatedApis = this.siteMap!.apiEndpoints.filter(api =>
-      api.url.includes(new URL(startPage.url).pathname.split('/')[1] || ')
+      api.url.includes(new URL(startPage.url).pathname.split('/')[1] || '')
     );
 
     return {
@@ -929,7 +929,7 @@ export class LogicDiscoveryEngine extends EventEmitter {
     data: Record<string, string>
   ): Promise<void> {
     for (const field of form.fields) {
-      const value = data[field.name] || data[field.type] || ';
+      const value = data[field.name] || data[field.type] || '';
       try {
         await page.locator(field.selector).fill(value);
       } catch (e) {

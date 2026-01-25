@@ -226,7 +226,7 @@ export class AutonomousFeedbackLoop extends EventEmitter {
             // Remove trailing commas
             content = content.replace(/,(\s*[}\]])/g, '$1');
             // Remove comments
-            content = content.replace(/\/\/.*$/gm, ');
+            content = content.replace(/\/\/.*$/gm, '');
             // Parse to validate
             JSON.parse(content);
             fixed = true;

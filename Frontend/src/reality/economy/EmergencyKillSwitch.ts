@@ -117,9 +117,9 @@ export class EmergencyKillSwitch extends EventEmitter {
       confirmationTimeoutMs: config.confirmationTimeoutMs ?? 5000,
       requirePassword: config.requirePassword ?? false,
 
-      primaryWithdrawalAddress: config.primaryWithdrawalAddress ?? ',
+      primaryWithdrawalAddress: config.primaryWithdrawalAddress ?? '',
       primaryWithdrawalNetwork: config.primaryWithdrawalNetwork ?? 'ETH',
-      backupWithdrawalAddress: config.backupWithdrawalAddress ?? ',
+      backupWithdrawalAddress: config.backupWithdrawalAddress ?? '',
       backupWithdrawalNetwork: config.backupWithdrawalNetwork ?? 'BTC',
 
       autoTriggerEnabled: config.autoTriggerEnabled ?? true,

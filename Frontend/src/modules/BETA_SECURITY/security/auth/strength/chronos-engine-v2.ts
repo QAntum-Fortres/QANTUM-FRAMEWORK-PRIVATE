@@ -353,7 +353,7 @@ export class ChronosEngine extends EventEmitter {
       id: snapshotId,
       timestamp: new Date(),
       step: stepNumber,
-      url: (state.url as string) || ',
+      url: (state.url as string) || '',
       domHash: this.hashState(state),
       state,
       label,

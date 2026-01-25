@@ -348,17 +348,17 @@ ${this.renderTradeLog()}
     <div class="card">
       <h2>💰 Profit Center</h2>
       <div class="profit-display ${m.totalProfit >= 0 ? 'metric-positive' : 'metric-negative'}">
-        ${m.totalProfit >= 0 ? '+' : '}$${m.totalProfit.toFixed(2)}
+        ${m.totalProfit >= 0 ? '+' : ''}$${m.totalProfit.toFixed(2)}
       </div>
       <div class="metric">
         <span class="metric-label">Today</span>
         <span class="metric-value ${m.todayProfit >= 0 ? 'metric-positive' : 'metric-negative'}">
-          ${m.todayProfit >= 0 ? '+' : '}$${m.todayProfit.toFixed(2)}
+          ${m.todayProfit >= 0 ? '+' : ''}$${m.todayProfit.toFixed(2)}
         </span>
       </div>
       <div class="metric">
         <span class="metric-label">This Hour</span>
-        <span class="metric-value">${m.hourProfit >= 0 ? '+' : '}$${m.hourProfit.toFixed(2)}</span>
+        <span class="metric-value">${m.hourProfit >= 0 ? '+' : ''}$${m.hourProfit.toFixed(2)}</span>
       </div>
       <div class="metric">
         <span class="metric-label">Best Trade</span>
@@ -405,7 +405,7 @@ ${this.renderTradeLog()}
       <div class="metric">
         <span class="metric-label">ROI</span>
         <span class="metric-value ${m.roi >= 0 ? 'metric-positive' : 'metric-negative'}">
-          ${m.roi >= 0 ? '+' : '}${m.roi.toFixed(2)}%
+          ${m.roi >= 0 ? '+' : ''}${m.roi.toFixed(2)}%
         </span>
       </div>
       <div class="metric">
@@ -443,7 +443,7 @@ ${this.renderTradeLog()}
           <span style="background: rgba(0,255,136,0.2); padding: 5px 12px; border-radius: 20px;">
             ${market}
           </span>
-        `).join(')}
+        `).join('')}
       </div>
     </div>
 
@@ -458,10 +458,10 @@ ${this.renderTradeLog()}
             <span><strong>${trade.symbol}</strong></span>
             <span>${trade.buyExchange} → ${trade.sellExchange}</span>
             <span class="${trade.profit >= 0 ? 'metric-positive' : 'metric-negative'}" style="margin-left: auto;">
-              ${trade.profit >= 0 ? '+' : '}$${trade.profit.toFixed(2)}
+              ${trade.profit >= 0 ? '+' : ''}$${trade.profit.toFixed(2)}
             </span>
           </div>
-        `).join(')}
+        `).join('')}
       </div>
     </div>
   </div>

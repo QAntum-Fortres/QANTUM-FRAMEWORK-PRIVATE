@@ -589,8 +589,8 @@ export class SupremeReportGenerator extends EventEmitter {
       name: f.name,
       type: f.type,
       steps: f.steps.map(s => s.action),
-      entry: f.steps[0]?.page || ',
-      exit: f.steps[f.steps.length - 1]?.page || ',
+      entry: f.steps[0]?.page || '',
+      exit: f.steps[f.steps.length - 1]?.page || '',
       hasErrors: !f.success
     }));
 
@@ -1263,17 +1263,17 @@ ${rec.steps.map((s, i) => `${i + 1}. ${s}`).join('\n')}
       <div class="highlight">
         <h4>Key Highlights</h4>
         <ul>
-          ${summary.keyHighlights.map(h => `<li>${h}</li>`).join(')}
+          ${summary.keyHighlights.map(h => `<li>${h}</li>`).join('')}
         </ul>
       </div>
       ${summary.immediateActions.length > 0 ? `
       <div class="highlight" style="background: #fef3c7;">
         <h4>⚠️ Immediate Actions Required</h4>
         <ul>
-          ${summary.immediateActions.map(a => `<li>${a}</li>`).join(')}
+          ${summary.immediateActions.map(a => `<li>${a}</li>`).join('')}
         </ul>
       </div>
-      ` : '}
+      ` : ''}
     </section>
 
     <section>
@@ -1302,7 +1302,7 @@ ${rec.steps.map((s, i) => `${i + 1}. ${s}`).join('\n')}
           <td>${f.title}</td>
           <td>${f.category}</td>
         </tr>
-        `).join(')}
+        `).join('')}
       </table>
       ` : '<p>✅ No security findings</p>'}
     </section>
@@ -1324,7 +1324,7 @@ ${rec.steps.map((s, i) => `${i + 1}. ${s}`).join('\n')}
         <tr><th>Test Type</th><th>Count</th></tr>
         ${Object.entries(r.testCoverage.byType).map(([type, count]) => `
         <tr><td>${type}</td><td>${count}</td></tr>
-        `).join(')}
+        `).join('')}
       </table>
     </section>
 
@@ -1336,7 +1336,7 @@ ${rec.steps.map((s, i) => `${i + 1}. ${s}`).join('\n')}
         <p>${rec.description}</p>
         <p><strong>Effort:</strong> ${rec.effort} | <strong>Impact:</strong> ${rec.impact}</p>
       </div>
-      `).join(')}
+      `).join('')}
     </section>
   </div>
 

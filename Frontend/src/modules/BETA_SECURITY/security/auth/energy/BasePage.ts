@@ -292,7 +292,7 @@ export class BasePage {
       case 'name':
         return By.name(alt.selector);
       case 'text':
-        return By.xpath(`//*[contains(text(), "${alt.selector.replace('text:', ')}")]`);
+        return By.xpath(`//*[contains(text(), "${alt.selector.replace('text:', '')}")]`);
       default:
         return By.css(alt.selector);
     }

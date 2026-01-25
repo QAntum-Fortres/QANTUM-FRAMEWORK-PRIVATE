@@ -989,7 +989,7 @@ export class GlobalThreatIntel extends EventEmitter {
   }): Promise<ImmunityPatch> {
     // Convert Fatality ban to threat detection
     const detection: ThreatDetection = {
-      detectionId: ',
+      detectionId: '',
       timestamp: new Date(),
       source: event.source,
       detectedInRegion: event.region,
@@ -999,8 +999,8 @@ export class GlobalThreatIntel extends EventEmitter {
       threatType: 'ip-ban',
       confidence: 1.0,
       evidence: {
-        requestFingerprint: ',
-        userAgent: ',
+        requestFingerprint: '',
+        userAgent: '',
         triggers: [event.reason],
         exitIp: event.ip,
         proxyUsed: true

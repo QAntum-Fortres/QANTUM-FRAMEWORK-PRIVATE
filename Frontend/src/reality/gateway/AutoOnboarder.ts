@@ -452,7 +452,7 @@ export class AutoOnboarder extends EventEmitter {
     // Create onboarding session
     const session: OnboardingSession = {
       sessionId,
-      clientId: ',
+      clientId: '',
       stripeEventId: event.id,
       status: 'payment-received',
       progress: 0,

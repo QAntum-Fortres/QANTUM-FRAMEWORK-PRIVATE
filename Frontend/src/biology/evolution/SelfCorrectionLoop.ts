@@ -501,16 +501,16 @@ export class SelfCorrectionLoop extends EventEmitter {
         const parts: string[] = [];
 
         parts.push('# CODE CORRECTION REQUEST');
-        parts.push(');
+        parts.push('');
         parts.push('## Original Task');
         parts.push(originalPrompt);
-        parts.push(');
+        parts.push('');
 
         parts.push('## Current Code (with errors)');
         parts.push('```typescript');
         parts.push(code);
         parts.push('```');
-        parts.push(');
+        parts.push('');
 
         parts.push('## Validation Errors');
         for (const error of validation.errors) {
@@ -522,14 +522,14 @@ export class SelfCorrectionLoop extends EventEmitter {
                 parts.push(`  - Suggestion: ${error.suggestion}`);
             }
         }
-        parts.push(');
+        parts.push('');
 
         if (attempts.length > 1) {
             parts.push('## Previous Attempts');
             for (const attempt of attempts.slice(-3)) {
                 parts.push(`- Iteration ${attempt.iteration}: ${attempt.validation.passRate.toFixed(1)}% pass rate, ${attempt.validation.errors.length} errors`);
             }
-            parts.push(');
+            parts.push('');
         }
 
         parts.push('## Instructions');
@@ -537,7 +537,7 @@ export class SelfCorrectionLoop extends EventEmitter {
         parts.push('2. Maintain the original functionality');
         parts.push('3. Output ONLY the corrected code, no explanations');
         parts.push('4. Ensure the code is complete and can run');
-        parts.push(');
+        parts.push('');
         parts.push('Output the corrected TypeScript code:');
 
         return parts.join('\n');
@@ -602,9 +602,9 @@ export class SelfCorrectionLoop extends EventEmitter {
         // If no code block, assume entire response is code
         // Remove any markdown-like formatting
         return response
-            .replace(/^#.*$/gm, ') // Remove headings
-            .replace(/^\*.*$/gm, ') // Remove bullet points
-            .replace(/^>/gm, ') // Remove quotes
+            .replace(/^#.*$/gm, '') // Remove headings
+            .replace(/^\*.*$/gm, '') // Remove bullet points
+            .replace(/^>/gm, '') // Remove quotes
             .trim();
     }
 

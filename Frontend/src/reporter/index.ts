@@ -34,7 +34,7 @@ export class QAntumReporter {
     private metrics: MetricsCollector;
     private dashboard: DashboardServer;
 
-    private runId: string = ';
+    private runId: string = '';
     private startTime: number = 0;
     private results: TestResult[] = [];
     private suites: Map<string, SuiteResult> = new Map();
@@ -327,7 +327,7 @@ export class QAntumReporter {
      * Reset reporter
      */
     reset(): void {
-        this.runId = ';
+        this.runId = '';
         this.startTime = 0;
         this.results = [];
         this.suites.clear();

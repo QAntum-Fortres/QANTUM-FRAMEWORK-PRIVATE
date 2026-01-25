@@ -342,7 +342,7 @@ export class NeuralMapper {
         logger.debug('\n💓 [NeuralMapper] Taking Context Pulse...');
         const startTime = performance.now();
 
-        const previousHash = this.brainMap?.snapshotHash || ';
+        const previousHash = this.brainMap?.snapshotHash || '';
 
         // Regenerate brain map to detect changes
         await this.generateBrainMap();
@@ -375,7 +375,7 @@ export class NeuralMapper {
         const pulse: ContextPulse = {
             timestamp: new Date(),
             memoryUsage: process.memoryUsage(),
-            brainMapHash: this.brainMap?.snapshotHash || ',
+            brainMapHash: this.brainMap?.snapshotHash || '',
             changedFiles,
             healthDelta,
             alerts
@@ -562,7 +562,7 @@ export class NeuralMapper {
                 const source = match[6];
                 const specifiers: string[] = [];
 
-                if (match[1]) specifiers.push(match[1].replace('* as ', '));
+                if (match[1]) specifiers.push(match[1].replace('* as ', ''));
                 if (match[2]) specifiers.push(...match[2].split(',').map(s => s.trim()));
                 if (match[3]) specifiers.push(match[3]);
                 if (match[4]) specifiers.push(...match[4].split(',').map(s => s.trim()));
@@ -932,7 +932,7 @@ export class NeuralMapper {
     }
 
     private generateSnapshotHash(files: Map<string, FileNode>): string {
-        const hashes = Array.from(files.values()).map(f => f.hash).sort().join(');
+        const hashes = Array.from(files.values()).map(f => f.hash).sort().join('');
         return crypto.createHash('sha256').update(hashes).digest('hex').substring(0, 16);
     }
 

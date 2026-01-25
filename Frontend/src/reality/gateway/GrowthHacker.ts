@@ -506,7 +506,7 @@ export class GrowthHacker extends EventEmitter {
 
     const companyBase = this.generateCompanyName();
     const companyName = `${companyBase} ${companySuffixes[Math.floor(Math.random() * companySuffixes.length)]}`;
-    const domain = `${companyBase.toLowerCase().replace(/\s/g, ')}.${domains[Math.floor(Math.random() * domains.length)]}`;
+    const domain = `${companyBase.toLowerCase().replace(/\s/g, '')}.${domains[Math.floor(Math.random() * domains.length)]}`;
 
     // Calculate similarity score
     const similarityScore = 0.6 + Math.random() * 0.4;

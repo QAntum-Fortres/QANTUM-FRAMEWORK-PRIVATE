@@ -311,7 +311,7 @@ describe('📹 VideoReplayAnalyzer - Session to Sovereign Goals', () => {
                             type: 'input',
                             boundingBox: { x: 0, y: 0, width: 100, height: 50 },
                             selector: 'input[name="email"]',
-                            text: ',
+                            text: '',
                             attributes: {},
                             visualFeatures: {
                                 primaryColor: '#000',

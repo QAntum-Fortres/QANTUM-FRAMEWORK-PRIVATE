@@ -51,7 +51,7 @@ let varCounter = 0;
 
 function generateObfuscatedName(): string {
     const chars = 'abcdefghijklmnopqrstuvwxyz';
-    let name = ';
+    let name = '';
     let n = varCounter++;
 
     do {
@@ -104,11 +104,9 @@ function obfuscateVariables(code: string, preserveNames: string[]): string {
 
 function removeComments(code: string): string {
     // Remove single-line comments
-    let result = code.replace(/\/\/[^\n]*/g, ');
-
+    let result = code.replace(/\/\/[^\n]*/g, '');
     // Remove multi-line comments (but preserve JSDoc for public API)
-    result = result.replace(/\/\*(?!\*)[^*]*\*+(?:[^/*][^*]*\*+)*\//g, ');
-
+    result = result.replace(/\/\*(?!\*)[^*]*\*+(?:[^/*][^*]*\*+)*\//g, '');
     return result;
 }
 
@@ -187,7 +185,7 @@ export class ParanoidObfuscator {
         // Process all TypeScript files
         const files = await this.collectFiles(this.config.sourcePath);
         let filesProcessed = 0;
-        let combinedCode = ';
+        let combinedCode = '';
 
         for (const file of files) {
             if (file.endsWith('.ts')) {

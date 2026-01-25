@@ -41,10 +41,10 @@ export function formatResults(result: RunResult): string {
   const lines: string[] = [];
 
   // Header
-  lines.push(');
+  lines.push('');
   lines.push(chalk.bold('  Test Results'));
   lines.push(chalk.gray('  ════════════════════════════════════════'));
-  lines.push(');
+  lines.push('');
 
   // Summary
   const statusIcon = result.status === 'passed'
@@ -60,7 +60,7 @@ export function formatResults(result: RunResult): string {
       : chalk.yellow(result.status.toUpperCase());
 
   lines.push(`  ${statusIcon} ${statusText}  ${chalk.gray(`(${formatDuration(result.duration)})`)}`);
-  lines.push(');
+  lines.push('');
 
   // Stats
   lines.push(chalk.gray('  ────────────────────────────────────────'));
@@ -79,7 +79,7 @@ export function formatResults(result: RunResult): string {
   }
 
   lines.push(`  ${chalk.gray('━')} Total:    ${result.totalTests}`);
-  lines.push(');
+  lines.push('');
 
   // Pass rate
   const passRate = (result.passedTests / result.totalTests * 100).toFixed(1);
@@ -90,7 +90,7 @@ export function formatResults(result: RunResult): string {
       : chalk.red;
 
   lines.push(`  Pass Rate: ${passRateColor.bold(`${passRate}%`)}`);
-  lines.push(');
+  lines.push('');
 
   // Failed tests details
   const failedTests = result.results.filter(t => t.status === 'failed');
@@ -104,7 +104,7 @@ export function formatResults(result: RunResult): string {
         lines.push(chalk.gray(`    ${test.error.split('\n')[0]}`));
       }
     }
-    lines.push(');
+    lines.push('');
   }
 
   // Healed tests details
@@ -120,7 +120,7 @@ export function formatResults(result: RunResult): string {
         lines.push(chalk.gray(`    ${chalk.green('→')} ${chalk.cyan(test.healedSelector.healed)}`));
       }
     }
-    lines.push(');
+    lines.push('');
   }
 
   return lines.join('\n');

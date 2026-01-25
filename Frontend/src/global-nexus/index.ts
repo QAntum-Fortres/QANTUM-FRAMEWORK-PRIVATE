@@ -177,7 +177,7 @@ export function createGlobalNexusSystem(config: GlobalNexusConfig = {}): GlobalN
     mesh.issueImmunityPatch({
       patchId: data.patchId,
       type: data.patchType,
-      payload: ',
+      payload: '',
       priority: data.priority === 'emergency' ? 'critical' : 'high',
       source: 'global-threat-intel'
     });
@@ -195,10 +195,10 @@ export function createGlobalNexusSystem(config: GlobalNexusConfig = {}): GlobalN
       threatType: alert.threatType,
       confidence: 0.9,
       evidence: {
-        requestFingerprint: ',
-        userAgent: ',
+        requestFingerprint: '',
+        userAgent: '',
         triggers: [alert.description],
-        exitIp: ',
+        exitIp: '',
         proxyUsed: false
       },
       detectionLatencyMs: 0

@@ -210,7 +210,7 @@ export class ChecksumValidator extends EventEmitter {
     });
 
     // Generate manifest hash from all file hashes
-    const allHashes = files.map(f => f.hash).sort().join(');
+    const allHashes = files.map(f => f.hash).sort().join('');
     const manifestHash = this.hashString(allHashes);
 
     const manifest: ChecksumManifest = {
@@ -325,7 +325,7 @@ export class ChecksumValidator extends EventEmitter {
     }
 
     // Verify manifest hash
-    const allHashes = manifest.files.map(f => f.hash).sort().join(');
+    const allHashes = manifest.files.map(f => f.hash).sort().join('');
     const calculatedManifestHash = this.hashString(allHashes);
 
     if (calculatedManifestHash !== manifest.manifestHash) {

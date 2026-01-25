@@ -412,7 +412,7 @@ export class OllamaAgent {
 
       // Try to read PROJECT-STATS.md if exists
       const statsPath = path.join(this.workspacePath, 'PROJECT-STATS.md');
-      let statsContent = ';
+      let statsContent = '';
 
       if (fs.existsSync(statsPath)) {
         statsContent = fs.readFileSync(statsPath, 'utf-8');
@@ -434,7 +434,7 @@ TypeScript Files: ${stats.typescript_files}
 JavaScript Files: ${stats.javascript_files}
 Total Code Files: ${stats.total_files}
 Workspace: ${stats.workspace}
-${statsContent ? '\n' + statsContent.substring(0, 500) : '}
+${statsContent ? '\n' + statsContent.substring(0, 500) : ''}
 `,
         data: stats
       };
@@ -471,7 +471,7 @@ ${statsContent ? '\n' + statsContent.substring(0, 500) : '}
       const srcPath = path.join(this.workspacePath, 'src');
       const modules: Record<string, string[]> = {};
 
-      const scanDir = (dir: string, prefix: string = ') => {
+      const scanDir = (dir: string, prefix: string = '') => {
         if (!fs.existsSync(dir)) return;
 
         const items = fs.readdirSync(dir, { withFileTypes: true });
@@ -602,7 +602,7 @@ Classes: ${classes}
     }
 
     const { type, name, description } = params;
-    let template = ';
+    let template = '';
 
     switch (type) {
       case 'component':

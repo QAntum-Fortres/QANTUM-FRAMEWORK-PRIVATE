@@ -718,12 +718,12 @@ export class AutonomousSalesForce extends EventEmitter {
     const subject = subjects[this.config.pitchTone];
 
     // Headline
-    const headline = `We Found ${bugs.length} Quality Issue${bugs.length > 1 ? 's' : '} That May Be Costing ${company.name} $${Math.floor(savings.annual / 1000)}K/Year`;
+    const headline = `We Found ${bugs.length} Quality Issue${bugs.length > 1 ? 's' : ''} That May Be Costing ${company.name} $${Math.floor(savings.annual / 1000)}K/Year`;
 
     // Body
     const body = `Hi ${contactName},
 
-While analyzing ${company.domain}, our QA automation platform discovered ${bugs.length} issue${bugs.length > 1 ? 's' : '} that may be impacting your users and revenue.
+While analyzing ${company.domain}, our QA automation platform discovered ${bugs.length} issue${bugs.length > 1 ? 's' : ''} that may be impacting your users and revenue.
 
 **Key Findings:**
 ${bugs.slice(0, 3).map(b => `• **${b.severity.toUpperCase()}**: ${b.title}`).join('\n')}
@@ -970,7 +970,7 @@ P.S. Our AI found these issues in under 5 minutes. Imagine what it could do for 
     script += `Our AI-powered testing platform analyzed ${company.domain} and discovered ${bugs.length} quality issues.\n\n`;
 
     if (criticalCount > 0) {
-      script += `Most importantly, we found ${criticalCount} critical issue${criticalCount > 1 ? 's' : '} that require immediate attention.\n\n`;
+      script += `Most importantly, we found ${criticalCount} critical issue${criticalCount > 1 ? 's' : ''} that require immediate attention.\n\n`;
     }
 
     script += `Let me walk you through each finding:\n\n`;
@@ -1166,9 +1166,9 @@ P.S. Our AI found these issues in under 5 minutes. Imagine what it could do for 
   private extractDomain(url: string): string {
     try {
       const parsed = new URL(url);
-      return parsed.hostname.replace('www.', ');
+      return parsed.hostname.replace('www.', '');
     } catch {
-      return url.replace(/https?:\/\//, ').split('/')[0].replace('www.', ');
+      return url.replace(/https?:\/\//, '').split('/')[0].replace('www.', '');
     }
   }
 

@@ -219,7 +219,7 @@ export class SynthesisFacade {
         const bridge = getVisualGhostBridge();
 
         if (!ctx) {
-            return { applied: false, fingerprint: ' };
+            return { applied: false, fingerprint: '' };
         }
 
         bridge.applyToCanvas(ctx);

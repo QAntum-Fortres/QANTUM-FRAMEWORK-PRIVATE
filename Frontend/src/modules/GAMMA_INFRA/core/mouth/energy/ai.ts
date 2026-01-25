@@ -107,7 +107,7 @@ export const aiRoutes: FastifyPluginAsync = async (app) => {
 
 Description: ${body.description}
 Base URL: ${body.context?.baseUrl || project.baseUrl || 'https://example.com'}
-${body.context?.existingSelectors ? `Existing selectors to reuse: ${body.context.existingSelectors.join(', ')}` : '}
+${body.context?.existingSelectors ? `Existing selectors to reuse: ${body.context.existingSelectors.join(', ')}` : ''}
 
 Generate the Playwright test code now.`,
         },
@@ -116,7 +116,7 @@ Generate the Playwright test code now.`,
       max_tokens: 2000,
     });
 
-    const generatedCode = completion.choices[0]?.message?.content || ';
+    const generatedCode = completion.choices[0]?.message?.content || '';
 
     // Create the test
     const test = await prisma.test.create({
@@ -218,7 +218,7 @@ Analyze this failure and suggest a fix.`,
       max_tokens: 1000,
     });
 
-    const analysis = completion.choices[0]?.message?.content || ';
+    const analysis = completion.choices[0]?.message?.content || '';
 
     return {
       analysis,
@@ -276,7 +276,7 @@ Output format (JSON):
 HTML Context:
 ${body.htmlContext}
 
-${body.failureHistory ? `Failure history: ${JSON.stringify(body.failureHistory)}` : '}
+${body.failureHistory ? `Failure history: ${JSON.stringify(body.failureHistory)}` : ''}
 
 Suggest better alternatives.`,
         },
@@ -311,7 +311,7 @@ Suggest better alternatives.`,
     const body = schema.parse(request.body);
 
     // Build context from knowledge base
-    let contextInfo = ';
+    let contextInfo = '';
     if (body.frameworks && body.frameworks.length > 0) {
       body.frameworks.forEach(framework => {
         const info = getLogicalFramework(framework);
@@ -348,7 +348,7 @@ Be comprehensive but actionable.`,
 
 Scenario: ${body.scenario}
 
-${contextInfo ? `Relevant frameworks: ${contextInfo}` : '}
+${contextInfo ? `Relevant frameworks: ${contextInfo}` : ''}
 
 Provide a multi-perspective logical analysis.`,
         },
@@ -357,7 +357,7 @@ Provide a multi-perspective logical analysis.`,
       max_tokens: 1500,
     });
 
-    const analysis = completion.choices[0]?.message?.content || ';
+    const analysis = completion.choices[0]?.message?.content || '';
 
     return {
       scenario: body.scenario,

@@ -640,8 +640,7 @@ export class EnterpriseDiscovery extends EventEmitter {
   private generateDiscoveredPage(baseUrl: string, index: number): DiscoveredPage {
     const pageId = `PAGE_${crypto.randomBytes(4).toString('hex')}`;
     const paths = ['/home', '/about', '/contact', '/products', '/services', '/login', '/signup', '/dashboard', '/settings', '/checkout'];
-    const pagePath = paths[index % paths.length] + (index >= paths.length ? `/${index}` : ');
-
+    const pagePath = paths[index % paths.length] + (index >= paths.length ? `/${index}` : '');
     const elements: DiscoveredElement[] = [];
     const issues: DiscoveredIssue[] = [];
 
@@ -897,9 +896,9 @@ export class EnterpriseDiscovery extends EventEmitter {
       issues,
       estimatedValue,
       recommendations: [
-        criticalCount > 0 ? 'Address critical security issues immediately' : ',
-        highCount > 0 ? 'Review high-priority performance issues' : ',
-        mediumCount > 0 ? 'Schedule medium issues for next sprint' : '
+        criticalCount > 0 ? 'Address critical security issues immediately' : '',
+        highCount > 0 ? 'Review high-priority performance issues' : '',
+        mediumCount > 0 ? 'Schedule medium issues for next sprint' : ''
       ].filter(Boolean)
     };
   }
@@ -915,7 +914,7 @@ export class EnterpriseDiscovery extends EventEmitter {
     if (!url.startsWith('http://') && !url.startsWith('https://')) {
       url = 'https://' + url;
     }
-    return url.replace(/\/$/, ');
+    return url.replace(/\/$/, '');
   }
 
   /**

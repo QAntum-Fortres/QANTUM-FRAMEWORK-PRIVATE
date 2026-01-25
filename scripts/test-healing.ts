@@ -8,8 +8,8 @@
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
-import { VortexHealingNexus, HealingDomain } from '../src/core/evolution/VortexHealingNexus';
-import { ApoptosisModule } from '../src/core/evolution/ApoptosisModule';
+import { VortexHealingNexus, HealingDomain } from '../Frontend/src/omni_core/evolution/VortexHealingNexus';
+import { ApoptosisModule } from '../Frontend/src/omni_core/evolution/ApoptosisModule';
 import chalk from 'chalk';
 
 // ─────────────────────────────────────────────────────────────────────────────

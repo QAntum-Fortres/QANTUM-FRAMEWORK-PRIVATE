@@ -202,7 +202,7 @@ export async function genesisObserve(options: ObserveOptions) {
   const config = getConfig();
   requireAuth(config);
 
-  let testCode = options.code || ';
+  let testCode = options.code || '';
 
   // Read from file if provided
   if (options.file) {
@@ -298,7 +298,7 @@ export async function genesisList(options: ListOptions) {
         createdAt: string;
       }>;
       total: number;
-    }>('/api/v1/genesis/myRealities' + (options.all ? '?all=true' : '), config);
+    }>('/api/v1/genesis/myRealities' + (options.all ? '?all=true' : ''), config);
 
     spinner.stop();
 
