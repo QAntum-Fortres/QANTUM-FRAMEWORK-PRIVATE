@@ -11,6 +11,9 @@ interface SovereignState {
         marketStress: number;
         energyStress: number;
         orchestratorMsg: string;
+        project: { files: number; loc: number };
+        hardware: { cpu: number; ram: number; resonance: number };
+        projects: Record<string, 'online' | 'offline' | 'degraded'>;
     };
     ledger: string[]; // History of "Black Box" hashes
     updateMetrics: (data: OmniPayload) => void;
@@ -25,6 +28,9 @@ export interface OmniPayload {
     bio: { stress: number; action: string };
     market: { stress: number; action: string };
     energy: { stress: number; action: string };
+    project: { files: number; loc: number };
+    hardware: { cpu: number; ram: number; resonance: number };
+    projects: Record<string, 'online' | 'offline' | 'degraded'>;
 }
 
 export const useSovereignStore = create<SovereignState>((set) => ({
@@ -36,7 +42,10 @@ export const useSovereignStore = create<SovereignState>((set) => ({
         bioStress: 0,
         marketStress: 0,
         energyStress: 0,
-        orchestratorMsg: "INITIALIZING..."
+        orchestratorMsg: "INITIALIZING...",
+        project: { files: 0, loc: 0 },
+        hardware: { cpu: 0, ram: 0, resonance: 0.8890 },
+        projects: {}
     },
     ledger: [],
     updateMetrics: (data) => set((_state) => ({
@@ -47,7 +56,10 @@ export const useSovereignStore = create<SovereignState>((set) => ({
             bioStress: data.bio.stress,
             marketStress: data.market.stress,
             energyStress: data.energy.stress,
-            orchestratorMsg: data.orchestrator
+            orchestratorMsg: data.orchestrator,
+            project: data.project,
+            hardware: data.hardware,
+            projects: data.projects
         }
     })),
     setConnected: (status) => set({ isConnected: status }),

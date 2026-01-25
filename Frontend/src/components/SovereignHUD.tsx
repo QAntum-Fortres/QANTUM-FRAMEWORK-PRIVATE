@@ -21,10 +21,10 @@ interface Message {
 // --- COMPONENTS ---
 
 const StatusBadge = ({ health }: { health: number }) => (
-    <div className="flex items-center gap-2 text-xs">
-        <span className={`w-2 h-2 rounded-full ${health > 90 ? 'bg-[var(--neon-green)] animate-pulse' : 'bg-[var(--neon-red)]'}`} />
+    <div className="flex items-center gap-2 text-[10px] font-mono tracking-tighter uppercase px-2 py-1 bg-[#0a0a12] border border-[#2a2a50] rounded-md">
+        <span className={`w-1.5 h-1.5 rounded-full ${health > 90 ? 'bg-[var(--neon-green)] animate-pulse' : 'bg-[var(--neon-red)] shadow-[0_0_8px_red]'}`} />
         <span style={{ color: health > 90 ? 'var(--neon-green)' : 'var(--neon-red)' }}>
-            {health > 90 ? 'Systems Operational' : 'Critical Warning'}
+            {health > 90 ? 'HEALTH_OPTIMAL' : 'CRITICAL_DISCREPANCY'}
         </span>
     </div>
 );
@@ -36,7 +36,7 @@ export const SovereignHUD = () => {
     const [activePage, setActivePage] = useState<Page>('dashboard');
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [messages, setMessages] = useState<Message[]>([
-        { id: '1', role: 'assistant', content: "Welcome back, Sovereign. The QAntum Empire awaits your command. All 958,219 lines of code are synced.", timestamp: new Date() }
+        { id: '1', role: 'assistant', content: "Welcome back, Sovereign. Reality sync initialized. Systems operational.", timestamp: new Date() }
     ]);
     const [inputMessage, setInputMessage] = useState('');
     const [terminalOutput, setTerminalOutput] = useState<string[]>([
@@ -154,12 +154,12 @@ export const SovereignHUD = () => {
                         </div>
                     </div>
                     <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0a0a12] border border-[#2a2a50] rounded-full">
-                            <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-emerald-500' : 'bg-red-500'}`} />
-                            <span className="text-xs font-mono text-gray-400">{isConnected ? 'ONLINE' : 'OFFLINE'}</span>
+                        <div className="flex items-center gap-2 px-3 py-1.5 bg-[#0a0a12] border border-[#2a2a50] rounded-full shadow-[0_0_10px_rgba(16,185,129,0.1)]">
+                            <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`} />
+                            <span className="text-[10px] font-mono font-bold text-gray-300 tracking-tighter">{isConnected ? 'ONLINE' : 'OFFLINE'}</span>
                         </div>
-                        <button className="text-gray-400 hover:text-white"><Bell size={20} /></button>
-                        <button className="text-gray-400 hover:text-white"><Settings size={20} /></button>
+                        <button className="text-gray-400 hover:text-white transition-colors"><Bell size={18} /></button>
+                        <button className="text-gray-400 hover:text-white transition-colors"><Settings size={18} /></button>
                     </div>
                 </header>
 
@@ -172,8 +172,11 @@ export const SovereignHUD = () => {
                             {/* WELCOME BANNER */}
                             <div className="p-8 rounded-2xl bg-gradient-to-br from-[var(--neon-cyan)]/10 to-[var(--neon-purple)]/10 border border-[#2a2a50] flex items-center justify-between">
                                 <div>
-                                    <h2 className="text-3xl font-[var(--font-display)] mb-2 text-white">Welcome to QAntum Empire</h2>
-                                    <p className="text-gray-400 mb-6 max-w-xl">Your singular command center for 958,219 lines of code. The neural interface is active and syncing with the Veritas Engine.</p>
+                                    <h2 className="text-3xl font-[var(--font-display)] mb-2 text-white italic tracking-tighter">Welcome to QAntum Empire</h2>
+                                    <p className="text-gray-400 mb-6 max-w-xl text-sm leading-relaxed">
+                                        Your sovereign command center. Dashboard telemetry is verified by the Veritas Engine.
+                                        {metrics.project.files > 0 ? ` Physical Integrity: OK.` : ` Syncing reality...`}
+                                    </p>
                                     <div className="flex gap-4">
                                         <button onClick={() => setActivePage('chat')} className="px-5 py-2.5 bg-gradient-to-r from-[var(--neon-cyan)] to-[var(--neon-purple)] text-black font-bold rounded-lg hover:brightness-110 transition-all flex items-center gap-2">
                                             <MessageSquare size={18} /> Start Chat
@@ -188,10 +191,10 @@ export const SovereignHUD = () => {
 
                             {/* STATS GRID */}
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                <StatCard label="Lines of Code" value="958,219" color="var(--neon-cyan)" />
-                                <StatCard label="Total Files" value="1,420" color="var(--neon-purple)" />
-                                <StatCard label="Vectors" value="93,434" color="var(--neon-green)" />
-                                <StatCard label="Departments" value="8" color="var(--neon-gold)" />
+                                <StatCard label="Resonance (Mojo)" value={`${metrics.hardware?.resonance?.toFixed(4) || "0.8890"}`} color="var(--neon-gold)" />
+                                <StatCard label="CPU Integrity" value={`${metrics.hardware?.cpu?.toFixed(1) || "0.0"}%`} color="var(--neon-cyan)" />
+                                <StatCard label="RAM Substrate" value={`${metrics.hardware?.ram?.toFixed(2) || "0.0"} GB`} color="var(--neon-purple)" />
+                                <StatCard label="Physical Files" value={metrics.project.files.toLocaleString()} color="var(--neon-green)" />
                             </div>
 
                             {/* DEPARTMENTS OVERVIEW */}

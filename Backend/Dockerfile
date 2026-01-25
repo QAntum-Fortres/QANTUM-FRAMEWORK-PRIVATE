@@ -15,11 +15,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy Project
 COPY . .
 
-# Build Rust Core
+# Build Rust Core (Neural)
 WORKDIR /app/rust_core
 RUN cargo build --release
-# Move lib to where Python expects it (if needed, usually in target/release)
-# Assuming Python binds to it or calls it via standard paths.
+
+# Build Telemetry Reporter (Hardware)
+WORKDIR /app/telemetry
+RUN cargo build --release
 
 WORKDIR /app
 
