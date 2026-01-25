@@ -1,0 +1,30 @@
+# LwaS Telemetry Reporter - The Eye of Sauron
+# Market monitoring and reporting system for the QANTUM Dashboard
+
+[package]
+name = "lwas_telemetry_reporter"
+version = "1.0.0"
+edition = "2021"
+authors = ["QAntum Fortress Team"]
+description = "Market telemetry and monitoring system - Reports all market movements to Dashboard"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+path = "src/lib.rs"
+
+[[bin]]
+name = "telemetry_reporter"
+path = "src/main.rs"
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+sysinfo = { workspace = true }
+tokio = { workspace = true }
+actix-web = { workspace = true }
+actix-rt = { workspace = true }
+chrono = { workspace = true }
+
+[dev-dependencies]
+tokio-test = "0.4"
