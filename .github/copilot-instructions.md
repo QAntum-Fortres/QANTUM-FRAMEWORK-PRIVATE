@@ -116,7 +116,7 @@ cargo run --release --bin lwas_economy   # Port 8890
 - **Version**: Python 3.9+
 - **Style**: PEP 8 compliant
 - **Imports**: Group stdlib, third-party, and local imports
-- **Type Hints**: Use type hints where practical
+- **Type Hints**: Use type hints for function parameters and return values, especially in public APIs
 
 ### Rust
 - **Edition**: 2021
@@ -279,7 +279,7 @@ logger.error('Operation failed', { error, moduleId, attemptNumber });
 ## Dependencies and Package Management
 
 - **Node.js**: Use `npm` (not `yarn` or `pnpm`)
-- **Python**: Use `pip` with `requirements.txt` (note: current file lacks version pins - add versions when adding dependencies)
+- **Python**: Use `pip` with `requirements.txt` (note: current file lacks version pins for security/reproducibility - always pin versions when adding dependencies)
 - **Rust**: Use `cargo` with `Cargo.toml`
 - Lock dependency versions for production deployments
 - Check for security vulnerabilities before adding new packages
