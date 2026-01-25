@@ -359,7 +359,7 @@ export class VisualTestEngine {
                 `(threshold: ${this.config.threshold * 100}%)\n` +
                 `Baseline: ${result.baselinePath}\n` +
                 `Actual: ${result.actualPath}` +
-                (result.diffPath ? `\nDiff: ${result.diffPath}` : ')
+                (result.diffPath ? `\nDiff: ${result.diffPath}` : '')
             );
         }
     }

@@ -98,9 +98,8 @@ export class SnapshotManager {
         this.config.serializers.push({
             name: 'buffer',
             test: (value) => Buffer.isBuffer(value),
-            serialize: (value) => `Buffer { length: ${value.length}, hash: ${
-                crypto.createHash('md5').update(value).digest('hex').slice(0, 8)
-            } }`
+            serialize: (value) => `Buffer { length: ${value.length}, hash: ${crypto.createHash('md5').update(value).digest('hex').slice(0, 8)
+                } }`
         });
 
         // Function serializer
@@ -345,7 +344,7 @@ export class SnapshotManager {
      * Format HTML
      */
     private formatHTML(html: string): string {
-        let formatted = ';
+        let formatted = '';
         let indent = 0;
         const lines = html.split(/(?=<)|(?<=>)/);
 
@@ -400,7 +399,7 @@ export class SnapshotManager {
         try {
             fileContent = await fs.promises.readFile(filepath, 'utf-8');
         } catch {
-            fileContent = ';
+            fileContent = '';
         }
 
         const pattern = new RegExp(
@@ -425,7 +424,7 @@ export class SnapshotManager {
         );
 
         const match = fileContent.match(pattern);
-        return match ? match[1] : ';
+        return match ? match[1] : '';
     }
 
     private formatSnapshotEntry(name: string, content: string): string {
@@ -444,8 +443,8 @@ export class SnapshotManager {
         const maxLines = Math.max(expectedLines.length, actualLines.length);
 
         for (let i = 0; i < maxLines; i++) {
-            const exp = expectedLines[i] || ';
-            const act = actualLines[i] || ';
+            const exp = expectedLines[i] || '';
+            const act = actualLines[i] || '';
 
             if (exp === act) {
                 diff.push(`  ${exp}`);
