@@ -761,7 +761,7 @@ Return structured JSON with these fields:
                 current.target.selector === next.target.selector) {
                 current = {
                     ...current,
-                    value: (current.value || ') + (next.value || '),
+                    value: (current.value || '') + (next.value || ''),
                     duration: current.duration + next.duration,
                     confidence: Math.min(current.confidence, next.confidence)
                 };
@@ -888,7 +888,7 @@ Return structured JSON with these fields:
     private classifyGoalType(actions: ExtractedAction[]): GoalType {
         const actionTypes = actions.map(a => a.type);
         const elementTypes = actions.map(a => a.target.type);
-        const elementTexts = actions.map(a => a.target.text?.toLowerCase() || ');
+        const elementTexts = actions.map(a => a.target.text?.toLowerCase() || '');
 
         // Check for authentication
         if (elementTexts.some(t => t.includes('login') || t.includes('sign in') || t.includes('password'))) {
@@ -1022,9 +1022,9 @@ Return structured JSON with these fields:
         lines.push(`// Type: ${goal.type} | Priority: ${goal.priority}`);
         lines.push(`// Confidence: ${(goal.confidence * 100).toFixed(1)}%`);
         lines.push(`// ═══════════════════════════════════════════════════════════════`);
-        lines.push(');
+        lines.push('');
         lines.push(`import { test, expect } from '@playwright/test';`);
-        lines.push(');
+        lines.push('');
         lines.push(`test('${goal.description}', async ({ page }) => {`);
 
         for (const action of goal.actions) {
@@ -1072,7 +1072,7 @@ Return structured JSON with these fields:
     // ═══════════════════════════════════════════════════════════════════════════
 
     private uint8ArrayToBase64(bytes: Uint8Array): string {
-        let binary = ';
+        let binary = '';
         for (let i = 0; i < bytes.length; i++) {
             binary += String.fromCharCode(bytes[i]);
         }

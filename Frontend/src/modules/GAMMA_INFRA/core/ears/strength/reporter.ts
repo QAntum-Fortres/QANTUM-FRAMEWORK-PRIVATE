@@ -210,7 +210,7 @@ export class ReportGenerator {
 
     <div class="results">
       <div class="results-header">Test Results</div>
-      ${results.map(r => this.buildResultItem(r)).join(')}
+      ${results.map(r => this.buildResultItem(r)).join('')}
     </div>
 
     <footer>

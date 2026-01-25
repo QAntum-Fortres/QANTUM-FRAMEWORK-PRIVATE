@@ -144,7 +144,7 @@ export class GeneticMutationEngine extends EventEmitter {
 
     // Rule: Selector brittleness → simplify selector
     this.mutationRules.set('selector_fragile', (pattern) => {
-      const simplified = this.simplifySelector(pattern.selector || ');
+      const simplified = this.simplifySelector(pattern.selector || '');
       return {
         id: generateId('mut'),
         type: MutationType.SELECTOR_SIMPLIFICATION,

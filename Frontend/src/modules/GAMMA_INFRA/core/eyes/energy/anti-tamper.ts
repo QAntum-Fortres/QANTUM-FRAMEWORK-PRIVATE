@@ -361,7 +361,7 @@ export class AntiTamper extends EventEmitter {
   async detectVM(): Promise<DetectionResult> {
     const indicators: string[] = [];
     let confidence = 0;
-    let detectedVM = ';
+    let detectedVM = '';
 
     try {
       // Get system info

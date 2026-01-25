@@ -310,7 +310,7 @@ export class EnterpriseLogger extends EventEmitter {
     const reset = this.config.colorize ? COLORS.reset : ';
     const icon = LEVEL_ICONS[entry.level];
 
-    let output = ';
+    let output = '';
 
     // Timestamp
     if (this.config.includeTimestamp) {

@@ -105,7 +105,7 @@ export class WhisperService extends EventEmitter {
     private pendingRequests: Map<string, TranscriptionRequest> = new Map();
     private requestQueue: TranscriptionRequest[] = [];
     private isProcessing: boolean = false;
-    private outputBuffer: string = ';
+    private outputBuffer: string = '';
 
     constructor(config?: Partial<WhisperServiceConfig>) {
         super();

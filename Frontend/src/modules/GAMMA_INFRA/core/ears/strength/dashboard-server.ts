@@ -1217,7 +1217,7 @@ export class DashboardServer extends EventEmitter {
                         <div>\${c.memoryUsage}</div>
                     </div>
                 </div>
-            \`).join(');
+            \`).join('');
         }
 
         function updateSwarm(swarm) {

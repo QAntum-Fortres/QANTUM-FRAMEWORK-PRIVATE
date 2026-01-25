@@ -68,8 +68,8 @@ export interface Ticker {
 // ═══════════════════════════════════════════════════════════════════════════
 
 class BinanceConnector extends EventEmitter {
-  private apiKey: string = ';
-  private apiSecret: string = ';
+  private apiKey: string = '';
+  private apiSecret: string = '';
   private baseUrl = 'https://api.binance.com';
   private wsUrl = 'wss://stream.binance.com:9443/ws';
 
@@ -256,8 +256,8 @@ class BinanceConnector extends EventEmitter {
 // ═══════════════════════════════════════════════════════════════════════════
 
 class KrakenConnector extends EventEmitter {
-  private apiKey: string = ';
-  private apiSecret: string = ';
+  private apiKey: string = '';
+  private apiSecret: string = '';
   private baseUrl = 'https://api.kraken.com';
 
   private isConfigured = false;
@@ -429,9 +429,9 @@ class KrakenConnector extends EventEmitter {
 // ═══════════════════════════════════════════════════════════════════════════
 
 class CoinbaseConnector extends EventEmitter {
-  private apiKey: string = ';
-  private apiSecret: string = ';
-  private passphrase: string = ';
+  private apiKey: string = '';
+  private apiSecret: string = '';
+  private passphrase: string = '';
   private baseUrl = 'https://api.exchange.coinbase.com';
 
   private isConfigured = false;

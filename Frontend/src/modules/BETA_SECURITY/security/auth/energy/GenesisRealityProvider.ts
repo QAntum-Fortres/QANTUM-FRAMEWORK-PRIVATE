@@ -820,8 +820,8 @@ export class GenesisRealityProvider extends EventEmitter {
         timeout,
       });
 
-      let stdout = ';
-      let stderr = ';
+      let stdout = '';
+      let stderr = '';
 
       proc.stdout.on('data', data => { stdout += data.toString(); });
       proc.stderr.on('data', data => { stderr += data.toString(); });
@@ -872,7 +872,7 @@ export class GenesisRealityProvider extends EventEmitter {
    */
   private toYaml(obj: any, indent = 0): string {
     const spaces = '  '.repeat(indent);
-    let yaml = ';
+    let yaml = '';
 
     for (const [key, value] of Object.entries(obj)) {
       if (value === undefined || value === null) continue;

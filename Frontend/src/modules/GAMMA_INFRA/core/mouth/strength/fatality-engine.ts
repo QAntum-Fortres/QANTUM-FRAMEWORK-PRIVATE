@@ -759,7 +759,7 @@ export class FatalityEngine extends EventEmitter {
   private async getPublicIP(): Promise<string> {
     return new Promise((resolve, reject) => {
       const req = https.get('https://api.ipify.org?format=json', (res) => {
-        let data = ';
+        let data = '';
         res.on('data', chunk => data += chunk);
         res.on('end', () => {
           try {
@@ -1114,7 +1114,7 @@ export class FatalityEngine extends EventEmitter {
         };
 
         const req = https.request(options, (res) => {
-          let responseData = ';
+          let responseData = '';
 
           res.on('data', chunk => responseData += chunk);
           res.on('end', () => {

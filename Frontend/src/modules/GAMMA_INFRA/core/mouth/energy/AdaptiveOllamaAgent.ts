@@ -359,7 +359,7 @@ export class AdaptiveOllamaAgent {
     this.resetParameters();
 
     let attempt = 0;
-    let lastError = ';
+    let lastError = '';
 
     console.log(`\n[QANTUM] ═══════════════════════════════════════════════════════`);
     console.log(`[QANTUM] Starting adaptive generation for model: ${this.model}`);
@@ -489,7 +489,7 @@ export class AdaptiveOllamaAgent {
   // ╚══════════════════════════════════════════════════════════════════════════════╝
 
   async executeFunction(action: string, parameters?: Record<string, any>): Promise<FunctionResult> {
-    console.log(`[QANTUM] ⚡ Executing: ${action}`, parameters || ');
+    console.log(`[QANTUM] ⚡ Executing: ${action}`, parameters || '');
 
     switch (action) {
       case 'RUN_AUDIT': return this.runAudit();
@@ -639,7 +639,7 @@ SelfEvolver: Active
       const { stdout: htmlCount } = await execAsync(`cd ${this.workspacePath} && dir /s /b *.html 2>nul | find /c /v ""`);
 
       const statsPath = path.join(this.workspacePath, 'PROJECT-STATS.md');
-      let statsContent = ';
+      let statsContent = '';
       if (fs.existsSync(statsPath)) {
         statsContent = fs.readFileSync(statsPath, 'utf-8').substring(0, 500);
       }
@@ -664,7 +664,7 @@ HTML Files: ${stats.html}
 Total Code Files: ${stats.typescript + stats.javascript}
 Total All Files: ${stats.typescript + stats.javascript + stats.json + stats.html}
 
-${statsContent ? '📄 PROJECT-STATS.md:\n' + statsContent : '}
+${statsContent ? '📄 PROJECT-STATS.md:\n' + statsContent : ''}
 `,
         data: stats
       };
@@ -843,7 +843,7 @@ Path: ${fullPath}
     }
 
     const { type, name, description } = params;
-    let template = ';
+    let template = '';
 
     switch (type) {
       case 'component':
@@ -989,7 +989,7 @@ git reset --hard HEAD~${count}
 
   private async securityScan(): Promise<FunctionResult> {
     try {
-      let results = ';
+      let results = '';
 
       // npm audit
       try {

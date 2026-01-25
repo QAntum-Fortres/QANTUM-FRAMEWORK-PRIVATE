@@ -383,7 +383,7 @@ export class VisualGhostEngine {
 
     private generatePseudoBase64(length: number, seed: number): string {
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
-        let result = ';
+        let result = '';
         let random = seed;
 
         for (let i = 0; i < Math.min(length, 1000); i++) {

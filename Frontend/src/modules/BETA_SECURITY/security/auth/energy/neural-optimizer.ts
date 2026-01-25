@@ -373,7 +373,7 @@ export class PatternDeduplicator extends EventEmitter {
         compressionRatio: number;
     } {
         const compressed = new Map<string, string>();
-        const originalSize = selectors.join(').length;
+        const originalSize = selectors.join('').length;
 
         for (const selector of selectors) {
             // Extract common patterns

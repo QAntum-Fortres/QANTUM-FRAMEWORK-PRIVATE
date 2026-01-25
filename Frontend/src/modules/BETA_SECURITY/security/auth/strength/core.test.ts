@@ -122,7 +122,7 @@ describe('💎 DIContainer', () => {
       const container = new DIContainer();
       const token = new ServiceToken<{ scopeId: string }>('ScopedService');
 
-      let currentScope = ';
+      let currentScope = '';
       container.register(token, () => ({ scopeId: currentScope }), ServiceLifetime.Scoped);
 
       // Run in scope 1

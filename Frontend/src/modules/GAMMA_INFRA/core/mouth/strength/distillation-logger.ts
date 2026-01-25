@@ -543,8 +543,8 @@ export class DistillationLogger {
 
     for (const entry of entries) {
       const row = [
-        `"${this.escapeCsv(entry.messages[1]?.content || ')}"`,
-        `"${this.escapeCsv(entry.messages[2]?.content || ')}"`,
+        `"${this.escapeCsv(entry.messages[1]?.content || '')}"`,
+        `"${this.escapeCsv(entry.messages[2]?.content || '')}"`,
         `"${entry.metadata?.taskType || '}"`,
         `"${entry.metadata?.domain || '}"`,
         entry.metadata?.confidence || ',

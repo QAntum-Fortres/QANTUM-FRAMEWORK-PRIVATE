@@ -484,7 +484,7 @@ export class TLSPhantomEngine extends EventEmitter {
       0x0035: 'AES256-SHA'
     };
 
-    return ciphers.map(c => mapping[c] || ').filter(Boolean).join(':');
+    return ciphers.map(c => mapping[c] || '').filter(Boolean).join(':');
   }
 
   private signatureAlgorithmsToOpenSSL(sigalgs: number[]): string {
@@ -500,7 +500,7 @@ export class TLSPhantomEngine extends EventEmitter {
       0x0806: 'RSA-PSS+SHA512'
     };
 
-    return sigalgs.map(s => mapping[s] || ').filter(Boolean).join(':');
+    return sigalgs.map(s => mapping[s] || '').filter(Boolean).join(':');
   }
 
   private supportedGroupsToOpenSSL(groups: number[]): string {
@@ -511,7 +511,7 @@ export class TLSPhantomEngine extends EventEmitter {
       25: 'P-521'
     };
 
-    return groups.map(g => mapping[g] || ').filter(Boolean).join(':');
+    return groups.map(g => mapping[g] || '').filter(Boolean).join(':');
   }
 
   // ─────────────────────────────────────────────────────────────────────────────

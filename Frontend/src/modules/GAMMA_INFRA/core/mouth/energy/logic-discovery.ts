@@ -700,7 +700,7 @@ export class LogicDiscoveryEngine extends EventEmitter {
 
     // Find related API endpoints
     const relatedApis = this.siteMap!.apiEndpoints.filter(api =>
-      api.url.includes(new URL(startPage.url).pathname.split('/')[1] || ')
+      api.url.includes(new URL(startPage.url).pathname.split('/')[1] || '')
     );
 
     return {

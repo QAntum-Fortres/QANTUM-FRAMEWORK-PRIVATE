@@ -656,7 +656,7 @@ app.get('/api/user/:id', authenticate, async (req, res) => {
 Target: ${vulnerability.target}
 Severity: ${vulnerability.severity.toUpperCase()}
 CVSS Score: ${vulnerability.cvssScore}
-${vulnerability.cweId ? `CWE Reference: ${vulnerability.cweId}` : '}
+${vulnerability.cweId ? `CWE Reference: ${vulnerability.cweId}` : ''}
 
 This patch addresses the vulnerability by implementing proper security controls.`;
   }

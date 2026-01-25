@@ -211,7 +211,7 @@ export class ObfuscationEngine {
         // Generate short mangled names
         const generateName = (): string => {
             const chars = 'abcdefghijklmnopqrstuvwxyz';
-            let name = ';
+            let name = '';
             let n = counter++;
             do {
                 name = chars[n % 26] + name;

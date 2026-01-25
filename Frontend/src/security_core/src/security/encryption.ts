@@ -182,7 +182,7 @@ export class EncryptionService {
             return {
                 ciphertext: encrypted.toString('base64'),
                 iv: iv.toString('base64'),
-                authTag: ',
+                authTag: '',
                 algorithm: this.config.algorithm,
                 version: 1
             };

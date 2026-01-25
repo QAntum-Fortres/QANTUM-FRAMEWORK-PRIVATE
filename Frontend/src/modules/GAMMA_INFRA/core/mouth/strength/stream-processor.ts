@@ -88,7 +88,7 @@ export interface StreamStats {
  * Each line is parsed independently, preventing memory overflow
  */
 export class JSONLineParser extends Transform {
-  private buffer = ';
+  private buffer = '';
   private lineCount = 0;
 
   constructor() {
@@ -146,7 +146,7 @@ export class JSONLineParser extends Transform {
  * Uses minimal memory by streaming array elements
  */
 export class JSONArrayParser extends Transform {
-  private buffer = ';
+  private buffer = '';
   private depth = 0;
   private inArray = false;
   private itemStart = -1;
@@ -195,7 +195,7 @@ export class JSONArrayParser extends Transform {
           }
           this.itemStart = -1;
           // Clear processed buffer to save memory
-          this.buffer = ';
+          this.buffer = '';
         }
       } else if (char === ',' && this.inArray && this.depth === this.jsonPath.length + 1) {
         this.itemStart = -1;

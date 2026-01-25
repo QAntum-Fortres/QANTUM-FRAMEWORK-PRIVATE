@@ -371,7 +371,7 @@ export class PersistenceLayer {
    * Calculate hash of all messages
    */
   calculateStateHash(messages: BackpackMessage[]): string {
-    const content = messages.map(m => m.hash).join(');
+    const content = messages.map(m => m.hash).join('');
     return crypto.createHash('sha256').update(content).digest('hex').substring(0, 16);
   }
 

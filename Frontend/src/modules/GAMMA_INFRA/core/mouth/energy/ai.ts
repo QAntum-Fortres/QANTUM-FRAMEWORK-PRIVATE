@@ -107,7 +107,7 @@ export const aiRoutes: FastifyPluginAsync = async (app) => {
 
 Description: ${body.description}
 Base URL: ${body.context?.baseUrl || project.baseUrl || 'https://example.com'}
-${body.context?.existingSelectors ? `Existing selectors to reuse: ${body.context.existingSelectors.join(', ')}` : '}
+${body.context?.existingSelectors ? `Existing selectors to reuse: ${body.context.existingSelectors.join(', ')}` : ''}
 
 Generate the Playwright test code now.`,
         },
@@ -276,7 +276,7 @@ Output format (JSON):
 HTML Context:
 ${body.htmlContext}
 
-${body.failureHistory ? `Failure history: ${JSON.stringify(body.failureHistory)}` : '}
+${body.failureHistory ? `Failure history: ${JSON.stringify(body.failureHistory)}` : ''}
 
 Suggest better alternatives.`,
         },
@@ -311,7 +311,7 @@ Suggest better alternatives.`,
     const body = schema.parse(request.body);
 
     // Build context from knowledge base
-    let contextInfo = ';
+    let contextInfo = '';
     if (body.frameworks && body.frameworks.length > 0) {
       body.frameworks.forEach(framework => {
         const info = getLogicalFramework(framework);
@@ -348,7 +348,7 @@ Be comprehensive but actionable.`,
 
 Scenario: ${body.scenario}
 
-${contextInfo ? `Relevant frameworks: ${contextInfo}` : '}
+${contextInfo ? `Relevant frameworks: ${contextInfo}` : ''}
 
 Provide a multi-perspective logical analysis.`,
         },

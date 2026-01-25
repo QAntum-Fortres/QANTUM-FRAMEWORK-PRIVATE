@@ -85,7 +85,7 @@ export class NetworkInterceptor {
         this.session = {
             testName,
             startTime: Date.now(),
-            baseUrl: ',
+            baseUrl: '',
             requests: [],
             variables: new Map()
         };
@@ -219,7 +219,7 @@ export class NetworkInterceptor {
         // Check Authorization header
         const auth = headers['authorization'] || headers['Authorization'];
         if (auth && auth.startsWith('Bearer ')) {
-            this.session.authToken = auth.replace('Bearer ', ');
+            this.session.authToken = auth.replace('Bearer ', '');
             console.log(`👻 [GHOST] Extracted Bearer token`);
         }
 
@@ -239,7 +239,7 @@ export class NetworkInterceptor {
         // Common dynamic value patterns
         const patterns = ['id', 'userId', 'orderId', 'sessionId', 'token', 'uuid'];
 
-        const extract = (obj: any, prefix = ') => {
+        const extract = (obj: any, prefix = '') => {
             for (const key of Object.keys(obj)) {
                 const value = obj[key];
                 const fullKey = prefix ? `${prefix}.${key}` : key;
@@ -351,7 +351,7 @@ export class NetworkInterceptor {
 
     private async safeGetResponseBody(response: Response): Promise<any> {
         try {
-            const contentType = response.headers()['content-type'] || ';
+            const contentType = response.headers()['content-type'] || '';
             if (contentType.includes('application/json')) {
                 return await response.json();
             }
@@ -438,7 +438,7 @@ function createApiClient(): AxiosInstance {
 
 // Variable resolver (replaces {{var}} with actual values)
 function resolve(template: string, vars: Record<string, string> = VARIABLES): string {
-    return template.replace(/\\{\\{(\\w+)\\}\\}/g, (_, key) => vars[key] || ');
+    return template.replace(/\\{\\{(\\w+)\\}\\}/g, (_, key) => vars[key] || '');
 }
 
 // Response validator
@@ -495,7 +495,7 @@ async function runGhostTest(): Promise<void> {
     console.log('👻 [GHOST PROTOCOL] Starting API test...');
     console.log('   Base URL:', BASE_URL);
     console.log('   Requests:', ${session.requests.length});
-    console.log(');
+    console.log('');
 
     const results = { passed: 0, failed: 0 };
     const startTime = Date.now();
@@ -514,7 +514,7 @@ ${session.requests.map((req, i) => {
 }).join('\n')}
 
     const duration = Date.now() - startTime;
-    console.log(');
+    console.log('');
     console.log('👻 [GHOST] Results:');
     console.log(\`   ✅ Passed: \${results.passed}\`);
     console.log(\`   ❌ Failed: \${results.failed}\`);
@@ -532,12 +532,12 @@ if (require.main === module) {
         const funcName = `test_${index + 1}_${this.sanitizeName(req.method, req.url)}`;
         const urlPath = new URL(req.url).pathname;
 
-        let bodyParam = ';
+        let bodyParam = '';
         if (req.body) {
             bodyParam = `, ${JSON.stringify(req.body, null, 8)}`;
         }
 
-        let validation = ';
+        let validation = '';
         if (this.config.includeResponseValidation && req.response) {
             validation = `
         validateResponse(response, { status: ${req.response.status} });`;
@@ -552,16 +552,16 @@ if (require.main === module) {
     private sanitizeName(method: string, url: string): string {
         const urlObj = new URL(url);
         const path = urlObj.pathname
-            .replace(/^\/api\//, ')
+            .replace(/^\/api\//, '')
             .replace(/\//g, '_')
-            .replace(/[^a-zA-Z0-9_]/g, ');
+            .replace(/[^a-zA-Z0-9_]/g, '');
         return `${method.toLowerCase()}_${path}`.slice(0, 50);
     }
 
     private shortenUrl(url: string): string {
         try {
             const urlObj = new URL(url);
-            return urlObj.pathname.slice(0, 40) + (urlObj.pathname.length > 40 ? '...' : ');
+            return urlObj.pathname.slice(0, 40) + (urlObj.pathname.length > 40 ? '...' : '');
         } catch {
             return url.slice(0, 40);
         }
@@ -617,7 +617,7 @@ export async function runGhostCapture(uiTestPath: string): Promise<void> {
 `);
     console.log(`📂 Input: ${uiTestPath}`);
     console.log(`⏳ Running UI test with network capture...`);
-    console.log(');
+    console.log('');
 
     // This would integrate with the test runner
     // For now, it's a placeholder for the full implementation

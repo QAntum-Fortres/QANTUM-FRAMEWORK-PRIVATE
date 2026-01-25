@@ -189,7 +189,7 @@ export class AutoPatcher extends EventEmitter {
 
         const fileContent = await fs.promises.readFile(analysis.file, 'utf-8');
         let newContent = fileContent;
-        let description = ';
+        let description = '';
         let patchType: Patch['type'] = 'selector-update';
 
         switch (analysis.type) {
@@ -641,7 +641,7 @@ ${indent}}`;
         const oldLines = oldContent.split('\n');
         const newLines = newContent.split('\n');
 
-        let diff = ';
+        let diff = '';
         const maxLines = Math.max(oldLines.length, newLines.length);
 
         for (let i = 0; i < maxLines; i++) {

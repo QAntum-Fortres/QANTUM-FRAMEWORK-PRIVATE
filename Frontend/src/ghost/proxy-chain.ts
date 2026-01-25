@@ -203,7 +203,7 @@ export class ProxyChain {
      * Get next proxy from pool
      */
     getProxy(poolId?: string, sessionId?: string): ProxyConfig | null {
-        const pool = this.pools.get(poolId || this.config.defaultPool || ');
+        const pool = this.pools.get(poolId || this.config.defaultPool || '');
         if (!pool || pool.proxies.length === 0) return null;
 
         const activeProxies = pool.proxies.filter(

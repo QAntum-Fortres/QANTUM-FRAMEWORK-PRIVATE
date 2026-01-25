@@ -248,7 +248,7 @@ export class NeuralIntegration {
 Repair this broken CSS/XPath selector:
 ${brokenSelector}
 
-${pageContext ? `Page context:\n${pageContext}` : '}
+${pageContext ? `Page context:\n${pageContext}` : ''}
 
 Requirements:
 - Use data-testid if available
@@ -286,7 +286,7 @@ Refactor this code for better maintainability:
 ${code}
 \`\`\`
 
-${requirements ? `Requirements:\n${requirements}` : '}
+${requirements ? `Requirements:\n${requirements}` : ''}
 
 Apply:
 - SOLID principles

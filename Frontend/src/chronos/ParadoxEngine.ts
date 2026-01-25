@@ -691,7 +691,7 @@ export class ParadoxEngine extends EventEmitter {
 
     // Check specific indicators
     let triggered = false;
-    let description = ';
+    let description = '';
 
     switch (failureType) {
       case FailureType.ANTI_BOT_DETECTION:

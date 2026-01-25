@@ -51,7 +51,7 @@ let varCounter = 0;
 
 function generateObfuscatedName(): string {
     const chars = 'abcdefghijklmnopqrstuvwxyz';
-    let name = ';
+    let name = '';
     let n = varCounter++;
 
     do {
@@ -187,7 +187,7 @@ export class ParanoidObfuscator {
         // Process all TypeScript files
         const files = await this.collectFiles(this.config.sourcePath);
         let filesProcessed = 0;
-        let combinedCode = ';
+        let combinedCode = '';
 
         for (const file of files) {
             if (file.endsWith('.ts')) {

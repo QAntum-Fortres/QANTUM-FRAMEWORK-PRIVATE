@@ -932,7 +932,7 @@ export class NeuralMapper {
     }
 
     private generateSnapshotHash(files: Map<string, FileNode>): string {
-        const hashes = Array.from(files.values()).map(f => f.hash).sort().join(');
+        const hashes = Array.from(files.values()).map(f => f.hash).sort().join('');
         return crypto.createHash('sha256').update(hashes).digest('hex').substring(0, 16);
     }
 

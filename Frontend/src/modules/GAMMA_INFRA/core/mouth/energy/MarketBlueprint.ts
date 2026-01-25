@@ -1228,7 +1228,7 @@ export class MarketBlueprint extends EventEmitter {
       for (const item of items) {
         const quantity = item.quantity || 1;
         let unitPrice = 0;
-        let name = ';
+        let name = '';
 
         if (item.type === 'package') {
           // Find package in cache
