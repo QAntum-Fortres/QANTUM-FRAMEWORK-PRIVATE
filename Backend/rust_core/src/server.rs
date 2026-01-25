@@ -1,5 +1,5 @@
 use actix_web::{web, App, HttpResponse, HttpServer, Responder};
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use std::sync::{Arc, Mutex};
 
 use crate::economy::EconomyEngine;

@@ -98,9 +98,7 @@ impl EconomyEngine {
     }
 }
 
-// Add chrono for timestamps
-use std::time::{SystemTime, UNIX_EPOCH};
-
+// Simple timestamp module (no external dependencies)
 mod chrono {
     use std::time::{SystemTime, UNIX_EPOCH};
     

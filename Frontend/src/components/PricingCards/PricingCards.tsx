@@ -5,7 +5,8 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { apiService, PRICING_TIERS, PricingTier } from '../../services/apiService';
+import { apiService, PRICING_TIERS } from '../../services/apiService';
+import type { PricingTier } from '../../services/apiService';
 import { Check, Sparkles, Crown, Zap } from 'lucide-react';
 
 const tierIcons = {
@@ -71,8 +72,7 @@ export const PricingCards = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.6
       }
     }
   };

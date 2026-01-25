@@ -5,7 +5,8 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { apiService, SystemMetrics } from '../../services/apiService';
+import { apiService } from '../../services/apiService';
+import type { SystemMetrics } from '../../services/apiService';
 import { Activity, Cpu, HardDrive, Thermometer, Zap } from 'lucide-react';
 
 export const SystemPulse = () => {
