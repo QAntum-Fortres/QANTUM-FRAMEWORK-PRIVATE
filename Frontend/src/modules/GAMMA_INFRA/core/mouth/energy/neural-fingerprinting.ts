@@ -636,7 +636,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
                 // Correction
                 if (options.includeCorrections) {
                     sequence.push({
-                        char: ',
+                        char: '',
                         delay: this.randomInRange(100, 300),
                         isBackspace: true
                     });
@@ -837,7 +837,7 @@ export class NeuralFingerprintingEngine extends EventEmitter {
 
     private detectVendorFromUA(ua: string): string {
         if (ua.includes('Chrome')) return 'Google Inc.';
-        if (ua.includes('Firefox')) return ';
+        if (ua.includes('Firefox')) return '';
         if (ua.includes('Safari') && !ua.includes('Chrome')) return 'Apple Computer, Inc.';
         return 'Google Inc.';
     }

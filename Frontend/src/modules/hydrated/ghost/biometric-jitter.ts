@@ -455,7 +455,7 @@ export class BiometricJitter extends EventEmitter {
      * ⌨️ Generate humanized typing pattern
      */
     generateTypingPattern(text: string): { chars: string[]; delays: number[] } {
-        const chars = text.split(');
+        const chars = text.split('');
         const delays: number[] = [];
 
         // Base typing speed (adjusted by skill level)

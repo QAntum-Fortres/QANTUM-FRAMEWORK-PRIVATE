@@ -356,7 +356,7 @@ export class EvidenceCollector {
       return {
         success: false,
         evidenceId,
-        filePath: ',
+        filePath: '',
         metadata: {} as EvidenceMetadata,
         error: errorMessage,
         duration: Date.now() - startTime,
@@ -501,9 +501,9 @@ export class EvidenceCollector {
     // Response monitoring for sensitive data
     this.page.on('response', async (response) => {
       try {
-        const contentType = response.headers()['content-type'] ?? ';
+        const contentType = response.headers()['content-type'] ?? '';
         if (contentType.includes('application/json')) {
-          const body = await response.text().catch(() => ');
+          const body = await response.text().catch(() => '');
 
           // Check for PII in response
           if (this.detectSensitiveData(body)) {
@@ -594,8 +594,8 @@ export class EvidenceCollector {
             for (const element of elements) {
               await element.evaluate((el) => {
                 const htmlEl = el as HTMLElement;
-                htmlEl.style.filter = ';
-                htmlEl.style.backgroundColor = ';
+                htmlEl.style.filter = '';
+                htmlEl.style.backgroundColor = '';
               });
             }
           }
@@ -774,7 +774,7 @@ Respond in JSON format:
       }
 
       const result = await response.json();
-      const text = result.candidates?.[0]?.content?.parts?.[0]?.text ?? ';
+      const text = result.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
 
       // Parse JSON from response
       const jsonMatch = text.match(/\{[\s\S]*\}/);

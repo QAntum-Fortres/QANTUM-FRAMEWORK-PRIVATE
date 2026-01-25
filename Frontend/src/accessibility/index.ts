@@ -138,7 +138,7 @@ export class QAntumAccessibility {
                 <td>${v.wcagCriteria.join(', ')}</td>
                 <td>${v.nodes.length}</td>
             </tr>
-        `).join(');
+        `).join('');
 
         return `
 <!DOCTYPE html>
@@ -217,22 +217,22 @@ export class QAntumAccessibility {
             '═══════════════════════════════════════════════════════════════════',
             '                    ACCESSIBILITY REPORT                            ',
             '═══════════════════════════════════════════════════════════════════',
-            ',
+            '',
             `URL: ${result.url}`,
             `Date: ${result.timestamp.toISOString()}`,
-            ',
+            '',
             '───────────────────────────────────────────────────────────────────',
             '                          SUMMARY                                  ',
             '───────────────────────────────────────────────────────────────────',
-            ',
+            '',
             `Total Violations: ${result.summary.total}`,
             `  Critical: ${result.summary.critical}`,
             `  Serious:  ${result.summary.serious}`,
             `  Moderate: ${result.summary.moderate}`,
             `  Minor:    ${result.summary.minor}`,
-            ',
+            '',
             `Passed: ${result.passes}`,
-            '
+            ''
         ];
 
         if (result.violations.length > 0) {
@@ -240,7 +240,7 @@ export class QAntumAccessibility {
                 '───────────────────────────────────────────────────────────────────',
                 '                         VIOLATIONS                                ',
                 '───────────────────────────────────────────────────────────────────',
-                '
+                ''
             );
 
             for (const violation of result.violations) {
@@ -248,14 +248,14 @@ export class QAntumAccessibility {
                     `[${violation.impact.toUpperCase()}] ${violation.rule}`,
                     `  WCAG: ${violation.wcagCriteria.join(', ')} (Level ${violation.wcagLevel})`,
                     `  Issues: ${violation.nodes.length}`,
-                    '
+                    ''
                 );
 
                 for (const node of violation.nodes) {
                     lines.push(
                         `    Target: ${node.target.join(' > ')}`,
                         `    Problem: ${node.failureSummary}`,
-                        '
+                        ''
                     );
                 }
             }

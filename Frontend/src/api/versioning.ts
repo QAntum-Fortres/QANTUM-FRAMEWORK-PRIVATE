@@ -450,7 +450,7 @@ export function Deprecated(sunset: string, replacement?: string): MethodDecorato
             console.warn(
                 `[DEPRECATED] ${String(propertyKey)} is deprecated. ` +
                 `Sunset: ${sunset}. ` +
-                (replacement ? `Use ${replacement} instead.` : ')
+                (replacement ? `Use ${replacement} instead.` : '')
             );
             return original.apply(this, args);
         };

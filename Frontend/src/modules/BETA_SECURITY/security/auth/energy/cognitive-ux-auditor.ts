@@ -282,7 +282,7 @@ export class CognitiveUXAuditor extends EventEmitter {
 
         const contextPrompt = context
             ? `\n\nContext:\n- Page URL: ${context.pageUrl || 'Unknown'}\n- Page Name: ${context.pageName || 'Unknown'}\n- Target Persona: ${context.targetPersona || 'General user'}`
-            : ';
+            : '';
 
         const fullPrompt = UX_ANALYSIS_PROMPT + contextPrompt;
 
@@ -410,7 +410,7 @@ export class CognitiveUXAuditor extends EventEmitter {
                 strengths: parsed.strengths || [],
                 recommendations: (parsed.recommendations || []).map((rec, index) => ({
                     priority: (rec.priority as UXRecommendation['priority']) || 'medium',
-                    text: rec.text || ',
+                    text: rec.text || '',
                     relatedIssues: [],
                     effort: (rec.effort as UXRecommendation['effort']) || 'medium',
                     expectedImprovement: rec.expectedImprovement || 5
@@ -520,9 +520,9 @@ export class CognitiveUXAuditor extends EventEmitter {
         lines.push('═══════════════════════════════════════════════════════════════════════════════');
         lines.push('                    🧠 COGNITIVE UX AUDIT REPORT                              ');
         lines.push('═══════════════════════════════════════════════════════════════════════════════');
-        lines.push(');
+        lines.push('');
         lines.push(`📊 OVERALL UX SCORE: ${result.score}/100 ${this.getScoreEmoji(result.score)}`);
-        lines.push(');
+        lines.push('');
         lines.push('────────────────────────────────────────────────────────────────────────────────');
         lines.push('CATEGORY BREAKDOWN:');
         lines.push('────────────────────────────────────────────────────────────────────────────────');
@@ -543,7 +543,7 @@ export class CognitiveUXAuditor extends EventEmitter {
             lines.push(`${name.padEnd(22)} ${bar} ${score}/100`);
         }
 
-        lines.push(');
+        lines.push('');
 
         if (result.issues.length > 0) {
             lines.push('────────────────────────────────────────────────────────────────────────────────');
@@ -566,7 +566,7 @@ export class CognitiveUXAuditor extends EventEmitter {
                     lines.push(`   📋 WCAG: ${issue.wcagReference}`);
                 }
                 lines.push(`   💥 Impact: ${issue.impact}/100`);
-                lines.push(');
+                lines.push('');
             }
         }
 
@@ -578,7 +578,7 @@ export class CognitiveUXAuditor extends EventEmitter {
             for (const strength of result.strengths) {
                 lines.push(`  • ${strength}`);
             }
-            lines.push(');
+            lines.push('');
         }
 
         if (result.recommendations.length > 0) {
@@ -595,7 +595,7 @@ export class CognitiveUXAuditor extends EventEmitter {
 
                 lines.push(`${priorityIcon} [${rec.priority.toUpperCase()}] ${rec.text}`);
                 lines.push(`   Effort: ${rec.effort} | Expected improvement: +${rec.expectedImprovement} points`);
-                lines.push(');
+                lines.push('');
             }
         }
 

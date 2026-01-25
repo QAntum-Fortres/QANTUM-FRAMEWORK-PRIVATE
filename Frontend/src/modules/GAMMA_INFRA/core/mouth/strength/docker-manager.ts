@@ -437,8 +437,8 @@ CMD ["npm", "run", "test"]
                 stdio: ['pipe', 'pipe', 'pipe']
             });
 
-            let output = ';
-            let errorOutput = ';
+            let output = '';
+            let errorOutput = '';
 
             this.composeProcess.stdout?.on('data', (data) => {
                 output += data.toString();
@@ -609,7 +609,7 @@ CMD ["npm", "run", "test"]
     }
 
     private toYaml(obj: Record<string, unknown>, indent: number = 0): string {
-        let yaml = ';
+        let yaml = '';
         const spaces = '  '.repeat(indent);
 
         for (const [key, value] of Object.entries(obj)) {

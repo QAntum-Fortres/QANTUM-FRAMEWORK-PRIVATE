@@ -54,7 +54,7 @@ export const validators = {
     minLength: (min: number): ValidatorFn<string> => (value) => ({
         valid: typeof value === 'string' && value.length >= min,
         errors: value.length < min ? [{
-            path: ',
+            path: '',
             message: `Must be at least ${min} characters`,
             code: 'MIN_LENGTH',
             expected: min,
@@ -65,7 +65,7 @@ export const validators = {
     maxLength: (max: number): ValidatorFn<string> => (value) => ({
         valid: typeof value === 'string' && value.length <= max,
         errors: value.length > max ? [{
-            path: ',
+            path: '',
             message: `Must be at most ${max} characters`,
             code: 'MAX_LENGTH',
             expected: max,
@@ -76,7 +76,7 @@ export const validators = {
     pattern: (regex: RegExp, message?: string): ValidatorFn<string> => (value) => ({
         valid: regex.test(value),
         errors: !regex.test(value) ? [{
-            path: ',
+            path: '',
             message: message || `Must match pattern ${regex}`,
             code: 'PATTERN'
         }] : []
@@ -100,7 +100,7 @@ export const validators = {
     noHtml: (): ValidatorFn<string> => (value) => ({
         valid: !/<[^>]*>/g.test(value),
         errors: /<[^>]*>/g.test(value) ? [{
-            path: ',
+            path: '',
             message: 'HTML tags are not allowed',
             code: 'NO_HTML'
         }] : []
@@ -117,7 +117,7 @@ export const validators = {
         return {
             valid: !hasSql,
             errors: hasSql ? [{
-                path: ',
+                path: '',
                 message: 'Potential SQL injection detected',
                 code: 'SQL_INJECTION'
             }] : []
@@ -128,7 +128,7 @@ export const validators = {
     min: (min: number): ValidatorFn<number> => (value) => ({
         valid: value >= min,
         errors: value < min ? [{
-            path: ',
+            path: '',
             message: `Must be at least ${min}`,
             code: 'MIN',
             expected: min,
@@ -139,7 +139,7 @@ export const validators = {
     max: (max: number): ValidatorFn<number> => (value) => ({
         valid: value <= max,
         errors: value > max ? [{
-            path: ',
+            path: '',
             message: `Must be at most ${max}`,
             code: 'MAX',
             expected: max,
@@ -150,7 +150,7 @@ export const validators = {
     integer: (): ValidatorFn<number> => (value) => ({
         valid: Number.isInteger(value),
         errors: !Number.isInteger(value) ? [{
-            path: ',
+            path: '',
             message: 'Must be an integer',
             code: 'INTEGER'
         }] : []
@@ -159,7 +159,7 @@ export const validators = {
     positive: (): ValidatorFn<number> => (value) => ({
         valid: value > 0,
         errors: value <= 0 ? [{
-            path: ',
+            path: '',
             message: 'Must be positive',
             code: 'POSITIVE'
         }] : []
@@ -169,7 +169,7 @@ export const validators = {
     minItems: (min: number): ValidatorFn<any[]> => (value) => ({
         valid: Array.isArray(value) && value.length >= min,
         errors: value.length < min ? [{
-            path: ',
+            path: '',
             message: `Must have at least ${min} items`,
             code: 'MIN_ITEMS',
             expected: min,
@@ -180,7 +180,7 @@ export const validators = {
     maxItems: (max: number): ValidatorFn<any[]> => (value) => ({
         valid: Array.isArray(value) && value.length <= max,
         errors: value.length > max ? [{
-            path: ',
+            path: '',
             message: `Must have at most ${max} items`,
             code: 'MAX_ITEMS',
             expected: max,
@@ -193,7 +193,7 @@ export const validators = {
         return {
             valid: unique,
             errors: !unique ? [{
-                path: ',
+                path: '',
                 message: 'All items must be unique',
                 code: 'UNIQUE'
             }] : []
@@ -204,7 +204,7 @@ export const validators = {
     oneOf: <T>(allowed: T[]): ValidatorFn<T> => (value) => ({
         valid: allowed.includes(value),
         errors: !allowed.includes(value) ? [{
-            path: ',
+            path: '',
             message: `Must be one of: ${allowed.join(', ')}`,
             code: 'ONE_OF',
             expected: allowed,
@@ -215,7 +215,7 @@ export const validators = {
     custom: <T>(fn: (value: T) => boolean, message: string): ValidatorFn<T> => (value) => ({
         valid: fn(value),
         errors: !fn(value) ? [{
-            path: ',
+            path: '',
             message,
             code: 'CUSTOM'
         }] : []
@@ -243,7 +243,7 @@ export const sanitizers = {
     },
 
     stripHtml: (value: string): string => {
-        return value.replace(/<[^>]*>/g, ');
+        return value.replace(/<[^>]*>/g, '');
     },
 
     normalizeWhitespace: (value: string): string => {
@@ -611,7 +611,7 @@ export class InputValidator {
             return {
                 valid: false,
                 errors: [{
-                    path: ',
+                    path: '',
                     message: `Schema '${schemaName}' not found`,
                     code: 'SCHEMA_NOT_FOUND'
                 }]

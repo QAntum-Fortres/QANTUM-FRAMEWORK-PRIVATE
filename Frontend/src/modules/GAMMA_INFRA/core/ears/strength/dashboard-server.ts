@@ -188,7 +188,7 @@ export class DashboardServer extends EventEmitter {
                 running: false,
                 passed: 0,
                 failed: 0,
-                current: '
+                current: ''
             }
         };
     }

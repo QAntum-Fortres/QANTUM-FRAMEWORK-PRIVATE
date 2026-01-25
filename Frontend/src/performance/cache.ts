@@ -312,7 +312,7 @@ export class Cache<T = unknown> {
 
     private selectLRU(): string {
         let oldest = Infinity;
-        let oldestKey = ';
+        let oldestKey = '';
 
         for (const [key, entry] of this.entries) {
             if (entry.lastAccessed < oldest) {
@@ -326,7 +326,7 @@ export class Cache<T = unknown> {
 
     private selectLFU(): string {
         let minAccess = Infinity;
-        let minKey = ';
+        let minKey = '';
 
         for (const [key, entry] of this.entries) {
             if (entry.accessCount < minAccess) {
@@ -340,7 +340,7 @@ export class Cache<T = unknown> {
 
     private selectFIFO(): string {
         let oldest = Infinity;
-        let oldestKey = ';
+        let oldestKey = '';
 
         for (const [key, entry] of this.entries) {
             if (entry.createdAt < oldest) {

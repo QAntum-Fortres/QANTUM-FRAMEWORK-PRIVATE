@@ -58,7 +58,7 @@ export async function generateJUnit(result: RunResult, outputPath: string): Prom
       xml += '>\n      <skipped />\n    </testcase>\n';
     } else if (test.status === 'failed') {
       xml += '>\n';
-      xml += `      <failure message="${escapeXml(test.error || 'Test failed')}">${escapeXml(test.error || ')}</failure>\n`;
+      xml += `      <failure message="${escapeXml(test.error || 'Test failed')}">${escapeXml(test.error || '')}</failure>\n`;
       xml += '    </testcase>\n';
     }
 

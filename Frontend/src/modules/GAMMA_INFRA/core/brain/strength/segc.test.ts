@@ -249,8 +249,8 @@ describe('🧬 Self-Evolving Genetic Core v18.0', () => {
       mutations.addMutationRule('custom_error', (pattern) => ({
         id: 'custom_mut',
         type: MutationType.ERROR_HANDLING,
-        targetSelector: pattern.selector || ',
-        originalCode: ',
+        targetSelector: pattern.selector || '',
+        originalCode: '',
         mutatedCode: 'try { } catch { }',
         confidence: 0.9,
         generatedAt: new Date(),

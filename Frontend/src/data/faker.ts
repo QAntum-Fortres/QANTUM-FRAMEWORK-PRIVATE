@@ -351,7 +351,7 @@ export class Faker {
 
     uuid(): string {
         const hex = '0123456789abcdef';
-        let uuid = ';
+        let uuid = '';
         for (let i = 0; i < 36; i++) {
             if (i === 8 || i === 13 || i === 18 || i === 23) {
                 uuid += '-';
@@ -368,7 +368,7 @@ export class Faker {
 
     objectId(): string {
         const hex = '0123456789abcdef';
-        return Array.from({ length: 24 }, () => hex[this.random.int(0, 15)]).join(');
+        return Array.from({ length: 24 }, () => hex[this.random.int(0, 15)]).join('');
     }
 
     // ─────────────────────────────────────────────────────────────────────────
@@ -385,7 +385,7 @@ export class Faker {
 
     hexColor(): string {
         const hex = '0123456789ABCDEF';
-        return '#' + Array.from({ length: 6 }, () => hex[this.random.int(0, 15)]).join(');
+        return '#' + Array.from({ length: 6 }, () => hex[this.random.int(0, 15)]).join('');
     }
 
     phone(): string {

@@ -446,7 +446,7 @@ export class PluginManager {
 export class PluginBuilder {
     private plugin: Partial<Plugin> = {
         metadata: {
-            name: ',
+            name: '',
             version: '1.0.0'
         }
     };

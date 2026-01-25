@@ -512,7 +512,7 @@ export class OpenAPIGenerator {
 
     if (Array.isArray(obj)) {
       if (obj.length === 0) return '[]';
-      return obj.map(item => `\n${spaces}- ${this.objectToYAML(item, indent + 1)}`).join(');
+      return obj.map(item => `\n${spaces}- ${this.objectToYAML(item, indent + 1)}`).join('');
     }
 
     if (typeof obj === 'object') {
@@ -528,7 +528,7 @@ export class OpenAPIGenerator {
           }
           return `\n${spaces}${key}: ${valueStr}`;
         })
-        .join(');
+        .join('');
     }
 
     return String(obj);

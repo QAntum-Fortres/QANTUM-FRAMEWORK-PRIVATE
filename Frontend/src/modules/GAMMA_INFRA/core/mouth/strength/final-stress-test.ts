@@ -176,7 +176,7 @@ export class FinalStressTest extends EventEmitter {
         console.log(`   Target CPU: ${this.config.targetCPU}%`);
         console.log(`   Target Memory: ${this.config.targetMemory}%`);
         console.log(`   Phases to test: ${this.config.phases.length}`);
-        console.log(');
+        console.log('');
 
         this.isRunning = true;
         this.startTime = Date.now();
@@ -191,7 +191,7 @@ export class FinalStressTest extends EventEmitter {
         try {
             // Run all phases
             console.log('🚀 Starting stress test...');
-            console.log(');
+            console.log('');
 
             await this.runAllPhases();
 
@@ -243,7 +243,7 @@ export class FinalStressTest extends EventEmitter {
             process.stdout.write(`\r   Progress: ${progress}% | Passed: ${passed} | Failed: ${failed} | Workers: ${batch.length}   `);
         }
 
-        console.log(');
+        console.log('');
     }
 
     /**
@@ -446,7 +446,7 @@ export class FinalStressTest extends EventEmitter {
      * Display report
      */
     private displayReport(report: StressTestReport): void {
-        console.log(');
+        console.log('');
         console.log('╔═══════════════════════════════════════════════════════════════╗');
         console.log('║  📊 STRESS TEST REPORT                                        ║');
         console.log('╠═══════════════════════════════════════════════════════════════╣');
@@ -474,7 +474,7 @@ export class FinalStressTest extends EventEmitter {
 
         // List failed phases if any
         if (report.failedPhases > 0) {
-            console.log(');
+            console.log('');
             console.log('❌ Failed Phases:');
             for (const result of report.phaseResults.filter(r => r.status === 'failed')) {
                 console.log(`   • ${result.phase}: ${result.errors.join(', ')}`);

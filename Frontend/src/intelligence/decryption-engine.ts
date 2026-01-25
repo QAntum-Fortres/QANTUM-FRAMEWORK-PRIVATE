@@ -51,8 +51,7 @@ export class DecryptionEngine implements ICognitiveModule {
     }
 
     private attemptDecode(input: string): string {
-        const cleanInput = input.trim().replace(/\s/g, ');
-
+        const cleanInput = input.trim().replace(/\s/g, '');
         // Strategy A: Base64
         const base64Regex = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
         if (base64Regex.test(cleanInput)) {

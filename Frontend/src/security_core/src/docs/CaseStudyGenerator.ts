@@ -751,7 +751,7 @@ export class CaseStudyGenerator extends EventEmitter {
     metrics: CaseStudyMetrics,
     data: SuccessCrawlData
   ): string {
-    let md = ';
+    let md = '';
 
     // Header
     md += `# ${title}\n\n`;

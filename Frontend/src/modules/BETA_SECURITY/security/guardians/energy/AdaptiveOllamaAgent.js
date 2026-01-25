@@ -296,7 +296,7 @@ class AdaptiveOllamaAgent {
         // Reset to default parameters for new request
         this.resetParameters();
         let attempt = 0;
-        let lastError = ';
+        let lastError = '';
         console.log(`\n[QANTUM] ═══════════════════════════════════════════════════════`);
         console.log(`[QANTUM] Starting adaptive generation for model: ${this.model}`);
         console.log(`[QANTUM] ═══════════════════════════════════════════════════════`);
@@ -350,7 +350,7 @@ class AdaptiveOllamaAgent {
                 const data = await response.json();
                 const responseTime = Date.now() - startTime;
                 // 3. Validate response
-                if (!data.response || data.response.trim() === ') {
+                if (!data.response || data.response.trim() === '') {
                     throw new Error('Empty response received from model');
                 }
                 // 4. Update context for continuity
@@ -403,7 +403,7 @@ class AdaptiveOllamaAgent {
     // ║                    FUNCTION EXECUTION ENGINE                                 ║
     // ╚══════════════════════════════════════════════════════════════════════════════╝
     async executeFunction(action, parameters) {
-        console.log(`[QANTUM] ⚡ Executing: ${action}`, parameters || ');
+        console.log(`[QANTUM] ⚡ Executing: ${action}`, parameters || '');
         switch (action) {
             case 'RUN_AUDIT': return this.runAudit();
             case 'HUNT_LEADS': return this.huntLeads();
@@ -541,7 +541,7 @@ SelfEvolver: Active
             const { stdout: jsonCount } = await execAsync(`cd ${this.workspacePath} && dir /s /b *.json 2>nul | find /c /v ""`);
             const { stdout: htmlCount } = await execAsync(`cd ${this.workspacePath} && dir /s /b *.html 2>nul | find /c /v ""`);
             const statsPath = path.join(this.workspacePath, 'PROJECT-STATS.md');
-            let statsContent = ';
+            let statsContent = '';
             if (fs.existsSync(statsPath)) {
                 statsContent = fs.readFileSync(statsPath, 'utf-8').substring(0, 500);
             }
@@ -564,7 +564,7 @@ HTML Files: ${stats.html}
 Total Code Files: ${stats.typescript + stats.javascript}
 Total All Files: ${stats.typescript + stats.javascript + stats.json + stats.html}
 
-${statsContent ? '📄 PROJECT-STATS.md:\n' + statsContent : '}
+${statsContent ? '📄 PROJECT-STATS.md:\n' + statsContent : ''}
 `,
                 data: stats
             };
@@ -727,7 +727,7 @@ Path: ${fullPath}
             return { success: false, output: 'Missing: type and name required' };
         }
         const { type, name, description } = params;
-        let template = ';
+        let template = '';
         switch (type) {
             case 'component':
                 template = `/**
@@ -863,7 +863,7 @@ git reset --hard HEAD~${count}
     }
     async securityScan() {
         try {
-            let results = ';
+            let results = '';
             // npm audit
             try {
                 const { stdout } = await execAsync(`cd ${this.workspacePath} && npm audit --json 2>&1 | head -50`);

@@ -71,7 +71,7 @@ export class NeuralVault extends EventEmitter {
       algorithm: config.algorithm ?? 'aes-256-gcm',
       vaultPath: config.vaultPath ?? './data/vault.encrypted',
       autoSyncInterval: config.autoSyncInterval ?? 0,
-      cloudEndpoint: config.cloudEndpoint ?? ',
+      cloudEndpoint: config.cloudEndpoint ?? '',
       compression: config.compression ?? true
     };
 
@@ -107,7 +107,7 @@ export class NeuralVault extends EventEmitter {
         createdAt: new Date(),
         entryCount: 0,
         totalSize: 0,
-        manifestChecksum: '
+        manifestChecksum: ''
       };
 
       this.manifest.manifestChecksum = this.calculateChecksum(
@@ -342,7 +342,7 @@ export class NeuralVault extends EventEmitter {
       .reduce((sum, entry) => sum + entry.originalSize, 0);
     this.manifest.lastSync = new Date();
     this.manifest.manifestChecksum = this.calculateChecksum(
-      JSON.stringify({ ...this.manifest, manifestChecksum: ' })
+      JSON.stringify({ ...this.manifest, manifestChecksum: '' })
     );
 
     // Prepare vault data
@@ -392,7 +392,7 @@ export class NeuralVault extends EventEmitter {
     // Verify manifest checksum
     const expectedChecksum = this.manifest!.manifestChecksum;
     const calculatedChecksum = this.calculateChecksum(
-      JSON.stringify({ ...this.manifest, manifestChecksum: ' })
+      JSON.stringify({ ...this.manifest, manifestChecksum: '' })
     );
 
     if (expectedChecksum !== calculatedChecksum) {

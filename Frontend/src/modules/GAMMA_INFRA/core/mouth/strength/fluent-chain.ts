@@ -248,7 +248,7 @@ export class FluentChain {
    */
   async getText(): Promise<string> {
     await this.ensureLocator();
-    return await this.currentLocator!.textContent() || ';
+    return await this.currentLocator!.textContent() || '';
   }
 
   /**

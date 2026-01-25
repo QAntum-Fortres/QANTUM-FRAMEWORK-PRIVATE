@@ -239,7 +239,7 @@ export const genesisRoutes: FastifyPluginAsync = async (app) => {
   const publicRoutes = ['/status', '/philosophy'];
 
   app.addHook('preHandler', async (request, reply) => {
-    const path = request.url.replace('/api/v1/genesis', ').split('?')[0];
+    const path = request.url.replace('/api/v1/genesis', '').split('?')[0];
     if (!publicRoutes.includes(path)) {
       await requireAuth(request);
     }

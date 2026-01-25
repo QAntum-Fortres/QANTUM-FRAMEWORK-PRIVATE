@@ -94,7 +94,7 @@ export class GeneticMutationEngine extends EventEmitter {
     this.mutationRules.set('timeout', (pattern) => ({
       id: generateId('mut'),
       type: MutationType.TIMEOUT_ADJUSTMENT,
-      targetSelector: pattern.selector || ',
+      targetSelector: pattern.selector || '',
       originalCode: `timeout: 30000`,
       mutatedCode: `timeout: 60000`,
       confidence: 0.8,
@@ -107,7 +107,7 @@ export class GeneticMutationEngine extends EventEmitter {
     this.mutationRules.set('element_not_found', (pattern) => ({
       id: generateId('mut'),
       type: MutationType.WAIT_INJECTION,
-      targetSelector: pattern.selector || ',
+      targetSelector: pattern.selector || '',
       originalCode: `await page.click('${pattern.selector}')`,
       mutatedCode: `await page.waitForSelector('${pattern.selector}', { state: 'visible', timeout: 10000 });\nawait page.click('${pattern.selector}')`,
       confidence: 0.85,
@@ -120,7 +120,7 @@ export class GeneticMutationEngine extends EventEmitter {
     this.mutationRules.set('stale_element', (pattern) => ({
       id: generateId('mut'),
       type: MutationType.RETRY_LOGIC,
-      targetSelector: pattern.selector || ',
+      targetSelector: pattern.selector || '',
       originalCode: `await action()`,
       mutatedCode: `await retryWithRefresh(async () => await action(), 3)`,
       confidence: 0.75,
@@ -133,7 +133,7 @@ export class GeneticMutationEngine extends EventEmitter {
     this.mutationRules.set('animation', (pattern) => ({
       id: generateId('mut'),
       type: MutationType.ANIMATION_WAIT,
-      targetSelector: pattern.selector || ',
+      targetSelector: pattern.selector || '',
       originalCode: `await page.click('${pattern.selector}')`,
       mutatedCode: `await page.waitForFunction(() => !document.querySelector('.animating'));\nawait page.click('${pattern.selector}')`,
       confidence: 0.7,
@@ -144,11 +144,11 @@ export class GeneticMutationEngine extends EventEmitter {
 
     // Rule: Selector brittleness → simplify selector
     this.mutationRules.set('selector_fragile', (pattern) => {
-      const simplified = this.simplifySelector(pattern.selector || ');
+      const simplified = this.simplifySelector(pattern.selector || '');
       return {
         id: generateId('mut'),
         type: MutationType.SELECTOR_SIMPLIFICATION,
-        targetSelector: pattern.selector || ',
+        targetSelector: pattern.selector || '',
         originalCode: `'${pattern.selector}'`,
         mutatedCode: `'${simplified}'`,
         confidence: 0.65,
@@ -408,8 +408,8 @@ export class GeneticMutationEngine extends EventEmitter {
 
     // Remove complex pseudo-selectors
     return selector
-      .replace(/:nth-child\([^)]+\)/g, ')
-      .replace(/:not\([^)]+\)/g, ')
+      .replace(/:nth-child\([^)]+\)/g, '')
+      .replace(/:not\([^)]+\)/g, '')
       .replace(/\s+>\s+/g, ' ')
       .trim();
   }

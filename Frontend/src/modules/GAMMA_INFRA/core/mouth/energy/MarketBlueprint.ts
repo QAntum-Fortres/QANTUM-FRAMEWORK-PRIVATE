@@ -1228,7 +1228,7 @@ export class MarketBlueprint extends EventEmitter {
       for (const item of items) {
         const quantity = item.quantity || 1;
         let unitPrice = 0;
-        let name = ';
+        let name = '';
 
         if (item.type === 'package') {
           // Find package in cache
@@ -1652,7 +1652,7 @@ export class MarketBlueprint extends EventEmitter {
     try {
       const urlObj = new URL(url);
       const path = urlObj.pathname;
-      if (path === '/' || path === ') return 'Home';
+      if (path === '/' || path === '') return 'Home';
       const segments = path.split('/').filter(Boolean);
       return segments[segments.length - 1] || 'Page';
     } catch {

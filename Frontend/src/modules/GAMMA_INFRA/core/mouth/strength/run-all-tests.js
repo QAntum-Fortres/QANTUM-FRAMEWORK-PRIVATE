@@ -59,7 +59,7 @@ for (const test of testFiles) {
   process.stdout.write(`  ${test.name}... `);
   
   const result = spawnSync('node', [filePath], { encoding: 'utf-8', timeout: 30000 });
-  const output = result.stdout || ';
+  const output = result.stdout || '';
   
   const passedMatch = output.match(/✅ Passed: (\d+)/);
   const failedMatch = output.match(/❌ Failed: (\d+)/);

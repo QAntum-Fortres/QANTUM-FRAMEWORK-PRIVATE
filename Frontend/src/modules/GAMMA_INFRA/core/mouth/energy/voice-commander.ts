@@ -187,7 +187,7 @@ export class VoiceCommander extends EventEmitter {
      */
     configure(config: Partial<VoiceCommanderConfig>): void {
         this.config = {
-            apiKey: config.apiKey || ',
+            apiKey: config.apiKey || '',
             model: config.model || 'whisper-1',
             language: config.language || 'en',
             streaming: config.streaming ?? true,
@@ -443,10 +443,10 @@ export class VoiceCommander extends EventEmitter {
             }
 
             const result = await response.json();
-            return result.text || ';
+            return result.text || '';
         } catch (error) {
             this.emit('error', error);
-            return ';
+            return '';
         }
     }
 
@@ -628,7 +628,7 @@ export class VoiceCommander extends EventEmitter {
                     return {
                         verb: 'type',
                         target: selectorEntity?.value || 'input:focus',
-                        params: { text: textEntity?.value || ' },
+                        params: { text: textEntity?.value || '' },
                         priority: 'normal'
                     };
                 }
@@ -646,7 +646,7 @@ export class VoiceCommander extends EventEmitter {
                     const duration = entities.find(e => e.type === 'duration');
                     return {
                         verb: 'wait',
-                        target: ',
+                        target: '',
                         params: { duration: parseInt(duration?.value || '1000') },
                         priority: 'low'
                     };
@@ -911,7 +911,7 @@ export class VoiceCommander extends EventEmitter {
     private extractTargetFromTranscript(transcript: string): string {
         // Remove action words and extract target
         const cleaned = transcript
-            .replace(/^(go to|navigate to|open|visit)\s+/i, ')
+            .replace(/^(go to|navigate to|open|visit)\s+/i, '')
             .trim();
 
         // Check if it's a URL
@@ -926,9 +926,9 @@ export class VoiceCommander extends EventEmitter {
     private buildSelectorFromContext(transcript: string, elementType?: string): string {
         // Extract element name/text
         const cleaned = transcript
-            .replace(/^(click|tap|press)\s+(on\s+)?(the\s+)?/i, ')
-            .replace(/\s+button$/i, ')
-            .replace(/\s+link$/i, ')
+            .replace(/^(click|tap|press)\s+(on\s+)?(the\s+)?/i, '')
+            .replace(/\s+button$/i, '')
+            .replace(/\s+link$/i, '')
             .trim();
 
         if (elementType === 'button') {
@@ -946,7 +946,7 @@ export class VoiceCommander extends EventEmitter {
     private normalizeForCache(transcript: string): string {
         return transcript
             .toLowerCase()
-            .replace(/[^\w\s]/g, ')
+            .replace(/[^\w\s]/g, '')
             .replace(/\s+/g, ' ')
             .trim();
     }
@@ -986,7 +986,7 @@ export class VoiceCommander extends EventEmitter {
         }
 
         const result = await response.json();
-        const transcript = result.text || ';
+        const transcript = result.text || '';
 
         const metadata: AudioMetadata = {
             duration: 0,

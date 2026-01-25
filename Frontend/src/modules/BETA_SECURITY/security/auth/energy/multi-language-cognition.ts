@@ -948,14 +948,14 @@ export class MultiLanguageCognition {
                 return {
                     verb: 'type',
                     target: this.buildSelector(transcript, elementEntity?.value, language),
-                    params: { text: textEntity?.value || ' },
+                    params: { text: textEntity?.value || '' },
                     priority: 'normal'
                 };
 
             case 'wait':
                 return {
                     verb: 'wait',
-                    target: ',
+                    target: '',
                     params: { duration: parseInt(durationEntity?.value || '1000') },
                     priority: 'low'
                 };
@@ -997,7 +997,7 @@ export class MultiLanguageCognition {
             ? /(отиди|отвори|навигирай|зареди|влез)\s+(на|в|към|до)?\s*/i
             : /(go to|navigate to|open|visit|load)\s*/i;
 
-        const cleaned = transcript.replace(actionWords, ').trim();
+        const cleaned = transcript.replace(actionWords, '').trim();
 
         // Check for page names
         const pagePatterns = language === 'bg'
@@ -1021,7 +1021,7 @@ export class MultiLanguageCognition {
             ? /(кликни|натисни|щракни|избери)\s+(на|върху)?\s*(бутон|бутона|линк|линка)?\s*/i
             : /(click|tap|press)\s+(on\s+)?(the\s+)?(button|link)?\s*/i;
 
-        const cleaned = transcript.replace(actionWords, ').trim();
+        const cleaned = transcript.replace(actionWords, '').trim();
 
         if (elementType === 'button') {
             return `button:has-text("${cleaned}"), [role="button"]:has-text("${cleaned}")`;

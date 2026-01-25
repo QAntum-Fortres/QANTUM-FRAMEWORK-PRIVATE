@@ -394,7 +394,7 @@ export class DeepSearchEngine extends EventEmitter {
 
           element.scrollIntoView({ block: 'center' });
           element.focus();
-          element.value = ';
+          element.value = '';
           element.value = txt;
           element.dispatchEvent(new Event('input', { bubbles: true }));
           element.dispatchEvent(new Event('change', { bubbles: true }));

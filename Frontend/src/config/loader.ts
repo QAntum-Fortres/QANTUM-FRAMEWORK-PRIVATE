@@ -234,7 +234,7 @@ export class EnvSource implements ConfigSource {
     priority: number;
 
     constructor(
-        private prefix: string = ',
+        private prefix: string = '',
         priority: number = 100
     ) {
         this.name = `env:${prefix || '*'}`;
@@ -248,7 +248,7 @@ export class EnvSource implements ConfigSource {
             if (this.prefix && !key.startsWith(this.prefix)) continue;
 
             const configKey = this.prefix
-                ? key.slice(this.prefix.length).replace(/^_/, ')
+                ? key.slice(this.prefix.length).replace(/^_/, '')
                 : key;
 
             const parts = configKey.split('_');
@@ -339,7 +339,7 @@ export class RemoteSource implements ConfigSource {
         try {
             const response = await fetch(this.url);
             const content = await response.text();
-            const contentType = response.headers.get('content-type') || ';
+            const contentType = response.headers.get('content-type') || '';
 
             if (contentType.includes('yaml') || this.url.endsWith('.yaml') || this.url.endsWith('.yml')) {
                 return YAML_FORMAT.parse(content);

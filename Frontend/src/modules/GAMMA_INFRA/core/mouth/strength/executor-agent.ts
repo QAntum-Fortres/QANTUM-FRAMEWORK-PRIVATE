@@ -268,7 +268,7 @@ export class ExecutorAgent extends BaseAgent {
     reasoning.push(`Finding element to click: ${task.target}`);
 
     const selectors = this.generateSelectors(task.target, 'click');
-    let usedSelector = ';
+    let usedSelector = '';
     let confidence = 0;
 
     if (!this.page) {
@@ -318,9 +318,9 @@ export class ExecutorAgent extends BaseAgent {
   ): Promise<{ result: unknown; selector: string; confidence: number }> {
     reasoning.push(`Finding field to fill: ${task.target}`);
 
-    const value = task.params?.value || ';
+    const value = task.params?.value || '';
     const selectors = this.generateSelectors(task.target, 'fill');
-    let usedSelector = ';
+    let usedSelector = '';
     let confidence = 0;
 
     if (!this.page) {

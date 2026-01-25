@@ -269,12 +269,12 @@ export class GhostExecutionLayer extends EventEmitter {
       };
 
       const element = await browserPage.$(selector);
-      if (!element) return ';
+      if (!element) return '';
 
       const screenshot = await element.screenshot({ type: 'png' });
       return crypto.createHash('md5').update(screenshot).digest('hex');
     } catch {
-      return ';
+      return '';
     }
   }
 
@@ -447,8 +447,8 @@ export class GhostExecutionLayer extends EventEmitter {
   private simplifySelector(selector: string): string {
     // Remove nth-child, :not(), complex pseudo-selectors
     let simplified = selector
-      .replace(/:nth-child\([^)]+\)/g, ')
-      .replace(/:not\([^)]+\)/g, ')
+      .replace(/:nth-child\([^)]+\)/g, '')
+      .replace(/:not\([^)]+\)/g, '')
       .replace(/\s+>\s+/g, ' ')
       .replace(/\s{2,}/g, ' ')
       .trim();

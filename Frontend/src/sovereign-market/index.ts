@@ -211,7 +211,7 @@ export function createSovereignMarketSystem(config: SovereignMarketConfig = {}):
 
   // Connect marketplace revenue to reinvestment system
   marketplace.on('subscription:created', (data) => {
-    const listing = marketplace.getListing(data.listingId || ');
+    const listing = marketplace.getListing(data.listingId || '');
     if (listing) {
       const tier = listing.tiers.find(t => t.tier === data.tier);
       if (tier) {

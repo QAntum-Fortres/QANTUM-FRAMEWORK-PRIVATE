@@ -361,7 +361,7 @@ export class TypeScriptAnalyzer {
   private splitParameters(paramString: string): string[] {
     const params: string[] = [];
     let depth = 0;
-    let current = ';
+    let current = '';
 
     for (const char of paramString) {
       if (char === '<' || char === '(' || char === '{' || char === '[') depth++;
@@ -369,7 +369,7 @@ export class TypeScriptAnalyzer {
 
       if (char === ',' && depth === 0) {
         params.push(current.trim());
-        current = ';
+        current = '';
       } else {
         current += char;
       }
@@ -385,7 +385,7 @@ export class TypeScriptAnalyzer {
   private extractClassBody(content: string, startIndex: number): string {
     let depth = 0;
     let started = false;
-    let body = ';
+    let body = '';
 
     for (let i = startIndex; i < content.length; i++) {
       if (content[i] === '{') {

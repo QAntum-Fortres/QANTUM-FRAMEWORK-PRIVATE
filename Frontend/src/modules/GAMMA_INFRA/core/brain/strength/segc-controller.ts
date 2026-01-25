@@ -361,7 +361,7 @@ export class SEGCController extends EventEmitter {
    */
   private log(message: string, data?: unknown): void {
     if (this.config.verbose) {
-      console.log(`[SEGC] ${message}`, data || ');
+      console.log(`[SEGC] ${message}`, data || '');
     }
   }
 
