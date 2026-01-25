@@ -13,9 +13,9 @@ This repository contains the QANTUM Framework - an autonomous bio-digital organi
 ## Technology Stack
 
 ### Primary Technologies
-- **TypeScript**: 5.9.3 (CommonJS modules for Node.js, ES modules for frontend)
-- **Node.js**: 18+ (ES modules in package.json)
-- **React**: 19.2.0 with TypeScript
+- **TypeScript**: 5.9.3 (targets CommonJS, package uses ES modules)
+- **Node.js**: 18+ (project uses ES modules via `"type": "module"`)
+- **React**: ^19.2.0 with TypeScript
 - **Python**: 3.9+
 - **Rust**: 1.70+
 
@@ -97,8 +97,8 @@ cargo run --release --bin lwas_economy   # Port 8890
 ## Coding Standards
 
 ### TypeScript
-- **Module System**: CommonJS for Node.js backend, ES modules for frontend
-- **Strict Mode**: Disabled (`strict: false` in tsconfig.json)
+- **Module System**: TypeScript compiles to CommonJS, but project uses ES modules (`"type": "module"` in package.json)
+- **Strict Mode**: Currently disabled (`strict: false` in tsconfig.json) - maintain existing patterns
 - **Path Aliases**: Use `@core/*`, `@modules/*`, `@scripts/*`
 - **Naming**: PascalCase for classes, camelCase for functions/variables
 - **Exports**: Prefer named exports over default exports
@@ -279,9 +279,9 @@ logger.error('Operation failed', { error, moduleId, attemptNumber });
 ## Dependencies and Package Management
 
 - **Node.js**: Use `npm` (not `yarn` or `pnpm`)
-- **Python**: Use `pip` with `requirements.txt`
+- **Python**: Use `pip` with `requirements.txt` (note: current file lacks version pins - add versions when adding dependencies)
 - **Rust**: Use `cargo` with `Cargo.toml`
-- Always lock dependency versions in production
+- Lock dependency versions for production deployments
 - Check for security vulnerabilities before adding new packages
 
 ## Useful Scripts
