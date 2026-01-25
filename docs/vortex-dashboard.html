@@ -115,9 +115,17 @@
             background: rgba(6, 182, 212, 0.1); padding: 0.25rem 0.5rem; border-radius: 4px; display: inline-block;
         }
         .code-block {
+            position: relative;
             background: rgba(0, 0, 0, 0.5); border: 1px solid var(--glass-border); border-radius: 12px;
             padding: 1.5rem; margin: 1rem 0; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; color: var(--accent);
         }
+        .copy-btn {
+            position: absolute; top: 0.5rem; right: 0.5rem;
+            background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border);
+            color: var(--text-secondary); border-radius: 6px; padding: 0.25rem 0.5rem;
+            font-size: 0.75rem; cursor: pointer; transition: all 0.2s; font-family: 'JetBrains Mono', monospace;
+        }
+        .copy-btn:hover { background: rgba(255, 255, 255, 0.2); color: var(--text-primary); border-color: var(--accent); }
         .controls { display: flex; justify-content: center; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
         .btn {
             font-family: 'Space Grotesk', sans-serif; padding: 1rem 2rem; font-size: 1rem; font-weight: 600;
@@ -269,6 +277,7 @@
                 <div class="threat-card"><div class="threat-status">PROTECTED</div><h3 class="threat-title">Clock Skew Attacks</h3><p class="threat-method">Future Token Rejection</p><p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Tokens with timestamps from the future (>60s ahead) are rejected to prevent time manipulation.</p></div>
             </div>
             <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code to clipboard">📋 Copy</button>
                 <span style="color: var(--text-dim);">// LivenessToken Validation Flow</span>
                 <span style="color: var(--primary);">const</span> tokenManager = LivenessTokenManager.<span style="color: var(--secondary);">getInstance</span>();
                 <span style="color: var(--primary);">const</span> TOKEN_SECRET = tokenManager.<span style="color: var(--secondary);">getSecret</span>();
@@ -318,6 +327,33 @@
     </dialog>
 
     <script>
+        function copyCode(btn) {
+            const clone = btn.parentElement.cloneNode(true);
+            clone.querySelector('.copy-btn').remove();
+            const text = clone.innerText.trim();
+            const done = () => {
+                const original = btn.innerHTML;
+                btn.innerHTML = "✅ Copied!";
+                btn.style.borderColor = "var(--accent)";
+                btn.style.color = "var(--accent)";
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.style.borderColor = "";
+                    btn.style.color = "";
+                }, 2000);
+            };
+
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(done);
+            } else {
+                const t = document.createElement("textarea");
+                t.value = text; t.style.position="fixed"; t.style.left="-9999px";
+                document.body.appendChild(t); t.focus(); t.select();
+                try { if(document.execCommand('copy')) done(); } catch(e){}
+                document.body.removeChild(t);
+            }
+        }
+
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
