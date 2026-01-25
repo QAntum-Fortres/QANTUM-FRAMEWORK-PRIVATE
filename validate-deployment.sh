@@ -100,7 +100,7 @@ validate_env_file() {
         for var in "${critical_vars[@]}"; do
             if grep -q "^${var}=" "$env_file"; then
                 local value=$(grep "^${var}=" "$env_file" | cut -d'=' -f2)
-                if [[ "$value" =~ (change_me|your_|here) ]]; then
+                if [[ "$value" =~ (CHANGE_TO|change_me|your_|here|password_change|admin$) ]]; then
                     print_warning "$var needs to be updated in $env_file"
                 else
                     print_success "$var is set"

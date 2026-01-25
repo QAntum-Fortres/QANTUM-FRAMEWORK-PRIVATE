@@ -96,6 +96,20 @@ check_env_file() {
         print_info "Creating .env from .env.deployment template..."
         cp "$PROJECT_ROOT/.env.deployment" "$PROJECT_ROOT/.env"
         print_warning "Please edit .env file with your actual credentials"
+        print_info ""
+        print_info "To generate strong passwords, use:"
+        print_info "  openssl rand -base64 32"
+        print_info "  or"
+        print_info "  pwgen -s 32 1"
+        return 1
+    fi
+    
+    # Check if passwords are still using placeholders
+    if grep -q "CHANGE_TO_STRONG_PASSWORD" "$PROJECT_ROOT/.env" 2>/dev/null; then
+        print_error "Environment file contains placeholder passwords"
+        print_info "Update .env with actual passwords before deploying"
+        print_info "Generate secure passwords with: openssl rand -base64 32"
+        return 1
     fi
     
     print_success "Environment file exists"
