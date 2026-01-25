@@ -4,6 +4,10 @@ use sha2::{Sha512, Digest};
 use std::fs::OpenOptions;
 use std::io::Write;
 
+pub mod economy;
+pub mod telemetry;
+pub mod server;
+
 #[derive(Deserialize, Serialize)]
 pub struct BioPoint { pub hr: f64, pub oxy: f64 }
 #[derive(Deserialize, Serialize)]

@@ -44,22 +44,30 @@ class PaymentGateway:
             return intent.status
         return "succeeded"
 
-    def create_checkout_session(self, price_id: str, success_url: str, cancel_url: str, mode: str = "payment"):
+    def create_checkout_session(self, price_id: str, success_url: str, cancel_url: str, mode: str = "payment", metadata: dict = None, customer_email: str = None):
         """
         Creates a hosted Checkout Session for subscriptions/one-time payments.
         """
         try:
             if self.provider == "STRIPE":
-                session = stripe.checkout.Session.create(
-                    payment_method_types=['card'],
-                    line_items=[{
+                session_params = {
+                    'payment_method_types': ['card'],
+                    'line_items': [{
                         'price': price_id,  # e.g. price_1Hh1...
                         'quantity': 1,
                     }],
-                    mode=mode,
-                    success_url=success_url,
-                    cancel_url=cancel_url,
-                )
+                    'mode': mode,
+                    'success_url': success_url,
+                    'cancel_url': cancel_url,
+                }
+                
+                if metadata:
+                    session_params['metadata'] = metadata
+                
+                if customer_email:
+                    session_params['customer_email'] = customer_email
+                
+                session = stripe.checkout.Session.create(**session_params)
                 return {"success": True, "url": session.url, "id": session.id}
             else:
                 # Mock Checkout URL
