@@ -27,7 +27,7 @@ impl TelemetryEngine {
         self.system.refresh_all();
 
         // Get CPU load (average across all cores)
-        let cpu_load = self.system.global_cpu_usage();
+        let cpu_load = self.system.global_cpu_info().cpu_usage();
 
         // Get RAM usage
         let total_memory = self.system.total_memory() as f32 / 1_073_741_824.0; // Convert to GB
