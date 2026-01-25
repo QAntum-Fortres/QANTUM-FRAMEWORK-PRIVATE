@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'backend'
+    static_configs:
+      - targets: ['backend:8080']  # Internal container port
+
+  - job_name: 'rust-economy'
+    static_configs:
+      - targets: ['rust-economy:8890']
+    metrics_path: '/api/telemetry'
+
+  - job_name: 'frontend'
+    static_configs:
+      - targets: ['frontend:8080']
+
+  - job_name: 'seo-audit'
+    static_configs:
+      - targets: ['seo-audit:8091']
