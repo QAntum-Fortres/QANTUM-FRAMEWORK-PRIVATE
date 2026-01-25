@@ -8,16 +8,17 @@ import { useSovereignStore } from '../core/socket/NativeWebSocket';
 
 // --- COMPONENTS ---
 
-const ProjectCard = ({ name, status, url, type, color }: {
+const ProjectCard = ({ name, status, url, type, color, description }: {
     name: string;
     status: 'online' | 'offline' | 'degraded';
     url: string;
     type: string;
     color: string;
+    description?: string;
 }) => (
     <motion.div
         whileHover={{ y: -5, scale: 1.02 }}
-        className="bg-[#0a0a12]/80 backdrop-blur-xl border border-[#2a2a50] p-6 rounded-2xl relative overflow-hidden group"
+        className="bg-[#0a0a12]/80 backdrop-blur-xl border border-[#2a2a50] p-6 rounded-2xl relative overflow-hidden group min-h-[220px] flex flex-col"
     >
         <div className="flex justify-between items-start mb-4">
             <div className={`p-3 rounded-xl bg-opacity-10`} style={{ backgroundColor: color }}>
@@ -25,14 +26,15 @@ const ProjectCard = ({ name, status, url, type, color }: {
             </div>
             <div className="flex items-center gap-2">
                 <span className={`w-2 h-2 rounded-full ${status === 'online' ? 'bg-green-400 animate-pulse' : 'bg-red-400'}`} />
-                <span className="text-[10px] font-mono uppercase tracking-widest opacity-60">{status}</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest opacity-60">{status === 'online' ? 'SYNCED' : 'AWAITING_UPLINK'}</span>
             </div>
         </div>
 
         <h3 className="text-xl font-black italic tracking-tight mb-1 uppercase group-hover:text-[var(--neon-cyan)] transition-colors">
             {name}
         </h3>
-        <p className="text-xs opacity-50 font-mono mb-6 uppercase tracking-wider">{type}</p>
+        <p className="text-xs opacity-50 font-mono mb-3 uppercase tracking-wider">{type}</p>
+        <p className="text-[10px] opacity-40 mb-6 flex-1 italic">{description}</p>
 
         <a
             href={url}
@@ -71,7 +73,10 @@ export const HeliosMaster = () => {
     const { metrics, isConnected } = useSovereignStore();
 
     return (
-        <div className="min-h-screen bg-[#020205] text-white p-8 font-['Outfit'] overflow-x-hidden">
+        <div className="min-h-screen bg-[#020205] text-white p-8 font-['Outfit'] overflow-x-hidden relative">
+            {/* VORTEX SOURCE */}
+            <div className="vortex-bg" />
+
             {/* BACKGROUND EFFECTS */}
             <div className="fixed inset-0 pointer-events-none">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-900/10 blur-[120px] rounded-full" />
@@ -121,6 +126,26 @@ export const HeliosMaster = () => {
                     </div>
                 </header>
 
+                {/* GLOBAL EMPIRE STATS */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                    <div className="text-center p-4">
+                        <p className="text-3xl font-black text-white italic">{metrics?.project?.loc?.toLocaleString() || "958,219"}</p>
+                        <p className="text-[10px] uppercase tracking-[0.3em] opacity-40">Lines of Code</p>
+                    </div>
+                    <div className="text-center p-4">
+                        <p className="text-3xl font-black text-purple-400 italic">{metrics?.project?.files?.toLocaleString() || "1,420"}</p>
+                        <p className="text-[10px] uppercase tracking-[0.3em] opacity-40">Total Files</p>
+                    </div>
+                    <div className="text-center p-4">
+                        <p className="text-3xl font-black text-emerald-400 italic">93,434</p>
+                        <p className="text-[10px] uppercase tracking-[0.3em] opacity-40">Neural Vectors</p>
+                    </div>
+                    <div className="text-center p-4">
+                        <p className="text-3xl font-black text-amber-400 italic">8</p>
+                        <p className="text-[10px] uppercase tracking-[0.3em] opacity-40">Empire Depts</p>
+                    </div>
+                </div>
+
                 {/* PROJECT GRID */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -134,6 +159,7 @@ export const HeliosMaster = () => {
                         url="https://framework-frontend-1000690699464.us-central1.run.app"
                         type="Sovereign HUD"
                         color="#00f5ff"
+                        description="Live React dashboard. Neural telemetry and real-time monitoring of the QAntum Singularity."
                     />
                     <ProjectCard
                         name="Logos Mind"
@@ -141,6 +167,7 @@ export const HeliosMaster = () => {
                         url="https://aeterna-logos-1000690699464.europe-west1.run.app"
                         type="Core Engine"
                         color="#bc13fe"
+                        description="The Aeterna Core Engine. OmniCore and Lwas Economy running in europe-west1."
                     />
                     <ProjectCard
                         name="Wealth Bridge"
@@ -148,6 +175,7 @@ export const HeliosMaster = () => {
                         url="https://framework-backend-1000690699464.us-central1.run.app/docs"
                         type="Fiscal Logic"
                         color="#ffd700"
+                        description="Direct uplink to the Stripe-integrated Python backend. Ready for transaction mining."
                     />
                     <ProjectCard
                         name="SEO Auditor"
@@ -155,6 +183,7 @@ export const HeliosMaster = () => {
                         url="https://framework-frontend-1000690699464.us-central1.run.app/seo-audit"
                         type="Micro-SaaS"
                         color="#00ff00"
+                        description="Autonomous analysis of meta, mobile, and performance. Generates (0-100) Veritas score."
                     />
                 </motion.div>
 

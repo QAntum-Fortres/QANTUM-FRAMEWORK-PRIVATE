@@ -44,11 +44,7 @@ class PaymentGateway:
             return intent.status
         return "succeeded"
 
-<<<<<<< HEAD
-    def create_checkout_session(self, price_id: str, success_url: str, cancel_url: str, mode: str = "payment", metadata: dict = None, customer_email: str = None):
-=======
     def get_price_mapping(self):
->>>>>>> bb1e42f (MANIFEST: HELIOS Master Control Dashboard with Rust Telemetry Bridge)
         """
         Returns the mapping of Tiers to Stripe Price IDs.
         """
@@ -58,7 +54,7 @@ class PaymentGateway:
             "vortex": os.environ.get("STRIPE_PRICE_VORTEX", "price_1Q_VORTEX")
         }
 
-    def create_checkout_session(self, tier: str, success_url: str, cancel_url: str):
+    def create_checkout_session(self, tier: str, success_url: str, cancel_url: str, mode: str = "subscription", metadata: dict = None, customer_email: str = None):
         """
         Creates a hosted Checkout Session for the specified tier.
         """
@@ -67,11 +63,10 @@ class PaymentGateway:
             price_id = price_map.get(tier.lower(), price_map["singularity"])
             
             if self.provider == "STRIPE":
-<<<<<<< HEAD
                 session_params = {
                     'payment_method_types': ['card'],
                     'line_items': [{
-                        'price': price_id,  # e.g. price_1Hh1...
+                        'price': price_id,
                         'quantity': 1,
                     }],
                     'mode': mode,
@@ -79,26 +74,15 @@ class PaymentGateway:
                     'cancel_url': cancel_url,
                 }
                 
+                final_metadata = {"tier": tier}
                 if metadata:
-                    session_params['metadata'] = metadata
+                    final_metadata.update(metadata)
+                session_params['metadata'] = final_metadata
                 
                 if customer_email:
                     session_params['customer_email'] = customer_email
                 
                 session = stripe.checkout.Session.create(**session_params)
-=======
-                session = stripe.checkout.Session.create(
-                    payment_method_types=['card'],
-                    line_items=[{
-                        'price': price_id,
-                        'quantity': 1,
-                    }],
-                    mode='subscription',
-                    success_url=success_url,
-                    cancel_url=cancel_url,
-                    metadata={"tier": tier}
-                )
->>>>>>> bb1e42f (MANIFEST: HELIOS Master Control Dashboard with Rust Telemetry Bridge)
                 return {"success": True, "url": session.url, "id": session.id}
             else:
                 return {

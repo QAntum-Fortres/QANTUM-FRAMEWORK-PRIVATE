@@ -93,7 +93,9 @@ export const SovereignHUD = () => {
     };
 
     return (
-        <div className="flex h-screen w-full overflow-hidden bg-[var(--quantum-void)] text-gray-200 font-[var(--font-body)]">
+        <div className="flex h-screen w-full overflow-hidden bg-[var(--quantum-void)] text-gray-200 font-[var(--font-body)] relative">
+            {/* VORTEX SOURCE */}
+            <div className="vortex-bg opacity-30" />
 
             {/* SIDEBAR */}
             <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-[280px] bg-[#0a0a12]/95 backdrop-blur border-r border-[#2a2a50] transform transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
