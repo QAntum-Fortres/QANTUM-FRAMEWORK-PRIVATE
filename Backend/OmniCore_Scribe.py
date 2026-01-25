@@ -61,16 +61,32 @@ def process_payment():
 def create_checkout():
     """
     Endpoint to create a Hosted Checkout Page.
-    Expected JSON: { "priceId": "price_...", "successUrl": "...", "cancelUrl": "..." }
+    Expected JSON: { "tier": "singularity|aeterna|vortex", "userEmail": "...", "successUrl": "...", "cancelUrl": "..." }
     """
     try:
         data = request.json
-        price_id = data.get('priceId', 'price_fake_123')
+        tier = data.get('tier', 'singularity')
+        user_email = data.get('userEmail', '')
         success_url = data.get('successUrl', 'http://localhost:5173/success')
         cancel_url = data.get('cancelUrl', 'http://localhost:5173/cancel')
-        mode = data.get('mode', 'payment')
+        
+        # Map tiers to Stripe price IDs (these should be configured in Stripe dashboard)
+        price_ids = {
+            'singularity': os.environ.get('STRIPE_PRICE_SINGULARITY', 'price_singularity'),
+            'aeterna': os.environ.get('STRIPE_PRICE_AETERNA', 'price_aeterna'),
+            'vortex': os.environ.get('STRIPE_PRICE_VORTEX', 'price_vortex'),
+        }
+        
+        price_id = price_ids.get(tier, price_ids['singularity'])
 
-        result = payment_gw.create_checkout_session(price_id, success_url, cancel_url, mode)
+        result = payment_gw.create_checkout_session(
+            price_id, 
+            success_url, 
+            cancel_url, 
+            mode='subscription',
+            metadata={'tier': tier},
+            customer_email=user_email
+        )
         return jsonify(result), 200 if result['success'] else 400
     except Exception as e:
         return jsonify({"success": False, "error": str(e)}), 500
