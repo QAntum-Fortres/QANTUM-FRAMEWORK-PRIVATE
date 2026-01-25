@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONFIDENTIAL // DIMITAR PRODROMOV // SYNACK RED TEAM</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #e0e0e0;
+            --accent-color: #ff0033;
+            /* Synack Red */
+            --dim-color: #444;
+            --code-font: 'Consolas', 'Monaco', 'Courier New', monospace;
+            --heading-font: 'Arial Black', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--dim-color);
+            padding: 40px;
+            box-shadow: 0 0 50px rgba(255, 0, 51, 0.1);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--heading-font);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            border-bottom: 4px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-family: var(--code-font);
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #fff;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title span {
+            font-family: var(--code-font);
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .company {
+            color: var(--accent-color);
+            font-family: var(--code-font);
+        }
+
+        .date {
+            font-family: var(--code-font);
+            color: #888;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill-item {
+            background: #111;
+            padding: 15px;
+            border: 1px solid #333;
+        }
+
+        .skill-name {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-family: var(--code-font);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        li::before {
+            content: ">>";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-family: var(--code-font);
+            font-size: 0.9em;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+            font-family: var(--code-font);
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 30px;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .glitch-text {
+            position: relative;
+        }
+
+        .security-clearance {
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 10px;
+            font-family: var(--code-font);
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="security-clearance">CLASSIFIED // EYES ONLY // RED TEAM ACCESS</div>
+
+        <h1 class="glitch-text">DIMITAR PRODROMOV</h1>
+        <div class="subtitle">OFFENSIVE SECURITY ENGINEER // TOOLING ARCHITECT</div>
+
+        <div class="contact-info">
+            <a href="mailto:papica777@gmail.com"><span>[E] papica777@gmail.com</span></a>
+            <a href="https://www.linkedin.com/in/dimitar-prodromov-1818b3399/"><span>[L]
+                    linkedin.com/in/dimitar-prodromov-1818b3399</span></a>
+            <a href="https://qantum-fortres.github.io/PORTFOLIO/"><span>[W] qantum-fortres.github.io</span></a>
+            <a href="https://github.com/qantum-fortres"><span>[G] github.com/qantum-fortres</span></a>
+            <span>[L] Sofia, Bulgaria</span>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><span>0x01</span> // MISSION STATEMENT</div>
+            <p>
+                Elite Security Researcher and Engineer who doesn't just find vulnerabilities—I build the
+                <strong>autonomous systems</strong> that find them. Architect of the <strong>QAntum Vortex</strong>, a
+                custom offensive security OS capable of high-frequency exploitation, polymorphic defense evasion, and
+                AI-driven logic auditing. Seeking to deploy this arsenal for the <strong>Synack Red Team</strong> to
+                uncover critical vulnerabilities in high-value targets.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><span>0x02</span> // THE ARSENAL (CUSTOM TOOLING)</div>
+            <div class="skill-grid">
+                <div class="skill-item">
+                    <span class="skill-name">GHOST PROTOCOL (WAF EVASION)</span>
+                    Designed a polymorphic network layer that rotates <strong>JA3 TLS Fingerprints</strong> (Chrome,
+                    Firefox, Safari) and traffic patterns to bypass advanced WAFs (Cloudflare/Akamai) during active
+                    scanning.
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">AI AGENT EXPERT ("THE BRAIN")</span>
+                    built a sovereign AI module using recursive <strong>Chain-of-Thought</strong> reasoning (Opus-level)
+                    to automatically analyze code logic, detect zero-day vulnerabilities, and generate proof-of-concept
+                    exploits without human intervention.
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">ATOMIC HFT ENGINE</span>
+                    Engineered a sub-microsecond <strong>High-Frequency Trading engine</strong> (Node.js/C++) capable of
+                    race condition exploitation and high-throughput network syncing, adaptable for DDoS simulation and
+                    stress testing.
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">10 GUARDIANS (DEFENSE IN DEPTH)</span>
+                    Orchestrated a squad of 10 specialized autonomous agents (Red/Blue/Purple) to continuously audit and
+                    self-heal the ecosystem, simulating a live <strong>Purple Team</strong> environment for 24/7
+                    security verification.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><span>0x03</span> // OPERATIONAL EXPERIENCE</div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Senior Security Engineer & Architect</span>
+                    <span class="company">QANTUM EMPIRE (Stealth)</span>
+                </div>
+                <div class="date">2023 - PRESENT // Remote</div>
+                <ul>
+                    <li>Architected <strong>QAntum Vortex</strong>, a monolithic security and trading OS with over 500+
+                        modules and 10 autonomous agents.</li>
+                    <li>Developed <strong>"God Mode"</strong> arsenal scripts for automated reconnaissance,
+                        vulnerability scanning, and deep-archive data retrieval.</li>
+                    <li>Implemented military-grade encryption (AES-256) for the <strong>Omega Vault</strong>, securing
+                        sensitive neural weights and API keys.</li>
+                    <li>Conducted continuous internal <strong>Red Team engagements</strong> against the system's own
+                        defenses to harden the "Fortress" architecture.</li>
+                </ul>
+            </div>
+
+            <br>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Senior QA Automation Engineer</span>
+                    <span class="company">DRAFTKINGS INC.</span>
+                </div>
+                <div class="date">2021 - 2023 // Sofia, Bulgaria</div>
+                <ul>
+                    <li>Led automation strategy for high-volume betting platforms, ensuring 99.99% uptime under load.
+                    </li>
+                    <li>Developed custom testing frameworks (C#/JS) that mirror <strong>fuzzing methodologies</strong>
+                        to uncover edge cases in betting logic.</li>
+                    <li>Collaborated with InfoSec teams to integrate security checks into the CI/CD pipeline
+                        (DevSecOps).</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title"><span>0x04</span> // TECHNICAL PAYLOAD</div>
+            <div class="skill-grid">
+                <div class="skill-item">
+                    <span class="skill-name">OFFENSIVE</span>
+                    Burp Suite Pro, Metasploit, Nmap, SQLMap, Fuzzing, Exploit Dev (Python/JS), Race Conditions, IDOR,
+                    XSS, WAF Bypass.
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">ENGINEERING</span>
+                    TypeScript, Node.js (V8 Internals), C++, Python, React/Next.js, Docker, Kubernetes, AWS/Azure Cloud
+                    Security.
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">INTELLIGENCE</span>
+                    LLM Integration (OpenAI/Anthropic/Google), RAG Architecture, Vector Databases (Pinecone), Autonomous
+                    Agents.
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">CERTIFICATIONS</span>
+                    (Pending) OSCP Preparation, Advanced Web Attacks and Exploitation (AWAE) Methodology.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  qantum-core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: qantum-core-engine
+    environment:
+      - NODE_ENV=production
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+    volumes:
+      - ./output:/app/output
+      - ./visual_diffs:/app/visual_diffs
+      - ./bug_reports:/app/bug_reports
+      - ./coverage:/app/coverage
+      - ./allure-results:/app/allure-results
+      - ./allure-report:/app/allure-report
+      - ./.env:/app/.env:ro
+    ports:
+      - "3000:3000" # Server port
+      - "8080:8080" # Dashboard port
+    restart: unless-stopped
+    networks:
+      - qantum-network
+
+  # Selenium Grid Hub (optional, for distributed testing)
+  selenium-hub:
+    image: selenium/hub:4.15.0
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+    environment:
+      - GRID_MAX_SESSION=5
+      - GRID_BROWSER_TIMEOUT=300
+      - GRID_TIMEOUT=300
+    networks:
+      - qantum-network
+
+  # Chrome Node (optional)
+  chrome:
+    image: selenium/node-chrome:4.15.0
+    container_name: selenium-chrome
+    depends_on:
+      - selenium-hub
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+      - SE_NODE_MAX_SESSIONS=3
+    volumes:
+      - /dev/shm:/dev/shm
+    networks:
+      - qantum-network
+
+networks:
+  qantum-network:
+    driver: bridge
+
+volumes:
+  playwright-cache:

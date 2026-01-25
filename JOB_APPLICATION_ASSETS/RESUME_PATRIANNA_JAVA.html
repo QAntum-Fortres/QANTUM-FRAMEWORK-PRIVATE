@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIMITAR PRODROMOV // SENIOR BACKEND ENGINEER</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Fira+Code:wght@400;600&display=swap');
+
+        :root {
+            --primary: #2563eb;
+            /* Royal Blue */
+            --dark: #0f172a;
+            --light: #f1f5f9;
+            --text: #334155;
+            --accent: #f59e0b;
+            /* Amber */
+        }
+
+        body {
+            background-color: #fff;
+            color: var(--text);
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 50px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .contacts {
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .contacts a {
+            display: block;
+            color: var(--text);
+            text-decoration: none;
+            margin-bottom: 3px;
+        }
+
+        .contacts a:hover {
+            color: var(--primary);
+        }
+
+        /* SECTIONS */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-transform: uppercase;
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            margin-top: 40px;
+            letter-spacing: 1px;
+        }
+
+        .summary {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 4px;
+            font-style: italic;
+            color: #475569;
+        }
+
+        /* EXPERIENCE */
+        .job {
+            margin-bottom: 35px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .job-role {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .job-company {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .job-date {
+            color: #64748b;
+            font-size: 0.9rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .tech-stack {
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e2e8f0;
+            color: #334155;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-family: 'Fira Code', monospace;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* SKILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .skill-group h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .summary {
+                background-color: #f1f5f9 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <div>
+                <h1>Dimitar Prodromov</h1>
+                <div class="title">Senior Backend Engineer // High-Load Systems</div>
+            </div>
+            <div class="contacts">
+                <a href="mailto:papica777@gmail.com">papica777@gmail.com</a>
+                <a
+                    href="https://www.linkedin.com/in/dimitar-prodromov-1818b3399/">linkedin.com/in/dimitar-prodromov-1818b3399</a>
+                <a href="https://github.com/qantum-fortres">github.com/qantum-fortres</a>
+                <a href="https://qantum-fortres.github.io/PORTFOLIO/">qantum-fortres.github.io</a>
+                <span>Sofia, Bulgaria</span>
+            </div>
+        </header>
+
+        <div class="summary">
+            <strong>Senior Engineer</strong> with deep expertise in <strong>High-Frequency data processing</strong>,
+            <strong>Social Gaming/Betting platforms</strong> (DraftKings), and resilient system architecture. While
+            historically focused on C# and TypeScript/Node.js ecosystems, my core strength lies in designing
+            <strong>High-Load, Event-Driven Architectures</strong> (using Websockets, Reactive patterns, and Docker
+            Swarms) that scale to millions of users. Seeking to apply my domain knowledge of the gaming industry and
+            complex concurrency to the Patrianna team.
+        </div>
+
+        <div class="section-title">Relevant Experience</div>
+
+        <!-- JOB 1: QANTUM VORTEX (Aligned with High Load / Multithreading) -->
+        <div class="job">
+            <div class="job-header">
+                <div>
+                    <span class="job-role">Lead Backend Architect (HFT System)</span>
+                    <span class="job-company"> // QANTUM VORTEX (R&D)</span>
+                </div>
+                <span class="job-date">2023 - Present</span>
+            </div>
+            <div class="tech-stack">
+                <span class="badge">Multithreading</span>
+                <span class="badge">Event-Driven Architecture</span>
+                <span class="badge">WebSockets</span>
+                <span class="badge">Docker</span>
+                <span class="badge">PostgreSQL</span>
+                <span class="badge">ELK Stack</span>
+            </div>
+            <ul>
+                <li>Engineered a <strong>High-Frequency Trading Engine</strong> capable of processing 10,000+ market
+                    ticks per second using a custom multi-threaded worker architecture (conceptually similar to
+                    <strong>Java's Reactor/Netty</strong> model).</li>
+                <li>Implemented persistent <strong>WebSocket connections</strong> to Binance/Bybit with automatic
+                    heartbeat monitoring, reconnection logic, and frame buffering (matching <strong>Socket.io</strong>
+                    patterns).</li>
+                <li>Deployed the infrastructure using <strong>Docker</strong> containers, ensuring isolation and easy
+                    scaling of "Worker Drones".</li>
+                <li>Optimized database interactions for high-throughput transactional data, ensuring data integrity
+                    during sub-millisecond arbitrage opportunities.</li>
+            </ul>
+        </div>
+
+        <!-- JOB 2: DRAFTKINGS (Aligned with Domain / High Scale) -->
+        <div class="job">
+            <div class="job-header">
+                <div>
+                    <span class="job-role">Senior Automation & Systems Engineer</span>
+                    <span class="job-company"> // DRAFTKINGS INC.</span>
+                </div>
+                <span class="job-date">2021 - 2023</span>
+            </div>
+            <div class="tech-stack">
+                <span class="badge">High-Load Systems</span>
+                <span class="badge">C# (.NET Core)</span>
+                <span class="badge">Kafka</span>
+                <span class="badge">Microservices</span>
+                <span class="badge">Observability</span>
+            </div>
+            <ul>
+                <li>Worked within the core engineering teams of a massive-scale <strong>Sportsbook Platform</strong>,
+                    dealing with traffic spikes of millions of concurrent users (Super Bowl / NBA Finals).</li>
+                <li>Designed validation frameworks for <strong>Microservices</strong> that communicate via
+                    <strong>Kafka</strong>, ensuring message consistency and eventual consistency across the distributed
+                    system.</li>
+                <li>Gained deep domain knowledge of <strong>Social Gaming & Betting</strong> lifecycles, wallet
+                    transactions, and regulatory compliance requirements.</li>
+                <li>Utilized <strong>Observability tools (Grafana/Prometheus/ELK)</strong> to troubleshoot production
+                    bottlenecks and latency issues in the betting engine.</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Technical Alignment</div>
+
+        <div class="skills-grid">
+            <div class="skill-group">
+                <h4>Backend & Concurrency</h4>
+                <ul>
+                    <li><strong>Multithreading:</strong> Expert in designing race-condition-free concurrent systems.
+                    </li>
+                    <li><strong>High-Load:</strong> Proven track record with systems handling massive TPS (Transactions
+                        Per Second).</li>
+                    <li><strong>Communication:</strong> WebSockets, REST, gRPC, Message Queues (Kafka adaptation).</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h4>Infrastructure & DevOps</h4>
+                <ul>
+                    <li><strong>Containerization:</strong> Docker, Docker Swarm logic.</li>
+                    <li><strong>Databases:</strong> SQL (PostgreSQL), NoSQL adaptation.</li>
+                    <li><strong>Cloud:</strong> Experience with Cloud-Native patterns (GCP/AWS adaptable).</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

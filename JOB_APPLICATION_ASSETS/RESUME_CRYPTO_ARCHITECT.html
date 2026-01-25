@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIMITAR PRODROMOV // CRYPTO ARCHITECT</title>
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --text-color: #c5c6c7;
+            --accent-color: #45a29e;
+            /* Cyan for Tech/Futuristic vibe */
+            --highlight-color: #66fcf1;
+            /* Brighter Cyan */
+            --dim-color: #1f2833;
+            --code-font: 'JetBrains Mono', 'Consolas', monospace;
+            --heading-font: 'Arial Black', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+            background-image: radial-gradient(#1f2833 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            border: 2px solid var(--accent-color);
+            padding: 50px;
+            background-color: rgba(11, 12, 16, 0.95);
+            box-shadow: 0 0 30px rgba(102, 252, 241, 0.1);
+            position: relative;
+        }
+
+        .container::before {
+            content: "SYSTEM_STATUS: ONLINE";
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-family: var(--code-font);
+            color: var(--highlight-color);
+            font-size: 0.8rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        h1 {
+            font-family: var(--heading-font);
+            font-size: 3.5rem;
+            color: var(--highlight-color);
+            margin: 0;
+            line-height: 1;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-family: var(--code-font);
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-top: 10px;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+
+        .contact-bar {
+            display: flex;
+            gap: 25px;
+            font-family: var(--code-font);
+            border-bottom: 1px solid var(--dim-color);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-number {
+            font-family: var(--code-font);
+            color: var(--highlight-color);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            color: var(--text-color);
+            text-transform: uppercase;
+        }
+
+        /* PROJECT HIGHLIGHT BOX */
+        .project-highlight {
+            border: 1px solid var(--accent-color);
+            background: rgba(31, 40, 51, 0.5);
+            padding: 25px;
+            position: relative;
+        }
+
+        .project-highlight::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--highlight-color);
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--dim-color);
+            color: var(--highlight-color);
+            padding: 4px 10px;
+            font-family: var(--code-font);
+            font-size: 0.8rem;
+            border: 1px solid var(--accent-color);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .company {
+            font-family: var(--code-font);
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 12px;
+            color: #dbe4eb;
+        }
+
+        li::before {
+            content: "➜";
+            position: absolute;
+            left: 0;
+            color: var(--highlight-color);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>DIMITAR PRODROMOV</h1>
+        <div class="subtitle">BLOCKCHAIN ENGINEER & HFT SYSTEMS ARCHITECT</div>
+
+        <div class="contact-bar">
+            <a href="mailto:papica777@gmail.com"><span>[EMAIL] papica777@gmail.com</span></a>
+            <a href="https://www.linkedin.com/in/dimitar-prodromov-1818b3399/"><span>[LINKEDIN]
+                    /in/dimitar-prodromov-1818b3399</span></a>
+            <a href="https://qantum-fortres.github.io/PORTFOLIO/"><span>[PORTFOLIO] qantum-fortres.github.io</span></a>
+            <a href="https://github.com/qantum-fortres"><span>[GITHUB] github.com/qantum-fortres</span></a>
+            <span>[LOC] Sofia, BG</span>
+        </div>
+
+        <!-- 01 // ARCHITECTURAL SHOWCASE -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <span class="section-title">ENGINEERING MASTERPIECE</span>
+            </div>
+
+            <div class="project-highlight">
+                <div class="job-header">
+                    <span class="job-title">THE QANTUM VORTEX: HIVE MIND</span>
+                    <span class="company">Personal R&D Project</span>
+                </div>
+                <p>
+                    Architected a sovereign, Multi-Threaded High-Frequency Trading (HFT) ecosystem designed to execute
+                    arbitrage and algorithmic strategies across Binance/Bybit with sub-millisecond latency.
+                </p>
+                <ul>
+                    <li><strong>Concurrency Architecture:</strong> Engineered a custom <code>ThreadMaster</code>
+                        controller using <strong>Node.js Worker Threads</strong> to bypass the single-threaded Event
+                        Loop bottleneck, utilizing 100% of available CPU cores (Ryzen 7) for parallel market analysis.
+                    </li>
+                    <li><strong>Autonomous Drone Swarm:</strong> Deployed independent "Drone" processes for BTC, ETH,
+                        SOL, XRP that utilize inter-process communication (IPC) to request capital from a central
+                        "Portfolio Guard" vault, ensuring race-condition-free fund management.</li>
+                    <li><strong>Resilient Network Layer:</strong> Built a custom wrapper around Binance WebSockets that
+                        implements "Smart Retry" logic and connection pooling, ensuring 99.99% uptime even during API
+                        outages.</li>
+                    <li><strong>Tactical Dashboard:</strong> Developed a real-time, low-latency CLI dashboard rendering
+                        live PnL, Trades, and Signals using direct stdout cursor manipulation (no library overhead).
+                    </li>
+                </ul>
+                <div class="tech-stack">
+                    <span class="tag">TypeScript</span>
+                    <span class="tag">Node.js Workers</span>
+                    <span class="tag">System Design</span>
+                    <span class="tag">Binance API</span>
+                    <span class="tag">Algorithmic Trading</span>
+                    <span class="tag">RSI/MACD Simulation</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02 // PROFESSIONAL EXPERIENCE -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <span class="section-title">PROFESSIONAL HISTORY</span>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Senior Security & Systems Engineer</span>
+                    <span class="company">QANTUM EMPIRE (Stealth)</span>
+                </div>
+                <div style="font-family: var(--code-font); color: #666; margin-bottom: 10px;">2023 - PRESENT // REMOTE
+                </div>
+                <ul>
+                    <li>Leading the architecture of "Vortex": A hybrid Offensive Security and Algorithmic Trading OS.
+                    </li>
+                    <li>Merging <strong>Cybersecurity Red Teaming</strong> principles with <strong>Finance</strong> to
+                        create hardened trading bots immune to MEV (Miner Extractable Value) attacks and sandwich
+                        attacks.</li>
+                    <li>Managing a diverse stack of microservices communicating via secure encrypted channels (AES-256).
+                    </li>
+                </ul>
+            </div>
+
+            <br>
+
+            <div class="job">
+                <div class="job-header">
+                    <span class="job-title">Senior QA Automation Engineer</span>
+                    <span class="company">DRAFTKINGS INC.</span>
+                </div>
+                <div style="font-family: var(--code-font); color: #666; margin-bottom: 10px;">2021 - 2023 // SOFIA</div>
+                <ul>
+                    <li>Designed massive-scale automation frameworks dealing with thousands of real-time transactions
+                        per second.</li>
+                    <li>Engineered custom test harnesses in C# and JS to validate high-load betting engines (similar to
+                        HFT matching engines).</li>
+                    <li>Optimized CI/CD pipelines to reduce deployment latency by 60%.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 03 // TECHNICAL STACK -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <span class="section-title">TECHNICAL ARSENAL</span>
+            </div>
+
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: var(--accent-color); font-family: var(--code-font);">CORE ENGINEERING</h3>
+                    <ul>
+                        <li><strong>Languages:</strong> TypeScript (Advanced), JavaScript (ESNext), Node.js (Internals),
+                            Python, C++</li>
+                        <li><strong>Systems:</strong> AWS, Docker, Kubernetes, Linux (Kernel tuning)</li>
+                        <li><strong>Architecture:</strong> Microservices, Event-Driven Architecture, Worker Threads</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent-color); font-family: var(--code-font);">BLOCKCHAIN & CRYPTO</h3>
+                    <ul>
+                        <li><strong>Trading:</strong> HFT logic, Market Making, Arbitrage, Technical Analysis (RSI,
+                            Bollinger)</li>
+                        <li><strong>Security:</strong> Smart Contract Auditing basics, Wallet Security, API Key Hygiene
+                        </li>
+                        <li><strong>APIs:</strong> CCXT, Binance, Ethereum RPC, WebSockets</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+[workspace]
+members = [
+    "rust_mojo_core",
+    "rust_mojo_economy",
+    "rust_mojo_parser",
+    "rust_mojo_telemetry",
+    "aeterna_node"
+]
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3

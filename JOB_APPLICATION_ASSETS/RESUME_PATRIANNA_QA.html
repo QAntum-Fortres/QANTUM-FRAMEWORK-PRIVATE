@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIMITAR PRODROMOV // AUTOMATION ENGINEER</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;800&family=Source+Code+Pro:wght@400;600&display=swap');
+
+        :root {
+            --primary: #10b981;
+            /* Emerald Green for QA/Health */
+            --dark: #0f172a;
+            --text: #334155;
+            --light-bg: #f8fafc;
+        }
+
+        body {
+            font-family: 'Mukta', sans-serif;
+            color: var(--text);
+            margin: 0;
+            padding: 50px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0;
+            color: var(--dark);
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .role {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .contact-info {
+            text-align: right;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .contact-info a {
+            display: block;
+            color: var(--text);
+            text-decoration: none;
+            margin-bottom: 2px;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary);
+        }
+
+        /* SUMMARY */
+        .summary {
+            background: var(--light-bg);
+            padding: 20px 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::before {
+            content: ">>";
+            color: var(--primary);
+            margin-right: 10px;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        /* JOB CARDS */
+        .job {
+            margin-bottom: 40px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .job-company {
+            font-family: 'Source Code Pro', monospace;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .job-date {
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .tags {
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--dark);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'Source Code Pro', monospace;
+            margin-right: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* SKILLS GRID */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .skill-group h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--dark);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .skill-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+        }
+
+        .skill-list li::before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .summary,
+            .tag {
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Dimitar Prodromov</h1>
+                <div class="role">Mid/Senior Automation Engineer (Java/SDET)</div>
+            </div>
+            <div class="contact-info">
+                <a href="mailto:papica777@gmail.com">papica777@gmail.com</a>
+                <a
+                    href="https://www.linkedin.com/in/dimitar-prodromov-1818b3399/">linkedin/dimitar-prodromov-1818b3399</a>
+                <a href="https://qantum-fortres.github.io/PORTFOLIO/">qantum-fortres.github.io</a>
+                <a href="https://github.com/qantum-fortres">github.com/qantum-fortres</a>
+                <span>Sofia, Bulgaria</span>
+            </div>
+        </header>
+
+        <div class="summary">
+            <strong>Automation Engineer</strong> with 3+ years of hands-on experience in building robust Testing
+            Frameworks for <strong>High-Load Social Gaming platforms</strong>. Expert in <strong>Java
+                Automation</strong>, API Testing (RestAssured), and UI Automation (Playwright/Selenium). Deep
+            understanding of Mobile Automation (Appium) and CI/CD pipelines. proven track record at
+            <strong>DraftKings</strong> ensuring quality for millions of users.
+        </div>
+
+        <div class="section-title">Professional Experience</div>
+
+        <!-- JOB 1: DRAFTKINGS (Perfect Fit) -->
+        <div class="job">
+            <div class="job-header">
+                <div>
+                    <span class="job-title">Automation QA Engineer</span>
+                    <span class="job-company"> // DRAFTKINGS INC.</span>
+                </div>
+                <span class="job-date">2021 — 2023</span>
+            </div>
+            <div class="tags">
+                <span class="tag">Java Automation</span>
+                <span class="tag">Playwright</span>
+                <span class="tag">Appium</span>
+                <span class="tag">RestAssured</span>
+                <span class="tag">Kafka</span>
+            </div>
+            <ul>
+                <li>Developed and maintained a scalable <strong>Hybrid Automation Framework</strong> (UI + API) using
+                    <strong>Java</strong> and <strong>Playwright</strong> for the sportsbook web application.</li>
+                <li>Implemented <strong>Mobile Automation</strong> scripts using <strong>Appium</strong> and Selenide,
+                    extending test coverage to iOS and Android bet slip flows.</li>
+                <li>Conducted extensive <strong>API Testing</strong> using <strong>RestAssured</strong>, validating JSON
+                    schemas and HTTP status codes for wallet transactions.</li>
+                <li>Integrated automated suites into <strong>Jenkins CI/CD pipelines</strong>, enabling nightly
+                    regression runs and reducing release cycles by 40%.</li>
+                <li>Verified data consistency in <strong>SQL (PostgreSQL)</strong> and NoSQL databases, ensuring
+                    accurate odds settlement.</li>
+            </ul>
+        </div>
+
+        <!-- JOB 2: QANTUM VORTEX (SDET Angle) -->
+        <div class="job">
+            <div class="job-header">
+                <div>
+                    <span class="job-title">Lead SDET (System Design Engineer in Test)</span>
+                    <span class="job-company"> // QANTUM VORTEX (R&D)</span>
+                </div>
+                <span class="job-date">2023 — Present</span>
+            </div>
+            <div class="tags">
+                <span class="tag">System Resilience</span>
+                <span class="tag">Performance Testing</span>
+                <span class="tag">API Clients</span>
+                <span class="tag">Docker</span>
+            </div>
+            <ul>
+                <li>Architected a custom <strong>Test Harness</strong> for a High-Frequency Trading engine, simulating
+                    thousands of WebSocket events to verify system stability (Chaos Engineering).</li>
+                <li>Built <strong>API Clients</strong> from scratch to interact with 3rd party exchanges
+                    (Binance/Bybit), handling complex authentication and rate-limiting logic.</li>
+                <li>Configured Monitoring dashboards (ELK Stack) to troubleshoot latency issues and analyze automation
+                    results in real-time.</li>
+                <li>Maintained <strong>Test Documentation</strong> and reports, ensuring clear communication of quality
+                    metrics to stakeholders.</li>
+            </ul>
+        </div>
+
+        <div class="section-title">Technical Skills</div>
+
+        <div class="skills">
+            <div class="skill-group">
+                <h4>Core Automation</h4>
+                <ul class="skill-list">
+                    <li>Java Core (Since Java 8)</li>
+                    <li>Playwright / Selenium</li>
+                    <li>Appium (Mobile)</li>
+                    <li>RestAssured (API)</li>
+                    <li>Selenide</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h4>Backend & Tools</h4>
+                <ul class="skill-list">
+                    <li>SQL / NoSQL (Mongo)</li>
+                    <li>JSON Schema Validation</li>
+                    <li>Postman / browser DevTools</li>
+                    <li>Git / Jenkins / Docker</li>
+                    <li>Kafka / ElasticSearch</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h4>Methodologies</h4>
+                <ul class="skill-list">
+                    <li>Agile / Scrum</li>
+                    <li>Test Planning & Estimation</li>
+                    <li>CI/CD Configuration</li>
+                    <li>Root Cause Analysis</li>
+                    <li>Code Review</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

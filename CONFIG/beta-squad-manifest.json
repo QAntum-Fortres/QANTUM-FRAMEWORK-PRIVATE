@@ -1,0 +1,1256 @@
+{
+  "name": "Beta Squad (Security)",
+  "description": "Ghost Protocol, Anti-Detection, Stealth Automation, Encryption",
+  "targetMarket": "Security Firms, Penetration Testers, Enterprise Security",
+  "totalModules": 139,
+  "totalLOC": 75181,
+  "modules": [
+    {
+      "id": "playwright-demo",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/examples/playwright-demo.ts",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "GhostShield",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/GhostShield.ts",
+      "type": "Security",
+      "exports": [
+        "GhostShield"
+      ]
+    },
+    {
+      "id": "anti-detection",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/core/anti-detection.ts",
+      "type": "Security",
+      "exports": [
+        "AntiDetection",
+        "getAntiDetection"
+      ]
+    },
+    {
+      "id": "CloudflareBypass",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/core/CloudflareBypass.ts",
+      "type": "Security",
+      "exports": [
+        "CloudflareBypass",
+        "CLOUDFLARE_SIGNATURES"
+      ]
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/core/index.ts",
+      "type": "Security",
+      "exports": [
+        "Ghost",
+        "getGhost"
+      ]
+    },
+    {
+      "id": "network-interceptor",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/core/network-interceptor.ts",
+      "type": "Security",
+      "exports": [
+        "NetworkInterceptor",
+        "getNetworkInterceptor"
+      ]
+    },
+    {
+      "id": "personality-engine",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/core/personality-engine.ts",
+      "type": "Security",
+      "exports": [
+        "GhostPersonalityEngine",
+        "createGhostPersonalityEngine"
+      ]
+    },
+    {
+      "id": "PhantomIntegration",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/core/PhantomIntegration.ts",
+      "type": "Security",
+      "exports": [
+        "PhantomModeController",
+        "createPhantomFixture",
+        "examplePhantomTest"
+      ]
+    },
+    {
+      "id": "protocol",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/core/protocol.ts",
+      "type": "Security",
+      "exports": [
+        "GhostProtocol",
+        "SelectorObfuscator",
+        "getGhostProtocol"
+      ]
+    },
+    {
+      "id": "proxy-chain",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/core/proxy-chain.ts",
+      "type": "Security",
+      "exports": [
+        "ProxyChain",
+        "getProxyChain"
+      ]
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/index.ts",
+      "type": "Security",
+      "exports": [
+        "GhostShield"
+      ]
+    },
+    {
+      "id": "paddle",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/licensing/paddle.ts",
+      "type": "Security",
+      "exports": [
+        "LicenseValidator",
+        "PaddleCheckout",
+        "LicenseGenerator",
+        "PaddleWebhookHandler",
+        "GHOSTSHIELD_PRODUCTS",
+        "createLicenseValidator",
+        "createPaddleCheckout",
+        "createWebhookHandler"
+      ]
+    },
+    {
+      "id": "biometric-engine",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/protocol/biometric-engine.ts",
+      "type": "Security",
+      "exports": [
+        "BiometricEngine"
+      ]
+    },
+    {
+      "id": "chronos-paradox",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/protocol/chronos-paradox.ts",
+      "type": "Security",
+      "exports": [
+        "ChronosParadox",
+        "applyPatch"
+      ]
+    },
+    {
+      "id": "demo",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/protocol/demo.ts",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/protocol/index.ts",
+      "type": "Security",
+      "exports": [
+        "GhostProtocolV2",
+        "PROTECTION_SIGNATURES"
+      ]
+    },
+    {
+      "id": "tls-phantom",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/protocol/tls-phantom.ts",
+      "type": "Security",
+      "exports": [
+        "TLSPhantom"
+      ]
+    },
+    {
+      "id": "visual-stealth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/ghost/shield/src/protocol/visual-stealth.ts",
+      "type": "Security",
+      "exports": [
+        "VisualStealth"
+      ]
+    },
+    {
+      "id": "checksum-validator",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/agility/checksum-validator.ts",
+      "type": "Security",
+      "exports": [
+        "ChecksumValidator"
+      ]
+    },
+    {
+      "id": "BasePage",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/BasePage.ts",
+      "type": "Security",
+      "exports": [
+        "BasePage"
+      ]
+    },
+    {
+      "id": "circuit-breaker",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/circuit-breaker.ts",
+      "type": "Security",
+      "exports": [
+        "CircuitBreakerManager"
+      ]
+    },
+    {
+      "id": "cognitive-ux-auditor",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/cognitive-ux-auditor.ts",
+      "type": "Security",
+      "exports": [
+        "CognitiveUXAuditor",
+        "cognitiveUXAuditor"
+      ]
+    },
+    {
+      "id": "critic-agent",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/critic-agent.ts",
+      "type": "Security",
+      "exports": [
+        "CriticAgent"
+      ]
+    },
+    {
+      "id": "executor",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/executor.ts",
+      "type": "Security",
+      "exports": [
+        "GhostExecutor",
+        "ghostExecutor"
+      ]
+    },
+    {
+      "id": "FortressIntegration",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/FortressIntegration.ts",
+      "type": "Security",
+      "exports": [
+        "FortressIntegration",
+        "createFatalityHook",
+        "getFortressIntegration",
+        "createFortressIntegration"
+      ]
+    },
+    {
+      "id": "GenesisRealityProvider",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/GenesisRealityProvider.ts",
+      "type": "Security",
+      "exports": [
+        "GenesisRealityProvider",
+        "genesisRealityProvider"
+      ]
+    },
+    {
+      "id": "ghost-strategy",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/ghost-strategy.ts",
+      "type": "Security",
+      "exports": [
+        "TLSPhantomStrategy",
+        "BiometricJitterStrategy",
+        "WebGLMutatorStrategy",
+        "VisualStealthStrategy",
+        "TimingObfuscationStrategy",
+        "GhostOrchestrator",
+        "getGhostOrchestrator",
+        "createGhostOrchestrator"
+      ]
+    },
+    {
+      "id": "hardware-lock",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/hardware-lock.ts",
+      "type": "Security",
+      "exports": [
+        "HardwareLock",
+        "getHardwareLock",
+        "createHardwareLock"
+      ]
+    },
+    {
+      "id": "malicious-intent.test",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/malicious-intent.test.ts",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "module-loader",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/module-loader.ts",
+      "type": "Security",
+      "exports": [
+        "HotSwapModuleLoader"
+      ]
+    },
+    {
+      "id": "multi-language-cognition",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/multi-language-cognition.ts",
+      "type": "Security",
+      "exports": [
+        "MultiLanguageCognition",
+        "BULGARIAN_PATTERNS",
+        "ENGLISH_PATTERNS",
+        "CHINESE_PATTERNS",
+        "JAPANESE_PATTERNS"
+      ]
+    },
+    {
+      "id": "neural-optimizer",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/neural-optimizer.ts",
+      "type": "Security",
+      "exports": [
+        "LRUCache",
+        "PatternDeduplicator",
+        "NeuralOptimizer",
+        "neuralOptimizer"
+      ]
+    },
+    {
+      "id": "neural-vault",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/neural-vault.ts",
+      "type": "Security",
+      "exports": [
+        "NeuralVault"
+      ]
+    },
+    {
+      "id": "neural.test",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/neural.test.ts",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "observability-bridge",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/observability-bridge.ts",
+      "type": "Security",
+      "exports": [
+        "ObservabilityBridge"
+      ]
+    },
+    {
+      "id": "planner-agent",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/planner-agent.ts",
+      "type": "Security",
+      "exports": [
+        "PlannerAgent"
+      ]
+    },
+    {
+      "id": "resource-exhaustion.test",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/resource-exhaustion.test.ts",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "sandbox-executor",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/sandbox-executor.ts",
+      "type": "Security",
+      "exports": [
+        "SandboxExecutor"
+      ]
+    },
+    {
+      "id": "state-versioner",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/state-versioner.ts",
+      "type": "Security",
+      "exports": [
+        "StateVersioningSystem"
+      ]
+    },
+    {
+      "id": "test-all",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/test-all.js",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "thermal-aware-pool",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/energy/thermal-aware-pool.ts",
+      "type": "Security",
+      "exports": [
+        "ThermalAwarePool"
+      ]
+    },
+    {
+      "id": "action-executor",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/strength/action-executor.ts",
+      "type": "Security",
+      "exports": [
+        "ActionExecutor",
+        "actionExecutor"
+      ]
+    },
+    {
+      "id": "chronos-engine-v2",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/strength/chronos-engine-v2.ts",
+      "type": "Security",
+      "exports": [
+        "ChronosEngine"
+      ]
+    },
+    {
+      "id": "core.test",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/strength/core.test.ts",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/strength/index.js",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "intelligence",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/strength/intelligence.ts",
+      "type": "Security",
+      "exports": [
+        "NeuralBackpack",
+        "SelfHealingV2",
+        "PreCogEngine",
+        "OmniscientCore",
+        "createIntelligenceLayer"
+      ]
+    },
+    {
+      "id": "mutation-engine",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/strength/mutation-engine.ts",
+      "type": "Security",
+      "exports": [
+        "GeneticMutationEngine"
+      ]
+    },
+    {
+      "id": "persona-engine",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/strength/persona-engine.ts",
+      "type": "Security",
+      "exports": [
+        "PersonaEngine",
+        "PERSONA_TEMPLATES",
+        "personaEngine"
+      ]
+    },
+    {
+      "id": "persona.test",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/strength/persona.test.ts",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "phase2-nlu-shadow.test",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/strength/phase2-nlu-shadow.test.js",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "video-replay-analyzer",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/auth/strength/video-replay-analyzer.ts",
+      "type": "Security",
+      "exports": [
+        "VideoReplayAnalyzer"
+      ]
+    },
+    {
+      "id": "tls-phantom",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/encryption/energy/tls-phantom.ts",
+      "type": "Security",
+      "exports": [
+        "TLSPhantomEngine",
+        "getTLSPhantom",
+        "createTLSPhantom"
+      ]
+    },
+    {
+      "id": "dom-evolution-tracker",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/encryption/strength/dom-evolution-tracker.ts",
+      "type": "Security",
+      "exports": [
+        "DOMEvolutionTracker",
+        "domEvolutionTracker"
+      ]
+    },
+    {
+      "id": "OntoGenerator",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/encryption/strength/OntoGenerator.ts",
+      "type": "Security",
+      "exports": [
+        "PrimordialAxiomSynthesis",
+        "ModalLogicConstructor",
+        "CausalityWeaving",
+        "ExistentialInstantiation",
+        "HyperDimensionalArchitect",
+        "OntoGenerator",
+        "ontoGenerator"
+      ]
+    },
+    {
+      "id": "AdaptiveOllamaAgent",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/guardians/energy/AdaptiveOllamaAgent.js",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/BETA_SECURITY/security/guardians/energy/index.ts",
+      "type": "Security",
+      "exports": [
+        "SecurityFortress",
+        "getSecurityFortress",
+        "createSecurityFortress",
+        "activateFortress"
+      ]
+    },
+    {
+      "id": "ghost-execution-layer",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/GAMMA_INFRA/core/brain/energy/ghost-execution-layer.ts",
+      "type": "Core",
+      "exports": [
+        "GhostExecutionLayer"
+      ]
+    },
+    {
+      "id": "auth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/GAMMA_INFRA/core/ears/energy/auth.ts",
+      "type": "Security",
+      "exports": [
+        "login",
+        "logout",
+        "whoami"
+      ]
+    },
+    {
+      "id": "auth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/GAMMA_INFRA/hydrated/api/unified/middleware/auth.ts",
+      "type": "Security",
+      "exports": [
+        "AuthMiddleware",
+        "createApiKey",
+        "createUser",
+        "createJWT"
+      ]
+    },
+    {
+      "id": "biometric-jitter",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/GAMMA_INFRA/hydrated/ghost/biometric-jitter.ts",
+      "type": "Unknown",
+      "exports": [
+        "BiometricJitter",
+        "createBiometricJitter",
+        "createBiometricProfile"
+      ]
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/GAMMA_INFRA/hydrated/ghost/index.ts",
+      "type": "Unknown",
+      "exports": [
+        "GhostEngine",
+        "createGhostEngine"
+      ]
+    },
+    {
+      "id": "ghost-recon",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/src/modules/GAMMA_INFRA/hydrated/ghost-recon.ts",
+      "type": "Unknown",
+      "exports": [
+        "GhostRecon"
+      ]
+    },
+    {
+      "id": "ghost-scan",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/ghost-scan.js",
+      "type": "Utility",
+      "exports": []
+    },
+    {
+      "id": "verify-squads-security",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/verify-squads-security.ts",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "auth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.ascension-backup/2025-12-30T19-06-20-229Z/src/api/unified/middleware/auth.ts",
+      "type": "Security",
+      "exports": [
+        "AuthMiddleware",
+        "createApiKey",
+        "createUser",
+        "createJWT"
+      ]
+    },
+    {
+      "id": "ghost-precog-cli",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.ascension-backup/2025-12-30T19-06-20-229Z/src/cli/ghost-precog-cli.js",
+      "type": "Utility",
+      "exports": []
+    },
+    {
+      "id": "biometric-jitter",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.ascension-backup/2025-12-30T19-06-20-229Z/src/ghost/biometric-jitter.ts",
+      "type": "Utility",
+      "exports": [
+        "BiometricJitter",
+        "createBiometricJitter",
+        "createBiometricProfile"
+      ]
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.ascension-backup/2025-12-30T19-06-20-229Z/src/ghost/index.ts",
+      "type": "Utility",
+      "exports": [
+        "GhostEngine",
+        "createGhostEngine"
+      ]
+    },
+    {
+      "id": "tls-rotator",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.ascension-backup/2025-12-30T19-06-20-229Z/src/ghost/tls-rotator.ts",
+      "type": "Utility",
+      "exports": [
+        "TLSRotator",
+        "createTLSRotator"
+      ]
+    },
+    {
+      "id": "webgl-mutator",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.ascension-backup/2025-12-30T19-06-20-229Z/src/ghost/webgl-mutator.ts",
+      "type": "Utility",
+      "exports": [
+        "WebGLMutator",
+        "createWebGLMutator"
+      ]
+    },
+    {
+      "id": "network-interceptor",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.ascension-backup/2025-12-30T19-06-20-229Z/src/ghost-protocol/network-interceptor.ts",
+      "type": "Utility",
+      "exports": [
+        "NetworkInterceptor",
+        "createGhostInterceptor",
+        "withGhost",
+        "runGhostCapture"
+      ]
+    },
+    {
+      "id": "SecurityTesting",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.ascension-backup/2025-12-30T19-06-20-229Z/src/security/SecurityTesting.ts",
+      "type": "Security",
+      "exports": [
+        "XSSScanner",
+        "SQLInjectionScanner",
+        "SecurityHeadersAnalyzer",
+        "CSRFScanner",
+        "SecurityScanner",
+        "createSecurityScanner"
+      ]
+    },
+    {
+      "id": "ghost-precog-cli",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.purge-backup/2025-12-30T19-06-20-663Z/src/cli/ghost-precog-cli.js",
+      "type": "Utility",
+      "exports": []
+    },
+    {
+      "id": "biometric-jitter",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.purge-backup/2025-12-30T19-06-20-663Z/src/ghost/biometric-jitter.ts",
+      "type": "Utility",
+      "exports": [
+        "BiometricJitter",
+        "createBiometricJitter",
+        "createBiometricProfile"
+      ]
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.purge-backup/2025-12-30T19-06-20-663Z/src/ghost/index.ts",
+      "type": "Utility",
+      "exports": [
+        "GhostEngine",
+        "createGhostEngine"
+      ]
+    },
+    {
+      "id": "tls-rotator",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.purge-backup/2025-12-30T19-06-20-663Z/src/ghost/tls-rotator.ts",
+      "type": "Utility",
+      "exports": [
+        "TLSRotator",
+        "createTLSRotator"
+      ]
+    },
+    {
+      "id": "webgl-mutator",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.purge-backup/2025-12-30T19-06-20-663Z/src/ghost/webgl-mutator.ts",
+      "type": "Utility",
+      "exports": [
+        "WebGLMutator",
+        "createWebGLMutator"
+      ]
+    },
+    {
+      "id": "network-interceptor",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/.purge-backup/2025-12-30T19-06-20-663Z/src/ghost-protocol/network-interceptor.ts",
+      "type": "Utility",
+      "exports": [
+        "NetworkInterceptor",
+        "createGhostInterceptor",
+        "withGhost",
+        "runGhostCapture"
+      ]
+    },
+    {
+      "id": "auth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/api/unified/middleware/auth.ts",
+      "type": "Security",
+      "exports": [
+        "AuthMiddleware",
+        "createApiKey",
+        "createUser",
+        "createJWT"
+      ]
+    },
+    {
+      "id": "ghost-precog-cli",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/cli/ghost-precog-cli.js",
+      "type": "Utility",
+      "exports": []
+    },
+    {
+      "id": "biometric-engine",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost/biometric-engine.ts",
+      "type": "Utility",
+      "exports": [
+        "BiometricEngine",
+        "getBiometricEngine",
+        "createBiometricEngine"
+      ]
+    },
+    {
+      "id": "biometric-jitter",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost/biometric-jitter.ts",
+      "type": "Utility",
+      "exports": [
+        "BiometricJitter",
+        "createBiometricJitter",
+        "createBiometricProfile"
+      ]
+    },
+    {
+      "id": "ghost-strategy",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost/ghost-strategy.ts",
+      "type": "Utility",
+      "exports": [
+        "TLSPhantomStrategy",
+        "BiometricJitterStrategy",
+        "WebGLMutatorStrategy",
+        "VisualStealthStrategy",
+        "TimingObfuscationStrategy",
+        "GhostOrchestrator",
+        "getGhostOrchestrator",
+        "createGhostOrchestrator"
+      ]
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost/index.ts",
+      "type": "Utility",
+      "exports": [
+        "PhantomEngine",
+        "GhostEngine",
+        "createPhantomEngine",
+        "createGhostEngine"
+      ]
+    },
+    {
+      "id": "tls-phantom",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost/tls-phantom.ts",
+      "type": "Utility",
+      "exports": [
+        "TLSPhantomEngine",
+        "getTLSPhantom",
+        "createTLSPhantom"
+      ]
+    },
+    {
+      "id": "tls-rotator",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost/tls-rotator.ts",
+      "type": "Utility",
+      "exports": [
+        "TLSRotator",
+        "createTLSRotator"
+      ]
+    },
+    {
+      "id": "visual-stealth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost/visual-stealth.ts",
+      "type": "Utility",
+      "exports": [
+        "VisualStealthEngine",
+        "getVisualStealth",
+        "createVisualStealth"
+      ]
+    },
+    {
+      "id": "webgl-mutator",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost/webgl-mutator.ts",
+      "type": "Utility",
+      "exports": [
+        "WebGLMutator",
+        "createWebGLMutator"
+      ]
+    },
+    {
+      "id": "network-interceptor",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost-protocol/network-interceptor.ts",
+      "type": "Utility",
+      "exports": [
+        "NetworkInterceptor",
+        "createGhostInterceptor",
+        "withGhost",
+        "runGhostCapture"
+      ]
+    },
+    {
+      "id": "biometric-engine",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost-protocol-v2/biometric-engine.ts",
+      "type": "Utility",
+      "exports": [
+        "BiometricEngine"
+      ]
+    },
+    {
+      "id": "chronos-paradox",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost-protocol-v2/chronos-paradox.ts",
+      "type": "Utility",
+      "exports": [
+        "ChronosParadox",
+        "applyPatch"
+      ]
+    },
+    {
+      "id": "demo",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost-protocol-v2/demo.ts",
+      "type": "Utility",
+      "exports": []
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost-protocol-v2/index.ts",
+      "type": "Utility",
+      "exports": [
+        "GhostProtocolV2",
+        "PROTECTION_SIGNATURES"
+      ]
+    },
+    {
+      "id": "tls-phantom",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost-protocol-v2/tls-phantom.ts",
+      "type": "Utility",
+      "exports": [
+        "TLSPhantom"
+      ]
+    },
+    {
+      "id": "visual-stealth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/ghost-protocol-v2/visual-stealth.ts",
+      "type": "Utility",
+      "exports": [
+        "VisualStealth"
+      ]
+    },
+    {
+      "id": "anti-tamper",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/security/anti-tamper.ts",
+      "type": "Security",
+      "exports": [
+        "AntiTamper",
+        "getAntiTamper",
+        "createAntiTamper"
+      ]
+    },
+    {
+      "id": "fatality-engine",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/security/fatality-engine.ts",
+      "type": "Security",
+      "exports": [
+        "FatalityEngine",
+        "getFatalityEngine",
+        "createFatalityEngine",
+        "armFatality"
+      ]
+    },
+    {
+      "id": "hardware-lock",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/security/hardware-lock.ts",
+      "type": "Security",
+      "exports": [
+        "HardwareLock",
+        "getHardwareLock",
+        "createHardwareLock"
+      ]
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/security/index.ts",
+      "type": "Security",
+      "exports": [
+        "SecurityFortress",
+        "getSecurityFortress",
+        "createSecurityFortress",
+        "activateFortress"
+      ]
+    },
+    {
+      "id": "obfuscator-config",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/security/obfuscator-config.js",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "SecurityTesting",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/security/SecurityTesting.ts",
+      "type": "Security",
+      "exports": [
+        "XSSScanner",
+        "SQLInjectionScanner",
+        "SecurityHeadersAnalyzer",
+        "CSRFScanner",
+        "SecurityScanner",
+        "createSecurityScanner"
+      ]
+    },
+    {
+      "id": "sentinel-link",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/Mind-Engine-Core/src/security/sentinel-link.ts",
+      "type": "Security",
+      "exports": [
+        "SentinelLink",
+        "getSentinelLink",
+        "createSentinelLink"
+      ]
+    },
+    {
+      "id": "security",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/PROJECT/PRIVATE/utils/security.js",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "auth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/PROJECT/QA-SAAS/apps/api/src/middleware/auth.ts",
+      "type": "Security",
+      "exports": [
+        "requireAuth",
+        "getTenant"
+      ]
+    },
+    {
+      "id": "auth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/PROJECT/QA-SAAS/packages/cli/src/commands/auth.ts",
+      "type": "Security",
+      "exports": [
+        "login",
+        "logout",
+        "whoami"
+      ]
+    },
+    {
+      "id": "auth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/PROJECT/QANTUM-NEXUS/apps/api/src/middleware/auth.ts",
+      "type": "Security",
+      "exports": [
+        "requireAuth",
+        "getTenant"
+      ]
+    },
+    {
+      "id": "security.spec",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/ManualQATester/playwright-demo/tests/e2e/security.spec.ts",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "real-ghost-runner",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/scripts/archive/real-ghost-runner.js",
+      "type": "Utility",
+      "exports": []
+    },
+    {
+      "id": "ghost-ring-architecture",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/scripts/ghost-ring-architecture.js",
+      "type": "Utility",
+      "exports": []
+    },
+    {
+      "id": "proxy-ghost",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/scripts/proxy-ghost.js",
+      "type": "Utility",
+      "exports": []
+    },
+    {
+      "id": "anti-detection",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/ghost/anti-detection.ts",
+      "type": "Utility",
+      "exports": [
+        "AntiDetection",
+        "getAntiDetection"
+      ]
+    },
+    {
+      "id": "CloudflareBypass",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/ghost/CloudflareBypass.ts",
+      "type": "Utility",
+      "exports": [
+        "CloudflareBypass",
+        "CLOUDFLARE_SIGNATURES"
+      ]
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/ghost/index.ts",
+      "type": "Utility",
+      "exports": [
+        "Ghost",
+        "getGhost"
+      ]
+    },
+    {
+      "id": "network-interceptor",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/ghost/network-interceptor.ts",
+      "type": "Utility",
+      "exports": [
+        "NetworkInterceptor",
+        "getNetworkInterceptor"
+      ]
+    },
+    {
+      "id": "personality-engine",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/ghost/personality-engine.ts",
+      "type": "Utility",
+      "exports": [
+        "GhostPersonalityEngine",
+        "createGhostPersonalityEngine"
+      ]
+    },
+    {
+      "id": "PhantomIntegration",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/ghost/PhantomIntegration.ts",
+      "type": "Utility",
+      "exports": [
+        "PhantomModeController",
+        "createPhantomFixture",
+        "examplePhantomTest"
+      ]
+    },
+    {
+      "id": "protocol",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/ghost/protocol.ts",
+      "type": "Utility",
+      "exports": [
+        "GhostProtocol",
+        "SelectorObfuscator",
+        "getGhostProtocol"
+      ]
+    },
+    {
+      "id": "proxy-chain",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/ghost/proxy-chain.ts",
+      "type": "Utility",
+      "exports": [
+        "ProxyChain",
+        "getProxyChain"
+      ]
+    },
+    {
+      "id": "auth-guard",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/security/auth-guard.ts",
+      "type": "Security",
+      "exports": [
+        "RBAC",
+        "AuthGuard",
+        "Secured",
+        "RequireRole",
+        "RequirePermission",
+        "getAuthGuard",
+        "getRBAC"
+      ]
+    },
+    {
+      "id": "auth",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/security/auth.ts",
+      "type": "Security",
+      "exports": [
+        "AuthenticationTester",
+        "JWTValidator",
+        "PasswordStrengthChecker",
+        "getAuthTester",
+        "auth"
+      ]
+    },
+    {
+      "id": "encryption",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/security/encryption.ts",
+      "type": "Security",
+      "exports": [
+        "EncryptionService",
+        "SecureVault",
+        "getEncryption"
+      ]
+    },
+    {
+      "id": "GlobalThreatIntel",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/security/GlobalThreatIntel.ts",
+      "type": "Security",
+      "exports": [
+        "GlobalThreatIntel",
+        "createGlobalThreatIntel"
+      ]
+    },
+    {
+      "id": "index",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/security/index.ts",
+      "type": "Security",
+      "exports": [
+        "Security",
+        "getSecurity",
+        "createSchema",
+        "Validators",
+        "Sanitizers",
+        "Roles"
+      ]
+    },
+    {
+      "id": "KillSwitchGracePeriod",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/security/KillSwitchGracePeriod.ts",
+      "type": "Security",
+      "exports": [
+        "KillSwitch",
+        "killSwitchMiddleware",
+        "getGlobalKillSwitch"
+      ]
+    },
+    {
+      "id": "scanner",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/security/scanner.ts",
+      "type": "Security",
+      "exports": [
+        "SecurityScanner",
+        "SecurityHeaderChecker",
+        "getSecurityScanner",
+        "getHeaderChecker",
+        "security"
+      ]
+    },
+    {
+      "id": "validator",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/security/validator.ts",
+      "type": "Security",
+      "exports": [
+        "Schema",
+        "InputValidator",
+        "ValidateInput",
+        "validators",
+        "sanitizers"
+      ]
+    },
+    {
+      "id": "visual-ghosting",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/src/synthesis/visual-ghosting.ts",
+      "type": "Utility",
+      "exports": [
+        "VisualGhostEngine",
+        "VisualGhostBridge",
+        "getVisualGhost"
+      ]
+    },
+    {
+      "id": "neuro-sentinel",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/TRAINING/training-framework/security/neuro-sentinel.js",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "security-baseline",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/TRAINING/training-framework/security-baseline.js",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "neural-vault",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/TRAINING/training-framework/src/bastion/neural/neural-vault.ts",
+      "type": "Utility",
+      "exports": [
+        "NeuralVault"
+      ]
+    },
+    {
+      "id": "ghost-execution-layer",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/TRAINING/training-framework/src/segc/ghost/ghost-execution-layer.ts",
+      "type": "Utility",
+      "exports": [
+        "GhostExecutionLayer"
+      ]
+    },
+    {
+      "id": "phase2-security-quantum.test",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MisteMind.-star/TRAINING/training-framework/tests/unit/phase2-security-quantum.test.js",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "ghost-demo",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MrMindQATool/examples/ghost-demo.ts",
+      "type": "Utility",
+      "exports": []
+    },
+    {
+      "id": "neural-vault",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MrMindQATool/src/bastion/neural/neural-vault.ts",
+      "type": "Utility",
+      "exports": [
+        "NeuralVault"
+      ]
+    },
+    {
+      "id": "cybercody-cli",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MrMindQATool/src/security/cybercody-cli.ts",
+      "type": "Security",
+      "exports": []
+    },
+    {
+      "id": "evidence-collector",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MrMindQATool/src/security/evidence-collector.ts",
+      "type": "Security",
+      "exports": [
+        "EvidenceCollector",
+        "createRevolutEvidenceCollector",
+        "quickCapture"
+      ]
+    },
+    {
+      "id": "intelligence-filters",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MrMindQATool/src/security/intelligence-filters.ts",
+      "type": "Security",
+      "exports": [
+        "isPlaceholder",
+        "calculateEntropy",
+        "hasHighEntropy",
+        "isRealPII",
+        "isAuthUrl",
+        "analyzeAuthBypass",
+        "compareBOLAResponses",
+        "IntelligenceFilters"
+      ]
+    },
+    {
+      "id": "semantic-fuzzer",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MrMindQATool/src/security/semantic-fuzzer.ts",
+      "type": "Security",
+      "exports": [
+        "SemanticFuzzer",
+        "semanticFuzzer"
+      ]
+    },
+    {
+      "id": "ghost-execution-layer",
+      "path": "C:/Users/papic/Downloads/UNSTAPPABLE-papica777-eng-patch-2/scripts/_ARCHIVE/QAntum-Empire-1M-CODE-2026-01-02/MrMindQATool/src/segc/ghost/ghost-execution-layer.ts",
+      "type": "Utility",
+      "exports": [
+        "GhostExecutionLayer"
+      ]
+    }
+  ]
+}

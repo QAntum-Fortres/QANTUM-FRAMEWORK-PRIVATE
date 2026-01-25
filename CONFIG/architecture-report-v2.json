@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-01-11T08:29:31.816Z",
+  "stats": {},
+  "classified": {},
+  "duplicates": [],
+  "dependencyGraph": {
+    "strength": {
+      "dependsOn": [
+        "agility",
+        "energy"
+      ],
+      "feeds": []
+    },
+    "agility": {
+      "dependsOn": [
+        "energy"
+      ],
+      "feeds": [
+        "strength"
+      ]
+    },
+    "energy": {
+      "dependsOn": [],
+      "feeds": [
+        "agility",
+        "strength"
+      ]
+    }
+  }
+}
