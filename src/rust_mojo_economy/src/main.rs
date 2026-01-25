@@ -2,10 +2,9 @@
 // Provides REST API endpoints for real-time economic data
 
 use actix_web::{web, App, HttpResponse, HttpServer, Responder};
-use lwas_economy::{EconomyEngine, Transaction, TransactionType};
+use lwas_economy::{EconomyEngine, Transaction};
 use serde_json::json;
 use std::sync::Mutex;
-use std::collections::HashMap;
 
 struct AppState {
     engine: Mutex<EconomyEngine>,
