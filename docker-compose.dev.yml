@@ -1,0 +1,50 @@
+version: '3.8'
+
+# Development overrides for docker-compose.fullstack.yml
+# Use with: docker-compose -f docker-compose.fullstack.yml -f docker-compose.dev.yml up
+
+services:
+  # Backend - mount source for live reload
+  backend:
+    volumes:
+      - ./Backend:/app
+    environment:
+      - NODE_ENV=development
+      - DEBUG=true
+    command: python OmniCore.py --reload
+
+  # Frontend - enable hot reload
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./Frontend/src:/app/src
+    environment:
+      - NODE_ENV=development
+      - VITE_HMR=true
+    command: npm run dev
+
+  # Rust economy - mount source and enable debug
+  rust-economy:
+    volumes:
+      - ./Backend/rust_core/src:/app/src
+    environment:
+      - RUST_LOG=debug
+      - RUST_BACKTRACE=1
+
+  # Enable debug logging for webhook handler
+  webhook-handler:
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=true
+
+  # PostgreSQL - expose port for direct access
+  postgres:
+    ports:
+      - "5432:5432"
+
+  # Redis - expose port for direct access  
+  redis:
+    ports:
+      - "6379:6379"
