@@ -45,3 +45,30 @@ cargo run
 ```
 
 Send JSON commands via Stdin to interact with the engine.
+
+## Protocol Reference (JSON-RPC)
+
+The Core communicates via Standard Input/Output using newline-delimited JSON. All commands must be wrapped in a `SecureCommand` structure.
+
+### Request Format
+```json
+{
+  "auth_token": "valid_token",
+  "user_id": "admin",
+  "command": {
+    "command": "Locate",
+    "payload": {
+       "image_base64": "...",
+       "intent": "Find Checkout Button"
+    }
+  }
+}
+```
+
+### Supported Commands
+- **Locate**: Vision-based element detection.
+- **Heal**: Semantic embedding recovery.
+- **Goal**: Autonomous goal execution.
+- **Observe**: Zero-Wait state observation.
+- **Swarm**: Distributed mesh execution.
+- **Omega**: Experimental futurist simulations (e.g., Spatial Folding).
