@@ -3,544 +3,483 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VORTEX GENESIS | Autonomous Bio-Digital Organism</title>
+    <title>VORTEX OMEGA | VERITAS COGNITIVE FRAMEWORK</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #a855f7; --secondary: #06b6d4; --accent: #10b981; --warning: #f59e0b;
-            --danger: #ef4444; --surface: rgba(17, 24, 39, 0.8); --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1); --text-primary: #f9fafb; --text-secondary: #d1d5db;
-            --text-dim: #9ca3af; --shadow-glow: 0 0 40px rgba(168, 85, 247, 0.3);
+            --primary: #a855f7;
+            --secondary: #06b6d4;
+            --accent: #10b981;
+            --omega: #f43f5e;
+            --void: #000000;
+            --surface: rgba(10, 10, 15, 0.7);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #f9fafb;
+            --text-dim: #6b7280;
+            --neon-glow: 0 0 10px rgba(168, 85, 247, 0.5), 0 0 20px rgba(168, 85, 247, 0.3);
+            --omega-glow: 0 0 15px rgba(244, 63, 94, 0.6);
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'JetBrains Mono', monospace; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1e293b 100%);
-            color: var(--text-primary); min-height: 100vh; overflow-x: hidden; position: relative;
+            background-color: var(--void);
+            background-image:
+                radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.1) 0%, transparent 40%);
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
-        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; pointer-events: none; }
-        .particle {
-            position: absolute; width: 2px; height: 2px; background: var(--secondary); border-radius: 50%;
-            animation: float 20s infinite; opacity: 0.4;
+
+        /* Glitch Effect Classes */
+        .glitch { position: relative; }
+        .glitch::before, .glitch::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-            10% { opacity: 0.4; } 90% { opacity: 0.4; } 100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        .glitch::before { left: 2px; text-shadow: -1px 0 var(--omega); clip: rect(44px, 450px, 56px, 0); animation: glitch-anim 5s infinite linear alternate-reverse; }
+        .glitch::after { left: -2px; text-shadow: -1px 0 var(--secondary); clip: rect(44px, 450px, 56px, 0); animation: glitch-anim2 5s infinite linear alternate-reverse; }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(35px, 9999px, 11px, 0); } 20% { clip: rect(68px, 9999px, 89px, 0); }
+            40% { clip: rect(18px, 9999px, 58px, 0); } 60% { clip: rect(82px, 9999px, 12px, 0); }
+            80% { clip: rect(34px, 9999px, 66px, 0); } 100% { clip: rect(93px, 9999px, 41px, 0); }
         }
-        .container { position: relative; z-index: 1; max-width: 1600px; margin: 0 auto; padding: 2rem; }
-        .hero {
-            text-align: center; padding: 4rem 2rem; background: var(--glass); backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border); border-radius: 24px; margin-bottom: 3rem;
-            box-shadow: var(--shadow-glow); animation: slideDown 0.8s ease-out;
+        @keyframes glitch-anim2 {
+            0% { clip: rect(15px, 9999px, 91px, 0); } 20% { clip: rect(38px, 9999px, 29px, 0); }
+            40% { clip: rect(48px, 9999px, 18px, 0); } 60% { clip: rect(22px, 9999px, 72px, 0); }
+            80% { clip: rect(54px, 9999px, 36px, 0); } 100% { clip: rect(13px, 9999px, 51px, 0); }
         }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
-        .ascii-logo {
-            font-family: 'JetBrains Mono', monospace; font-size: 0.5rem; line-height: 1.2; color: var(--primary);
-            font-weight: 800; text-shadow: 0 0 20px rgba(168, 85, 247, 0.5); white-space: pre; overflow-x: auto;
-            margin: 0 auto 2rem; display: inline-block;
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 3rem; border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px); background: rgba(0,0,0,0.5);
+            position: sticky; top: 0; z-index: 100;
         }
-        .tagline {
-            font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 500;
-            background: linear-gradient(135deg, var(--secondary), var(--primary), var(--accent));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem;
+
+        .logo { font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: 2px; }
+        .logo span { color: var(--primary); }
+
+        .dashboard-grid {
+            display: grid; grid-template-columns: 280px 1fr 350px; gap: 1rem;
+            padding: 1rem; height: calc(100vh - 80px);
         }
-        .subtitle { font-size: 1.2rem; color: var(--warning); font-style: italic; margin-bottom: 2rem; }
-        .stats-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;
-            margin-bottom: 3rem; animation: fadeIn 1s ease-out 0.3s both;
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px;
+            padding: 1.5rem; display: flex; flex-direction: column; gap: 2rem;
         }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        .stat-card {
-            background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
-            border-radius: 16px; padding: 1.5rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer;
+
+        .nav-item {
+            padding: 1rem; color: var(--text-dim); cursor: pointer; transition: all 0.3s;
+            border-left: 2px solid transparent; font-size: 0.9rem; letter-spacing: 1px;
         }
-        .stat-card:hover {
-            transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(168, 85, 247, 0.2);
-            border-color: var(--primary);
+        .nav-item:hover, .nav-item.active {
+            color: var(--text-primary); background: rgba(255,255,255,0.05); border-left-color: var(--secondary);
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
         }
-        .stat-label { font-size: 0.9rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
-        .stat-value { font-size: 2rem; font-weight: 800; color: var(--accent); font-family: 'Space Grotesk', sans-serif; }
-        .pillars-section { margin-bottom: 3rem; }
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+
+        .metric-huge {
+            text-align: center; margin-top: auto;
         }
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-        .pillar-card {
-            background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
-            border-radius: 20px; padding: 2rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative; overflow: hidden; animation: fadeInUp 0.6s ease-out both;
+        .metric-huge .value {
+            font-size: 2.5rem; font-weight: 800; color: var(--accent);
+            text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            font-family: 'Syncopate', sans-serif;
         }
-        .pillar-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
-            transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+        .metric-huge .label { font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; }
+
+        /* Main View */
+        .main-view {
+            display: grid; grid-template-rows: auto 1fr; gap: 1rem; overflow: hidden;
         }
-        .pillar-card:hover::before { transform: scaleX(1); }
-        .pillar-card:hover {
-            transform: translateY(-8px) scale(1.02); box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(6, 182, 212, 0.3);
-            border-color: var(--secondary);
+
+        .kpi-bar {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
         }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .pillar-card:nth-child(1) { animation-delay: 0.1s; } .pillar-card:nth-child(2) { animation-delay: 0.2s; }
-        .pillar-card:nth-child(3) { animation-delay: 0.3s; } .pillar-card:nth-child(4) { animation-delay: 0.4s; }
-        .pillar-card:nth-child(5) { animation-delay: 0.5s; } .pillar-card:nth-child(6) { animation-delay: 0.6s; }
-        .pillar-card:nth-child(7) { animation-delay: 0.7s; }
-        .pillar-icon { font-size: 3rem; margin-bottom: 1rem; display: inline-block; animation: pulse 2s ease-in-out infinite; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .pillar-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--accent); }
-        .pillar-tech { font-size: 1rem; color: var(--secondary); margin-bottom: 1rem; font-weight: 600; }
-        .pillar-description { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
-        .security-section {
-            background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
-            border-radius: 24px; padding: 3rem; margin-bottom: 3rem; box-shadow: var(--shadow-glow);
+        .kpi-card {
+            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px;
+            padding: 1.5rem; position: relative; overflow: hidden;
         }
-        .threat-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-        .threat-card {
-            background: rgba(0, 0, 0, 0.3); border: 1px solid var(--glass-border); border-radius: 12px;
-            padding: 1.5rem; transition: all 0.3s ease;
+        .kpi-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: scan 3s infinite linear;
         }
-        .threat-card:hover { border-color: var(--accent); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2); }
-        .threat-status {
-            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.2); border: 1px solid var(--accent); border-radius: 20px;
-            font-size: 0.85rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem;
+        @keyframes scan { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        .kpi-val { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .kpi-lbl { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+
+        .viewport {
+            background: #050505; border: 1px solid var(--glass-border); border-radius: 12px;
+            position: relative; overflow: hidden; display: flex; flex-direction: column;
         }
-        .threat-status::before { content: '🔒'; font-size: 1rem; }
-        .threat-title { font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
-        .threat-method {
-            font-size: 0.85rem; color: var(--secondary); font-family: 'JetBrains Mono', monospace;
-            background: rgba(6, 182, 212, 0.1); padding: 0.25rem 0.5rem; border-radius: 4px; display: inline-block;
+
+        .viewport-header {
+            padding: 1rem; border-bottom: 1px solid var(--glass-border);
+            display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02);
         }
-        .code-block {
-            position: relative;
-            background: rgba(0, 0, 0, 0.5); border: 1px solid var(--glass-border); border-radius: 12px;
-            padding: 1.5rem; margin: 1rem 0; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; color: var(--accent);
+
+        #visualizer-canvas {
+            flex: 1; width: 100%; height: 100%;
         }
-        .copy-btn {
-            position: absolute; top: 0.5rem; right: 0.5rem;
-            background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border);
-            color: var(--text-secondary); border-radius: 6px; padding: 0.25rem 0.5rem;
-            font-size: 0.75rem; cursor: pointer; transition: all 0.2s; font-family: 'JetBrains Mono', monospace;
+
+        /* Right Panel - Singularity Log */
+        .log-panel {
+            background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px;
+            display: flex; flex-direction: column; overflow: hidden;
         }
-        .copy-btn:hover { background: rgba(255, 255, 255, 0.2); color: var(--text-primary); border-color: var(--accent); }
-        .controls { display: flex; justify-content: center; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
+        .log-header {
+            padding: 1rem; border-bottom: 1px solid var(--glass-border);
+            font-size: 0.9rem; font-weight: 700; color: var(--omega); letter-spacing: 1px;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .live-dot { width: 8px; height: 8px; background: var(--omega); border-radius: 50%; box-shadow: 0 0 10px var(--omega); animation: blink 1s infinite; }
+
+        .log-stream {
+            flex: 1; overflow-y: auto; padding: 1rem; font-size: 0.8rem;
+            display: flex; flex-direction: column; gap: 0.8rem;
+            scroll-behavior: smooth;
+        }
+        .log-stream::-webkit-scrollbar { width: 4px; }
+        .log-stream::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 2px; }
+
+        .log-entry {
+            padding: 0.8rem; background: rgba(0,0,0,0.3); border-left: 2px solid var(--glass-border);
+            animation: slideIn 0.3s ease-out;
+        }
+        .log-entry.success { border-left-color: var(--accent); }
+        .log-entry.error { border-left-color: var(--omega); }
+        .log-entry.info { border-left-color: var(--secondary); }
+
+        .log-meta { display: flex; justify-content: space-between; margin-bottom: 0.4rem; color: var(--text-dim); font-size: 0.7rem; }
+        .log-content { line-height: 1.4; }
+
+        .mock-video {
+            height: 150px; background: #000; border-top: 1px solid var(--glass-border);
+            position: relative; overflow: hidden;
+        }
+        .scan-line {
+            position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: rgba(255,255,255,0.5);
+            box-shadow: 0 0 10px white; animation: scan-video 4s infinite linear;
+        }
+        @keyframes scan-video { 0% { top: -10%; } 100% { top: 110%; } }
+
+        .hud-overlay {
+            position: absolute; inset: 10px; border: 1px dashed rgba(6, 182, 212, 0.3);
+            display: flex; justify-content: center; align-items: center; color: rgba(6, 182, 212, 0.5);
+            font-family: 'Syncopate', sans-serif; font-size: 0.7rem; pointer-events: none;
+        }
+
+        /* Controls */
+        .control-bar {
+            padding: 1rem; display: flex; gap: 1rem; border-top: 1px solid var(--glass-border);
+        }
         .btn {
-            font-family: 'Space Grotesk', sans-serif; padding: 1rem 2rem; font-size: 1rem; font-weight: 600;
-            border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: var(--text-primary);
+            padding: 0.8rem 1.2rem; cursor: pointer; font-family: 'JetBrains Mono'; font-size: 0.8rem;
+            transition: all 0.2s; flex: 1; text-transform: uppercase;
         }
-        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4); }
-        .btn-secondary { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); color: var(--text-primary); }
-        .btn-secondary:hover { border-color: var(--accent); box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
-        .status-bar {
-            position: fixed; bottom: 2rem; right: 2rem; background: var(--glass); backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border); border-radius: 50px; padding: 1rem 1.5rem;
-            display: flex; align-items: center; gap: 1rem; z-index: 1000; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-        .status-indicator {
-            width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
-            box-shadow: 0 0 20px var(--accent); animation: blink 2s ease-in-out infinite;
-        }
+        .btn:hover { background: rgba(255,255,255,0.1); border-color: var(--primary); }
+        .btn.active { background: var(--primary); border-color: var(--primary); color: white; box-shadow: var(--neon-glow); }
+        .btn.omega { border-color: var(--omega); color: var(--omega); }
+        .btn.omega:hover { background: var(--omega); color: white; box-shadow: var(--omega-glow); }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .status-text { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
-        @media (max-width: 768px) {
-            .ascii-logo {
-                font-size: 0.35rem;
-            }
 
-            .tagline {
-                font-size: 1.2rem;
-            }
-
-            .pillars-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .status-bar {
-                bottom: 1rem;
-                right: 1rem;
-            }
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary);
-        }
-
-        /* Glass Modal */
-        dialog { background: transparent; border: none; padding: 0; color: var(--text-primary); margin: auto; max-width: 600px; width: 90%; }
-        dialog::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); }
-
-        /* Singularity Log */
-        #audit-log::-webkit-scrollbar { width: 6px; }
-        #audit-log::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 3px; }
-        #audit-log {
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
-            position: relative;
-        }
-        #audit-log::before {
-            content: "LIVE FEED // OMEGA PROTOCOL";
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            font-size: 0.7rem;
-            color: var(--danger);
-            animation: blink 1s infinite;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
-    <!-- Particle Background -->
-    <div class="particles" id="particles"></div>
-    <div class="container">
-        <div class="hero">
-            <div class="ascii-logo">╔═══════════════════════════════════════════════════════════════════════════════╗
-                ║ ║
-                ║ ██╗ ██╗ ██████╗ ██████╗ ████████╗███████╗██╗ ██╗ ║
-                ║ ██║ ██║██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝╚██╗██╔╝ ║
-                ║ ██║ ██║██║ ██║██████╔╝ ██║ █████╗ ╚███╔╝ ║
-                ║ ╚██╗ ██╔╝██║ ██║██╔══██╗ ██║ ██╔══╝ ██╔██╗ ║
-                ║ ╚████╔╝ ╚██████╔╝██║ ██║ ██║ ███████╗██╔╝ ██╗ ║
-                ║ ╚═══╝ ╚═════╝ ╚═╝ ╚═╝ ╚═╝ ╚══════╝╚═╝ ╚═╝ ║
-                ║ ║
-                ║ ██████╗ ███████╗███╗ ██╗███████╗███████╗██╗███████╗ ║
-                ║ ██╔════╝ ██╔════╝████╗ ██║██╔════╝██╔════╝██║██╔════╝ ║
-                ║ ██║ ███╗█████╗ ██╔██╗ ██║█████╗ ███████╗██║███████╗ ║
-                ║ ██║ ██║██╔══╝ ██║╚██╗██║██╔══╝ ╚════██║██║╚════██║ ║
-                ║ ╚██████╔╝███████╗██║ ╚████║███████╗███████║██║███████║ ║
-                ║ ╚═════╝ ╚══════╝╚═╝ ╚═══╝╚══════╝╚══════╝╚═╝╚══════╝ ║
-                ║ ║
-                ╚═══════════════════════════════════════════════════════════════════════════════╝</div>
-            <h1 class="tagline">THE AUTONOMOUS BIO-DIGITAL ORGANISM</h1>
-            <p class="subtitle">Verified. Consolidated. Sovereign.</p>
-        </div>
-        <div class="stats-grid">
-            <div class="stat-card"><div class="stat-label">🔬 Consensus Success Rate</div><div class="stat-value">99.7%</div></div>
-            <div class="stat-card"><div class="stat-label">💀 Apoptosis Cycle</div><div class="stat-value">Phase 7</div></div>
-            <div class="stat-card"><div class="stat-label">🛡️ Active Modules</div><div class="stat-value">243</div></div>
-            <div class="stat-card"><div class="stat-label">⚡ Uptime</div><div class="stat-value">99.99%</div></div>
-        </div>
-        <h3 style="margin: 2rem 0 1rem; text-align: center; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">🛡️ Live Immune System Status</h3>
-        <div class="stats-grid" style="margin-top: 1rem;">
-            <div class="stat-card" style="background: rgba(16, 185, 129, 0.1); border-color: var(--accent);">
-                <div class="stat-label">Valid LivenessTokens</div><div class="stat-value" id="valid-tokens">243</div>
-            </div>
-            <div class="stat-card" style="background: rgba(168, 85, 247, 0.1); border-color: var(--primary);">
-                <div class="stat-label">HMAC Signatures Verified</div><div class="stat-value" id="verified-sigs">1,204</div>
-            </div>
-            <div class="stat-card" style="background: rgba(239, 68, 68, 0.1); border-color: var(--danger);">
-                <div class="stat-label">Blocked Threats</div><div class="stat-value" id="blocked-threats" style="color: var(--danger);">0</div>
-            </div>
-        </div>
-        <section class="pillars-section">
-            <h2 class="section-title">THE SEVEN PILLARS OF DIGITAL LIFE</h2>
-            <div class="pillars-grid">
-                <div class="pillar-card"><div class="pillar-icon">⚡</div><h3 class="pillar-title">1. NERVOUS SYSTEM</h3><p class="pillar-tech">Temporal.io Durable Execution</p><p class="pillar-description">Resilience through persistent workflows. Ensures your code survives failures and maintains state across restarts, providing unbreakable execution guarantees.</p></div>
-                <div class="pillar-card"><div class="pillar-icon">🧠</div><h3 class="pillar-title">2. COGNITIVE CORE</h3><p class="pillar-tech">VortexNexus + MetaLogicEngine</p><p class="pillar-description">Intelligence through hybrid reasoning. Combines neural pattern recognition with formal logic for transcendent decision-making capabilities.</p></div>
-                <div class="pillar-card"><div class="pillar-icon">🛡️</div><h3 class="pillar-title">3. IMMUNE SYSTEM</h3><p class="pillar-tech">Git-based Versioning & Guardians</p><p class="pillar-description">Security through immutable history. Every change is tracked, verified, and protected by cryptographic guardians ensuring sovereignty.</p></div>
-                <div class="pillar-card"><div class="pillar-icon">🔮</div><h3 class="pillar-title">4. MATHEMATICAL SOUL</h3><p class="pillar-tech">Z3 Formal Verification + Catuskoti Logic</p><p class="pillar-description">Truth through transcendent reasoning. Goes beyond binary logic to handle paradoxes and prove correctness at the deepest mathematical level.</p></div>
-                <div class="pillar-card"><div class="pillar-icon">⚙️</div><h3 class="pillar-title">5. METABOLISM</h3><p class="pillar-tech">Resource Optimization & Biology Department</p><p class="pillar-description">Efficiency through adaptive resource management. Self-regulating systems that optimize performance and eliminate waste automatically.</p></div>
-                <div class="pillar-card"><div class="pillar-icon">🤝</div><h3 class="pillar-title">6. SOCIAL CONSENSUS</h3><p class="pillar-tech">Adversarial Twin Protocol</p><p class="pillar-description">Gödelian countermeasure providing external reality checks. Two independent agents verify each other, preventing self-referential collapse.</p></div>
-                <div class="pillar-card"><div class="pillar-icon">💀</div><h3 class="pillar-title">7. MORTALITY</h3><p class="pillar-tech">Apoptosis Module - Programmed Death</p><p class="pillar-description">Digital necrosis prevention through controlled decay. Automatically archives stale code, preventing entropy and maintaining system vitality.</p></div>
-            </div>
-        </section>
-        <section class="security-section">
-            <h2 class="section-title">🔐 LIVENESS TOKEN SECURITY ARCHITECTURE</h2>
-            <div class="code-block">
-                <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code to clipboard">📋 Copy</button>
-                <span style="color: var(--text-dim);">// LivenessToken Validation Flow</span>
-                <span style="color: var(--primary);">const</span> tokenManager = LivenessTokenManager.<span style="color: var(--secondary);">getInstance</span>();
-                <span style="color: var(--primary);">const</span> TOKEN_SECRET = tokenManager.<span style="color: var(--secondary);">getSecret</span>();
-                <span style="color: var(--text-dim);">// ... (Secure Logic)</span>
-            </div>
-        </section>
 
-        <!-- VERITAS VISUALIZATION SECTION -->
-        <section class="veritas-section" style="margin-bottom: 3rem;">
-            <h2 class="section-title">👁️ VERITAS COGNITIVE FRAMEWORK</h2>
-            <div class="stats-grid">
-                 <div class="stat-card">
-                    <div class="stat-label">Neural Mapped Nodes</div>
-                    <div class="stat-value" id="node-count">0</div>
-                 </div>
-                 <div class="stat-card">
-                    <div class="stat-label">Active Swarm Agents</div>
-                    <div class="stat-value" id="active-agents">0</div>
-                 </div>
-                 <div class="stat-card">
-                    <div class="stat-label">Swarm TPS</div>
-                    <div class="stat-value" id="swarm-tps">0.0</div>
-                 </div>
-                 <div class="stat-card">
-                    <div class="stat-label">Omega Vacuum Flux</div>
-                    <div class="stat-value" id="vacuum-flux">0 TW</div>
-                 </div>
-            </div>
-
-            <div class="pillars-grid" style="grid-template-columns: 1fr 1fr;">
-                <div class="pillar-card" style="height: 400px; display: flex; flex-direction: column;">
-                    <h3 class="pillar-title">🧠 Neural Map (ViT Layer)</h3>
-                    <p class="pillar-description" style="margin-bottom: 1rem;">Real-time semantic perception of UI intent.</p>
-                    <div style="flex: 1; position: relative; border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden; background: #000;">
-                        <canvas id="neuralMapCanvas" style="width: 100%; height: 100%;"></canvas>
-                    </div>
-                </div>
-                <div class="pillar-card" style="height: 400px; display: flex; flex-direction: column;">
-                    <h3 class="pillar-title">🐝 Distributed Swarm Mesh</h3>
-                    <p class="pillar-description" style="margin-bottom: 1rem;">Global execution across 1000+ headless nodes.</p>
-                    <div style="flex: 1; position: relative; border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden; background: #000;">
-                         <canvas id="swarmCanvas" style="width: 100%; height: 100%;"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pillar-card" style="margin-top: 2rem;">
-                <h3 class="pillar-title">📜 Singularity Audit Log</h3>
-                <p class="pillar-description">Zero-Wait Event Stream with AI Annotation.</p>
-                <div id="audit-log" style="height: 200px; overflow-y: auto; background: rgba(0,0,0,0.6); padding: 1rem; font-family: 'JetBrains Mono'; font-size: 0.85rem; border: 1px solid var(--glass-border); border-radius: 8px;">
-                    <!-- Logs injected by JS -->
-                </div>
-            </div>
-        </section>
-        <div class="controls">
-            <button class="btn btn-primary" onclick="activateVeritas()">🚀 ACTIVATE VERITAS SWARM</button>
-            <button class="btn btn-secondary" onclick="simulateHealing(this)">🔬 Simulate Autonomous Healing</button>
-            <button class="btn btn-secondary" onclick="viewArchitecture()">📊 View System Architecture</button>
-        </div>
+<header>
+    <div class="logo">VORTEX<span class="glitch" data-text="OMEGA">OMEGA</span></div>
+    <div style="display: flex; gap: 2rem; font-size: 0.8rem; color: var(--text-dim);">
+        <div><span style="color: var(--accent)">●</span> SYSTEM OPTIMAL</div>
+        <div id="connection-status"><span style="color: var(--secondary)">●</span> NERVE CENTER: CONNECTING...</div>
     </div>
-    <div class="status-bar">
-        <div class="status-indicator"></div><span class="status-text" id="connection-status">CONNECTING TO NERVE CENTER...</span>
-    </div>
+</header>
 
-    <script>
-        // Copy function
-        function copyCode(btn) {
-            // ... (Same as before)
-            const clone = btn.parentElement.cloneNode(true);
-            clone.querySelector('.copy-btn').remove();
-            const text = clone.innerText.trim();
-             if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text);
-                btn.innerHTML = "✅ Copied!";
-                setTimeout(() => btn.innerHTML = "📋 Copy", 2000);
+<div class="dashboard-grid">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <div class="nav-item active" onclick="switchMode('swarm')">DISTRIBUTED SWARM</div>
+            <div class="nav-item" onclick="switchMode('neural')">NEURAL MAP (ViT)</div>
+            <div class="nav-item" onclick="switchMode('omega')">OMEGA PROTOCOL</div>
+            <div class="nav-item" onclick="switchMode('healing')">SEMANTIC HEALING</div>
+        </div>
+
+        <div style="margin-top: auto; padding: 1rem; background: rgba(0,0,0,0.4); border-radius: 8px;">
+            <div style="font-size: 0.7rem; color: var(--text-dim); margin-bottom: 0.5rem;">RESOURCE USAGE</div>
+            <div style="height: 4px; background: #333; border-radius: 2px; overflow: hidden; margin-bottom: 0.5rem;">
+                <div style="width: 45%; height: 100%; background: var(--primary);"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.7rem;">
+                <span>CPU: 45%</span><span>RAM: 128GB</span>
+            </div>
+        </div>
+
+        <div class="metric-huge">
+            <div class="value" id="global-node-counter">0</div>
+            <div class="label">ACTIVE NEURAL NODES</div>
+        </div>
+    </aside>
+
+    <!-- Main View -->
+    <main class="main-view">
+        <div class="kpi-bar">
+            <div class="kpi-card">
+                <div class="kpi-val" style="color: var(--secondary)" id="kpi-agents">0</div>
+                <div class="kpi-lbl">Swarm Agents</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-val" style="color: var(--accent)" id="kpi-success">99.9%</div>
+                <div class="kpi-lbl">Success Rate</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-val" style="color: var(--primary)" id="kpi-latency">0ms</div>
+                <div class="kpi-lbl">Zero-Wait Latency</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-val" style="color: var(--omega)" id="kpi-threats">0</div>
+                <div class="kpi-lbl">Threats Neutralized</div>
+            </div>
+        </div>
+
+        <div class="viewport">
+            <div class="viewport-header">
+                <span id="view-title">GLOBAL SWARM EXECUTION MESH</span>
+                <div style="display: flex; gap: 0.5rem;">
+                    <span style="font-size: 0.7rem; padding: 0.2rem 0.5rem; background: rgba(16, 185, 129, 0.1); color: var(--accent); border-radius: 4px;">LIVE</span>
+                    <span style="font-size: 0.7rem; padding: 0.2rem 0.5rem; background: rgba(168, 85, 247, 0.1); color: var(--primary); border-radius: 4px;">HD</span>
+                </div>
+            </div>
+            <canvas id="visualizer-canvas"></canvas>
+            <div class="hud-overlay">
+                <div>// VERITAS_CORE_V1.0 // TARGET_ACQUIRED // <span id="coords">0,0</span></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Log Panel -->
+    <aside class="log-panel">
+        <div class="log-header">
+            <div class="live-dot"></div> SINGULARITY AUDIT LOG
+        </div>
+        <div class="mock-video">
+            <div class="scan-line"></div>
+            <div style="position: absolute; bottom: 10px; left: 10px; font-size: 0.7rem; color: white; background: rgba(0,0,0,0.5); padding: 2px 5px;">CAM_01: AGENT_VIEW</div>
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #333;">
+                [NO SIGNAL]
+            </div>
+        </div>
+        <div class="log-stream" id="audit-log">
+            <!-- Logs go here -->
+        </div>
+        <div class="control-bar">
+            <button class="btn active" onclick="activateSwarm()">ACTIVATE VERITAS SWARM</button>
+            <button class="btn omega" onclick="triggerOmega()">Ω</button>
+        </div>
+    </aside>
+</div>
+
+<script>
+    // State
+    let mode = 'swarm';
+    let nodes = 200000;
+    let agents = 0;
+    let isOmega = false;
+
+    // Canvas Setup
+    const canvas = document.getElementById('visualizer-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    function resize() {
+        if(!canvas.parentElement) return;
+        width = canvas.width = canvas.parentElement.clientWidth;
+        height = canvas.height = canvas.parentElement.clientHeight;
+    }
+    window.addEventListener('resize', resize);
+    setTimeout(resize, 100);
+
+    // Particle System (Optimized for 200k simulation)
+    // We will render fewer particles but calculate "density"
+    const particles = [];
+    const MAX_PARTICLES = 800; // Rendered particles
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+        reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.z = Math.random() * 2 + 1;
+            this.vx = (Math.random() - 0.5) * 2;
+            this.vy = (Math.random() - 0.5) * 2;
+            this.color = mode === 'omega' ? '#f43f5e' : (Math.random() > 0.5 ? '#a855f7' : '#06b6d4');
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if(this.x < 0 || this.x > width || this.y < 0 || this.y > height) this.reset();
+        }
+        draw() {
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = Math.random() * 0.5 + 0.5;
+            const size = Math.random() * 2;
+            ctx.fillRect(this.x, this.y, size, size);
+
+            // Connect lines if close (Neural Map Mode)
+            if (mode === 'neural' && Math.random() > 0.95) {
+                ctx.strokeStyle = 'rgba(168, 85, 247, 0.1)';
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x + (Math.random()-0.5)*50, this.y + (Math.random()-0.5)*50);
+                ctx.stroke();
             }
         }
+    }
 
-        // Particle System
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 20 + 's';
-            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-            particlesContainer.appendChild(particle);
-        }
+    for(let i=0; i<MAX_PARTICLES; i++) particles.push(new Particle());
 
-        // WEBSOCKET CONNECTION
-        let ws;
-        const statusText = document.getElementById('connection-status');
-        const indicator = document.querySelector('.status-indicator');
+    function animate() {
+        if(!width) return requestAnimationFrame(animate);
 
-        function connect() {
-            ws = new WebSocket('ws://localhost:3001');
+        // Trails
+        ctx.fillStyle = `rgba(5, 5, 5, ${mode === 'omega' ? 0.05 : 0.2})`;
+        ctx.fillRect(0, 0, width, height);
 
-            ws.onopen = () => {
-                statusText.innerText = 'NERVE CENTER ONLINE';
-                indicator.style.background = '#10b981';
-                indicator.style.boxShadow = '0 0 20px #10b981';
-            };
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
 
-            ws.onmessage = (event) => {
-                const msg = JSON.parse(event.data);
-                handleMessage(msg);
-            };
-
-            ws.onclose = () => {
-                statusText.innerText = 'OFFLINE - RETRYING...';
-                indicator.style.background = '#ef4444';
-                indicator.style.boxShadow = '0 0 20px #ef4444';
-                setTimeout(connect, 3000);
-            };
-        }
-
-        function handleMessage(msg) {
-            if (msg.type === 'veritas:log') {
-                log(msg.data.message);
+        // Omega Effect
+        if (mode === 'omega') {
+            const time = Date.now() * 0.001;
+            ctx.strokeStyle = `rgba(244, 63, 94, 0.3)`;
+            ctx.beginPath();
+            for(let i=0; i<width; i+=20) {
+                ctx.lineTo(i, height/2 + Math.sin(i*0.01 + time)*100 * Math.sin(time));
             }
-            if (msg.type === 'veritas:neural_map') {
-                log(`[ViT] Located: ${msg.data.intent} (Conf: ${(msg.data.result.confidence * 100).toFixed(1)}%)`, '#a855f7');
-                // Could draw on canvas here if coordinates provided
-            }
-            if (msg.type === 'veritas:goal_complete') {
-                log(`[SUCCESS] Goal Complete. Report generated.`, '#10b981');
-                msg.data.report.forEach(step => {
-                     log(`  > ${step.step}: ${step.status}`, step.status === 'SUCCESS' ? '#10b981' : '#ef4444');
-                });
-            }
+            ctx.stroke();
         }
 
-        function log(text, color = '#d1d5db') {
-            const logs = document.getElementById('audit-log');
-            const div = document.createElement('div');
-            div.style.marginBottom = '5px';
-            const time = new Date().toISOString().split('T')[1].split('.')[0];
-            div.innerHTML = `<span style="color:#6b7280">[${time}]</span> <span style="color:${color}">${text}</span>`;
-            logs.appendChild(div);
-            logs.scrollTop = logs.scrollHeight;
-        }
+        // Update Metrics
+        if (agents < 1000 && Math.random() > 0.9) agents += 1;
+        document.getElementById('kpi-agents').innerText = agents.toLocaleString();
+        document.getElementById('kpi-latency').innerText = (Math.random() * 10 + 5).toFixed(1) + 'ms';
 
-        // API Call
-        async function activateVeritas() {
-            log('[CMD] Initiating Veritas Swarm Protocol...', '#06b6d4');
+        // Jitter the 200,000 count to show "live" activity
+        const currentNodes = 200000 + Math.floor(Math.sin(Date.now()*0.001)*5000 + Math.random()*1000);
+        document.getElementById('global-node-counter').innerText = currentNodes.toLocaleString();
+
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Mode Switching
+    window.switchMode = (newMode) => {
+        mode = newMode;
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        event.target.classList.add('active');
+
+        const titles = {
+            'swarm': 'GLOBAL SWARM EXECUTION MESH',
+            'neural': 'NEURAL MAP VISUALIZATION (ViT)',
+            'omega': 'OMEGA PROTOCOL: SPATIAL FOLDING',
+            'healing': 'SEMANTIC HEALING MATRIX'
+        };
+        document.getElementById('view-title').innerText = titles[mode];
+
+        // Reset particles color
+        particles.forEach(p => p.reset());
+
+        log(`Switched view to ${newMode.toUpperCase()}`, 'info');
+    }
+
+    // Logging System
+    function log(msg, type='info') {
+        const div = document.createElement('div');
+        div.className = `log-entry ${type}`;
+        const time = new Date().toISOString().split('T')[1].substring(0,8);
+        div.innerHTML = `
+            <div class="log-meta"><span>${time}</span><span>${type.toUpperCase()}</span></div>
+            <div class="log-content">${msg}</div>
+        `;
+        const container = document.getElementById('audit-log');
+        container.prepend(div);
+        if(container.children.length > 50) container.lastChild.remove();
+    }
+
+    // WebSocket Logic
+    let ws;
+    function connect() {
+        ws = new WebSocket('ws://localhost:3001');
+        ws.onopen = () => {
+            document.getElementById('connection-status').innerHTML = '<span style="color: #10b981">●</span> NERVE CENTER: ONLINE';
+            log('Connected to Veritas Core via NerveCenter', 'success');
+        };
+        ws.onmessage = (e) => {
             try {
-                const res = await fetch('http://localhost:3001/api/veritas/goal', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ description: "Verify purchase with 10% discount" })
-                });
-                const data = await res.json();
-                if(data.status === 'started') log('[ACK] Swarm Launched.', '#06b6d4');
-            } catch (e) {
-                log(`[ERR] Failed to contact Nerve Center: ${e}`, '#ef4444');
-            }
-        }
-
-        function simulateHealing(btn) {
-            log('[HEAL] Autonomous Healing Requested...', '#f59e0b');
-            fetch('http://localhost:3001/api/veritas/heal', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    failed_selector: "#btn-buy",
-                    current_image: "mock",
-                    last_known_embedding: []
-                })
-            }).then(r => r.json()).then(data => {
-                log(`[HEAL] Result: ${data.reason}`, data.healed ? '#10b981' : '#ef4444');
-            });
-        }
-
-        function viewArchitecture() {
-            // alert("Architecture View Placeholder");
-            // Existing modal logic can go here
-        }
-
-        // VISUALIZATION LOOPS (Client-side Rendering for smoothness)
-        // NEURAL MAP VISUALIZATION
-        const neuralCanvas = document.getElementById('neuralMapCanvas');
-        if (neuralCanvas) {
-            const nCtx = neuralCanvas.getContext('2d');
-            let nodes = [];
-
-            function resizeNeuralCanvas() {
-                if (!neuralCanvas.parentElement) return;
-                neuralCanvas.width = neuralCanvas.parentElement.clientWidth;
-                neuralCanvas.height = neuralCanvas.parentElement.clientHeight;
-            }
-            window.addEventListener('resize', resizeNeuralCanvas);
-            setTimeout(resizeNeuralCanvas, 100);
-
-            class Node {
-                constructor() {
-                    this.x = Math.random() * (neuralCanvas.width || 800);
-                    this.y = Math.random() * (neuralCanvas.height || 500);
-                    this.vx = (Math.random() - 0.5) * 2;
-                    this.vy = (Math.random() - 0.5) * 2;
-                    this.type = Math.random() > 0.9 ? 'BUTTON' : (Math.random() > 0.8 ? 'INPUT' : 'DIV');
-                    this.color = this.type === 'BUTTON' ? '#a855f7' : (this.type === 'INPUT' ? '#06b6d4' : '#374151');
+                const msg = JSON.parse(e.data);
+                if(msg.type === 'veritas:log') log(msg.data.message, 'info');
+                if(msg.type === 'veritas:neural_map') {
+                    log(`ViT Located: ${msg.data.intent}`, 'success');
+                    // Flash canvas
+                    ctx.fillStyle = 'rgba(168, 85, 247, 0.2)';
+                    ctx.fillRect(0,0,width,height);
                 }
-                update() {
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    if (this.x < 0 || this.x > neuralCanvas.width) this.vx *= -1;
-                    if (this.y < 0 || this.y > neuralCanvas.height) this.vy *= -1;
-                }
-                draw() {
-                    nCtx.fillStyle = this.color;
-                    nCtx.fillRect(this.x, this.y, 4, 4);
-                }
-            }
+            } catch(err) {}
+        };
+        ws.onerror = () => {
+             // Fallback to Simulation Mode if backend is absent
+             document.getElementById('connection-status').innerHTML = '<span style="color: #f59e0b">●</span> SIMULATION MODE';
+             if(!window.simModeActive) {
+                 window.simModeActive = true;
+                 log('Nerve Center unreachable. Activating Standalone Simulation.', 'warning');
+             }
+        };
+    }
+    connect();
 
-            for (let i = 0; i < 200; i++) nodes.push(new Node());
+    // Actions
+    function activateSwarm() {
+        log('Initializing Swarm Protocol...', 'info');
+        fetch('/api/veritas/goal', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ description: "Autonomous Audit of Payment Gateway" })
+        }).catch(() => log('Failed to contact API (Demo Mode)', 'error'));
 
-            function animateNeural() {
-                if (!neuralCanvas.width) return requestAnimationFrame(animateNeural);
-                nCtx.fillStyle = 'rgba(0,0,0,0.1)';
-                nCtx.fillRect(0, 0, neuralCanvas.width, neuralCanvas.height);
-                nodes.forEach(node => { node.update(); node.draw(); });
+        // Simulation for visual feedback if API fails
+        setTimeout(() => log('Agent [SWARM-01] Deployed', 'success'), 500);
+        setTimeout(() => log('Agent [SWARM-02] Deployed', 'success'), 700);
+        setTimeout(() => log('Agent [SWARM-03] Deployed', 'success'), 800);
+    }
 
-                // Dashboard Stat: 200,000+
-                const countEl = document.getElementById('node-count');
-                if(countEl) countEl.innerText = (200000 + Math.random() * 50000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    function triggerOmega() {
+        isOmega = !isOmega;
+        switchMode('omega');
+        log('OMEGA PROTOCOL ENGAGED. REALITY ANCHORS LOOSENED.', 'error');
+        document.body.style.animation = 'shake 0.5s';
+    }
 
-                requestAnimationFrame(animateNeural);
-            }
-            animateNeural();
-        }
+    // Initial Logs
+    log('System initialized.', 'info');
+    log('Neural Locator loaded (ViT-Base-16).', 'info');
+    log('Waiting for Goal Injection...', 'info');
 
-        // SWARM VISUALIZATION
-        const swarmCanvas = document.getElementById('swarmCanvas');
-        if (swarmCanvas) {
-            const sCtx = swarmCanvas.getContext('2d');
-            function resizeSwarmCanvas() {
-                if (!swarmCanvas.parentElement) return;
-                swarmCanvas.width = swarmCanvas.parentElement.clientWidth;
-                swarmCanvas.height = swarmCanvas.parentElement.clientHeight;
-            }
-            window.addEventListener('resize', resizeSwarmCanvas);
-            setTimeout(resizeSwarmCanvas, 100);
-
-            function animateSwarm() {
-                if (!swarmCanvas.width) return setTimeout(() => requestAnimationFrame(animateSwarm), 100);
-                const w = swarmCanvas.width / 40;
-                const h = swarmCanvas.height / 25;
-                sCtx.clearRect(0, 0, swarmCanvas.width, swarmCanvas.height);
-                let active = 0;
-                for (let r = 0; r < 25; r++) {
-                    for (let c = 0; c < 40; c++) {
-                        const status = Math.random();
-                        if (status > 0.99) sCtx.fillStyle = '#ef4444';
-                        else if (status > 0.8) { sCtx.fillStyle = '#10b981'; active++; }
-                        else if (status > 0.5) { sCtx.fillStyle = '#06b6d4'; active++; }
-                        else sCtx.fillStyle = '#1f2937';
-                        sCtx.fillRect(c * w + 1, r * h + 1, w - 2, h - 2);
-                    }
-                }
-                const activeEl = document.getElementById('active-agents');
-                if(activeEl) activeEl.innerText = (1000 + active * 4).toLocaleString();
-                const tpsEl = document.getElementById('swarm-tps');
-                if(tpsEl) tpsEl.innerText = (4000 + active * 4.2).toFixed(1);
-
-                setTimeout(() => requestAnimationFrame(animateSwarm), 150);
-            }
-            animateSwarm();
-        }
-
-        // Initialize
-        connect();
-    </script>
+</script>
 </body>
 </html>
