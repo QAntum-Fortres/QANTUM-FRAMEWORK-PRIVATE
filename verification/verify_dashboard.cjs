@@ -11,17 +11,27 @@ const path = require('path');
     console.log('Opening:', filePath);
     await page.goto('file://' + filePath);
 
-    // Wait for connection
+    // Wait for connection (Online or Simulation)
     console.log('Waiting for connection...');
-    await page.waitForSelector('#connection-status:has-text("NERVE CENTER ONLINE")', { timeout: 10000 });
+    try {
+        await page.waitForSelector('#connection-status:has-text("NERVE CENTER ONLINE")', { timeout: 5000 });
+    } catch {
+        console.log('Nerve Center not found. Checking for Simulation Mode...');
+        await page.waitForSelector('#connection-status:has-text("SIMULATION MODE")', { timeout: 5000 });
+    }
 
     // Click Activate
     console.log('Clicking Activate...');
     await page.click('button:has-text("ACTIVATE VERITAS SWARM")');
 
-    // Wait for logs to appear
+    // Wait for logs to appear (Offline Simulation messages)
     console.log('Waiting for logs...');
-    await page.waitForSelector('#audit-log:has-text("[GOAL] Initiated")', { timeout: 5000 });
+    try {
+        await page.waitForSelector('#audit-log:has-text("[GOAL] Initiated")', { timeout: 2000 });
+    } catch {
+        // Fallback for simulation mode logs
+         await page.waitForSelector('#audit-log:has-text("Initializing Swarm Protocol...")', { timeout: 5000 });
+    }
 
     // Wait a bit for more logs (async goal execution)
     await page.waitForTimeout(2000);

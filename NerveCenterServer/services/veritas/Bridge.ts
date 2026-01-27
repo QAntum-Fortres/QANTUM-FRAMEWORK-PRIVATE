@@ -20,6 +20,8 @@ export interface VisionResult {
     confidence: number;
     semantic_embedding: number[];
     reasoning: string;
+    attention_map: number[][];
+    class_probs: Record<string, number>;
 }
 
 export interface HealRequest {

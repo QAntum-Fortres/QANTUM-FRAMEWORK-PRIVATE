@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use rand::Rng;
+use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct BoundingBox {
@@ -22,6 +23,8 @@ pub struct VisionResult {
     pub confidence: f32,
     pub semantic_embedding: Vec<f32>,
     pub reasoning: String,
+    pub attention_map: Vec<Vec<f32>>, // 14x14 ViT Attention Grid
+    pub class_probs: HashMap<String, f32>,
 }
 
 /// Vision Transformer Configuration
@@ -105,12 +108,27 @@ impl NeuralLocator {
         // This vector represents the "meaning" of the UI element in the latent space.
         let embedding: Vec<f32> = (0..768).map(|_| rng.gen::<f32>()).collect();
 
+        // Simulated Attention Map (14x14 grid for 224x224 image with 16x16 patches)
+        let mut attention_map = Vec::new();
+        for _ in 0..14 {
+            let row: Vec<f32> = (0..14).map(|_| rng.gen_range(0.0..1.0)).collect();
+            attention_map.push(row);
+        }
+
+        // Simulated Class Probabilities
+        let mut class_probs = HashMap::new();
+        class_probs.insert("button".to_string(), rng.gen_range(0.7..0.99));
+        class_probs.insert("input".to_string(), rng.gen_range(0.0..0.3));
+        class_probs.insert("text".to_string(), rng.gen_range(0.0..0.1));
+
         VisionResult {
             found: true,
             location,
             confidence,
             semantic_embedding: embedding,
-            reasoning: format!("ViT Layer identified '{}' based on visual intent patterns (Edge detection, OCR, Iconography). Confidence: {:.2}", request.intent, confidence),
+            reasoning: format!("ViT Layer identified '{}' based on visual intent patterns (Edge detection, OCR, Iconography). Confidence: {:.2}. Attention focused on localized region.", request.intent, confidence),
+            attention_map,
+            class_probs,
         }
     }
 }
