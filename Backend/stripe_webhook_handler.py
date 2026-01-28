@@ -52,23 +52,31 @@ def mint_credits_in_rust(user_id: str, amount: float) -> dict:
 def unlock_modules_in_rust(user_id: str, modules: list) -> list:
     """
     Unlock modules for a user in Rust Economy server.
+    Optimized to use batch API.
     """
-    results = []
-    for module in modules:
-        try:
-            url = f"{RUST_ECONOMY_URL}/api/unlock_module"
-            payload = {
-                "user_id": user_id,
-                "module_name": module,
-                "cost": 0  # Free unlock as part of subscription
-            }
-            response = requests.post(url, json=payload, timeout=10)
-            response.raise_for_status()
-            results.append({"module": module, "success": True, "data": response.json()})
-        except Exception as e:
-            logger.error(f"Failed to unlock module {module}: {e}")
-            results.append({"module": module, "success": False, "error": str(e)})
-    return results
+    try:
+        url = f"{RUST_ECONOMY_URL}/api/unlock_modules"
+
+        # Prepare batch payload
+        # Cost is 0 as per original code (free unlock as part of subscription)
+        modules_payload = [{"module_name": m, "cost": 0} for m in modules]
+
+        payload = {
+            "user_id": user_id,
+            "modules": modules_payload
+        }
+
+        response = requests.post(url, json=payload, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+
+        # Synthesize individual results for backward compatibility
+        return [{"module": m, "success": True, "data": data} for m in modules]
+
+    except Exception as e:
+        logger.error(f"Failed to unlock modules batch: {e}")
+        # Return failure for all modules
+        return [{"module": m, "success": False, "error": str(e)} for m in modules]
 
 @app.route('/webhook/stripe', methods=['POST'])
 def stripe_webhook():
