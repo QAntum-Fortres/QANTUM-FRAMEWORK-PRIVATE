@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
     Activity, Shield, Zap, Cpu, Globe, Terminal,
@@ -41,6 +41,7 @@ const ProjectCard = ({ name, status, url, type, color, description }: {
             href={url}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`Launch ${name} portal (opens in new tab)`}
             className="flex items-center justify-between w-full py-3 px-4 bg-white/5 rounded-xl text-xs font-bold tracking-widest hover:bg-white/10 transition-all border border-white/5"
         >
             LAUNCH PORTAL <ExternalLink size={14} />
@@ -72,6 +73,23 @@ const SubstrateCard = ({ icon: Icon, label, value, color }: {
 
 export const HeliosMaster = () => {
     const { metrics, isConnected } = useSovereignStore();
+    const [confirmPurge, setConfirmPurge] = useState(false);
+
+    useEffect(() => {
+        if (confirmPurge) {
+            const timer = setTimeout(() => setConfirmPurge(false), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [confirmPurge]);
+
+    const handlePurge = () => {
+        if (confirmPurge) {
+            console.log("PURGE INITIATED: VERITAS LOCKDOWN ENGAGED");
+            setConfirmPurge(false);
+        } else {
+            setConfirmPurge(true);
+        }
+    };
 
     return (
         <div className="min-h-screen bg-[#020205] text-white p-8 font-['Outfit'] overflow-x-hidden relative">
@@ -203,7 +221,7 @@ export const HeliosMaster = () => {
                     <div className="lg:col-span-2 bg-[#0a0a12]/60 border border-[#2a2a50] rounded-2xl p-6">
                         <div className="flex items-center justify-between mb-6">
                             <h3 className="text-sm font-bold tracking-[0.3em] uppercase opacity-60">System Log Stream</h3>
-                            <RefreshCw size={14} className="opacity-40" />
+                            <RefreshCw size={14} className="opacity-40" aria-hidden="true" />
                         </div>
                         <div className="space-y-3 font-mono text-[11px]">
                             <div className="flex gap-4 opacity-100">
@@ -230,8 +248,16 @@ export const HeliosMaster = () => {
                         <button className="w-full py-4 bg-[var(--neon-cyan)] text-black font-black italic uppercase tracking-tighter hover:bg-white transition-all rounded-lg flex items-center justify-center gap-2">
                             <RefreshCw size={18} /> SYNC ALL DEPLOYMENTS
                         </button>
-                        <button className="w-full py-4 border border-red-500/30 text-red-500 font-bold uppercase tracking-widest text-[10px] hover:bg-red-500/10 transition-all rounded-lg flex items-center justify-center gap-2">
-                            <AlertTriangle size={14} /> EMERGENCY PURGE
+                        <button
+                            onClick={handlePurge}
+                            aria-label={confirmPurge ? "Confirm Emergency Purge Action" : "Initiate Emergency Purge"}
+                            className={`w-full py-4 border font-bold uppercase tracking-widest text-[10px] transition-all rounded-lg flex items-center justify-center gap-2 ${
+                                confirmPurge
+                                    ? 'bg-red-600 border-red-500 text-white hover:bg-red-700 animate-pulse'
+                                    : 'border-red-500/30 text-red-500 hover:bg-red-500/10'
+                            }`}
+                        >
+                            <AlertTriangle size={14} /> {confirmPurge ? 'CONFIRM PURGE?' : 'EMERGENCY PURGE'}
                         </button>
                         <div className="mt-auto pt-6 border-t border-white/5">
                             <p className="text-[10px] opacity-40 uppercase tracking-widest leading-relaxed">
