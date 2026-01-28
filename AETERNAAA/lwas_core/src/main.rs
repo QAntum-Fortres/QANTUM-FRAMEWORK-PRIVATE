@@ -122,8 +122,11 @@ fn main() {
                          Command::Goal(req) => {
                              if rbac.authorize(&user_ctx, Role::Agent) {
                                 // Sanitize Goal Input
-                                let safe_goal = gdpr.sanitize(&req.goal);
-                                let result = agent.execute(&GoalRequest{ goal: safe_goal });
+                                let safe_goal = gdpr.sanitize(&req.natural_language_goal);
+                                let result = agent.execute(&GoalRequest{
+                                    natural_language_goal: safe_goal,
+                                    environment_url: req.environment_url.clone()
+                                });
                                 print_response(result);
                              } else { print_error("Access Denied"); }
                         },

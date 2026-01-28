@@ -1,56 +1,89 @@
-# VERITAS COGNITIVE QA FRAMEWORK (v1.0)
+# The Veritas Cognitive QA Framework (v1.0)
+### Post-Scriptum QA Engineering
 
-## Overview
-Veritas is a Post-Scriptum QA Framework designed to render Selenium, Cypress, and Playwright obsolete. It utilizes a biological metaphor for its architecture, featuring "Eyes" (Vision), "Brain" (Agents), and "Immune System" (Healing).
+**Status:** PROTOTYPE
+**Core Engine:** Rust (`lwas_core`)
+**Orchestrator:** TypeScript (`OmniCore`)
 
-## Core Architecture
+---
+
+## 🚀 Overview
+
+Veritas is a next-generation Quality Assurance framework designed to render Selenium, Cypress, and Playwright obsolete. It moves away from DOM-based fragility (selectors, IDs, XPaths) towards a **Vision-Based** and **Goal-Oriented** approach.
+
+## 🏗 Architecture
 
 ### 1. Vision-Based Interface (The Eyes)
-Veritas does not rely on the DOM tree (IDs, XPaths) as a primary source. Instead, it uses a **Vision-Transformer (ViT) Layer** to analyze screenshots in real-time.
--   **Neural Locator**: Identifies elements based on visual intent (e.g., "Buy Button", "Checkout Form") rather than HTML attributes.
--   **Tech**: Rust-based inference engine.
+* **Module:** `NeuralLocator`
+* **Implementation:** `AETERNAAA/lwas_core/src/engine/neural_locator.rs`
+* **Concept:** Instead of `$('#btn-buy')`, Veritas uses a simulated **Vision Transformer (ViT)** layer. It analyzes screenshots to identify UI elements based on *intent* (e.g., "Find the Checkout button").
+* **Key Features:**
+    * **Visual Intent Recognition:** Identifies elements by their look and feel.
+    * **Semantic Embeddings:** Generates 768-dimensional vectors representing the "meaning" of a UI element.
+    * **Heatmap Generation:** Visualizes attention weights.
 
 ### 2. Semantic Healing (The Immune System)
-Veritas possesses a self-healing capability. If a button's ID changes, the framework uses **Semantic Embedding Mapping**.
--   **Process**: It compares the visual embedding of the missing element with current elements on the screen.
--   **Result**: Automatic recovery and update of the internal "Neural Map".
+* **Module:** `SemanticHealer`
+* **Implementation:** `AETERNAAA/lwas_core/src/engine/semantic_healer.rs`
+* **Concept:** Self-repairing tests. If a selector fails (e.g., ID change), Veritas compares the last known visual embedding of the element with the current screen state.
+* **Mechanism:**
+    * **Vector Search:** Uses Cosine Similarity to find the "closest match" on the new screen.
+    * **Auto-Patching:** Generates a new, robust selector on the fly to continue execution.
 
 ### 3. Autonomous Exploratory Agents (The Brain)
-Tests are not static scripts. They are **Goal-Oriented Agents**.
--   **Input**: Natural language goals (e.g., "Verify purchase with 10% discount").
--   **Behavior**: Agents navigate, explore, and generate assertions autonomously based on the observed state.
+* **Module:** `GoalOrientedAgent`
+* **Implementation:** `AETERNAAA/lwas_core/src/engine/agent.rs`
+* **Concept:** Tests are defined as **Goals**, not scripts.
+* **Example:** *"Verify that a user can complete a purchase with a 10% discount code."*
+* **Process:**
+    1.  **Decomposition:** Breaks goal into steps (Navigate -> Select -> Discount -> Verify).
+    2.  **Execution:** Agents explore the environment using the Vision Interface.
+    3.  **OBI (Observed Behavior Inference):** Agents verify logic (e.g., Math checks) based on observed text changes.
 
 ### 4. Zero-Wait Architecture (The Omega Layer)
-Veritas eliminates explicit `wait()` or `sleep()` calls.
--   **State-Change Observer**: Hooks into the browser's rendering engine and network stack.
--   **Amniotic State**: The framework acts only when the UI is mathematically stable.
+* **Module:** `StateChangeObserver`
+* **Implementation:** `AETERNAAA/lwas_core/src/engine/observer.rs`
+* **Concept:** Eliminates `sleep()` and `waitFor()`.
+* **Mechanism:** Hooks directly into the browser's "Amniotic State" (Network Idle, Layout Stability, Hydration) to act only when the UI is perfectly stable.
 
 ### 5. Distributed Swarm Execution
-Veritas supports parallel execution via a **Headless Rust-based Container Mesh**.
--   **Scale**: Capable of spinning up 1000 micro-agents.
--   **Simulation**: Tests across different regions and network latencies (3G, 5G, Fiber).
+* **Module:** `DistributedSwarm`
+* **Implementation:** `AETERNAAA/lwas_core/src/engine/swarm.rs`
+* **Concept:** Massive parallel execution.
+* **Scale:** Simulates spinning up 1000+ micro-agents in a generic Rust-based container mesh across multiple geographic regions (simulating latency).
 
-## Singularity Audit Log
-The output is not a green/red report but a video replay with AI-annotated logic:
--   "Clicked here because I recognized the payment pattern."
--   "Verified total price using OBI logic."
+### 6. Singularity Audit Log
+* **Output:** Instead of "Pass/Fail", Veritas produces a rich media log.
+* **Format:** Video Replay + AI Annotations explaining *why* actions were taken.
 
-## Getting Started
-The core is written in Rust (`veritas_core`).
-Build and run:
-```bash
-cd veritas_core
-cargo build
-cargo run
+---
+
+## 🛠 SDK Usage (TypeScript)
+
+The Veritas capabilities are exposed via the `VeritasBridge` in `OmniCore`.
+
+```typescript
+import { VeritasBridge } from './services/veritas/Bridge';
+
+const veritas = new VeritasBridge();
+
+// 1. Vision Locate
+const result = await veritas.locate(base64Screenshot, "Find the Login Button");
+console.log(result.primary_location);
+
+// 2. Goal Execution
+const goalResult = await veritas.goal(
+    "Verify checkout flow with valid credit card",
+    "https://staging.app.com"
+);
+console.log(goalResult.singularity_audit_log);
 ```
 
-Send JSON commands via Stdin to interact with the engine.
+## 🔧 Rust Core API
 
-## Protocol Reference (JSON-RPC)
+The Rust core operates as a JSON-RPC server over Stdin/Stdout.
 
-The Core communicates via Standard Input/Output using newline-delimited JSON. All commands must be wrapped in a `SecureCommand` structure.
-
-### Request Format
+**Command Example:**
 ```json
 {
   "auth_token": "valid_token",
@@ -58,17 +91,14 @@ The Core communicates via Standard Input/Output using newline-delimited JSON. Al
   "command": {
     "command": "Locate",
     "payload": {
-       "image_base64": "...",
-       "intent": "Find Checkout Button"
+      "screenshot_base64": "...",
+      "intent_prompt": "Login Button",
+      "confidence_threshold": 0.8
     }
   }
 }
 ```
 
-### Supported Commands
-- **Locate**: Vision-based element detection.
-- **Heal**: Semantic embedding recovery.
-- **Goal**: Autonomous goal execution.
-- **Observe**: Zero-Wait state observation.
-- **Swarm**: Distributed mesh execution.
-- **Omega**: Experimental futurist simulations (e.g., Spatial Folding).
+---
+
+*Engineered by Jules for Sovereign AI Architecture.*

@@ -31,6 +31,11 @@ export interface CheckoutSessionResponse {
   message?: string;
 }
 
+export interface AuthResponse {
+  access_token: string;
+  token_type: string;
+}
+
 export interface PricingTier {
   name: string;
   tier: 'singularity' | 'aeterna' | 'vortex';
@@ -112,7 +117,7 @@ class ApiService {
 
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
-          throw new Error(errorData.error || `HTTP ${response.status}: ${response.statusText}`);
+          throw new Error(errorData.detail || errorData.error || `HTTP ${response.status}: ${response.statusText}`);
         }
 
         return await response.json();
@@ -161,6 +166,40 @@ class ApiService {
 
   // ========== PYTHON BACKEND APIs ==========
 
+  // --- AUTH ---
+
+  async login(username: string, password: string): Promise<AuthResponse> {
+    const url = `${this.baseUrl}/auth/token`;
+    const formData = new URLSearchParams();
+    formData.append('username', username);
+    formData.append('password', password);
+
+    // Override generic fetch for form-data
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: formData
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.detail || "Login failed");
+    }
+    return response.json();
+  }
+
+  async register(email: string, password: string): Promise<any> {
+      const url = `${this.baseUrl}/auth/register?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+      // Note: Backend register endpoint takes query params currently, we might want to change to body later.
+      return this.fetchWithRetry(url, {
+          method: 'POST'
+      });
+  }
+
+  // --- PAYMENT ---
+
   /**
    * Create a Stripe Checkout session
    */
@@ -170,14 +209,14 @@ class ApiService {
     successUrl?: string,
     cancelUrl?: string
   ): Promise<CheckoutSessionResponse> {
-    const url = `${this.baseUrl}/api/checkout`;
+    const url = `${this.baseUrl}/payment/create-checkout-session`;
     return this.fetchWithRetry<CheckoutSessionResponse>(url, {
       method: 'POST',
       body: JSON.stringify({
         tier,
         userEmail,
-        successUrl: successUrl || `${window.location.origin}/success`,
-        cancelUrl: cancelUrl || `${window.location.origin}/cancel`,
+        successUrl: successUrl || `${window.location.origin}/dashboard?payment=success`,
+        cancelUrl: cancelUrl || `${window.location.origin}/pricing?payment=cancelled`,
       }),
     });
   }
