@@ -1,7 +1,11 @@
-fpdf2
-qrcode
-pillow
-flask
-websockets
+fastapi
+uvicorn[standard]
+sqlmodel
+python-multipart
+python-jose
+passlib[bcrypt]
+httpx
+asyncio
 stripe
 requests
+websockets
