@@ -45,10 +45,18 @@ export class VeritasBridge {
     }
 
     private startCore() {
-        // Assume the binary is built at veritas_core/target/debug/veritas_core
-        // Path relative to: NerveCenterServer/services/veritas (src) or NerveCenterServer/dist/services/veritas (build)
-        // Root is 3 levels up from services/veritas
-        const binaryPath = path.resolve(__dirname, '../../../veritas_core/target/debug/veritas_core');
+        // Check for release build first, then debug
+        // Resolve paths relative to this file: AETERNAAA/OmniCore/services/veritas/Bridge.ts
+        // lwas_core is at: ../../../../lwas_core
+        const releasePath = path.resolve(__dirname, '../../../../lwas_core/target/release/veritas_core');
+        const debugPath = path.resolve(__dirname, '../../../../lwas_core/target/debug/veritas_core');
+
+        let binaryPath = releasePath;
+        const fs = require('fs');
+        if (!fs.existsSync(releasePath)) {
+            console.log(`[VERITAS] Release binary not found, falling back to debug: ${debugPath}`);
+            binaryPath = debugPath;
+        }
 
         console.log(`[VERITAS] Spawning Core: ${binaryPath}`);
 
@@ -57,7 +65,7 @@ export class VeritasBridge {
 
             this.process.on('error', (err) => {
                 console.error(`[VERITAS] Failed to spawn Rust core: ${err.message}`);
-                console.error(`[VERITAS] Ensure you have run 'cd veritas_core && cargo build'`);
+                console.error(`[VERITAS] Ensure you have run 'cd AETERNAAA/lwas_core && cargo build --release'`);
                 this.process = null;
             });
 

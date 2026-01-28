@@ -7,7 +7,8 @@ const path = require('path');
     const page = await browser.newPage();
 
     // Open the file
-    const filePath = path.resolve(process.cwd(), 'docs/vortex-dashboard.html');
+    // Dashboard is in the root of the repo (2 levels up from AETERNAAA/workers)
+    const filePath = path.resolve(__dirname, '../../dashboard.html');
     console.log('Opening:', filePath);
     await page.goto('file://' + filePath);
 
