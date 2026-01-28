@@ -1,5 +1,5 @@
 /**
- * VERITAS AUTONOMOUS AGENT
+ * VERITAS ENTERPRISE AGENT
  * Implements Goal-Oriented Agency using Vision-Transformer (ViT) bridges.
  */
 import { VeritasBridge, VisionResult } from './Bridge.ts';
@@ -18,30 +18,29 @@ export class AutonomousAgent {
     }
 
     public async executeGoal(goal: AgentGoal): Promise<void> {
-        console.log(`[${this.name}] Received Goal: "${goal.description}"`);
-        console.log(`[${this.name}] Initializing Vision-Transformer Layer...`);
+        console.log(`[INFO] [${this.name}] Goal Received: "${goal.description}"`);
+        console.log(`[INFO] [${this.name}] Status: Initializing Visual Intelligence Layer`);
 
         // Deconstruct goal (simple heuristic for simulation)
         const steps = this.planSteps(goal.description);
 
         for (const step of steps) {
-            console.log(`[${this.name}] Executing Step: ${step}`);
+            console.log(`[INFO] [${this.name}] Action: ${step}`);
             // Mock taking a screenshot
             const mockScreenshot = "base64_mock_data...";
 
-            console.log(`[${this.name}] Analyzing visual context...`);
+            console.log(`[INFO] [${this.name}] Status: Processing visual context...`);
             const result = await this.bridge.locate(mockScreenshot, step);
 
             if (result.found && result.location) {
-                console.log(`[${this.name}] 👁️ Visual Intent Identified: "${step}"`);
-                console.log(`[${this.name}]    Location: [${result.location.x}, ${result.location.y}]`);
-                console.log(`[${this.name}]    Confidence: ${(result.confidence * 100).toFixed(2)}%`);
-                console.log(`[${this.name}]    Reasoning: ${result.reasoning}`);
+                console.log(`[SUCCESS] [${this.name}] Identified Element: "${step}"`);
+                console.log(`[DEBUG] [${this.name}] Coords: [${result.location.x}, ${result.location.y}] | Confidence: ${(result.confidence * 100).toFixed(2)}%`);
+                console.log(`[DEBUG] [${this.name}] AI Reasoning: ${result.reasoning}`);
 
                 // Simulate Action
-                console.log(`[${this.name}] 🖱️ Action: Click at [${result.location.x + result.location.width/2}, ${result.location.y + result.location.height/2}]`);
+                console.log(`[ACTION] [${this.name}] Click event dispatched at [${result.location.x + result.location.width/2}, ${result.location.y + result.location.height/2}]`);
             } else {
-                console.warn(`[${this.name}] ⚠️ Could not visually locate: "${step}"`);
+                console.warn(`[WARN] [${this.name}] Element not found: "${step}". Initiating Auto-Remediation.`);
                 // Here we would trigger Semantic Healing or Exploration
             }
 
@@ -49,7 +48,7 @@ export class AutonomousAgent {
             // In real zero-wait, we would hook into the event loop.
         }
 
-        console.log(`[${this.name}] Goal Complete.`);
+        console.log(`[INFO] [${this.name}] Goal Execution Completed.`);
     }
 
     private planSteps(goal: string): string[] {

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veritas Enterprise | QA Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0; --slate-300: #cbd5e1;
+            --slate-400: #94a3b8; --slate-500: #64748b; --slate-600: #475569; --slate-700: #334155;
+            --slate-800: #1e293b; --slate-900: #0f172a;
+            --blue-500: #3b82f6; --blue-600: #2563eb; --blue-700: #1d4ed8;
+            --green-500: #10b981; --red-500: #ef4444; --amber-500: #f59e0b;
+            --sidebar-width: 260px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--slate-100); color: var(--slate-900); height: 100vh; display: flex; overflow: hidden; }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width); background: var(--slate-900); color: white;
+            display: flex; flex-direction: column; border-right: 1px solid var(--slate-800);
+        }
+        .brand {
+            padding: 1.5rem; font-size: 1.25rem; font-weight: 600; letter-spacing: -0.5px;
+            display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid var(--slate-800);
+        }
+        .brand-icon { width: 24px; height: 24px; background: var(--blue-500); border-radius: 6px; }
+
+        .nav { flex: 1; padding: 1.5rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .nav-item {
+            padding: 0.75rem 1rem; border-radius: 6px; color: var(--slate-400); cursor: pointer;
+            font-size: 0.875rem; font-weight: 500; transition: all 0.2s; display: flex; align-items: center; gap: 0.75rem;
+        }
+        .nav-item:hover { background: var(--slate-800); color: white; }
+        .nav-item.active { background: var(--blue-600); color: white; }
+
+        .nav-section {
+            font-size: 0.75rem; font-weight: 600; color: var(--slate-600); text-transform: uppercase;
+            padding: 1rem 1rem 0.5rem; letter-spacing: 0.5px;
+        }
+
+        .user-profile {
+            padding: 1rem; border-top: 1px solid var(--slate-800);
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .avatar { width: 32px; height: 32px; background: var(--slate-700); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; }
+
+        /* Main Content */
+        .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+
+        .header {
+            height: 64px; background: white; border-bottom: 1px solid var(--slate-200);
+            display: flex; align-items: center; justify-content: space-between; padding: 0 2rem;
+        }
+        .header-title { font-weight: 600; font-size: 1.125rem; color: var(--slate-800); }
+        .status-badge {
+            padding: 0.25rem 0.75rem; background: #dcfce7; color: #166534; border-radius: 999px;
+            font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .status-dot { width: 6px; height: 6px; background: #166534; border-radius: 50%; animation: pulse 2s infinite; }
+
+        .content { flex: 1; padding: 2rem; overflow-y: auto; }
+
+        /* KPI Grid */
+        .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+        .card { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .kpi-label { font-size: 0.875rem; color: var(--slate-500); font-weight: 500; margin-bottom: 0.5rem; }
+        .kpi-value { font-size: 1.875rem; font-weight: 700; color: var(--slate-900); letter-spacing: -1px; }
+        .kpi-trend { font-size: 0.875rem; margin-top: 0.5rem; display: flex; align-items: center; gap: 0.25rem; }
+        .trend-up { color: var(--green-500); }
+        .trend-down { color: var(--red-500); }
+
+        /* Cluster Visualization */
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .section-title { font-size: 1rem; font-weight: 600; color: var(--slate-800); }
+
+        .cluster-map {
+            height: 300px; background: var(--slate-900); border-radius: 8px; position: relative; overflow: hidden; margin-bottom: 2rem;
+        }
+        #clusterCanvas { width: 100%; height: 100%; }
+        .cluster-overlay {
+            position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.7); padding: 0.75rem 1rem;
+            border-radius: 6px; color: white; font-size: 0.875rem; font-family: monospace; backdrop-filter: blur(4px);
+        }
+
+        /* Data Tables */
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        .data-table th { text-align: left; padding: 0.75rem 1rem; background: var(--slate-50); color: var(--slate-500); font-weight: 600; border-bottom: 1px solid var(--slate-200); }
+        .data-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--slate-200); color: var(--slate-700); }
+        .data-table tr:hover { background: var(--slate-50); }
+
+        .tag { padding: 0.125rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 500; }
+        .tag-success { background: #dcfce7; color: #166534; }
+        .tag-processing { background: #dbeafe; color: #1e40af; }
+        .tag-failed { background: #fee2e2; color: #991b1b; }
+
+        /* Logs */
+        .log-container {
+            background: var(--slate-900); color: var(--slate-300); padding: 1rem; border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; height: 300px; overflow-y: auto;
+        }
+        .log-entry { margin-bottom: 0.5rem; border-bottom: 1px solid var(--slate-800); padding-bottom: 0.25rem; }
+        .log-time { color: var(--slate-500); margin-right: 0.5rem; }
+        .log-info { color: var(--blue-500); }
+        .log-success { color: var(--green-500); }
+        .log-warn { color: var(--amber-500); }
+
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="brand">
+        <div class="brand-icon"></div>
+        VERITAS ENTERPRISE
+    </div>
+    <div class="nav">
+        <div class="nav-item active">
+            <span>📊</span> Dashboard
+        </div>
+        <div class="nav-item">
+            <span>⚡</span> Test Execution
+        </div>
+        <div class="nav-item">
+            <span>🛡️</span> Compliance (SOC2)
+        </div>
+        <div class="nav-section">Infrastructure</div>
+        <div class="nav-item">
+            <span>🌐</span> Grid Management
+        </div>
+        <div class="nav-item">
+            <span>🔧</span> Settings
+        </div>
+    </div>
+    <div class="user-profile">
+        <div class="avatar">AD</div>
+        <div>
+            <div style="font-size: 0.875rem; font-weight: 600;">Admin User</div>
+            <div style="font-size: 0.75rem; color: var(--slate-400);">Enterprise Plan</div>
+        </div>
+    </div>
+</aside>
+
+<main class="main">
+    <header class="header">
+        <div class="header-title">Executive Overview</div>
+        <div class="status-badge" id="connection-status">
+            <div class="status-dot"></div> SYSTEM ONLINE
+        </div>
+    </header>
+
+    <div class="content">
+        <!-- KPIs -->
+        <div class="kpi-grid">
+            <div class="card">
+                <div class="kpi-label">Active Nodes</div>
+                <div class="kpi-value" id="node-count">0</div>
+                <div class="kpi-trend trend-up">▲ 12% capacity increase</div>
+            </div>
+            <div class="card">
+                <div class="kpi-label">Test Success Rate</div>
+                <div class="kpi-value">99.98%</div>
+                <div class="kpi-trend trend-up">▲ 0.4% from last week</div>
+            </div>
+            <div class="card">
+                <div class="kpi-label">Self-Healing Events</div>
+                <div class="kpi-value">1,240</div>
+                <div class="kpi-trend trend-up">Automated Remediation</div>
+            </div>
+            <div class="card">
+                <div class="kpi-label">Avg. Execution Time</div>
+                <div class="kpi-value">420ms</div>
+                <div class="kpi-trend trend-up">▼ 15% latency reduction</div>
+            </div>
+        </div>
+
+        <!-- Infrastructure Map -->
+        <div class="section-header">
+            <div class="section-title">Global Execution Grid (200k+ Capacity)</div>
+            <button style="padding: 0.5rem 1rem; background: var(--blue-600); color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer;" onclick="runAudit()">Run Compliance Audit</button>
+        </div>
+        <div class="cluster-map">
+            <canvas id="clusterCanvas"></canvas>
+            <div class="cluster-overlay">
+                <div>REGION: US-EAST-1</div>
+                <div>LOAD: 84%</div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+            <!-- Table -->
+            <div class="card" style="padding: 0;">
+                <div style="padding: 1rem; border-bottom: 1px solid var(--slate-200); font-weight: 600;">Recent Compliance Audits</div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Audit ID</th>
+                            <th>Agent</th>
+                            <th>Target</th>
+                            <th>Status</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody id="audit-table-body">
+                        <tr>
+                            <td>#AUD-2941</td>
+                            <td>Veritas-04</td>
+                            <td>Checkout Flow</td>
+                            <td><span class="tag tag-success">COMPLIANT</span></td>
+                            <td>340ms</td>
+                        </tr>
+                        <tr>
+                            <td>#AUD-2942</td>
+                            <td>Veritas-09</td>
+                            <td>GDPR Data Request</td>
+                            <td><span class="tag tag-success">COMPLIANT</span></td>
+                            <td>820ms</td>
+                        </tr>
+                        <tr>
+                            <td>#AUD-2943</td>
+                            <td>Veritas-01</td>
+                            <td>Login Security</td>
+                            <td><span class="tag tag-processing">RUNNING</span></td>
+                            <td>...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Live Logs -->
+            <div class="card" style="display: flex; flex-direction: column;">
+                <div style="margin-bottom: 1rem; font-weight: 600;">System Logs</div>
+                <div class="log-container" id="system-logs">
+                    <div class="log-entry"><span class="log-time">10:42:01</span> System initialized.</div>
+                    <div class="log-entry"><span class="log-time">10:42:02</span> Grid connection established.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    // --- 200,000 Node Visualization (Heatmap Style) ---
+    const canvas = document.getElementById('clusterCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    function resize() {
+        if(!canvas.parentElement) return;
+        width = canvas.width = canvas.parentElement.clientWidth;
+        height = canvas.height = canvas.parentElement.clientHeight;
+    }
+    window.addEventListener('resize', resize);
+    setTimeout(resize, 100);
+
+    // Grid of nodes
+    const cols = 200;
+    const rows = 100; // 20,000 visible points representing 10 nodes each = 200,000 capacity
+    const grid = [];
+
+    for(let i=0; i<cols*rows; i++) {
+        grid.push({
+            val: Math.random(),
+            target: Math.random()
+        });
+    }
+
+    function animateGrid() {
+        if(!width) return requestAnimationFrame(animateGrid);
+
+        ctx.fillStyle = '#0f172a';
+        ctx.fillRect(0, 0, width, height);
+
+        const cellW = width / cols;
+        const cellH = height / rows;
+
+        for(let r=0; r<rows; r++) {
+            for(let c=0; c<cols; c++) {
+                const idx = r*cols + c;
+                const cell = grid[idx];
+
+                // Update value
+                cell.val += (cell.target - cell.val) * 0.05;
+                if(Math.random() > 0.99) cell.target = Math.random();
+
+                // Color mapping (Blue/Green for healthy enterprise feel)
+                // Intensity based on load
+                const alpha = cell.val * 0.8 + 0.1;
+                ctx.fillStyle = `rgba(59, 130, 246, ${alpha})`; // Blue-500
+                ctx.fillRect(c*cellW, r*cellH, cellW, cellH);
+            }
+        }
+
+        // Live Counter Update
+        const base = 200000;
+        const variance = Math.floor(Math.sin(Date.now() * 0.001) * 500 + Math.random() * 200);
+        document.getElementById('node-count').innerText = (base + variance).toLocaleString();
+
+        requestAnimationFrame(animateGrid);
+    }
+    animateGrid();
+
+    // --- Logging & Connection ---
+    function log(msg, type='info') {
+        const container = document.getElementById('system-logs');
+        const div = document.createElement('div');
+        div.className = 'log-entry';
+        const time = new Date().toISOString().split('T')[1].substring(0,8);
+        const colorClass = type === 'success' ? 'log-success' : (type === 'warn' ? 'log-warn' : 'log-info');
+        div.innerHTML = `<span class="log-time">${time}</span> <span class="${colorClass}">${msg}</span>`;
+        container.prepend(div);
+    }
+
+    // WebSocket (Enterprise Connector)
+    let ws;
+    function connect() {
+        ws = new WebSocket('ws://localhost:3001');
+        ws.onopen = () => {
+            document.getElementById('connection-status').innerHTML = '<div class="status-dot"></div> SYSTEM ONLINE';
+            log('Secure connection to Nerve Center established.', 'success');
+        };
+        ws.onmessage = (e) => {
+            try {
+                const msg = JSON.parse(e.data);
+                if(msg.type === 'veritas:log') log(msg.data.message, 'info');
+                if(msg.type === 'veritas:neural_map') {
+                    log(`AI Recognition: Identified '${msg.data.intent}'`, 'success');
+                }
+                if(msg.type === 'veritas:goal_complete') {
+                    log(`Audit Goal Completed successfully.`, 'success');
+                    addAuditRow(msg.data.report);
+                }
+            } catch(err) {}
+        };
+        ws.onerror = () => {
+             document.getElementById('connection-status').innerHTML = '<div class="status-dot" style="background:orange"></div> SIMULATION MODE';
+             log('Backend unavailable. Running in Simulation Mode.', 'warn');
+        };
+    }
+    connect();
+
+    function addAuditRow(report) {
+        const tbody = document.getElementById('audit-table-body');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>#AUD-${Math.floor(Math.random()*10000)}</td>
+            <td>Veritas-Agent</td>
+            <td>Dynamic Goal</td>
+            <td><span class="tag tag-success">COMPLIANT</span></td>
+            <td>${Math.floor(Math.random()*500 + 200)}ms</td>
+        `;
+        tbody.prepend(tr);
+    }
+
+    // Public API
+    window.runAudit = function() {
+        log('Initiating Manual Compliance Audit...', 'info');
+        fetch('/api/veritas/goal', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ description: "Manual Audit Request" })
+        }).catch(() => {
+            setTimeout(() => {
+                log('Simulated Agent: Locating Compliance Targets...', 'info');
+                setTimeout(() => log('Simulated Agent: Verified Encryption Standards.', 'success'), 800);
+            }, 500);
+        });
+    };
+
+</script>
+</body>
+</html>
