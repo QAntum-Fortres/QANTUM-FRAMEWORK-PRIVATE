@@ -107,18 +107,9 @@ export class VeritasBridge {
          return this.sendCommand('Heal', { failed_selector, current_image, last_known_embedding });
     }
 
-    private async sendCommand(commandName: string, payload: any): Promise<any> {
+    private async sendCommand(command: string, payload: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            // Match SecureCommand structure in Rust
-            const secureCmd = {
-                auth_token: "valid_token", // Mock token
-                user_id: "admin",          // Mock user
-                command: {
-                    command: commandName,
-                    payload: payload
-                }
-            };
-            const msg = JSON.stringify(secureCmd);
+            const msg = JSON.stringify({ command, payload });
             this.process?.stdin?.write(msg + '\n');
 
             this.responseQueue.push((response: any) => {

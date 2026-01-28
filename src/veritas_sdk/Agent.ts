@@ -1,7 +1,3 @@
-/**
- * VERITAS AUTONOMOUS AGENT
- * Implements Goal-Oriented Agency using Vision-Transformer (ViT) bridges.
- */
 import { VeritasBridge, VisionResult } from './Bridge.ts';
 
 export interface AgentGoal {
