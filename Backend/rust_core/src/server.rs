@@ -19,6 +19,18 @@ struct UnlockModuleRequest {
 }
 
 #[derive(Debug, Deserialize)]
+struct ModuleUnlockItem {
+    module_name: String,
+    cost: f64,
+}
+
+#[derive(Debug, Deserialize)]
+struct UnlockModulesRequest {
+    user_id: String,
+    modules: Vec<ModuleUnlockItem>,
+}
+
+#[derive(Debug, Deserialize)]
 struct GetBalanceRequest {
     user_id: String,
 }
@@ -55,6 +67,25 @@ async fn unlock_module(
         data.user_id.clone(),
         data.module_name.clone(),
         data.cost,
+    ) {
+        Ok(balance) => HttpResponse::Ok().json(balance),
+        Err(e) => HttpResponse::BadRequest().json(serde_json::json!({
+            "error": e
+        })),
+    }
+}
+
+async fn unlock_modules(
+    data: web::Json<UnlockModulesRequest>,
+    state: web::Data<AppState>,
+) -> impl Responder {
+    let modules: Vec<(String, f64)> = data.modules.iter()
+        .map(|m| (m.module_name.clone(), m.cost))
+        .collect();
+
+    match state.economy.unlock_modules(
+        data.user_id.clone(),
+        modules,
     ) {
         Ok(balance) => HttpResponse::Ok().json(balance),
         Err(e) => HttpResponse::BadRequest().json(serde_json::json!({
@@ -104,6 +135,7 @@ pub async fn run_server() -> std::io::Result<()> {
             .route("/health", web::get().to(health_check))
             .route("/api/mint_credits", web::post().to(mint_credits))
             .route("/api/unlock_module", web::post().to(unlock_module))
+            .route("/api/unlock_modules", web::post().to(unlock_modules))
             .route("/api/balance", web::get().to(get_balance))
             .route("/api/telemetry", web::get().to(get_telemetry))
             .route("/api/balances", web::get().to(list_balances))
