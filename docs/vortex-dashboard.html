@@ -115,17 +115,9 @@
             background: rgba(6, 182, 212, 0.1); padding: 0.25rem 0.5rem; border-radius: 4px; display: inline-block;
         }
         .code-block {
-            position: relative;
             background: rgba(0, 0, 0, 0.5); border: 1px solid var(--glass-border); border-radius: 12px;
             padding: 1.5rem; margin: 1rem 0; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; color: var(--accent);
         }
-        .copy-btn {
-            position: absolute; top: 0.5rem; right: 0.5rem;
-            background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border);
-            color: var(--text-secondary); border-radius: 6px; padding: 0.25rem 0.5rem;
-            font-size: 0.75rem; cursor: pointer; transition: all 0.2s; font-family: 'JetBrains Mono', monospace;
-        }
-        .copy-btn:hover { background: rgba(255, 255, 255, 0.2); color: var(--text-primary); border-color: var(--accent); }
         .controls { display: flex; justify-content: center; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
         .btn {
             font-family: 'Space Grotesk', sans-serif; padding: 1rem 2rem; font-size: 1rem; font-weight: 600;
@@ -192,23 +184,17 @@
         dialog { background: transparent; border: none; padding: 0; color: var(--text-primary); margin: auto; max-width: 600px; width: 90%; }
         dialog::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); }
 
-        /* Singularity Log */
-        #audit-log::-webkit-scrollbar { width: 6px; }
-        #audit-log::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 3px; }
-        #audit-log {
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
-            position: relative;
+        /* Accessibility */
+        :focus-visible {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
         }
-        #audit-log::before {
-            content: "LIVE FEED // OMEGA PROTOCOL";
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            font-size: 0.7rem;
-            color: var(--danger);
-            animation: blink 1s infinite;
-            pointer-events: none;
+
+        .close-btn {
+            position: absolute; top: 1rem; right: 1rem; background: none; border: none;
+            color: var(--text-dim); font-size: 1.5rem; cursor: pointer; transition: color 0.3s;
         }
+        .close-btn:hover { color: var(--danger); }
     </style>
 </head>
 <body>
@@ -269,59 +255,10 @@
         <section class="security-section">
             <h2 class="section-title">🔐 LIVENESS TOKEN SECURITY ARCHITECTURE</h2>
             <div class="code-block">
-                <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code to clipboard">📋 Copy</button>
                 <span style="color: var(--text-dim);">// LivenessToken Validation Flow</span>
                 <span style="color: var(--primary);">const</span> tokenManager = LivenessTokenManager.<span style="color: var(--secondary);">getInstance</span>();
                 <span style="color: var(--primary);">const</span> TOKEN_SECRET = tokenManager.<span style="color: var(--secondary);">getSecret</span>();
                 <span style="color: var(--text-dim);">// ... (Secure Logic)</span>
-            </div>
-        </section>
-
-        <!-- VERITAS VISUALIZATION SECTION -->
-        <section class="veritas-section" style="margin-bottom: 3rem;">
-            <h2 class="section-title">👁️ VERITAS COGNITIVE FRAMEWORK</h2>
-            <div class="stats-grid">
-                 <div class="stat-card">
-                    <div class="stat-label">Neural Mapped Nodes</div>
-                    <div class="stat-value" id="node-count">0</div>
-                 </div>
-                 <div class="stat-card">
-                    <div class="stat-label">Active Swarm Agents</div>
-                    <div class="stat-value" id="active-agents">0</div>
-                 </div>
-                 <div class="stat-card">
-                    <div class="stat-label">Swarm TPS</div>
-                    <div class="stat-value" id="swarm-tps">0.0</div>
-                 </div>
-                 <div class="stat-card">
-                    <div class="stat-label">Omega Vacuum Flux</div>
-                    <div class="stat-value" id="vacuum-flux">0 TW</div>
-                 </div>
-            </div>
-
-            <div class="pillars-grid" style="grid-template-columns: 1fr 1fr;">
-                <div class="pillar-card" style="height: 400px; display: flex; flex-direction: column;">
-                    <h3 class="pillar-title">🧠 Neural Map (ViT Layer)</h3>
-                    <p class="pillar-description" style="margin-bottom: 1rem;">Real-time semantic perception of UI intent.</p>
-                    <div style="flex: 1; position: relative; border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden; background: #000;">
-                        <canvas id="neuralMapCanvas" style="width: 100%; height: 100%;"></canvas>
-                    </div>
-                </div>
-                <div class="pillar-card" style="height: 400px; display: flex; flex-direction: column;">
-                    <h3 class="pillar-title">🐝 Distributed Swarm Mesh</h3>
-                    <p class="pillar-description" style="margin-bottom: 1rem;">Global execution across 1000+ headless nodes.</p>
-                    <div style="flex: 1; position: relative; border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden; background: #000;">
-                         <canvas id="swarmCanvas" style="width: 100%; height: 100%;"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pillar-card" style="margin-top: 2rem;">
-                <h3 class="pillar-title">📜 Singularity Audit Log</h3>
-                <p class="pillar-description">Zero-Wait Event Stream with AI Annotation.</p>
-                <div id="audit-log" style="height: 200px; overflow-y: auto; background: rgba(0,0,0,0.6); padding: 1rem; font-family: 'JetBrains Mono'; font-size: 0.85rem; border: 1px solid var(--glass-border); border-radius: 8px;">
-                    <!-- Logs injected by JS -->
-                </div>
             </div>
         </section>
         <div class="controls">
