@@ -47,9 +47,17 @@ export class VeritasBridge {
     private startCore() {
         // Check for release build first, then debug
         // Resolve paths relative to this file: AETERNAAA/OmniCore/services/veritas/Bridge.ts
-        // lwas_core is at: ../../../../lwas_core
-        const releasePath = path.resolve(__dirname, '../../../../lwas_core/target/release/veritas_core');
-        const debugPath = path.resolve(__dirname, '../../../../lwas_core/target/debug/veritas_core');
+        // lwas_core is at: AETERNAAA/lwas_core
+        // This file is 3 levels deep inside OmniCore (services/veritas)
+        // So we go up 3 levels to OmniCore root, then 1 level up to AETERNAAA root
+        // Total 4 levels up? No, wait:
+        // __dirname = .../AETERNAAA/OmniCore/services/veritas
+        // ../ = .../AETERNAAA/OmniCore/services
+        // ../../ = .../AETERNAAA/OmniCore
+        // ../../../ = .../AETERNAAA
+        // So lwas_core is at ../../../lwas_core
+        const releasePath = path.resolve(__dirname, '../../../lwas_core/target/release/veritas_core');
+        const debugPath = path.resolve(__dirname, '../../../lwas_core/target/debug/veritas_core');
 
         let binaryPath = releasePath;
         const fs = require('fs');
