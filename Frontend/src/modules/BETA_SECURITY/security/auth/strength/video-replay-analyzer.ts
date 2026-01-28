@@ -266,7 +266,7 @@ export class VideoReplayAnalyzer extends EventEmitter {
      */
     configure(config: Partial<VideoAnalyzerConfig>): void {
         this.config = {
-            apiKey: config.apiKey || ',
+            apiKey: config.apiKey || '',
             model: config.model || 'gemini-2.0-flash',
             analysisFrameRate: config.analysisFrameRate || 2, // 2 FPS for analysis
             confidenceThreshold: config.confidenceThreshold || 0.7,
@@ -1051,13 +1051,13 @@ Return structured JSON with these fields:
             case 'right_click':
                 return `await page.click('${selector}', { button: 'right' });`;
             case 'type':
-                return `await page.fill('${selector}', '${action.value || '}');`;
+                return `await page.fill('${selector}', '${action.value || ''}');`;
             case 'hover':
                 return `await page.hover('${selector}');`;
             case 'scroll':
                 return `await page.evaluate(() => window.scrollBy(0, 300));`;
             case 'select':
-                return `await page.selectOption('${selector}', '${action.value || '}');`;
+                return `await page.selectOption('${selector}', '${action.value || ''}');`;
             case 'wait':
                 return `await page.waitForTimeout(${action.duration});`;
             case 'navigation':

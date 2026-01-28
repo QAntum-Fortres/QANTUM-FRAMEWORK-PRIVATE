@@ -232,7 +232,7 @@ class BinanceConnector extends EventEmitter {
       price: parseFloat(data.price),
       avgFillPrice: parseFloat(data.cummulativeQuoteQty) / parseFloat(data.executedQty) || 0,
       fee: 0, // Would need trade endpoint for fills
-      feeCurrency: ',
+      feeCurrency: '',
       createdAt: data.time || data.transactTime,
       updatedAt: data.updateTime || data.transactTime,
     };
@@ -392,7 +392,7 @@ class KrakenConnector extends EventEmitter {
       price: params.price || 0,
       avgFillPrice: 0,
       fee: 0,
-      feeCurrency: ',
+      feeCurrency: '',
       createdAt: Date.now(),
       updatedAt: Date.now(),
     };
@@ -417,7 +417,7 @@ class KrakenConnector extends EventEmitter {
       price: parseFloat(order.descr.price),
       avgFillPrice: parseFloat(order.avg_price) || 0,
       fee: parseFloat(order.fee) || 0,
-      feeCurrency: ',
+      feeCurrency: '',
       createdAt: order.opentm * 1000,
       updatedAt: Date.now(),
     }));
@@ -439,12 +439,12 @@ class CoinbaseConnector extends EventEmitter {
   configure(credentials: ExchangeCredentials): void {
     this.apiKey = credentials.apiKey;
     this.apiSecret = credentials.apiSecret;
-    this.passphrase = credentials.passphrase || ';
+    this.passphrase = credentials.passphrase || '';
     this.isConfigured = true;
     console.log('[Coinbase] ✅ Configured');
   }
 
-  private sign(timestamp: string, method: string, path: string, body: string = '): string {
+  private sign(timestamp: string, method: string, path: string, body: string = ''): string {
     const message = timestamp + method + path + body;
     const hmac = crypto.createHmac('sha256', Buffer.from(this.apiSecret, 'base64'));
     hmac.update(message);
@@ -459,7 +459,7 @@ class CoinbaseConnector extends EventEmitter {
     if (!this.isConfigured) throw new Error('Coinbase not configured');
 
     const timestamp = (Date.now() / 1000).toString();
-    const bodyStr = body ? JSON.stringify(body) : ';
+    const bodyStr = body ? JSON.stringify(body) : '';
     const signature = this.sign(timestamp, method, endpoint, bodyStr);
 
     const headers: Record<string, string> = {
@@ -538,7 +538,7 @@ class CoinbaseConnector extends EventEmitter {
       price: parseFloat(data.price) || 0,
       avgFillPrice: 0,
       fee: 0,
-      feeCurrency: ',
+      feeCurrency: '',
       createdAt: new Date(data.created_at).getTime(),
       updatedAt: Date.now(),
     };

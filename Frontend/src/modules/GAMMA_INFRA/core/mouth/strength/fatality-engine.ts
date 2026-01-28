@@ -403,7 +403,7 @@ export class FatalityEngine extends EventEmitter {
       enableLogicBomb: config?.enableLogicBomb ?? true,
       enableReporting: config?.enableReporting ?? true,
       sentinelUrl: config?.sentinelUrl || 'https://sentinel.qantum.io',
-      sentinelApiKey: config?.sentinelApiKey || ',
+      sentinelApiKey: config?.sentinelApiKey || '',
       noiseConfig: config?.noiseConfig || {
         complexity: 'complex',
         dataTypes: ['chronos', 'quantum', 'predictions', 'memory', 'heuristics'],
@@ -645,8 +645,8 @@ export class FatalityEngine extends EventEmitter {
         details: 'Manual trigger'
       },
 
-      fingerprint: ',
-      signature: '
+      fingerprint: '',
+      signature: ''
     };
 
     // Generate fingerprint
@@ -738,7 +738,7 @@ export class FatalityEngine extends EventEmitter {
         const result = execSync('ipconfig /all', { encoding: 'utf8', windowsHide: true });
         const dnsMatch = result.match(/DNS Servers[.\s]*:\s*([\d.]+)/g);
         if (dnsMatch) {
-          dnsServers = dnsMatch.map(m => m.replace(/DNS Servers[.\s]*:\s*/, '));
+          dnsServers = dnsMatch.map(m => m.replace(/DNS Servers[.\s]*:\s*/, ''));
         }
       }
     } catch {
@@ -795,7 +795,7 @@ export class FatalityEngine extends EventEmitter {
 
     for (const [key, value] of Object.entries(process.env)) {
       if (suspiciousPatterns.some(p => key.toUpperCase().includes(p))) {
-        suspiciousVars[key] = value || ';
+        suspiciousVars[key] = value || '';
       }
     }
 

@@ -91,7 +91,7 @@ export class BaseElement extends EventEmitter {
       cacheEnabled: options.cacheEnabled ?? true,
       name: options.name ?? 'unnamed',
       type: options.type ?? 'generic',
-      description: options.description ?? ',
+      description: options.description ?? '',
     };
 
     this.alternativeLocators = [];
@@ -393,7 +393,7 @@ export class BaseElement extends EventEmitter {
    */
   async getText(): Promise<string> {
     const locator = await this.find();
-    return (await locator.textContent()) ?? ';
+    return (await locator.textContent()) ?? '';
   }
 
   /**

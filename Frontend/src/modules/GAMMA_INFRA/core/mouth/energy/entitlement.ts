@@ -322,13 +322,13 @@ export function getEntitlementsForPlan(plan: string) {
  */
 export function mapPriceToPlan(priceId: string | undefined): string {
   const priceMap: Record<string, string> = {
-    [process.env.STRIPE_STARTER_PRICE_ID || ']: 'STARTER',
-    [process.env.STRIPE_PRO_PRICE_ID || ']: 'PRO',
-    [process.env.STRIPE_TEAM_PRICE_ID || ']: 'TEAM',
-    [process.env.STRIPE_ENTERPRISE_PRICE_ID || ']: 'ENTERPRISE',
+    [process.env.STRIPE_STARTER_PRICE_ID || '']: 'STARTER',
+    [process.env.STRIPE_PRO_PRICE_ID || '']: 'PRO',
+    [process.env.STRIPE_TEAM_PRICE_ID || '']: 'TEAM',
+    [process.env.STRIPE_ENTERPRISE_PRICE_ID || '']: 'ENTERPRISE',
   };
 
-  return priceMap[priceId || '] || 'STARTER';
+  return priceMap[priceId || ''] || 'STARTER';
 }
 
 /**

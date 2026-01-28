@@ -414,9 +414,9 @@ export class ContextInjector {
   static generateContext(messages: BackpackMessage[]): InjectedContext {
     if (messages.length === 0) {
       return {
-        header: ',
+        header: '',
         messages: [],
-        footer: ',
+        footer: '',
         raw: '[NEURAL_BACKPACK: Empty - No previous context]'
       };
     }
@@ -425,7 +425,7 @@ export class ContextInjector {
       step: messages.length - index,
       timestamp: msg.datetime,
       intent: msg.intent,
-      content: msg.content.substring(0, 200) + (msg.content.length > 200 ? '...' : '),
+      content: msg.content.substring(0, 200) + (msg.content.length > 200 ? '...' : ''),
       status: msg.status
     }));
 
@@ -920,13 +920,13 @@ export class NeuralBackpack extends EventEmitter {
     // Extract code-like actions
     const codeActions = text.match(/`[^`]+`/g);
     if (codeActions) {
-      actions.push(...codeActions.map(a => a.replace(/`/g, ')));
+      actions.push(...codeActions.map(a => a.replace(/`/g, '')));
     }
 
     // Extract bullet points
     const bullets = text.match(/[-•]\s*([^\n]+)/g);
     if (bullets) {
-      actions.push(...bullets.map(b => b.replace(/^[-•]\s*/, ')));
+      actions.push(...bullets.map(b => b.replace(/^[-•]\s*/, '')));
     }
 
     return actions.slice(0, 10); // Limit to 10 actions

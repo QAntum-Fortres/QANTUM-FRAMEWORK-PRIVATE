@@ -970,7 +970,7 @@ export async function applyRateLimitAdaptationPatch(
     };
 
     const generator = codeTemplates[patch.patchType];
-    return generator ? generator(effect) : ';
+    return generator ? generator(effect) : '';
   }
 
   // ─────────────────────────────────────────────────────────────────────────────────────

@@ -127,7 +127,7 @@ class APISensei extends EventEmitter {
     constructor(options = {}) {
         super();
         
-        this.baseUrl = options.baseURL || options.baseUrl || ';
+        this.baseUrl = options.baseURL || options.baseUrl || '';
         this.timeout = options.timeout || 30000;
         this.retries = options.retries || 3;
         this.retryDelay = options.retryDelay || 1000;
@@ -326,7 +326,7 @@ class APISensei extends EventEmitter {
             const protocol = urlObj.protocol === 'https:' ? https : http;
             
             const req = protocol.request(url, options, (res) => {
-                let data = ';
+                let data = '';
                 
                 res.on('data', chunk => data += chunk);
                 res.on('end', () => {
@@ -446,7 +446,7 @@ class APISensei extends EventEmitter {
     validateSchema(response, schema) {
         const errors = [];
         
-        const validate = (data, schemaObj, path = ') => {
+        const validate = (data, schemaObj, path = '') => {
             if (!schemaObj) return;
             
             // Type validation
@@ -773,7 +773,7 @@ class APISensei extends EventEmitter {
                     <strong>${req.request.method}</strong> ${req.request.url}
                     <span style="float:right">${req.responseTime}ms</span>
                 </div>
-            `).join(')}
+            `).join('')}
         </div>
     </div>
 </body>

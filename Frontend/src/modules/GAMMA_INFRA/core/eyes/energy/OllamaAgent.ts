@@ -471,7 +471,7 @@ ${statsContent ? '\n' + statsContent.substring(0, 500) : ''}
       const srcPath = path.join(this.workspacePath, 'src');
       const modules: Record<string, string[]> = {};
 
-      const scanDir = (dir: string, prefix: string = ') => {
+      const scanDir = (dir: string, prefix: string = '') => {
         if (!fs.existsSync(dir)) return;
 
         const items = fs.readdirSync(dir, { withFileTypes: true });

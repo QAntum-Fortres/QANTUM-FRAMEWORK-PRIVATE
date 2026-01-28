@@ -603,7 +603,7 @@ describe('Step 49: SecurityHardening', () => {
       
       let clean = input;
       for (const pattern of Object.values(this.patterns)) {
-        clean = clean.replace(pattern, ');
+        clean = clean.replace(pattern, '');
       }
       return clean;
     }

@@ -548,7 +548,7 @@ export class BillingPulse extends EventEmitter {
       taxAmount,
       total,
       currency: this.config.currency,
-      notes: '
+      notes: ''
     };
 
     // Store invoice
@@ -632,7 +632,7 @@ export class BillingPulse extends EventEmitter {
     const record: Omit<UsageRecord, 'hash'> = {
       id,
       keyId,
-      organizationId: ', // Will be filled by gateway
+      organizationId: '', // Will be filled by gateway
       type,
       timestamp,
       quantity,

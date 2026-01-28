@@ -365,7 +365,7 @@ export class AntiTamper extends EventEmitter {
 
     try {
       // Get system info
-      const cpuModel = os.cpus()[0]?.model?.toLowerCase() || ';
+      const cpuModel = os.cpus()[0]?.model?.toLowerCase() || '';
       const hostname = os.hostname().toLowerCase();
       const platform = os.platform();
 
@@ -785,7 +785,7 @@ export class AntiTamper extends EventEmitter {
       for (const op of ops) {
         switch (op) {
           case 'encrypt':
-            crypto.publicEncrypt({ key: ', padding: crypto.constants.RSA_PKCS1_PADDING }, data).toString('hex');
+            crypto.publicEncrypt({ key: '', padding: crypto.constants.RSA_PKCS1_PADDING }, data).toString('hex');
             break;
           case 'hash':
             crypto.createHash('sha512').update(data).digest('hex');

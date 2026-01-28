@@ -282,7 +282,7 @@ export class CognitiveUXAuditor extends EventEmitter {
 
         const contextPrompt = context
             ? `\n\nContext:\n- Page URL: ${context.pageUrl || 'Unknown'}\n- Page Name: ${context.pageName || 'Unknown'}\n- Target Persona: ${context.targetPersona || 'General user'}`
-            : ';
+            : '';
 
         const fullPrompt = UX_ANALYSIS_PROMPT + contextPrompt;
 
@@ -410,7 +410,7 @@ export class CognitiveUXAuditor extends EventEmitter {
                 strengths: parsed.strengths || [],
                 recommendations: (parsed.recommendations || []).map((rec, index) => ({
                     priority: (rec.priority as UXRecommendation['priority']) || 'medium',
-                    text: rec.text || ',
+                    text: rec.text || '',
                     relatedIssues: [],
                     effort: (rec.effort as UXRecommendation['effort']) || 'medium',
                     expectedImprovement: rec.expectedImprovement || 5

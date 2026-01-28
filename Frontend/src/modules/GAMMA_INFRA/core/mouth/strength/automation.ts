@@ -171,7 +171,7 @@ export class ScriptRunner {
       });
       return { success: true, output };
     } catch (e: any) {
-      return { success: false, output: ', error: e.message };
+      return { success: false, output: '', error: e.message };
     }
   }
 
@@ -453,7 +453,7 @@ ${module.description}
 
 | File | Description |
 |------|-------------|
-${module.files.map((f: string) => `| \`${f}\` | ${f.replace('.ts', ')} implementation |`).join('\n')}
+${module.files.map((f: string) => `| \`${f}\` | ${f.replace('.ts', '')} implementation |`).join('\n')}
 
 ---
 
@@ -927,7 +927,7 @@ export class AutomationEngine {
     console.log('║     🔧 QANTUM AUTOMATION ENGINE                                              ║');
     console.log('║     "Скриптът не греши никога защото е математика."                          ║');
     console.log('╚══════════════════════════════════════════════════════════════════════════════╝');
-    console.log(');
+    console.log('');
 
     // Step 1: Generate docs
     console.log('\n📚 STEP 1: Documentation\n');

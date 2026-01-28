@@ -315,7 +315,7 @@ export class HybridVisionController extends EventEmitter {
                 };
             }>;
         };
-        const rawResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || ';
+        const rawResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
 
         return {
             text: rawResponse,
@@ -355,7 +355,7 @@ export class HybridVisionController extends EventEmitter {
         }
 
         const data = await response.json() as { response?: string };
-        const rawResponse = data.response || ';
+        const rawResponse = data.response || '';
         const latency = Date.now() - startTime;
 
         this.updateLatencyHistory('ollama', latency);

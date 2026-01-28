@@ -503,7 +503,7 @@ export class ProxyChain {
     private formatProxyUrl(proxy: ProxyConfig): string {
         const auth = proxy.username && proxy.password
             ? `${proxy.username}:${proxy.password}@`
-            : ';
+            : '';
         return `${proxy.protocol}://${auth}${proxy.host}:${proxy.port}`;
     }
 

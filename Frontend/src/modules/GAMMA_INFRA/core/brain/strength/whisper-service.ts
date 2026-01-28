@@ -320,7 +320,7 @@ export class WhisperService extends EventEmitter {
 
         // Process complete JSON objects
         const lines = this.outputBuffer.split('\n');
-        this.outputBuffer = lines.pop() || ';
+        this.outputBuffer = lines.pop() || '';
 
         for (const line of lines) {
             if (!line.trim()) continue;

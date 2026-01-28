@@ -179,8 +179,8 @@ yQIDAQAB
             this.hardwareInfo.totalMemory.toString(),
             this.hardwareInfo.hostname,
             this.hardwareInfo.platform,
-            this.hardwareInfo.diskSerial || ',
-            this.hardwareInfo.motherboardSerial || ',
+            this.hardwareInfo.diskSerial || '',
+            this.hardwareInfo.motherboardSerial || '',
             ...this.hardwareInfo.macAddresses.sort()
         ].join('::');
 

@@ -154,61 +154,61 @@ export class SecureConfigLoader extends EventEmitter {
   private mapEnvToConfig(env: Record<string, string>): QAntumConfig {
     return {
       stripe: {
-        secretKey: env.STRIPE_SECRET_KEY || ',
-        publishableKey: env.STRIPE_PUBLISHABLE_KEY || ',
-        webhookSecret: env.STRIPE_WEBHOOK_SECRET || ',
+        secretKey: env.STRIPE_SECRET_KEY || '',
+        publishableKey: env.STRIPE_PUBLISHABLE_KEY || '',
+        webhookSecret: env.STRIPE_WEBHOOK_SECRET || '',
       },
       paypal: {
-        clientId: env.PAYPAL_CLIENT_ID || ',
-        clientSecret: env.PAYPAL_CLIENT_SECRET || ',
+        clientId: env.PAYPAL_CLIENT_ID || '',
+        clientSecret: env.PAYPAL_CLIENT_SECRET || '',
         mode: (env.PAYPAL_MODE as 'sandbox' | 'live') || 'sandbox',
       },
       exchanges: {
         ...(env.BINANCE_API_KEY && {
           binance: {
             apiKey: env.BINANCE_API_KEY,
-            apiSecret: env.BINANCE_API_SECRET || ',
+            apiSecret: env.BINANCE_API_SECRET || '',
           },
         }),
         ...(env.KRAKEN_API_KEY && {
           kraken: {
             apiKey: env.KRAKEN_API_KEY,
-            apiSecret: env.KRAKEN_API_SECRET || ',
+            apiSecret: env.KRAKEN_API_SECRET || '',
           },
         }),
         ...(env.COINBASE_API_KEY && {
           coinbase: {
             apiKey: env.COINBASE_API_KEY,
-            apiSecret: env.COINBASE_API_SECRET || ',
-            passphrase: env.COINBASE_PASSPHRASE || ',
+            apiSecret: env.COINBASE_API_SECRET || '',
+            passphrase: env.COINBASE_PASSPHRASE || '',
           },
         }),
         ...(env.BYBIT_API_KEY && {
           bybit: {
             apiKey: env.BYBIT_API_KEY,
-            apiSecret: env.BYBIT_API_SECRET || ',
+            apiSecret: env.BYBIT_API_SECRET || '',
           },
         }),
         ...(env.OKX_API_KEY && {
           okx: {
             apiKey: env.OKX_API_KEY,
-            apiSecret: env.OKX_API_SECRET || ',
-            passphrase: env.OKX_PASSPHRASE || ',
+            apiSecret: env.OKX_API_SECRET || '',
+            passphrase: env.OKX_PASSPHRASE || '',
           },
         }),
       },
       sendgrid: {
-        apiKey: env.SENDGRID_API_KEY || ',
-        fromEmail: env.SENDGRID_FROM_EMAIL || ',
-        fromName: env.SENDGRID_FROM_NAME || ',
+        apiKey: env.SENDGRID_API_KEY || '',
+        fromEmail: env.SENDGRID_FROM_EMAIL || '',
+        fromName: env.SENDGRID_FROM_NAME || '',
       },
       emergency: {
-        walletAddress: env.EMERGENCY_WALLET_ADDRESS || ',
+        walletAddress: env.EMERGENCY_WALLET_ADDRESS || '',
         walletNetwork: env.EMERGENCY_WALLET_NETWORK || 'ETH',
       },
       telemetry: {
         url: env.TELEMETRY_URL || 'ws://192.168.0.6:8888',
-        authToken: env.TELEMETRY_AUTH_TOKEN || ',
+        authToken: env.TELEMETRY_AUTH_TOKEN || '',
       },
       limits: {
         maxDailyLossUSD: parseFloat(env.MAX_DAILY_LOSS_USD || '500'),

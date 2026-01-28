@@ -578,8 +578,8 @@ export class DOMEvolutionTracker extends EventEmitter {
     return {
       timestamp,
       type,
-      before: before || ',
-      after: after || ',
+      before: before || '',
+      after: after || '',
       affectedSelectors: this.getAffectedSelectors(type)
     };
   }
@@ -711,11 +711,11 @@ export class DOMEvolutionTracker extends EventEmitter {
   private generateTrackingId(elementData: any): string {
     // Create stable ID from element characteristics
     const signature = [
-      elementData.structure?.tagName || ',
-      elementData.attributes?.id || ',
-      elementData.attributes?.name || ',
-      elementData.attributes?.dataAttributes?.['data-testid'] || ',
-      elementData.structure?.path || '
+      elementData.structure?.tagName || '',
+      elementData.attributes?.id || '',
+      elementData.attributes?.name || '',
+      elementData.attributes?.dataAttributes?.['data-testid'] || '',
+      elementData.structure?.path || ''
     ].join('|');
 
     return createHash('md5').update(signature).digest('hex').slice(0, 16);

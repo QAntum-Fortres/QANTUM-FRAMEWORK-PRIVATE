@@ -644,7 +644,7 @@ app.get('/api/user/:id', authenticate, async (req, res) => {
   private inferFilePath(target: string): string {
     // Infer file path from target endpoint
     if (target.startsWith('/api/')) {
-      const parts = target.replace('/api/', ').split('/');
+      const parts = target.replace('/api/', '').split('/');
       return `src/routes/${parts[0]}.ts`;
     }
     return 'src/handlers/vulnerable-handler.ts';
@@ -876,17 +876,17 @@ This patch addresses the vulnerability by implementing proper security controls.
         id: 'skipped',
         vulnerabilityId: vulnerability.id,
         name: 'Skipped - Below severity threshold',
-        code: ',
-        expectedBehavior: ',
+        code: '',
+        expectedBehavior: '',
         assertions: [],
         generatedAt: new Date(),
       },
       securityPatch: {
         id: 'skipped',
         vulnerabilityId: vulnerability.id,
-        filePath: ',
-        originalCode: ',
-        patchedCode: ',
+        filePath: '',
+        originalCode: '',
+        patchedCode: '',
         description: 'Skipped - Below severity threshold',
         validated: false,
         generatedAt: new Date(),

@@ -619,7 +619,7 @@ export class NeuralFingerprintActivator extends EventEmitter {
 
         for (let i = 0; i < text.length; i++) {
             const char = text[i].toLowerCase();
-            const prevChar = i > 0 ? text[i - 1].toLowerCase() : ';
+            const prevChar = i > 0 ? text[i - 1].toLowerCase() : '';
             const bigram = prevChar + char;
 
             // Base interval with account-specific jitter

@@ -319,7 +319,7 @@ export function createNeuralSnapshot(error?: Error): NeuralSnapshot {
     activeHandles: processWithInternals._getActiveHandles?.()?.length ?? 0,
     uptime: process.uptime(),
     timestamp: new Date(),
-    stackTrace: error?.stack ?? new Error().stack ?? '
+    stackTrace: error?.stack ?? new Error().stack ?? ''
   };
 }
 

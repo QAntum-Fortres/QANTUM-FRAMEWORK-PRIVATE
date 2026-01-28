@@ -1652,7 +1652,7 @@ export class MarketBlueprint extends EventEmitter {
     try {
       const urlObj = new URL(url);
       const path = urlObj.pathname;
-      if (path === '/' || path === ') return 'Home';
+      if (path === '/' || path === '') return 'Home';
       const segments = path.split('/').filter(Boolean);
       return segments[segments.length - 1] || 'Page';
     } catch {

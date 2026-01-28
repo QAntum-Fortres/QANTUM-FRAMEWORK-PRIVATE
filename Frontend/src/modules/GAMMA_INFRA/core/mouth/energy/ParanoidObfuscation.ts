@@ -104,11 +104,9 @@ function obfuscateVariables(code: string, preserveNames: string[]): string {
 
 function removeComments(code: string): string {
     // Remove single-line comments
-    let result = code.replace(/\/\/[^\n]*/g, ');
-
+    let result = code.replace(/\/\/[^\n]*/g, '');
     // Remove multi-line comments (but preserve JSDoc for public API)
-    result = result.replace(/\/\*(?!\*)[^*]*\*+(?:[^/*][^*]*\*+)*\//g, ');
-
+    result = result.replace(/\/\*(?!\*)[^*]*\*+(?:[^/*][^*]*\*+)*\//g, '');
     return result;
 }
 

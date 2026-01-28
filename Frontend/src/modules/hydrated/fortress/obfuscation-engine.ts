@@ -101,7 +101,7 @@ export class ObfuscationEngine {
         console.log('🏰 [FORTRESS] Starting obfuscation...');
         console.log(`   Target: ${distPath}`);
         console.log(`   Protection Level: ${this.getProtectionLevel()}`);
-        console.log(');
+        console.log('');
 
         const startTime = Date.now();
         let totalOriginalSize = 0;
@@ -141,7 +141,7 @@ export class ObfuscationEngine {
         this.generateIntegrityManifest(distPath);
 
         const duration = Date.now() - startTime;
-        console.log(');
+        console.log('');
         console.log(`🏰 [FORTRESS] Obfuscation complete in ${duration}ms`);
 
         return {
@@ -487,7 +487,7 @@ export async function obfuscateDist(distPath: string, config?: Partial<Obfuscati
     const engine = new ObfuscationEngine(config);
     const result = await engine.obfuscateDirectory(distPath);
 
-    console.log(');
+    console.log('');
     console.log('┌─────────────────────────────────────────────────────────────────┐');
     console.log('│ OBFUSCATION SUMMARY                                             │');
     console.log('├─────────────────────────────────────────────────────────────────┤');

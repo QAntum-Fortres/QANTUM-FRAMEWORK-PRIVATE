@@ -424,7 +424,7 @@ export class AdaptiveOllamaAgent {
         const responseTime = Date.now() - startTime;
 
         // 3. Validate response
-        if (!data.response || data.response.trim() === ') {
+        if (!data.response || data.response.trim() === '') {
           throw new Error('Empty response received from model');
         }
 

@@ -93,7 +93,7 @@ const LEVEL_COLORS: Record<LogLevel, string> = {
   warn: COLORS.yellow,
   error: COLORS.red,
   fatal: COLORS.bgRed + COLORS.white + COLORS.bright,
-  silent: '
+  silent: ''
 };
 
 const LEVEL_ICONS: Record<LogLevel, string> = {
@@ -102,7 +102,7 @@ const LEVEL_ICONS: Record<LogLevel, string> = {
   warn: '⚠️',
   error: '❌',
   fatal: '💀',
-  silent: '
+  silent: ''
 };
 
 const DEFAULT_CONFIG: LoggerConfig = {
@@ -306,8 +306,8 @@ export class EnterpriseLogger extends EventEmitter {
   }
 
   private outputPretty(entry: LogEntry): void {
-    const color = this.config.colorize ? LEVEL_COLORS[entry.level] : ';
-    const reset = this.config.colorize ? COLORS.reset : ';
+    const color = this.config.colorize ? LEVEL_COLORS[entry.level] : '';
+    const reset = this.config.colorize ? COLORS.reset : '';
     const icon = LEVEL_ICONS[entry.level];
 
     let output = '';

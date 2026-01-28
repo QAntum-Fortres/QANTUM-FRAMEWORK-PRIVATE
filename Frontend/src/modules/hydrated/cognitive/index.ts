@@ -119,7 +119,7 @@ export class CognitiveOrchestrator extends EventEmitter {
         const siteMap = await this.explorer.explore(targetUrl);
 
         // Phase 2: Generate Tests
-        console.log(');
+        console.log('');
         console.log('📍 PHASE 2: Test Generation');
         console.log('─'.repeat(60));
         const testSuites = await this.testFactory.generateFromSiteMap(siteMap);
@@ -127,7 +127,7 @@ export class CognitiveOrchestrator extends EventEmitter {
         const totalTests = testSuites.reduce((sum, s) => sum + s.tests.length, 0);
 
         // Phase 3: Enable Self-Healing
-        console.log(');
+        console.log('');
         console.log('📍 PHASE 3: Self-Healing Enabled');
         console.log('─'.repeat(60));
         console.log('🔧 Self-healing is now active and monitoring for changes');
@@ -135,7 +135,7 @@ export class CognitiveOrchestrator extends EventEmitter {
         const duration = Date.now() - startTime;
 
         // Print summary
-        console.log(');
+        console.log('');
         console.log('╔═══════════════════════════════════════════════════════════════╗');
         console.log('║  🧠 COGNITIVE PIPELINE COMPLETE                               ║');
         console.log('╠═══════════════════════════════════════════════════════════════╣');

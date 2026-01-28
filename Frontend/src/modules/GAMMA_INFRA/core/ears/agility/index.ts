@@ -262,7 +262,7 @@ export class SchemaValidator {
     this.schema = schema;
   }
 
-  validate(value: unknown, path = '): ValidationResult {
+  validate(value: unknown, path = ''): ValidationResult {
     const errors: ValidationError[] = [];
     const warnings: ValidationWarning[] = [];
 

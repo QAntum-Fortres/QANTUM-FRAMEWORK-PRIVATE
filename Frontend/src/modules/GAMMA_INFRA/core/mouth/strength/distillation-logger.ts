@@ -545,10 +545,10 @@ export class DistillationLogger {
       const row = [
         `"${this.escapeCsv(entry.messages[1]?.content || '')}"`,
         `"${this.escapeCsv(entry.messages[2]?.content || '')}"`,
-        `"${entry.metadata?.taskType || '}"`,
-        `"${entry.metadata?.domain || '}"`,
-        entry.metadata?.confidence || ',
-        entry.metadata?.quality || ',
+        `"${entry.metadata?.taskType || ''}"`,
+        `"${entry.metadata?.domain || ''}"`,
+        entry.metadata?.confidence || '',
+        entry.metadata?.quality || '',
         `"${(entry.metadata?.tags || []).join(';')}"`,
       ];
       lines.push(row.join(','));

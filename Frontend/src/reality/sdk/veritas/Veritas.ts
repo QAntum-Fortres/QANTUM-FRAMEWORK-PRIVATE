@@ -320,22 +320,21 @@ export class Veritas implements IVeritasSDK {
             '// VERIFIED CLASSES',
             '// ═══════════════════════════════════════════════════════════════',
             ''
+
         ];
 
         for (const [name, file] of this.registry.classes) {
             lines.push(`export declare class ${name}; // from ${file}`);
         }
 
-        lines.push('', '// ═══════════════════════════════════════════════════════════════');
+        lines.push('// ═══════════════════════════════════════════════════════════════');
         lines.push('// VERIFIED INTERFACES', '// ═══════════════════════════════════════════════════════════════', '');
-
         for (const [name, file] of this.registry.interfaces) {
             lines.push(`export declare interface ${name}; // from ${file}`);
         }
 
-        lines.push('', '// ═══════════════════════════════════════════════════════════════');
+        lines.push('// ═══════════════════════════════════════════════════════════════');
         lines.push('// VERIFIED FUNCTIONS', '// ═══════════════════════════════════════════════════════════════', '');
-
         for (const [name, file] of this.registry.functions) {
             lines.push(`export declare function ${name}(...args: any[]): any; // from ${file}`);
         }

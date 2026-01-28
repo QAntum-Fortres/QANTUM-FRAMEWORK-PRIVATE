@@ -100,7 +100,7 @@ export class JSONLineParser extends Transform {
     const lines = this.buffer.split('\n');
 
     // Keep incomplete last line in buffer
-    this.buffer = lines.pop() || ';
+    this.buffer = lines.pop() || '';
 
     for (const line of lines) {
       const trimmed = line.trim();

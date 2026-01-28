@@ -535,7 +535,7 @@ export class SiteMapper extends EventEmitter {
       // Get page info
       const title = await page.title();
       const statusCode = response?.status() ?? 0;
-      const contentType = response?.headers()['content-type'] ?? ';
+      const contentType = response?.headers()['content-type'] ?? '';
 
       // Create discovered page object
       const discoveredPage: DiscoveredPage = {
@@ -644,9 +644,9 @@ export class SiteMapper extends EventEmitter {
 
     for (const form of formElements) {
       try {
-        const action = await form.getAttribute('action') || ';
+        const action = await form.getAttribute('action') || '';
         const method = (await form.getAttribute('method') || 'GET').toUpperCase() as DiscoveredForm['method'];
-        const name = await form.getAttribute('name') || await form.getAttribute('id') || ';
+        const name = await form.getAttribute('name') || await form.getAttribute('id') || '';
 
         // Get all fields
         const fields = await this.discoverFormFields(form);
@@ -699,9 +699,9 @@ export class SiteMapper extends EventEmitter {
         // Skip hidden and submit types
         if (['hidden', 'submit', 'button', 'image'].includes(type)) continue;
 
-        const name = await input.getAttribute('name') || ';
+        const name = await input.getAttribute('name') || '';
         const required = await input.getAttribute('required') !== null;
-        const placeholder = await input.getAttribute('placeholder') || ';
+        const placeholder = await input.getAttribute('placeholder') || '';
         const pattern = await input.getAttribute('pattern');
         const selector = await this.generateSelector(input);
 
@@ -740,7 +740,7 @@ export class SiteMapper extends EventEmitter {
 
     for (const button of buttonElements) {
       try {
-        const text = await button.textContent() || await button.getAttribute('value') || ';
+        const text = await button.textContent() || await button.getAttribute('value') || '';
         const type = await button.getAttribute('type') as DiscoveredButton['type'] || 'button';
         const onClick = await button.getAttribute('onclick');
         const isDisabled = await button.isDisabled();
@@ -780,8 +780,8 @@ export class SiteMapper extends EventEmitter {
 
     for (const link of linkElements) {
       try {
-        const href = await link.getAttribute('href') || ';
-        const text = await link.textContent() || ';
+        const href = await link.getAttribute('href') || '';
+        const text = await link.textContent() || '';
         const target = await link.getAttribute('target');
 
         // Skip empty/invalid hrefs
@@ -834,8 +834,8 @@ export class SiteMapper extends EventEmitter {
         const type = await input.getAttribute('type') || 'text';
         if (['hidden', 'submit', 'button'].includes(type)) continue;
 
-        const name = await input.getAttribute('name') || ';
-        const placeholder = await input.getAttribute('placeholder') || ';
+        const name = await input.getAttribute('name') || '';
+        const placeholder = await input.getAttribute('placeholder') || '';
         const required = await input.getAttribute('required') !== null;
         const pattern = await input.getAttribute('pattern');
         const selector = await this.generateSelector(input);
@@ -890,7 +890,7 @@ export class SiteMapper extends EventEmitter {
 
     return cookies.map(c => ({
       name: c.name,
-      value: c.value.substring(0, 50) + (c.value.length > 50 ? '...' : '),
+      value: c.value.substring(0, 50) + (c.value.length > 50 ? '...' : ''),
       domain: c.domain,
       path: c.path,
       secure: c.secure,

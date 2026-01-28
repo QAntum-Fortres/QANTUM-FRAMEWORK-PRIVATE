@@ -1166,9 +1166,9 @@ P.S. Our AI found these issues in under 5 minutes. Imagine what it could do for 
   private extractDomain(url: string): string {
     try {
       const parsed = new URL(url);
-      return parsed.hostname.replace('www.', ');
+      return parsed.hostname.replace('www.', '');
     } catch {
-      return url.replace(/https?:\/\//, ').split('/')[0].replace('www.', ');
+      return url.replace(/https?:\/\//, '').split('/')[0].replace('www.', '');
     }
   }
 

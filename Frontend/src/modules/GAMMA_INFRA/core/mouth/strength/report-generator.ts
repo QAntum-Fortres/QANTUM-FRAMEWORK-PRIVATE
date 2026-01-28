@@ -589,8 +589,8 @@ export class SupremeReportGenerator extends EventEmitter {
       name: f.name,
       type: f.type,
       steps: f.steps.map(s => s.action),
-      entry: f.steps[0]?.page || ',
-      exit: f.steps[f.steps.length - 1]?.page || ',
+      entry: f.steps[0]?.page || '',
+      exit: f.steps[f.steps.length - 1]?.page || '',
       hasErrors: !f.success
     }));
 

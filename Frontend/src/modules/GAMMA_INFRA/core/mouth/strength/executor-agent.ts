@@ -318,7 +318,7 @@ export class ExecutorAgent extends BaseAgent {
   ): Promise<{ result: unknown; selector: string; confidence: number }> {
     reasoning.push(`Finding field to fill: ${task.target}`);
 
-    const value = task.params?.value || ';
+    const value = task.params?.value || '';
     const selectors = this.generateSelectors(task.target, 'fill');
     let usedSelector = '';
     let confidence = 0;

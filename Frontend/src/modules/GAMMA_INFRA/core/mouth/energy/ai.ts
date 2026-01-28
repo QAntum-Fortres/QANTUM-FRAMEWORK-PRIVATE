@@ -116,7 +116,7 @@ Generate the Playwright test code now.`,
       max_tokens: 2000,
     });
 
-    const generatedCode = completion.choices[0]?.message?.content || ';
+    const generatedCode = completion.choices[0]?.message?.content || '';
 
     // Create the test
     const test = await prisma.test.create({
@@ -218,7 +218,7 @@ Analyze this failure and suggest a fix.`,
       max_tokens: 1000,
     });
 
-    const analysis = completion.choices[0]?.message?.content || ';
+    const analysis = completion.choices[0]?.message?.content || '';
 
     return {
       analysis,
@@ -357,7 +357,7 @@ Provide a multi-perspective logical analysis.`,
       max_tokens: 1500,
     });
 
-    const analysis = completion.choices[0]?.message?.content || ';
+    const analysis = completion.choices[0]?.message?.content || '';
 
     return {
       scenario: body.scenario,

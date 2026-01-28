@@ -24,7 +24,7 @@ describe('Bridge API', () => {
     it('POST /api/ask should execute script and return response', async () => {
         const mockStdout = 'Mock AI Response';
         mockExec.mockImplementation((cmd, callback) => {
-            callback(null, mockStdout, ');
+            callback(null, mockStdout, '');
         });
 
         const res = await request(app)
@@ -41,7 +41,7 @@ describe('Bridge API', () => {
 
     it('POST /api/ask should handle execution errors', async () => {
         mockExec.mockImplementation((cmd, callback) => {
-            callback(new Error('Command failed'), ', 'Error details');
+            callback(new Error('Command failed'), '', 'Error details');
         });
 
         const res = await request(app)
