@@ -64,6 +64,8 @@ ENV/
 coverage.json
 
 # Large data files (prevent push failures)
+# Note: Files with .large extension should be renamed manually (e.g., data.csv -> data.csv.large)
+# For important large files, consider using Git LFS instead of ignoring them
 *.csv.large
 *.json.large
-data/ALL_CODE_CONTEXT.md
+*.md.large

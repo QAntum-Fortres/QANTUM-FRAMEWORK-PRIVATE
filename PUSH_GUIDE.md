@@ -22,9 +22,9 @@ Before pushing changes to the repository, ensure:
 3. **Proper .gitignore**: Ensure build artifacts and dependencies are ignored
    - node_modules/
    - dist/, build/
-   - Python artifacts (__pycache__/, *.pyc)
+   - Python artifacts (__pycache__/, *.pyc, venv/)
    - Temporary files (*.tmp, *.bak, *.swp)
-   - Large data files
+   - Large data files (consider Git LFS for large files that need versioning)
 
 ## Push Workflow
 
@@ -46,18 +46,42 @@ git push origin <branch-name>
 ### Push All Branches
 ```bash
 # Push all local branches to remote
+# ⚠️ Review each branch before pushing all
 git push --all origin
+```
+
+**Note**: Only use `--all` when you're certain all local branches are ready. For selective pushes, use:
+```bash
+# Push specific branch
+git push origin <branch-name>
 ```
 
 ### Handling Large Files
 
 If you encounter a "Large files detected" error:
 
-1. **Remove the large file from git history**:
+1. **Remove the large file from git history** (⚠️ **WARNING: Rewrites history**):
+   
+   **Recommended approach using git-filter-repo**:
+   ```bash
+   # Install git-filter-repo if needed
+   pip install git-filter-repo
+   
+   # Remove large file from history
+   git filter-repo --path path/to/large/file --invert-paths
+   
+   # Force push (⚠️ coordinate with team first!)
+   git push origin <branch-name> --force
+   ```
+   
+   **Legacy approach** (not recommended):
    ```bash
    git filter-branch --force --index-filter \
      'git rm --cached --ignore-unmatch path/to/large/file' \
      --prune-empty --tag-name-filter cat -- --all
+   
+   # ⚠️ Requires force push - coordinate with team!
+   git push origin <branch-name> --force
    ```
 
 2. **Or add it to .gitignore** (if not needed in repo):
@@ -72,6 +96,7 @@ If you encounter a "Large files detected" error:
    git lfs install
    git lfs track "*.large-extension"
    git add .gitattributes
+   git commit -m "Configure Git LFS for large files"
    ```
 
 ## Common Issues
