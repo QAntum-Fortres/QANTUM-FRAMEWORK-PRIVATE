@@ -109,9 +109,10 @@ class OmniGovernor(ABC):
     @abstractmethod
     def get_max_limit(self) -> float: pass
 
-    def run_cycle(self):
+    async def run_cycle(self):
         try:
-            raw_value = self.read_sensor()
+            loop = asyncio.get_running_loop()
+            raw_value = await loop.run_in_executor(None, self.read_sensor)
             self.current_stress = self.normalize_stress(raw_value, self.get_max_limit())
             # Reset action state unless triggered below
             self.last_action = "OPTIMAL"
@@ -168,9 +169,11 @@ async def handler(websocket):
     try:
         while True:
             # 1. Update Sensors
-            bio.run_cycle()
-            mkt.run_cycle()
-            nrg.run_cycle()
+            await asyncio.gather(
+                bio.run_cycle(),
+                mkt.run_cycle(),
+                nrg.run_cycle()
+            )
             
             cycle_count += 1
             is_hallucination = False
