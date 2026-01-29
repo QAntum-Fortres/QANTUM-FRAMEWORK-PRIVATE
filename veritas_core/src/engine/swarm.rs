@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use rand::Rng;
+use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct SwarmRequest {
@@ -12,21 +13,40 @@ pub struct SwarmStatus {
     pub active_agents: u32,
     pub completed_tasks: u32,
     pub throughput_tps: f32,
-    pub region_health: std::collections::HashMap<String, String>,
+    pub region_health: HashMap<String, String>,
+}
+
+pub struct WarmPool {
+    available_agents: u32,
+    status: String,
 }
 
 pub struct DistributedSwarm {
-    // Manages the container mesh
+    warm_pool: WarmPool,
 }
 
 impl DistributedSwarm {
     pub fn new() -> Self {
-        DistributedSwarm {}
+        DistributedSwarm {
+            warm_pool: WarmPool {
+                available_agents: 0,
+                status: "COLD".to_string(),
+            },
+        }
+    }
+
+    /// Pre-warms the agent container pool to mitigate "Cold Start" latency.
+    /// This simulates loading ViT models into memory.
+    pub fn pre_warm(&mut self) {
+        // SIMULATION: Initialize 50 agents
+        self.warm_pool.available_agents = 50;
+        self.warm_pool.status = "READY".to_string();
+        // println!("[PHYSICS] Warm Pool Initialized: 50 Agents (ViT Models Loaded)");
     }
 
     pub fn launch(&self, request: &SwarmRequest) -> SwarmStatus {
         // SIMULATION: Spin up 1000 micro-agents
-        let mut health = std::collections::HashMap::new();
+        let mut health = HashMap::new();
         for region in &request.regions {
             health.insert(region.clone(), "OPTIMAL".to_string());
         }
@@ -48,7 +68,11 @@ mod tests {
 
     #[test]
     fn test_swarm() {
-        let swarm = DistributedSwarm::new();
+        let mut swarm = DistributedSwarm::new();
+        swarm.pre_warm();
+        assert_eq!(swarm.warm_pool.available_agents, 50);
+        assert_eq!(swarm.warm_pool.status, "READY");
+
         let req = SwarmRequest {
             agent_count: 100,
             regions: vec!["us-west".to_string()],

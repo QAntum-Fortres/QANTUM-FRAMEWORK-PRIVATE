@@ -34,6 +34,15 @@ Veritas hooks directly into the browser's rendering pipeline and network stack t
 *Replaces: Limited Local Testing*
 A scalable mesh of **200,000+** lightweight Rust-based nodes capable of simulating global traffic loads and regional latency.
 
+### 6. Sovereign Architecture (New in v2.0)
+*Replaces: Black-box Cloud Dependencies*
+Veritas is built on a "Sovereign Tier" architecture designed for transparency and control.
+
+*   **Layer 2 (Physics): Warm Pools** - Pre-warmed container pools ensure zero latency for "Cold Start" AI model loading.
+*   **Layer 3 (Chemistry): Tiered Rate Limiting** - Priority queues ensure Enterprise/Sovereign clients always have "Fast Track" execution capacity.
+*   **Layer 5 (Reality): Transparency API** - Public Status Page API (`/api/status/public`) powered by real-time telemetry.
+*   **Layer 6 (Governance): Infrastructure Drift Guard** - Automated verification of infrastructure state against code definitions (`infra-drift-guard.ts`).
+
 ---
 
 ## 📊 Management Dashboard

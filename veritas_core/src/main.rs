@@ -12,6 +12,7 @@ use engine::observer::{StateChangeObserver, ObserverRequest};
 use engine::swarm::{DistributedSwarm, SwarmRequest};
 use enterprise::security::{RBAC, AuditLogger, UserContext, Role};
 use enterprise::compliance::{GDPRGuard, ComplianceMonitor};
+use enterprise::traffic::{TieredRateLimiter, Tier};
 use omega::physics::{SpatialFolder, ZeroPointHarvester};
 use omega::psionics::{NoeticLayer, PrescientLattice};
 use omega::ontology::RealityAnchor;
@@ -57,13 +58,19 @@ fn main() {
     let healer = SemanticHealer::new();
     let agent = GoalOrientedAgent::new();
     let observer = StateChangeObserver::new();
-    let swarm = DistributedSwarm::new();
+    let mut swarm = DistributedSwarm::new();
+
+    // Physics Layer 2: Warm Up
+    swarm.pre_warm();
 
     // Enterprise Modules
     let rbac = RBAC::new();
     let logger = AuditLogger::new();
     let gdpr = GDPRGuard::new();
     let _monitor = ComplianceMonitor::new();
+
+    // Chemistry Layer 3: Rate Limiting
+    let mut limiter = TieredRateLimiter::new(100); // Max 100 concurrent requests
 
     // Omega Modules (Experimental)
     let folder = SpatialFolder::new();
@@ -90,22 +97,36 @@ fn main() {
 
                     // 2. Build Context
                     let mut roles = HashSet::new();
-                    if secure_cmd.user_id == "admin" {
+                    let tier = if secure_cmd.user_id == "admin" {
                         roles.insert(Role::Admin);
+                        Tier::Sovereign
+                    } else if secure_cmd.user_id == "enterprise" {
+                        roles.insert(Role::Agent);
+                        Tier::Enterprise
                     } else {
                         roles.insert(Role::Viewer); // Default
-                    }
+                        Tier::Starter
+                    };
 
                     let user_ctx = UserContext {
-                        user_id: secure_cmd.user_id,
+                        user_id: secure_cmd.user_id.clone(),
                         roles,
                         auth_token: secure_cmd.auth_token,
                     };
 
-                    // 3. Log
+                    // 3. Traffic Control (Rate Limiting)
+                    // In a real async system, we would enqueue and process.
+                    // Here we simulate the check.
+                    limiter.enqueue(secure_cmd.user_id.clone(), tier);
+                    if limiter.next().is_none() {
+                        print_error("Rate Limit Exceeded: Grid Saturated. Upgrade to Sovereign Tier for priority.");
+                        continue;
+                    }
+
+                    // 4. Log
                     let _log_entry = logger.log("CommandReceived", &user_ctx);
 
-                    // 4. Authorize & Execute
+                    // 5. Authorize & Execute
                     match secure_cmd.command {
                         Command::Locate(req) => {
                              if rbac.authorize(&user_ctx, Role::Viewer) {
@@ -155,6 +176,9 @@ fn main() {
                              print_response("Pong".to_string());
                         }
                     }
+
+                    // Release slot
+                    limiter.release();
                 },
                 Err(e) => {
                     // Fallback to non-secure command for backward compatibility or error

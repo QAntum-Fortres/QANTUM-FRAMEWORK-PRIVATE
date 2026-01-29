@@ -1,0 +1,16 @@
+{
+  "services": {
+    "nerve-center": {
+      "replicas": 1,
+      "image": "veritas/nerve-center:v37"
+    },
+    "veritas-core": {
+      "replicas": 1,
+      "image": "veritas/core:v2-omega"
+    },
+    "postgres": {
+      "volume_size_gb": 100
+    }
+  },
+  "last_updated": "2026-01-29T13:02:35.029Z"
+}
