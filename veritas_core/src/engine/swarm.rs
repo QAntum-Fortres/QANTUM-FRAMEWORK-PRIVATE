@@ -17,12 +17,13 @@ pub struct SwarmStatus {
 }
 
 pub struct WarmPool {
-    available_agents: u32,
-    status: String,
+    pub available_agents: u32,
+    pub status: String,
+    pub threshold: u32,
 }
 
 pub struct DistributedSwarm {
-    warm_pool: WarmPool,
+    pub warm_pool: WarmPool,
 }
 
 impl DistributedSwarm {
@@ -31,6 +32,7 @@ impl DistributedSwarm {
             warm_pool: WarmPool {
                 available_agents: 0,
                 status: "COLD".to_string(),
+                threshold: 20, // Replenish if below this
             },
         }
     }
@@ -41,7 +43,28 @@ impl DistributedSwarm {
         // SIMULATION: Initialize 50 agents
         self.warm_pool.available_agents = 50;
         self.warm_pool.status = "READY".to_string();
-        // println!("[PHYSICS] Warm Pool Initialized: 50 Agents (ViT Models Loaded)");
+    }
+
+    /// Chaos Engineering: Simulate killing agents
+    pub fn kill_agents(&mut self, count: u32) -> u32 {
+        if count >= self.warm_pool.available_agents {
+            self.warm_pool.available_agents = 0;
+        } else {
+            self.warm_pool.available_agents -= count;
+        }
+        self.check_replenish()
+    }
+
+    /// Progressive Warming: Automatically replenish if below threshold
+    pub fn check_replenish(&mut self) -> u32 {
+        if self.warm_pool.available_agents < self.warm_pool.threshold {
+            // "Heal" the pool
+            let deficit = 50 - self.warm_pool.available_agents;
+            self.warm_pool.available_agents = 50;
+            self.warm_pool.status = "REPLENISHED".to_string();
+            return deficit; // Returned how many were added
+        }
+        0
     }
 
     pub fn launch(&self, request: &SwarmRequest) -> SwarmStatus {
@@ -80,5 +103,14 @@ mod tests {
         let status = swarm.launch(&req);
         assert_eq!(status.active_agents, 100);
         assert!(status.region_health.contains_key("us-west"));
+    }
+
+    #[test]
+    fn test_replenish() {
+        let mut swarm = DistributedSwarm::new();
+        swarm.pre_warm();
+        swarm.kill_agents(40); // Leaves 10, which is < 20 (threshold)
+        assert_eq!(swarm.warm_pool.available_agents, 50); // Should be healed back to full
+        assert_eq!(swarm.warm_pool.status, "REPLENISHED");
     }
 }

@@ -34,6 +34,12 @@ enum Command {
     Swarm(SwarmRequest),
     Omega(OmegaRequest),
     Ping,
+    Chaos(ChaosRequest),
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct ChaosRequest {
+    pub kill_count: u32,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -115,8 +121,6 @@ fn main() {
                     };
 
                     // 3. Traffic Control (Rate Limiting)
-                    // In a real async system, we would enqueue and process.
-                    // Here we simulate the check.
                     limiter.enqueue(secure_cmd.user_id.clone(), tier);
                     if limiter.next().is_none() {
                         print_error("Rate Limit Exceeded: Grid Saturated. Upgrade to Sovereign Tier for priority.");
@@ -171,6 +175,13 @@ fn main() {
                                 };
                                 print_response(result);
                             } else { print_error("Access Denied: Omega Clearance Required"); }
+                        },
+                        Command::Chaos(req) => {
+                            // "Apoptosis Protocol" - Killing agents
+                            if rbac.authorize(&user_ctx, Role::Admin) {
+                                let replenished = swarm.kill_agents(req.kill_count);
+                                print_response(format!("Chaos executed: {} agents terminated. {} agents replenished via Progressive Warming.", req.kill_count, replenished));
+                            } else { print_error("Access Denied: Chaos Clearance Required"); }
                         },
                         Command::Ping => {
                              print_response("Pong".to_string());
