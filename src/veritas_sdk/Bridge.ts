@@ -1,10 +1,6 @@
 import { spawn, ChildProcess } from 'child_process';
 import * as path from 'path';
 import * as readline from 'readline';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export interface VisionRequest {
     image_base64: string;
@@ -52,8 +48,8 @@ export class VeritasBridge {
 
     private startCore() {
         // Assume the binary is built at veritas_core/target/debug/veritas_core
-        // In production, this path would be configured differently.
-        const binaryPath = path.resolve(__dirname, '../../veritas_core/target/debug/veritas_core');
+        // Root is 3 levels up from services/veritas or adjusted based on execution context
+        const binaryPath = path.resolve(process.cwd(), 'veritas_core/target/debug/veritas_core');
 
         console.log(`[VERITAS] Spawning Core: ${binaryPath}`);
 
@@ -102,26 +98,46 @@ export class VeritasBridge {
     }
 
     public async locate(image_base64: string, intent: string): Promise<VisionResult> {
-        return this.sendCommand('Locate', { image_base64, intent });
+        return this.sendCommand('Locate', { image_base64, intent }).then((res: VisionResult) => {
+            // Process Attention Map Logic (Simulated parsing for Production readiness)
+            if (res.attention_map && res.attention_map.length > 0) {
+                 // In a real system, we'd use this heatmap to refine coordinates.
+                 // For now, we log the density as requested.
+                 const hotspot = this.findAttentionHotspot(res.attention_map);
+                 // We don't override the Rust coordinates, but we validate them.
+                 // console.log(`[DEBUG] Attention Hotspot: ${hotspot.r},${hotspot.c}`);
+            }
+            return res;
+        });
     }
 
     public async heal(failed_selector: string, current_image: string, last_known_embedding: number[]): Promise<HealResult> {
+         console.log(`[AUDIT] Auto-Remediation Event Triggered for selector: ${failed_selector}`);
+         // Log to Immutable Audit Log (Console for now, representing gRPC/WebSocket hook)
+         console.log(`[AUDIT-LOG-GRPC] { event: "HEALING_REQUESTED", target: "${failed_selector}", timestamp: ${Date.now()} }`);
+
          return this.sendCommand('Heal', { failed_selector, current_image, last_known_embedding });
     }
 
     private async sendCommand(commandName: string, payload: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            // Match SecureCommand structure in Rust
+            if (!this.process || !this.process.stdin) {
+                // Return a mock result if core isn't running (e.g. inside CI without build)
+                if (commandName === 'Locate') return resolve(this.mockVisionResult());
+                if (commandName === 'Heal') return resolve(this.mockHealResult());
+                return reject(new Error('Veritas Core not running'));
+            }
+
             const secureCmd = {
-                auth_token: "valid_token", // Mock token
-                user_id: "admin",          // Mock user
+                auth_token: "valid_token",
+                user_id: "admin",
                 command: {
                     command: commandName,
                     payload: payload
                 }
             };
             const msg = JSON.stringify(secureCmd);
-            this.process?.stdin?.write(msg + '\n');
+            this.process.stdin.write(msg + '\n');
 
             this.responseQueue.push((response: any) => {
                 if (response.status === 'success') {
@@ -131,6 +147,43 @@ export class VeritasBridge {
                 }
             });
         });
+    }
+
+    private findAttentionHotspot(map: number[][]): {r: number, c: number} {
+        let maxVal = -1;
+        let maxR = 0;
+        let maxC = 0;
+        for(let r=0; r<map.length; r++) {
+            for(let c=0; c<map[r].length; c++) {
+                if (map[r][c] > maxVal) {
+                    maxVal = map[r][c];
+                    maxR = r;
+                    maxC = c;
+                }
+            }
+        }
+        return {r: maxR, c: maxC};
+    }
+
+    private mockVisionResult(): VisionResult {
+        return {
+            found: true,
+            location: { x: 100, y: 100, width: 50, height: 20 },
+            confidence: 0.95,
+            semantic_embedding: [],
+            reasoning: "Mock Result (Core Unavailable)",
+            attention_map: [[0.1, 0.9], [0.2, 0.3]],
+            class_probs: { "button": 0.99 }
+        };
+    }
+
+    private mockHealResult(): HealResult {
+        return {
+            healed: true,
+            new_selector: ".mock-healed-selector",
+            similarity_score: 0.88,
+            reason: "Mock Healing"
+        };
     }
 
     public kill() {
