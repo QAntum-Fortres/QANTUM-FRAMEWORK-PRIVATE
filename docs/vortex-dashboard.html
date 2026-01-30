@@ -198,6 +198,25 @@
     </style>
 </head>
 <body>
+    <!-- Architecture Modal -->
+    <dialog id="architecture-modal">
+        <div class="stat-card" style="cursor: default; border-color: var(--primary);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;">
+                <h3 style="font-family: 'Space Grotesk'; font-size: 1.5rem; color: var(--accent);">🏗️ System Architecture</h3>
+                <button onclick="closeArchitectureModal()" aria-label="Close modal" style="background:none; border:none; color:var(--text-dim); font-size:1.5rem; cursor:pointer;">×</button>
+            </div>
+            <ul style="list-style: none; margin-bottom: 1.5rem;">
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>VortexHealingNexus:</strong> Orchestrates autonomous healing</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>ApoptosisModule:</strong> Manages programmed death</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>LivenessTokenManager:</strong> Centralized cryptographic secrets</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>SystemOrchestrator:</strong> Coordinates all seven pillars</span></li>
+                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem;"><span style="color:var(--primary)">•</span> <span><strong>ConsensusProtocol:</strong> Adversarial validation</span></li>
+            </ul>
+            <div style="text-align: center; color: var(--secondary); font-size: 0.9rem; border-top: 1px solid var(--glass-border); padding-top: 1rem;">
+                Total Modules: 243 | Active Healing Strategies: 7
+            </div>
+        </div>
+    </dialog>
     <!-- Particle Background -->
     <div class="particles" id="particles"></div>
     <div class="container">
@@ -283,7 +302,7 @@
             </div>
         </section>
         <div class="controls">
-            <button class="btn btn-primary" onclick="simulateHealing(this)">🔬 Simulate Autonomous Healing</button>
+            <button class="btn btn-primary" onclick="simulateHealing()">🔬 Simulate Autonomous Healing</button>
             <button class="btn btn-secondary" onclick="viewArchitecture()">📊 View System Architecture</button>
             <button class="btn btn-secondary" onclick="runDiagnostics()">🔍 Run System Diagnostics</button>
         </div>
@@ -293,19 +312,19 @@
     </div>
 
     <dialog id="architecture-modal" onclick="if(event.target===this)this.close()">
-        <div class="stat-card" style="cursor: default; position: relative; max-width: 100%;">
+        <div class="modal-content">
             <button class="close-btn" onclick="this.closest('dialog').close()" aria-label="Close modal">×</button>
-            <h3 style="font-family: 'Space Grotesk'; font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; padding-right: 2rem;">🏗️ System Architecture</h3>
-            <ul style="list-style: none; margin-bottom: 2rem;">
-                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: start;"><span style="color:var(--primary)">•</span> <span><strong>VortexHealingNexus:</strong> Orchestrates autonomous healing</span></li>
-                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: start;"><span style="color:var(--primary)">•</span> <span><strong>ApoptosisModule:</strong> Manages programmed death</span></li>
-                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: start;"><span style="color:var(--primary)">•</span> <span><strong>LivenessTokenManager:</strong> Centralized cryptographic secrets</span></li>
-                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: start;"><span style="color:var(--primary)">•</span> <span><strong>SystemOrchestrator:</strong> Coordinates all seven pillars</span></li>
-                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: start;"><span style="color:var(--primary)">•</span> <span><strong>ConsensusProtocol:</strong> Adversarial validation</span></li>
+            <h3 class="modal-title">🏗️ System Architecture</h3>
+            <ul class="modal-list">
+                <li><strong>• VortexHealingNexus:</strong> Orchestrates autonomous healing</li>
+                <li><strong>• ApoptosisModule:</strong> Manages programmed death</li>
+                <li><strong>• LivenessTokenManager:</strong> Centralized cryptographic secrets</li>
+                <li><strong>• SystemOrchestrator:</strong> Coordinates all seven pillars</li>
+                <li><strong>• ConsensusProtocol:</strong> Adversarial validation</li>
             </ul>
-            <div style="text-align: center; border-top: 1px solid var(--glass-border); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
-                <span style="color: var(--secondary); font-size: 0.9rem;">Total Modules: 243 | Active Healing Strategies: 7</span>
-                <button class="btn btn-secondary" onclick="this.closest('dialog').close()">Close Panel</button>
+            <div class="modal-footer">
+                <span>Total Modules: 243 | Active Healing Strategies: 7</span>
+                <button class="btn btn-secondary" onclick="this.closest('dialog').close()">Close</button>
             </div>
         </div>
     </dialog>
@@ -321,29 +340,12 @@
             particlesContainer.appendChild(particle);
         }
 
-        function simulateHealing(btn) {
+        function simulateHealing() {
             const statusText = document.querySelector('.status-text');
             const originalText = statusText.textContent;
             statusText.textContent = '🔄 HEALING IN PROGRESS...';
-
-            // UX Enhancement: Loading state
-            let originalBtnText = '';
-            if (btn) {
-                btn.disabled = true;
-                originalBtnText = btn.innerHTML;
-                btn.innerHTML = '⏳ Healing...';
-                btn.style.cursor = 'wait';
-            }
-
             setTimeout(() => {
                 statusText.textContent = '✅ HEALING COMPLETE';
-
-                if (btn) {
-                    btn.disabled = false;
-                    btn.innerHTML = originalBtnText;
-                    btn.style.cursor = 'pointer';
-                }
-
                 setTimeout(() => statusText.textContent = originalText, 2000);
             }, 3000);
         }
@@ -407,106 +409,103 @@
 
         // NEURAL MAP VISUALIZATION
         const neuralCanvas = document.getElementById('neuralMapCanvas');
-        if (neuralCanvas) {
-            const nCtx = neuralCanvas.getContext('2d');
-            let nodes = [];
+        const nCtx = neuralCanvas.getContext('2d');
+        let nodes = [];
 
-            function resizeNeuralCanvas() {
-                if (!neuralCanvas.parentElement) return;
-                neuralCanvas.width = neuralCanvas.parentElement.clientWidth;
-                neuralCanvas.height = neuralCanvas.parentElement.clientHeight;
+        function resizeNeuralCanvas() {
+            if (!neuralCanvas.parentElement) return;
+            neuralCanvas.width = neuralCanvas.parentElement.clientWidth;
+            neuralCanvas.height = neuralCanvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeNeuralCanvas);
+        setTimeout(resizeNeuralCanvas, 100);
+
+        class Node {
+            constructor() {
+                this.x = Math.random() * (neuralCanvas.width || 800);
+                this.y = Math.random() * (neuralCanvas.height || 500);
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.type = Math.random() > 0.9 ? 'BUTTON' : (Math.random() > 0.8 ? 'INPUT' : 'DIV');
+                this.color = this.type === 'BUTTON' ? '#a855f7' : (this.type === 'INPUT' ? '#06b6d4' : '#374151');
             }
-            window.addEventListener('resize', resizeNeuralCanvas);
-            setTimeout(resizeNeuralCanvas, 100);
-
-            class Node {
-                constructor() {
-                    this.x = Math.random() * (neuralCanvas.width || 800);
-                    this.y = Math.random() * (neuralCanvas.height || 500);
-                    this.vx = (Math.random() - 0.5) * 2;
-                    this.vy = (Math.random() - 0.5) * 2;
-                    this.type = Math.random() > 0.9 ? 'BUTTON' : (Math.random() > 0.8 ? 'INPUT' : 'DIV');
-                    this.color = this.type === 'BUTTON' ? '#a855f7' : (this.type === 'INPUT' ? '#06b6d4' : '#374151');
-                }
-                update() {
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    if (this.x < 0 || this.x > neuralCanvas.width) this.vx *= -1;
-                    if (this.y < 0 || this.y > neuralCanvas.height) this.vy *= -1;
-                }
-                draw() {
-                    nCtx.fillStyle = this.color;
-                    nCtx.fillRect(this.x, this.y, 4, 4);
-                }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > neuralCanvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > neuralCanvas.height) this.vy *= -1;
             }
+            draw() {
+                nCtx.fillStyle = this.color;
+                nCtx.fillRect(this.x, this.y, 4, 4);
+            }
+        }
 
-            for (let i = 0; i < 200; i++) nodes.push(new Node());
+        for (let i = 0; i < 200; i++) nodes.push(new Node());
 
-            function animateNeural() {
-                if (!neuralCanvas.width) return requestAnimationFrame(animateNeural);
+        function animateNeural() {
+            if (!neuralCanvas.width) return requestAnimationFrame(animateNeural);
 
-                nCtx.fillStyle = 'rgba(0,0,0,0.1)';
-                nCtx.fillRect(0, 0, neuralCanvas.width, neuralCanvas.height);
+            nCtx.fillStyle = 'rgba(0,0,0,0.1)';
+            nCtx.fillRect(0, 0, neuralCanvas.width, neuralCanvas.height);
 
-                nodes.forEach(node => {
-                    node.update();
-                    node.draw();
+            nodes.forEach(node => {
+                node.update();
+                node.draw();
 
-                    // Randomly draw "Scanning" box
-                    if (Math.random() > 0.99) {
-                        nCtx.strokeStyle = '#10b981';
-                        nCtx.strokeRect(node.x - 10, node.y - 10, 24, 24);
-                        nCtx.fillStyle = '#10b981';
-                        nCtx.font = '10px JetBrains Mono';
-                        nCtx.fillText(node.type, node.x + 15, node.y);
-                    }
-                });
+                // Randomly draw "Scanning" box
+                if (Math.random() > 0.99) {
+                    nCtx.strokeStyle = '#10b981';
+                    nCtx.strokeRect(node.x - 10, node.y - 10, 24, 24);
+                    nCtx.fillStyle = '#10b981';
+                    nCtx.font = '10px JetBrains Mono';
+                    nCtx.fillText(node.type, node.x + 15, node.y);
+                }
+            });
 
                 // Simulate "200,000" dashboard elements
                 const countEl = document.getElementById('node-count');
                 if(countEl) countEl.innerText = (Math.random() * 200000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-                requestAnimationFrame(animateNeural);
-            }
-            animateNeural();
+            requestAnimationFrame(animateNeural);
         }
+        animateNeural();
 
 
         // SWARM VISUALIZATION
         const swarmCanvas = document.getElementById('swarmCanvas');
-        if (swarmCanvas) {
-            const sCtx = swarmCanvas.getContext('2d');
+        const sCtx = swarmCanvas.getContext('2d');
 
-            function resizeSwarmCanvas() {
-                if (!swarmCanvas.parentElement) return;
-                swarmCanvas.width = swarmCanvas.parentElement.clientWidth;
-                swarmCanvas.height = swarmCanvas.parentElement.clientHeight;
-            }
-            window.addEventListener('resize', resizeSwarmCanvas);
-            setTimeout(resizeSwarmCanvas, 100);
+        function resizeSwarmCanvas() {
+            if (!swarmCanvas.parentElement) return;
+            swarmCanvas.width = swarmCanvas.parentElement.clientWidth;
+            swarmCanvas.height = swarmCanvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeSwarmCanvas);
+        setTimeout(resizeSwarmCanvas, 100);
 
-            function animateSwarm() {
-                if (!swarmCanvas.width) return setTimeout(() => requestAnimationFrame(animateSwarm), 100);
+        function animateSwarm() {
+            if (!swarmCanvas.width) return setTimeout(() => requestAnimationFrame(animateSwarm), 100);
 
-                // Re-calculate cell size in case of resize
-                const w = swarmCanvas.width / 40;
-                const h = swarmCanvas.height / 25;
+            // Re-calculate cell size in case of resize
+            const w = swarmCanvas.width / 40;
+            const h = swarmCanvas.height / 25;
 
-                sCtx.clearRect(0, 0, swarmCanvas.width, swarmCanvas.height);
+            sCtx.clearRect(0, 0, swarmCanvas.width, swarmCanvas.height);
 
-                let active = 0;
+            let active = 0;
 
-                for (let r = 0; r < 25; r++) {
-                    for (let c = 0; c < 40; c++) {
-                        const status = Math.random();
-                        if (status > 0.99) sCtx.fillStyle = '#ef4444'; // Error/Heal
-                        else if (status > 0.8) { sCtx.fillStyle = '#10b981'; active++; } // Success
-                        else if (status > 0.5) { sCtx.fillStyle = '#06b6d4'; active++; } // Working
-                        else sCtx.fillStyle = '#1f2937'; // Idle
+            for (let r = 0; r < 25; r++) {
+                for (let c = 0; c < 40; c++) {
+                    const status = Math.random();
+                    if (status > 0.99) sCtx.fillStyle = '#ef4444'; // Error/Heal
+                    else if (status > 0.8) { sCtx.fillStyle = '#10b981'; active++; } // Success
+                    else if (status > 0.5) { sCtx.fillStyle = '#06b6d4'; active++; } // Working
+                    else sCtx.fillStyle = '#1f2937'; // Idle
 
-                        sCtx.fillRect(c * w + 1, r * h + 1, w - 2, h - 2);
-                    }
+                    sCtx.fillRect(c * w + 1, r * h + 1, w - 2, h - 2);
                 }
+            }
 
                 const activeEl = document.getElementById('active-agents');
                 if(activeEl) activeEl.innerText = active * 4; // Simulate more agents offscreen
@@ -514,10 +513,9 @@
                 const tpsEl = document.getElementById('swarm-tps');
                 if(tpsEl) tpsEl.innerText = (active * 4.2).toFixed(1);
 
-                setTimeout(() => requestAnimationFrame(animateSwarm), 150);
-            }
-            animateSwarm();
+            setTimeout(() => requestAnimationFrame(animateSwarm), 150);
         }
+        animateSwarm();
 
         // OMEGA ANIMATION
         setInterval(() => {
