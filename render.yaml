@@ -1,0 +1,30 @@
+services:
+  # Python Backend
+  - type: web
+    name: veritas-backend
+    env: python
+    runtime: docker
+    dockerContext: Backend
+    dockerfilePath: Backend/Dockerfile
+    plan: free
+    region: ohio
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DATABASE_URL
+        value: sqlite+aiosqlite:///backend.db
+
+  # React Frontend (Static Site)
+  - type: web
+    name: veritas-frontend
+    env: static
+    buildCommand: cd Frontend && npm install && npm run build
+    staticPublishPath: Frontend/dist
+    plan: free
+    region: ohio
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: veritas-backend
+          property: url
