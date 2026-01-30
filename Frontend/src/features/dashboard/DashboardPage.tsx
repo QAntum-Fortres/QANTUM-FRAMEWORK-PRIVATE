@@ -1,4 +1,4 @@
-import { Activity, Zap, TrendingUp, Layers, Terminal } from "lucide-react";
+import { Activity, Zap, TrendingUp, Layers } from "lucide-react";
 import { useSystemMetrics } from "./hooks/useMetrics";
 import { useRealtime } from "@/hooks/useRealtime";
 import { MetricCard } from "./components/MetricCard";
