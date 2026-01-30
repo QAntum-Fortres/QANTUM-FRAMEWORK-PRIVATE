@@ -9,7 +9,6 @@ coverage/
 # Rust
 target/
 **/*.rs.bk
-**/*.rs.bak
 debug/
 *.pdb
 
@@ -30,42 +29,3 @@ logs/
 # OS
 .DS_Store
 Thumbs.db
-
-# Editor temp files
-*.swp
-*.swo
-*~
-.*.swp
-.*.swo
-
-# Temporary files
-*.tmp
-*.temp
-*.bak
-*.backup
-*.cache
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-*.egg-info/
-.pytest_cache/
-.mypy_cache/
-.tox/
-venv/
-.venv/
-ENV/
-
-# Test results and reports
-*.test-results.json
-coverage.json
-
-# Large data files (prevent push failures)
-# Note: Files with .large extension should be renamed manually (e.g., data.csv -> data.csv.large)
-# For important large files, consider using Git LFS instead of ignoring them
-*.csv.large
-*.json.large
-*.md.large

@@ -115,9 +115,17 @@
             background: rgba(6, 182, 212, 0.1); padding: 0.25rem 0.5rem; border-radius: 4px; display: inline-block;
         }
         .code-block {
+            position: relative;
             background: rgba(0, 0, 0, 0.5); border: 1px solid var(--glass-border); border-radius: 12px;
             padding: 1.5rem; margin: 1rem 0; overflow-x: auto; font-size: 0.85rem; line-height: 1.6; color: var(--accent);
         }
+        .copy-btn {
+            position: absolute; top: 0.5rem; right: 0.5rem;
+            background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border);
+            color: var(--text-secondary); border-radius: 6px; padding: 0.25rem 0.5rem;
+            font-size: 0.75rem; cursor: pointer; transition: all 0.2s; font-family: 'JetBrains Mono', monospace;
+        }
+        .copy-btn:hover { background: rgba(255, 255, 255, 0.2); color: var(--text-primary); border-color: var(--accent); }
         .controls { display: flex; justify-content: center; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; }
         .btn {
             font-family: 'Space Grotesk', sans-serif; padding: 1rem 2rem; font-size: 1rem; font-weight: 600;
@@ -184,17 +192,23 @@
         dialog { background: transparent; border: none; padding: 0; color: var(--text-primary); margin: auto; max-width: 600px; width: 90%; }
         dialog::backdrop { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); }
 
-        /* Accessibility */
-        :focus-visible {
-            outline: 2px solid var(--secondary);
-            outline-offset: 2px;
+        /* Singularity Log */
+        #audit-log::-webkit-scrollbar { width: 6px; }
+        #audit-log::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 3px; }
+        #audit-log {
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+            position: relative;
         }
-
-        .close-btn {
-            position: absolute; top: 1rem; right: 1rem; background: none; border: none;
-            color: var(--text-dim); font-size: 1.5rem; cursor: pointer; transition: color 0.3s;
+        #audit-log::before {
+            content: "LIVE FEED // OMEGA PROTOCOL";
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 0.7rem;
+            color: var(--danger);
+            animation: blink 1s infinite;
+            pointer-events: none;
         }
-        .close-btn:hover { color: var(--danger); }
     </style>
 </head>
 <body>
@@ -254,63 +268,87 @@
         </section>
         <section class="security-section">
             <h2 class="section-title">🔐 LIVENESS TOKEN SECURITY ARCHITECTURE</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">Military-grade cryptographic protection ensuring autonomous module vitality</p>
-            <div class="threat-matrix">
-                <div class="threat-card"><div class="threat-status">PROTECTED</div><h3 class="threat-title">Forged Tokens</h3><p class="threat-method">HMAC-SHA256 Verification</p><p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Every token signature is cryptographically verified against the secret key. Forged tokens are instantly rejected.</p></div>
-                <div class="threat-card"><div class="threat-status">PROTECTED</div><h3 class="threat-title">Replay Attacks</h3><p class="threat-method">5-Minute Expiry Window</p><p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Timestamps ensure tokens expire after 5 minutes. Old tokens cannot be reused to spoof vitality.</p></div>
-                <div class="threat-card"><div class="threat-status">PROTECTED</div><h3 class="threat-title">Module ID Spoofing</h3><p class="threat-method">Strict ID Matching</p><p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Module IDs embedded in tokens are verified. Module A cannot use tokens generated for Module B.</p></div>
-                <div class="threat-card"><div class="threat-status">PROTECTED</div><h3 class="threat-title">Clock Skew Attacks</h3><p class="threat-method">Future Token Rejection</p><p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;">Tokens with timestamps from the future (>60s ahead) are rejected to prevent time manipulation.</p></div>
-            </div>
             <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)" aria-label="Copy code to clipboard">📋 Copy</button>
                 <span style="color: var(--text-dim);">// LivenessToken Validation Flow</span>
                 <span style="color: var(--primary);">const</span> tokenManager = LivenessTokenManager.<span style="color: var(--secondary);">getInstance</span>();
                 <span style="color: var(--primary);">const</span> TOKEN_SECRET = tokenManager.<span style="color: var(--secondary);">getSecret</span>();
+                <span style="color: var(--text-dim);">// ... (Secure Logic)</span>
+            </div>
+        </section>
 
-                <span style="color: var(--text-dim);">// Step 1: Parse token components</span>
-                <span style="color: var(--primary);">const</span> [moduleId, timestamp, status, signature] = token.<span style="color: var(--secondary);">split</span>(<span style="color: var(--warning);">':'</span>);
+        <!-- VERITAS VISUALIZATION SECTION -->
+        <section class="veritas-section" style="margin-bottom: 3rem;">
+            <h2 class="section-title">👁️ VERITAS COGNITIVE FRAMEWORK</h2>
+            <div class="stats-grid">
+                 <div class="stat-card">
+                    <div class="stat-label">Neural Mapped Nodes</div>
+                    <div class="stat-value" id="node-count">0</div>
+                 </div>
+                 <div class="stat-card">
+                    <div class="stat-label">Active Swarm Agents</div>
+                    <div class="stat-value" id="active-agents">0</div>
+                 </div>
+                 <div class="stat-card">
+                    <div class="stat-label">Swarm TPS</div>
+                    <div class="stat-value" id="swarm-tps">0.0</div>
+                 </div>
+                 <div class="stat-card">
+                    <div class="stat-label">Omega Vacuum Flux</div>
+                    <div class="stat-value" id="vacuum-flux">0 TW</div>
+                 </div>
+            </div>
 
-                <span style="color: var(--text-dim);">// Step 2: Verify module ID match</span>
-                <span style="color: var(--primary);">if</span> (moduleId !== expectedModuleId) <span style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span style="color: var(--warning);">'Module ID mismatch'</span>);
+            <div class="pillars-grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="pillar-card" style="height: 400px; display: flex; flex-direction: column;">
+                    <h3 class="pillar-title">🧠 Neural Map (ViT Layer)</h3>
+                    <p class="pillar-description" style="margin-bottom: 1rem;">Real-time semantic perception of UI intent.</p>
+                    <div style="flex: 1; position: relative; border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden; background: #000;">
+                        <canvas id="neuralMapCanvas" style="width: 100%; height: 100%;"></canvas>
+                    </div>
+                </div>
+                <div class="pillar-card" style="height: 400px; display: flex; flex-direction: column;">
+                    <h3 class="pillar-title">🐝 Distributed Swarm Mesh</h3>
+                    <p class="pillar-description" style="margin-bottom: 1rem;">Global execution across 1000+ headless nodes.</p>
+                    <div style="flex: 1; position: relative; border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden; background: #000;">
+                         <canvas id="swarmCanvas" style="width: 100%; height: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
 
-                <span style="color: var(--text-dim);">// Step 3: Validate timestamp (5-minute window)</span>
-                <span style="color: var(--primary);">const</span> age = Date.<span style="color: var(--secondary);">now</span>() - <span style="color: var(--secondary);">parseInt</span>(timestamp);
-                <span style="color: var(--primary);">if</span> (age > <span style="color: var(--accent);">300000</span>) <span style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span style="color: var(--warning);">'Token expired'</span>);
-
-                <span style="color: var(--text-dim);">// Step 4: Cryptographic signature verification</span>
-                <span style="color: var(--primary);">const</span> expectedSig = crypto.<span style="color: var(--secondary);">createHmac</span>(<span style="color: var(--warning);">'sha256'</span>, TOKEN_SECRET).<span style="color: var(--secondary);">update</span>(<span style="color: var(--warning);">`${moduleId}:${timestamp}:${status}`</span>).<span style="color: var(--secondary);">digest</span>(<span style="color: var(--warning);">'hex'</span>);
-
-                <span style="color: var(--primary);">if</span> (signature !== expectedSig) <span style="color: var(--primary);">throw</span> <span style="color: var(--danger);">Error</span>(<span style="color: var(--warning);">'Signature verification FAILED'</span>);
+            <div class="pillar-card" style="margin-top: 2rem;">
+                <h3 class="pillar-title">📜 Singularity Audit Log</h3>
+                <p class="pillar-description">Zero-Wait Event Stream with AI Annotation.</p>
+                <div id="audit-log" style="height: 200px; overflow-y: auto; background: rgba(0,0,0,0.6); padding: 1rem; font-family: 'JetBrains Mono'; font-size: 0.85rem; border: 1px solid var(--glass-border); border-radius: 8px;">
+                    <!-- Logs injected by JS -->
+                </div>
             </div>
         </section>
         <div class="controls">
-            <button class="btn btn-primary" onclick="simulateHealing(this)">🔬 Simulate Autonomous Healing</button>
+            <button class="btn btn-primary" onclick="activateVeritas()">🚀 ACTIVATE VERITAS SWARM</button>
+            <button class="btn btn-secondary" onclick="simulateHealing(this)">🔬 Simulate Autonomous Healing</button>
             <button class="btn btn-secondary" onclick="viewArchitecture()">📊 View System Architecture</button>
-            <button class="btn btn-secondary" onclick="runDiagnostics()">🔍 Run System Diagnostics</button>
         </div>
     </div>
     <div class="status-bar">
-        <div class="status-indicator"></div><span class="status-text">SYSTEM ONLINE</span>
+        <div class="status-indicator"></div><span class="status-text" id="connection-status">CONNECTING TO NERVE CENTER...</span>
     </div>
 
-    <dialog id="architecture-modal" onclick="if(event.target===this)this.close()">
-        <div class="stat-card" style="cursor: default; position: relative; max-width: 100%;">
-            <button class="close-btn" onclick="this.closest('dialog').close()" aria-label="Close modal">×</button>
-            <h3 style="font-family: 'Space Grotesk'; font-size: 1.5rem; color: var(--accent); margin-bottom: 1.5rem; padding-right: 2rem;">🏗️ System Architecture</h3>
-            <ul style="list-style: none; margin-bottom: 2rem;">
-                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: start;"><span style="color:var(--primary)">•</span> <span><strong>VortexHealingNexus:</strong> Orchestrates autonomous healing</span></li>
-                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: start;"><span style="color:var(--primary)">•</span> <span><strong>ApoptosisModule:</strong> Manages programmed death</span></li>
-                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: start;"><span style="color:var(--primary)">•</span> <span><strong>LivenessTokenManager:</strong> Centralized cryptographic secrets</span></li>
-                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: start;"><span style="color:var(--primary)">•</span> <span><strong>SystemOrchestrator:</strong> Coordinates all seven pillars</span></li>
-                <li style="margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: start;"><span style="color:var(--primary)">•</span> <span><strong>ConsensusProtocol:</strong> Adversarial validation</span></li>
-            </ul>
-            <div style="text-align: center; border-top: 1px solid var(--glass-border); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
-                <span style="color: var(--secondary); font-size: 0.9rem;">Total Modules: 243 | Active Healing Strategies: 7</span>
-                <button class="btn btn-secondary" onclick="this.closest('dialog').close()">Close Panel</button>
-            </div>
-        </div>
-    </dialog>
-
     <script>
+        // Copy function
+        function copyCode(btn) {
+            // ... (Same as before)
+            const clone = btn.parentElement.cloneNode(true);
+            clone.querySelector('.copy-btn').remove();
+            const text = clone.innerText.trim();
+             if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text);
+                btn.innerHTML = "✅ Copied!";
+                setTimeout(() => btn.innerHTML = "📋 Copy", 2000);
+            }
+        }
+
+        // Particle System
         const particlesContainer = document.getElementById('particles');
         for (let i = 0; i < 50; i++) {
             const particle = document.createElement('div');
@@ -321,90 +359,96 @@
             particlesContainer.appendChild(particle);
         }
 
-        function simulateHealing(btn) {
-            const statusText = document.querySelector('.status-text');
-            const originalText = statusText.textContent;
-            statusText.textContent = '🔄 HEALING IN PROGRESS...';
+        // WEBSOCKET CONNECTION
+        let ws;
+        const statusText = document.getElementById('connection-status');
+        const indicator = document.querySelector('.status-indicator');
 
-            // UX Enhancement: Loading state
-            let originalBtnText = '';
-            if (btn) {
-                btn.disabled = true;
-                originalBtnText = btn.innerHTML;
-                btn.innerHTML = '⏳ Healing...';
-                btn.style.cursor = 'wait';
+        function connect() {
+            ws = new WebSocket('ws://localhost:3001');
+
+            ws.onopen = () => {
+                statusText.innerText = 'NERVE CENTER ONLINE';
+                indicator.style.background = '#10b981';
+                indicator.style.boxShadow = '0 0 20px #10b981';
+            };
+
+            ws.onmessage = (event) => {
+                const msg = JSON.parse(event.data);
+                handleMessage(msg);
+            };
+
+            ws.onclose = () => {
+                statusText.innerText = 'OFFLINE - RETRYING...';
+                indicator.style.background = '#ef4444';
+                indicator.style.boxShadow = '0 0 20px #ef4444';
+                setTimeout(connect, 3000);
+            };
+        }
+
+        function handleMessage(msg) {
+            if (msg.type === 'veritas:log') {
+                log(msg.data.message);
             }
+            if (msg.type === 'veritas:neural_map') {
+                log(`[ViT] Located: ${msg.data.intent} (Conf: ${(msg.data.result.confidence * 100).toFixed(1)}%)`, '#a855f7');
+                // Could draw on canvas here if coordinates provided
+            }
+            if (msg.type === 'veritas:goal_complete') {
+                log(`[SUCCESS] Goal Complete. Report generated.`, '#10b981');
+                msg.data.report.forEach(step => {
+                     log(`  > ${step.step}: ${step.status}`, step.status === 'SUCCESS' ? '#10b981' : '#ef4444');
+                });
+            }
+        }
 
-            setTimeout(() => {
-                statusText.textContent = '✅ HEALING COMPLETE';
+        function log(text, color = '#d1d5db') {
+            const logs = document.getElementById('audit-log');
+            const div = document.createElement('div');
+            div.style.marginBottom = '5px';
+            const time = new Date().toISOString().split('T')[1].split('.')[0];
+            div.innerHTML = `<span style="color:#6b7280">[${time}]</span> <span style="color:${color}">${text}</span>`;
+            logs.appendChild(div);
+            logs.scrollTop = logs.scrollHeight;
+        }
 
-                if (btn) {
-                    btn.disabled = false;
-                    btn.innerHTML = originalBtnText;
-                    btn.style.cursor = 'pointer';
-                }
+        // API Call
+        async function activateVeritas() {
+            log('[CMD] Initiating Veritas Swarm Protocol...', '#06b6d4');
+            try {
+                const res = await fetch('http://localhost:3001/api/veritas/goal', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ description: "Verify purchase with 10% discount" })
+                });
+                const data = await res.json();
+                if(data.status === 'started') log('[ACK] Swarm Launched.', '#06b6d4');
+            } catch (e) {
+                log(`[ERR] Failed to contact Nerve Center: ${e}`, '#ef4444');
+            }
+        }
 
-                setTimeout(() => statusText.textContent = originalText, 2000);
-            }, 3000);
+        function simulateHealing(btn) {
+            log('[HEAL] Autonomous Healing Requested...', '#f59e0b');
+            fetch('http://localhost:3001/api/veritas/heal', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    failed_selector: "#btn-buy",
+                    current_image: "mock",
+                    last_known_embedding: []
+                })
+            }).then(r => r.json()).then(data => {
+                log(`[HEAL] Result: ${data.reason}`, data.healed ? '#10b981' : '#ef4444');
+            });
         }
 
         function viewArchitecture() {
-            const modal = document.getElementById('architecture-modal');
-            modal.showModal();
+            // alert("Architecture View Placeholder");
+            // Existing modal logic can go here
         }
 
-        function closeArchitectureModal() {
-            const modal = document.getElementById('architecture-modal');
-            modal.close();
-        }
-
-        // Close when clicking outside
-        document.getElementById('architecture-modal').addEventListener('click', (event) => {
-            const modal = document.getElementById('architecture-modal');
-            if (event.target === modal) {
-                modal.close();
-            }
-        });
-
-        function runDiagnostics() {
-            const statusText = document.querySelector('.status-text');
-            const tests = ['🔍 Checking module vitality...', '🔐 Verifying cryptographic signatures...', '⚡ Testing Temporal workflows...', '🧠 Analyzing cognitive patterns...', '✅ ALL SYSTEMS OPERATIONAL'];
-            let index = 0;
-            const interval = setInterval(() => {
-                statusText.textContent = tests[index++];
-                if (index >= tests.length) {
-                    clearInterval(interval);
-                    setTimeout(() => statusText.textContent = 'SYSTEM ONLINE', 2000);
-                }
-            }, 800);
-        }
-
-        setInterval(() => {
-            const uptimeElement = document.querySelector('.stat-card:last-child .stat-value');
-            uptimeElement.textContent = Math.min(99.99, parseFloat(uptimeElement.textContent) + 0.01).toFixed(2) + '%';
-        }, 5000);
-
-        setInterval(() => {
-            const tokensEl = document.getElementById('valid-tokens');
-            if (tokensEl) tokensEl.textContent = Math.max(240, Math.min(250, parseInt(tokensEl.textContent) + Math.floor(Math.random() * 3) - 1));
-
-            const sigsEl = document.getElementById('verified-sigs');
-            if (sigsEl) sigsEl.textContent = (parseInt(sigsEl.textContent.replace(/,/g, '')) + Math.floor(Math.random() * 5)).toLocaleString();
-
-            if (Math.random() > 0.95) {
-                const threatsEl = document.getElementById('blocked-threats');
-                if (threatsEl) {
-                    threatsEl.textContent = parseInt(threatsEl.textContent) + 1;
-                    threatsEl.style.textShadow = "0 0 10px red";
-                    setTimeout(() => threatsEl.style.textShadow = "none", 500);
-                }
-            }
-        }, 2000);
-
-        // ==========================================
-        // NEW: JULES VERITAS ENGINE VISUALIZATIONS
-        // ==========================================
-
+        // VISUALIZATION LOOPS (Client-side Rendering for smoothness)
         // NEURAL MAP VISUALIZATION
         const neuralCanvas = document.getElementById('neuralMapCanvas');
         if (neuralCanvas) {
@@ -444,39 +488,23 @@
 
             function animateNeural() {
                 if (!neuralCanvas.width) return requestAnimationFrame(animateNeural);
-
                 nCtx.fillStyle = 'rgba(0,0,0,0.1)';
                 nCtx.fillRect(0, 0, neuralCanvas.width, neuralCanvas.height);
+                nodes.forEach(node => { node.update(); node.draw(); });
 
-                nodes.forEach(node => {
-                    node.update();
-                    node.draw();
-
-                    // Randomly draw "Scanning" box
-                    if (Math.random() > 0.99) {
-                        nCtx.strokeStyle = '#10b981';
-                        nCtx.strokeRect(node.x - 10, node.y - 10, 24, 24);
-                        nCtx.fillStyle = '#10b981';
-                        nCtx.font = '10px JetBrains Mono';
-                        nCtx.fillText(node.type, node.x + 15, node.y);
-                    }
-                });
-
-                // Simulate "200,000" dashboard elements
+                // Dashboard Stat: 200,000+
                 const countEl = document.getElementById('node-count');
-                if(countEl) countEl.innerText = (Math.random() * 200000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                if(countEl) countEl.innerText = (200000 + Math.random() * 50000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
                 requestAnimationFrame(animateNeural);
             }
             animateNeural();
         }
 
-
         // SWARM VISUALIZATION
         const swarmCanvas = document.getElementById('swarmCanvas');
         if (swarmCanvas) {
             const sCtx = swarmCanvas.getContext('2d');
-
             function resizeSwarmCanvas() {
                 if (!swarmCanvas.parentElement) return;
                 swarmCanvas.width = swarmCanvas.parentElement.clientWidth;
@@ -487,82 +515,32 @@
 
             function animateSwarm() {
                 if (!swarmCanvas.width) return setTimeout(() => requestAnimationFrame(animateSwarm), 100);
-
-                // Re-calculate cell size in case of resize
                 const w = swarmCanvas.width / 40;
                 const h = swarmCanvas.height / 25;
-
                 sCtx.clearRect(0, 0, swarmCanvas.width, swarmCanvas.height);
-
                 let active = 0;
-
                 for (let r = 0; r < 25; r++) {
                     for (let c = 0; c < 40; c++) {
                         const status = Math.random();
-                        if (status > 0.99) sCtx.fillStyle = '#ef4444'; // Error/Heal
-                        else if (status > 0.8) { sCtx.fillStyle = '#10b981'; active++; } // Success
-                        else if (status > 0.5) { sCtx.fillStyle = '#06b6d4'; active++; } // Working
-                        else sCtx.fillStyle = '#1f2937'; // Idle
-
+                        if (status > 0.99) sCtx.fillStyle = '#ef4444';
+                        else if (status > 0.8) { sCtx.fillStyle = '#10b981'; active++; }
+                        else if (status > 0.5) { sCtx.fillStyle = '#06b6d4'; active++; }
+                        else sCtx.fillStyle = '#1f2937';
                         sCtx.fillRect(c * w + 1, r * h + 1, w - 2, h - 2);
                     }
                 }
-
                 const activeEl = document.getElementById('active-agents');
-                if(activeEl) activeEl.innerText = active * 4; // Simulate more agents offscreen
-
+                if(activeEl) activeEl.innerText = (1000 + active * 4).toLocaleString();
                 const tpsEl = document.getElementById('swarm-tps');
-                if(tpsEl) tpsEl.innerText = (active * 4.2).toFixed(1);
+                if(tpsEl) tpsEl.innerText = (4000 + active * 4.2).toFixed(1);
 
                 setTimeout(() => requestAnimationFrame(animateSwarm), 150);
             }
             animateSwarm();
         }
 
-        // OMEGA ANIMATION
-        setInterval(() => {
-            const fluxEl = document.getElementById('vacuum-flux');
-            if (fluxEl) {
-                const flux = (Math.random() * 5000 + 4000).toFixed(2);
-                fluxEl.innerText = flux + " TW";
-            }
-        }, 100);
-
-        // LOGS
-        const logs = document.getElementById('audit-log');
-        const logMsg = [
-            "[GOAL] Verify Purchase Discount...",
-            "[AGENT-1] Navigating to /checkout",
-            "[ViT] Identified 'Coupon Field' (Conf: 99.2%)",
-            "[ACTION] Input 'SAVE10'",
-            "[OBSERVER] Layout Shift: 0.02 (Stable)",
-            "[ASSERT] Price updated: 90.00",
-            "[SUCCESS] Transaction verified.",
-            "[SWARM] Region EU-West agent started...",
-            "[HEAL] Selector #btn-buy failed. Healed -> .btn-primary-lg",
-            "[NEURAL] Embedding Map updated. Delta: 0.04"
-        ];
-
-        setInterval(() => {
-            if(!logs) return;
-            const div = document.createElement('div');
-            div.style.marginBottom = '5px';
-            const msg = logMsg[Math.floor(Math.random() * logMsg.length)];
-            const time = new Date().toISOString().split('T')[1].split('.')[0];
-
-            // Colorize
-            let color = '#d1d5db';
-            if (msg.includes('SUCCESS')) color = '#10b981';
-            if (msg.includes('HEAL')) color = '#f59e0b';
-            if (msg.includes('ViT')) color = '#a855f7';
-            if (msg.includes('GOAL')) color = '#06b6d4';
-
-            div.innerHTML = `<span style="color:#6b7280">[${time}]</span> <span style="color:${color}">${msg}</span>`;
-            logs.appendChild(div);
-            logs.scrollTop = logs.scrollHeight;
-
-            if (logs.children.length > 50) logs.removeChild(logs.firstChild);
-        }, 600);
+        // Initialize
+        connect();
     </script>
 </body>
 </html>

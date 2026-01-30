@@ -19,8 +19,8 @@ import { transcendence, TranscendenceEngine } from './engines/TranscendenceCore'
 import LogicDB from './engines/LogicEvolutionDB';
 import { ontoGenerator, OntoGenerator, AxiomType, CausalityType } from './engines/OntoGenerator';
 import { phenomenonWeaver, PhenomenonWeaver, PotentialType, ObservationType } from './engines/PhenomenonWeaver';
+import { VeritasBridge, AutonomousAgent, VisionRequest, HealRequest } from './services/veritas';
 
-// BigInt JSON Serializer
 // BigInt JSON Serializer
 const bigIntReplacer = (key: string, value: any) => 
   typeof value === 'bigint' ? value.toString() : value;
@@ -40,6 +40,10 @@ const agent = new AdaptiveOllamaAgent({
   workspacePath: CONFIG.projectRoot,
   maxRetries: 10
 });
+
+// Initialize Veritas
+const veritasBridge = new VeritasBridge();
+const veritasAgent = new AutonomousAgent("Veritas-Sovereign-01");
 
 class OllamaService {
   private baseUrl: string;
@@ -446,6 +450,49 @@ app.post('/api/genesis/manifestFromENS', (req, res) => {
 app.get('/api/genesis/poolStatus', (_, res) => {
   res.json(phenomenonWeaver.manifestationInterface.getPoolStatus());
 });
+
+// ==========================================
+// VERITAS COGNITIVE QA FRAMEWORK API
+// ==========================================
+
+app.post('/api/veritas/locate', async (req, res) => {
+  try {
+    const { image_base64, intent } = req.body;
+    const result = await veritasBridge.locate(image_base64, intent);
+    broadcast('veritas:neural_map', { result, intent });
+    res.json(result);
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/veritas/heal', async (req, res) => {
+  try {
+    const { failed_selector, current_image, last_known_embedding } = req.body;
+    const result = await veritasBridge.heal(failed_selector, current_image, last_known_embedding);
+    broadcast('veritas:heal', { result });
+    res.json(result);
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+app.post('/api/veritas/goal', async (req, res) => {
+  try {
+    const { description } = req.body;
+    broadcast('veritas:log', { message: `[GOAL] Initiated: ${description}` });
+
+    // Run asynchronously to not block response
+    veritasAgent.executeGoal({ description }).then((report) => {
+      broadcast('veritas:goal_complete', { report });
+    });
+
+    res.json({ status: 'started', message: 'Goal execution initiated via Distributed Swarm' });
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
