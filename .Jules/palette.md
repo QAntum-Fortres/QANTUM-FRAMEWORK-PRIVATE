@@ -12,3 +12,7 @@ Format: `## YYYY-MM-DD - [Title]`
 ## 2026-01-28 - Destructive Action Confirmation
 **Learning:** Users can easily trigger destructive actions (like "Emergency Purge") if they are simple buttons. A timed "double-tap" confirmation state is a lightweight, accessible pattern that prevents errors without using intrusive modals.
 **Action:** Apply the timed reset confirmation pattern to all critical system actions (Reset, Purge, Delete).
+
+## 2026-05-21 - Semantic Navigation Components
+**Learning:** The application heavily relies on `div` elements with `onClick` handlers for navigation (`NavItem`), completely bypassing keyboard accessibility (Tab, Enter/Space).
+**Action:** Systematically refactor custom navigation components to use native `<button>` or `<a>` elements to ensure keyboard focus and screen reader support without needing to manually reimplement `tabIndex` and key listeners.
