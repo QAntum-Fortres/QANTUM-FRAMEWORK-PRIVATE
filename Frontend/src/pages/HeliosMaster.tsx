@@ -204,6 +204,14 @@ export const HeliosMaster = () => {
                         color="#00ff00"
                         description="Autonomous analysis of meta, mobile, and performance. Generates (0-100) Veritas score."
                     />
+                    <ProjectCard
+                        name="Veritas QA"
+                        status="online"
+                        url="#"
+                        type="Cognitive Framework"
+                        color="#ff00ff"
+                        description="Autonomous Vision-Based QA Swarm. ViT Neural Locator and Singularity Auditing."
+                    />
                 </motion.div>
 
                 {/* MIDDLE LAYER: NERVE CENTER */}
@@ -235,6 +243,10 @@ export const HeliosMaster = () => {
                             <div className="flex gap-4 opacity-60">
                                 <span className="text-[var(--neon-purple)]">[NETWORK]</span>
                                 <span className="opacity-60">Tunnel Port 8890 established. Wealth Bridge synced.</span>
+                            </div>
+                            <div className="flex gap-4 opacity-70">
+                                <span className="text-[#ff00ff]">[VERITAS]</span>
+                                <span className="opacity-60">Neural Locator initialized. Vision Model loaded.</span>
                             </div>
                             <div className="flex gap-4 opacity-40">
                                 <span className="text-white/40">[INITIALIZE]</span>
