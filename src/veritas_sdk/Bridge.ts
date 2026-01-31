@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// --- INTERFACES ---
+
 export interface VisionRequest {
     image_base64: string;
     intent: string;
@@ -39,6 +41,55 @@ export interface HealResult {
     reason: string;
 }
 
+export interface GoalRequest {
+    goal: string;
+}
+
+export interface AgentStep {
+    action: string;
+    observation: string;
+    reasoning: string;
+    duration_ms: number;
+}
+
+export interface GoalResult {
+    success: boolean;
+    steps: AgentStep[];
+    audit_log_url: string;
+}
+
+export interface PerformanceMetrics {
+    layout_shifts: number;
+    network_requests_inflight: number;
+    dom_nodes: number;
+    fps: number;
+}
+
+export interface ObserverRequest {
+    metrics: PerformanceMetrics;
+}
+
+export interface ObserverResult {
+    is_stable: boolean;
+    amniotic_state_score: number;
+    message: string;
+}
+
+export interface SwarmRequest {
+    agent_count: number;
+    regions: string[];
+    network_profiles: string[];
+}
+
+export interface SwarmResult {
+    deployment_id: string;
+    active_agents: number;
+    regions_covered: string[];
+    status: string;
+}
+
+// --- BRIDGE ---
+
 export class VeritasBridge {
     private process: ChildProcess | null = null;
     private rl: readline.Interface | null = null;
@@ -50,7 +101,6 @@ export class VeritasBridge {
 
     private startCore() {
         // Assume the binary is built at veritas_core/target/debug/veritas_core
-        // In production, this path would be configured differently.
         const binaryPath = path.resolve(__dirname, '../../veritas_core/target/debug/veritas_core');
 
         console.log(`[VERITAS] Spawning Core: ${binaryPath}`);
@@ -99,6 +149,8 @@ export class VeritasBridge {
         }
     }
 
+    // --- COMMANDS ---
+
     public async locate(image_base64: string, intent: string): Promise<VisionResult> {
         return this.sendCommand('Locate', { image_base64, intent });
     }
@@ -107,12 +159,23 @@ export class VeritasBridge {
          return this.sendCommand('Heal', { failed_selector, current_image, last_known_embedding });
     }
 
+    public async executeGoal(goal: string): Promise<GoalResult> {
+        return this.sendCommand('Goal', { goal });
+    }
+
+    public async observe(metrics: PerformanceMetrics): Promise<ObserverResult> {
+        return this.sendCommand('Observe', { metrics });
+    }
+
+    public async launchSwarm(agent_count: number, regions: string[], network_profiles: string[]): Promise<SwarmResult> {
+        return this.sendCommand('Swarm', { agent_count, regions, network_profiles });
+    }
+
     private async sendCommand(commandName: string, payload: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            // Match SecureCommand structure in Rust
             const secureCmd = {
-                auth_token: "valid_token", // Mock token
-                user_id: "admin",          // Mock user
+                auth_token: "valid_token",
+                user_id: "admin",
                 command: {
                     command: commandName,
                     payload: payload

@@ -1,12 +1,8 @@
 /**
  * VERITAS AUTONOMOUS AGENT
- * Implements Goal-Oriented Agency using Vision-Transformer (ViT) bridges.
+ * Implements Goal-Oriented Agency using Veritas Core (Rust) for cognitive processing.
  */
-import { VeritasBridge, VisionResult } from './Bridge.ts';
-
-export interface AgentGoal {
-    description: string;
-}
+import { VeritasBridge, GoalResult } from './Bridge.ts';
 
 export class AutonomousAgent {
     private bridge: VeritasBridge;
@@ -17,50 +13,25 @@ export class AutonomousAgent {
         this.name = name;
     }
 
-    public async executeGoal(goal: AgentGoal): Promise<void> {
-        console.log(`[${this.name}] Received Goal: "${goal.description}"`);
-        console.log(`[${this.name}] Initializing Vision-Transformer Layer...`);
+    public async executeGoal(goalDescription: string): Promise<GoalResult> {
+        console.log(`[${this.name}] Received Goal: "${goalDescription}"`);
+        console.log(`[${this.name}] Offloading cognitive load to Veritas Core (Rust)...`);
 
-        // Deconstruct goal (simple heuristic for simulation)
-        const steps = this.planSteps(goal.description);
+        const result = await this.bridge.executeGoal(goalDescription);
 
-        for (const step of steps) {
-            console.log(`[${this.name}] Executing Step: ${step}`);
-            // Mock taking a screenshot
-            const mockScreenshot = "base64_mock_data...";
+        console.log(`[${this.name}] Goal Execution Complete. Success: ${result.success}`);
 
-            console.log(`[${this.name}] Analyzing visual context...`);
-            const result = await this.bridge.locate(mockScreenshot, step);
+        result.steps.forEach((step, index) => {
+            console.log(`\n--- STEP ${index + 1} ---`);
+            console.log(`[ACTION]    ${step.action}`);
+            console.log(`[OBSERVE]   ${step.observation}`);
+            console.log(`[REASON]    ${step.reasoning}`);
+            console.log(`[DURATION]  ${step.duration_ms}ms`);
+        });
 
-            if (result.found && result.location) {
-                console.log(`[${this.name}] 👁️ Visual Intent Identified: "${step}"`);
-                console.log(`[${this.name}]    Location: [${result.location.x}, ${result.location.y}]`);
-                console.log(`[${this.name}]    Confidence: ${(result.confidence * 100).toFixed(2)}%`);
-                console.log(`[${this.name}]    Reasoning: ${result.reasoning}`);
+        console.log(`\n[AUDIT] Singularity Log available at: ${result.audit_log_url}`);
 
-                // Simulate Action
-                console.log(`[${this.name}] 🖱️ Action: Click at [${result.location.x + result.location.width/2}, ${result.location.y + result.location.height/2}]`);
-            } else {
-                console.warn(`[${this.name}] ⚠️ Could not visually locate: "${step}"`);
-                // Here we would trigger Semantic Healing or Exploration
-            }
-
-            // Artificial delay for "Zero-Wait" demo (just to be readable in logs)
-            // In real zero-wait, we would hook into the event loop.
-        }
-
-        console.log(`[${this.name}] Goal Complete.`);
-    }
-
-    private planSteps(goal: string): string[] {
-        // Simple NLP simulation
-        if (goal.includes("discount")) {
-            return ["Find Discount Input", "Find Apply Button", "Verify Total Price"];
-        }
-        if (goal.includes("purchase")) {
-            return ["Find Product", "Find Add to Cart", "Find Checkout"];
-        }
-        return ["Analyze Page"];
+        return result;
     }
 
     public shutdown() {
