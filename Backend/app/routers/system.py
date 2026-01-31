@@ -13,6 +13,12 @@ from app.core.logic import calculate_global_entropy, sign_and_record_cycle
 router = APIRouter(tags=["system"])
 logger = logging.getLogger("system")
 
+# Constants
+MAX_CONNECTIONS = 100
+CYCLE_INTERVAL_SECONDS = 1.0
+MIN_SLEEP_TIME_SECONDS = 0.1
+CHAOS_PROBABILITY = 0.02  # 2% chance of anomaly
+
 # Global State (Singleton Governors)
 bio = BioHealthGovernor("BIO")
 mkt = MarketRiskGovernor("MKT")
@@ -25,7 +31,6 @@ auditor = ProjectAuditor(os.path.abspath(os.path.join(os.path.dirname(__file__),
 
 # Connection management
 active_connections: Set[WebSocket] = set()
-MAX_CONNECTIONS = 100
 
 @router.get("/api/v1/system/status")
 async def system_status():
@@ -82,10 +87,9 @@ async def websocket_endpoint(websocket: WebSocket):
             await mkt.run_cycle()
             await nrg.run_cycle()
 
-            # 2. Chaos Logic (reduced probability for production stability)
-            is_hallucination = False
-            if random.random() < 0.02:  # Reduced from 5% to 2% for stability
-                is_hallucination = True
+            # 2. Chaos Logic - Small probability of anomaly for testing resilience
+            is_hallucination = random.random() < CHAOS_PROBABILITY
+            if is_hallucination:
                 payload = {
                     "timestamp": "INVALID_TIME",
                     "orchestrator": "⚠️ SYSTEM ANOMALY DETECTED",
@@ -132,9 +136,9 @@ async def websocket_endpoint(websocket: WebSocket):
 
             await websocket.send_json(payload)
 
-            # Maintain consistent 1 second intervals accounting for processing time
+            # Maintain consistent cycle intervals accounting for processing time
             cycle_time = time.time() - cycle_start
-            sleep_time = max(0.1, 1.0 - cycle_time)
+            sleep_time = max(MIN_SLEEP_TIME_SECONDS, CYCLE_INTERVAL_SECONDS - cycle_time)
             await asyncio.sleep(sleep_time)
 
     except WebSocketDisconnect:

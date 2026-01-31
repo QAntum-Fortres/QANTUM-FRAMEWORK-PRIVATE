@@ -1,5 +1,6 @@
 import logging
 import time
+import os
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -17,6 +18,9 @@ logger = logging.getLogger("main")
 
 # Track startup time for uptime calculation
 START_TIME = time.time()
+
+# Environment detection
+IS_PRODUCTION = os.getenv("ENVIRONMENT", "development").lower() == "production"
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -39,18 +43,21 @@ app = FastAPI(
 )
 
 # CORS - Production ready configuration
-origins = [
+allowed_origins = [
     "http://localhost",
     "http://localhost:3000",
     "http://localhost:5173",  # Vite dev
     "http://localhost:8080",  # Docker frontend
-    "https://*.onrender.com",
-    "https://*.vercel.app",
 ]
+
+# Add additional origins from environment variable if provided
+extra_origins = os.getenv("CORS_ORIGINS", "")
+if extra_origins:
+    allowed_origins.extend([o.strip() for o in extra_origins.split(",") if o.strip()])
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, use specific origins
+    allow_origins=allowed_origins if IS_PRODUCTION else ["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -74,8 +81,7 @@ async def global_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={
             "error": "internal_server_error",
-            "message": "An unexpected error occurred",
-            "detail": str(exc) if app.debug else None
+            "message": "An unexpected error occurred"
         }
     )
 

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -17,6 +18,9 @@ interface MetricCardProps {
 }
 
 export function MetricCard({ title, stress, action, icon, color, loading, trend = "neutral", subtitle }: MetricCardProps) {
+    const stressPercent = useMemo(() => Math.min(stress * 100, 100), [stress]);
+    const isAnimated = useMemo(() => stressPercent > 50, [stressPercent]);
+
     if (loading) {
         return (
             <Card className="border-border/40 bg-card/50 backdrop-blur-sm">
@@ -32,8 +36,6 @@ export function MetricCard({ title, stress, action, icon, color, loading, trend 
             </Card>
         );
     }
-
-    const stressPercent = Math.min(stress * 100, 100);
 
     // Dynamic color mapping
     const colorMap = {
@@ -102,7 +104,7 @@ export function MetricCard({ title, stress, action, icon, color, loading, trend 
                             {stressPercent.toFixed(1)}%
                         </span>
                     </div>
-                    <Progress value={stressPercent} animated={stressPercent > 50} />
+                    <Progress value={stressPercent} animated={isAnimated} />
                 </div>
 
                 <div className="flex items-center justify-between pt-1">

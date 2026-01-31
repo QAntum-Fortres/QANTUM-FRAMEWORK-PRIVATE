@@ -9,6 +9,19 @@ interface ProgressProps extends React.HTMLAttributes<HTMLDivElement> {
     animated?: boolean;
 }
 
+/**
+ * Determines the appropriate variant based on percentage value
+ */
+function getAutoVariant(percentage: number): "success" | "warning" | "danger" {
+    if (percentage > 80) {
+        return "danger";
+    }
+    if (percentage > 50) {
+        return "warning";
+    }
+    return "success";
+}
+
 const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     ({ className, value = 0, max = 100, variant = "default", showValue = false, animated = true, ...props }, ref) => {
         const percentage = Math.min(Math.max((value / max) * 100, 0), 100);
@@ -21,9 +34,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
         };
 
         // Auto-determine variant based on value if using default
-        const autoVariant = variant === "default"
-            ? percentage > 80 ? "danger" : percentage > 50 ? "warning" : "success"
-            : variant;
+        const effectiveVariant = variant === "default" ? getAutoVariant(percentage) : variant;
 
         return (
             <div
@@ -38,7 +49,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
                 <div
                     className={cn(
                         "h-full transition-all duration-500 ease-out rounded-full",
-                        variantStyles[autoVariant],
+                        variantStyles[effectiveVariant],
                         animated && "animate-pulse"
                     )}
                     style={{ width: `${percentage}%` }}
