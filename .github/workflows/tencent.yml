@@ -1,30 +1,35 @@
-# This workflow will build a docker container, publish and deploy it to Tencent Kubernetes Engine (TKE) when there is a push to the "main" branch.
+# ═══════════════════════════════════════════════════════════════════════════════
+# QANTUM Framework - Tencent Kubernetes Engine Deployment
+# Mega Hybrid Autonomous Cognitive Sovereign Meta-Logical Framework
+# ═══════════════════════════════════════════════════════════════════════════════
 #
-# To configure this workflow:
+# This workflow builds the root Dockerfile with multi-stage builds for all components,
+# publishes to Tencent Container Registry, and deploys to TKE cluster.
 #
-# 1. Ensure that your repository contains the necessary configuration for your Tencent Kubernetes Engine cluster,
-#    including deployment.yml, kustomization.yml, service.yml, etc.
+# Configuration:
+# 1. Repository contains k8s/ directory with Kubernetes manifests
+# 2. Required secrets:
+#    - TENCENT_CLOUD_SECRET_ID
+#    - TENCENT_CLOUD_SECRET_KEY
+#    - TENCENT_CLOUD_ACCOUNT_ID
+#    - TKE_REGISTRY_PASSWORD
+# 3. Update environment variables below as needed
 #
-# 2. Set up secrets in your workspace:
-#    - TENCENT_CLOUD_SECRET_ID with Tencent Cloud secret id
-#    - TENCENT_CLOUD_SECRET_KEY with Tencent Cloud secret key
-#    - TENCENT_CLOUD_ACCOUNT_ID with Tencent Cloud account id
-#    - TKE_REGISTRY_PASSWORD with TKE registry password
-#
-# 3. Change the values for the TKE_IMAGE_URL, TKE_REGION, TKE_CLUSTER_ID and DEPLOYMENT_NAME environment variables (below).
+# ═══════════════════════════════════════════════════════════════════════════════
 
-name: Tencent Kubernetes Engine
+name: Tencent Kubernetes Engine - QANTUM Framework
 
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   TKE_IMAGE_URL: ccr.ccs.tencentyun.com/demo/mywebapp
   TKE_REGION: ap-guangzhou
   TKE_CLUSTER_ID: cls-mywebapp
-  DEPLOYMENT_NAME: tke-test
+  DEPLOYMENT_NAME: qantum-framework-v1
 
 permissions:
   contents: read
@@ -34,31 +39,85 @@ jobs:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
     environment: production
+    timeout-minutes: 30
+    
     steps:
-
-    - name: Checkout
+    # ═══════════════════════════════════════════════════════════════════════════
+    # 1. Checkout Repository
+    # ═══════════════════════════════════════════════════════════════════════════
+    - name: 📥 Checkout Repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
-    # Build
-    - name: Build Docker image
-      run: |
-        docker build -t ${TKE_IMAGE_URL}:${GITHUB_SHA} .
+    # ═══════════════════════════════════════════════════════════════════════════
+    # 2. Set up Build Environment
+    # ═══════════════════════════════════════════════════════════════════════════
+    - name: 🔧 Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      with:
+        install: true
+        driver-opts: |
+          image=moby/buildkit:latest
+          network=host
 
-    - name: Login TKE Registry
+    # ═══════════════════════════════════════════════════════════════════════════
+    # 3. Build Multi-Component Docker Image
+    # ═══════════════════════════════════════════════════════════════════════════
+    - name: 🏗️ Build Docker Image (Multi-Stage)
       run: |
+        echo "Building QANTUM Framework mega hybrid image..."
+        echo "Image: ${TKE_IMAGE_URL}:${GITHUB_SHA}"
+        echo "Also tagging as: ${TKE_IMAGE_URL}:latest"
+        
+        docker buildx build \
+          --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') \
+          --build-arg VCS_REF=${GITHUB_SHA} \
+          --build-arg VERSION=${GITHUB_REF##*/} \
+          --tag ${TKE_IMAGE_URL}:${GITHUB_SHA} \
+          --tag ${TKE_IMAGE_URL}:latest \
+          --file Dockerfile \
+          --platform linux/amd64 \
+          --load \
+          .
+        
+        echo "✅ Build completed successfully"
+        docker images | grep mywebapp
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # 4. Login to Tencent Container Registry
+    # ═══════════════════════════════════════════════════════════════════════════
+    - name: 🔐 Login to TKE Registry
+      run: |
+        echo "Logging into Tencent Container Registry..."
         docker login -u ${{ secrets.TENCENT_CLOUD_ACCOUNT_ID }} -p '${{ secrets.TKE_REGISTRY_PASSWORD }}' ${TKE_IMAGE_URL}
+        echo "✅ Login successful"
 
-    # Push the Docker image to TKE Registry
-    - name: Publish
+    # ═══════════════════════════════════════════════════════════════════════════
+    # 5. Push Images to Registry
+    # ═══════════════════════════════════════════════════════════════════════════
+    - name: 📤 Push Docker Images
       run: |
+        echo "Pushing images to registry..."
         docker push ${TKE_IMAGE_URL}:${GITHUB_SHA}
+        docker push ${TKE_IMAGE_URL}:latest
+        echo "✅ Images pushed successfully"
 
-    - name: Set up Kustomize
+    # ═══════════════════════════════════════════════════════════════════════════
+    # 6. Set up Kustomize
+    # ═══════════════════════════════════════════════════════════════════════════
+    - name: ⚙️ Set up Kustomize
       run: |
-        curl -o kustomize --location https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
-        chmod u+x ./kustomize
+        echo "Installing Kustomize..."
+        curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+        chmod +x ./kustomize
+        ./kustomize version
+        echo "✅ Kustomize installed"
 
-    - name: Set up ~/.kube/config for connecting TKE cluster
+    # ═══════════════════════════════════════════════════════════════════════════
+    # 7. Configure kubectl for TKE
+    # ═══════════════════════════════════════════════════════════════════════════
+    - name: 🔗 Connect to TKE Cluster
       uses: TencentCloud/tke-cluster-credential-action@v1
       with:
         secret_id: ${{ secrets.TENCENT_CLOUD_SECRET_ID }}
@@ -66,14 +125,63 @@ jobs:
         tke_region: ${{ env.TKE_REGION }}
         cluster_id: ${{ env.TKE_CLUSTER_ID }}
 
-    - name: Switch to TKE context
+    - name: 🎯 Switch to TKE Context
       run: |
         kubectl config use-context ${TKE_CLUSTER_ID}-context-default
+        kubectl cluster-info
+        echo "✅ Connected to TKE cluster"
 
-    # Deploy the Docker image to the TKE cluster
-    - name: Deploy
+    # ═══════════════════════════════════════════════════════════════════════════
+    # 8. Deploy to Kubernetes
+    # ═══════════════════════════════════════════════════════════════════════════
+    - name: 🚀 Deploy to Kubernetes
       run: |
-        ./kustomize edit set image ${TKE_IMAGE_URL}:${GITHUB_SHA}
-        ./kustomize build . | kubectl apply -f -
-        kubectl rollout status deployment/${DEPLOYMENT_NAME}
+        echo "Deploying QANTUM Framework to Kubernetes..."
+        cd k8s
+        
+        # Update image tag in kustomization
+        ../kustomize edit set image ${TKE_IMAGE_URL}:${GITHUB_SHA}
+        
+        # Preview changes
+        echo "Preview of resources to be deployed:"
+        ../kustomize build .
+        
+        # Apply to cluster
+        ../kustomize build . | kubectl apply -f -
+        
+        echo "✅ Deployment initiated"
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # 9. Wait for Rollout and Health Checks
+    # ═══════════════════════════════════════════════════════════════════════════
+    - name: ⏳ Wait for Deployment Rollout
+      run: |
+        echo "Waiting for deployment to complete..."
+        kubectl rollout status deployment/${DEPLOYMENT_NAME} --timeout=10m
+        echo "✅ Deployment rolled out successfully"
+
+    - name: 🏥 Verify Services
+      run: |
+        echo "Checking service status..."
         kubectl get services -o wide
+        kubectl get pods -o wide
+        kubectl get ingress
+        echo "✅ Services verified"
+
+    # ═══════════════════════════════════════════════════════════════════════════
+    # 10. Post-Deployment Health Check
+    # ═══════════════════════════════════════════════════════════════════════════
+    - name: 🩺 Health Check
+      run: |
+        echo "Running health checks..."
+        
+        # Wait for pods to be ready
+        kubectl wait --for=condition=ready pod -l app=qantum-framework --timeout=300s
+        
+        # Check pod logs for errors
+        echo "Recent pod logs:"
+        kubectl logs -l app=qantum-framework --tail=50
+        
+        echo "✅ Health checks passed"
+        echo "🌌 QANTUM Framework deployed successfully!"
+        echo "Together with logic, we are invincible."

@@ -1,0 +1,123 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# QANTUM Framework - Kustomization Configuration
+# Declarative Kubernetes Resource Management
+# ═══════════════════════════════════════════════════════════════════════════════
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Metadata
+# ─────────────────────────────────────────────────────────────────────────────
+namespace: default
+
+namePrefix: qantum-
+nameSuffix: -v1
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Common Labels
+# ─────────────────────────────────────────────────────────────────────────────
+commonLabels:
+  app.kubernetes.io/name: qantum-framework
+  app.kubernetes.io/instance: production
+  app.kubernetes.io/version: "1.0.0"
+  app.kubernetes.io/component: fullstack
+  app.kubernetes.io/part-of: qantum-ecosystem
+  app.kubernetes.io/managed-by: kustomize
+  philosophy: eternal-foundations
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Common Annotations
+# ─────────────────────────────────────────────────────────────────────────────
+commonAnnotations:
+  maintainer: "QANTUM Framework Team"
+  documentation: "https://github.com/QAntum-Fortres/QANTUM-FRAMEWORK-PRIVATE"
+  support: "Together with logic, we are invincible"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Resources to Include
+# ─────────────────────────────────────────────────────────────────────────────
+resources:
+- deployment.yml
+- service.yml
+- ingress.yml
+- configmap.yml
+# Note: secrets.yml should be created from secrets.yml.template and applied separately
+# - secrets.yml
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Images to Update (for CI/CD)
+# ─────────────────────────────────────────────────────────────────────────────
+images:
+- name: ccr.ccs.tencentyun.com/demo/mywebapp
+  newTag: latest
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ConfigMap Generator
+# ─────────────────────────────────────────────────────────────────────────────
+# Uncomment to generate ConfigMaps from files/literals
+# configMapGenerator:
+# - name: app-config
+#   literals:
+#   - NODE_ENV=production
+#   - LOG_LEVEL=info
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Secret Generator
+# ─────────────────────────────────────────────────────────────────────────────
+# Uncomment to generate Secrets from files/literals (NOT RECOMMENDED for production)
+# secretGenerator:
+# - name: app-secrets
+#   literals:
+#   - password=CHANGE_ME
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Replicas (for scaling)
+# ─────────────────────────────────────────────────────────────────────────────
+replicas:
+- name: qantum-framework
+  count: 3
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Patches (Strategic Merge)
+# ─────────────────────────────────────────────────────────────────────────────
+# patchesStrategicMerge:
+# - patch-deployment.yml
+
+# ─────────────────────────────────────────────────────────────────────────────
+# JSON Patches (for precise modifications)
+# ─────────────────────────────────────────────────────────────────────────────
+# patchesJson6902:
+# - target:
+#     group: apps
+#     version: v1
+#     kind: Deployment
+#     name: qantum-framework
+#   patch: |-
+#     - op: replace
+#       path: /spec/replicas
+#       value: 5
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Generators
+# ─────────────────────────────────────────────────────────────────────────────
+# generators:
+# - my-generator.yml
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Usage Instructions:
+# ═══════════════════════════════════════════════════════════════════════════════
+# 
+# Preview changes:
+#   kustomize build k8s/
+# 
+# Apply to cluster:
+#   kubectl apply -k k8s/
+# 
+# Update image tag:
+#   cd k8s && kustomize edit set image ccr.ccs.tencentyun.com/demo/mywebapp:v1.2.3
+# 
+# Delete resources:
+#   kubectl delete -k k8s/
+# 
+# ═══════════════════════════════════════════════════════════════════════════════
