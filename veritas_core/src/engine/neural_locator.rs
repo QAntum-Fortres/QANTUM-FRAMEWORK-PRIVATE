@@ -25,58 +25,66 @@ pub struct VisionResult {
 }
 
 pub struct NeuralLocator {
-    // In a real implementation, this would hold the loaded ONNX/PyTorch model
+    // In a real implementation, this would hold the loaded ONNX/PyTorch model (e.g. CLIP/ViT)
     #[allow(dead_code)]
-    model_loaded: bool,
+    model_version: String,
 }
 
 impl NeuralLocator {
     pub fn new() -> Self {
         NeuralLocator {
-            model_loaded: true,
+            model_version: "ViT-Large-Patch14".to_string(),
         }
     }
 
     pub fn analyze(&self, request: &VisionRequest) -> VisionResult {
-        // SIMULATION: The "Vision-Transformer" Logic
-        // In a real world scenario, this would infer from the ViT model.
+        // THE "EYES" OF VERITAS: VISION-TRANSFORMER LAYER
+        // This simulates the inference of a ViT model analyzing the screenshot.
 
-        // Mock logic based on intent
         let mut rng = rand::thread_rng();
-        let confidence: f32 = rng.gen_range(0.85..0.99);
+        let intent_lower = request.intent.to_lowercase();
 
-        let location = if request.intent.to_lowercase().contains("buy") || request.intent.to_lowercase().contains("checkout") {
-            Some(BoundingBox {
-                x: 1024 - 200, // Bottom right-ish
-                y: 768 - 100,
-                width: 150,
-                height: 50,
-            })
-        } else if request.intent.to_lowercase().contains("login") {
-            Some(BoundingBox {
-                x: 800,
-                y: 50,
-                width: 80,
-                height: 30,
-            })
-        } else if request.intent.to_lowercase().contains("discount") {
-             Some(BoundingBox {
-                x: 400,
-                y: 500,
-                width: 200,
-                height: 40,
-            })
+        // High confidence for standard elements, lower for obscure ones
+        let confidence: f32 = if intent_lower.contains("buy") || intent_lower.contains("login") {
+            rng.gen_range(0.92..0.99)
         } else {
-            // Random location for other elements
+            rng.gen_range(0.85..0.95)
+        };
+
+        // Simulated Bounding Box Logic based on Intent
+        let location = if intent_lower.contains("buy") || intent_lower.contains("checkout") {
             Some(BoundingBox {
-                x: rng.gen_range(0..1024),
-                y: rng.gen_range(0..768),
+                x: 1024 - 220, // Bottom right CTA
+                y: 768 - 120,
+                width: 200,
+                height: 60,
+            })
+        } else if intent_lower.contains("login") || intent_lower.contains("sign in") {
+            Some(BoundingBox {
+                x: 900, // Top right
+                y: 40,
                 width: 100,
                 height: 40,
             })
+        } else if intent_lower.contains("discount") || intent_lower.contains("coupon") {
+             Some(BoundingBox {
+                x: 400, // Middle-ish
+                y: 500,
+                width: 250,
+                height: 45,
+            })
+        } else {
+            // "Search" or generic exploration
+             Some(BoundingBox {
+                x: rng.gen_range(100..900),
+                y: rng.gen_range(100..600),
+                width: rng.gen_range(50..200),
+                height: rng.gen_range(30..80),
+            })
         };
 
-        // Simulated Semantic Embedding (768 dimensions is standard for ViT/BERT)
+        // Simulated Semantic Embedding (768 dimensions is standard for ViT-Base)
+        // In a real system, this vector represents the "meaning" of the UI element.
         let embedding: Vec<f32> = (0..768).map(|_| rng.gen::<f32>()).collect();
 
         VisionResult {
@@ -84,7 +92,10 @@ impl NeuralLocator {
             location,
             confidence,
             semantic_embedding: embedding,
-            reasoning: format!("ViT Layer identified '{}' based on visual intent patterns (Edge detection, OCR, Iconography). Confidence: {:.2}", request.intent, confidence),
+            reasoning: format!(
+                "ViT Layer identified visual patterns matching intent '{}'. Features: [Iconography, Text_OCR, Color_Contrast]. Confidence: {:.4}",
+                request.intent, confidence
+            ),
         }
     }
 }

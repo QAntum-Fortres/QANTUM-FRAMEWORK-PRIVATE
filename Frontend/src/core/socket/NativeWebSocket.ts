@@ -71,7 +71,7 @@ export const useSovereignStore = create<SovereignState>((set) => ({
 export class NativeWebSocket {
     private static instance: NativeWebSocket;
     private ws: WebSocket | null = null;
-    private url: string = "ws://127.0.0.1:8765";
+    private url: string = "ws://localhost:8080/ws";
     private reconnectInterval: number = 2000;
     private veritas = VeritasEngine.getInstance();
 

@@ -34,6 +34,9 @@
       "src/features/**/*",
       "src/lib/**/*",
       "src/stores/**/*",
+      "src/pages/**/*",
+      "src/core/socket/**/*",
+      "src/core/veritas/**/*",
       "src/vite-env.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]

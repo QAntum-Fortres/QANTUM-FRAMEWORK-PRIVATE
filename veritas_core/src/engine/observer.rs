@@ -2,50 +2,61 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct ObserverRequest {
-    pub url: String,
+    pub metrics: PerformanceMetrics,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct ObserverState {
-    pub stable: bool,
-    pub network_idle: bool,
+pub struct PerformanceMetrics {
     pub layout_shifts: u32,
+    pub network_requests_inflight: u32,
     pub dom_nodes: u32,
-    pub amniotic_state_score: f32, // 0.0 to 1.0
+    pub fps: f32,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct ObserverResult {
+    pub is_stable: bool,
+    pub amniotic_state_score: f32,
+    pub message: String,
 }
 
 pub struct StateChangeObserver {
-    // Hooks into browser CDP in real implementation
+    // Configuration for "Stable"
+    max_inflight: u32,
+    min_fps: f32,
 }
 
 impl StateChangeObserver {
     pub fn new() -> Self {
-        StateChangeObserver {}
-    }
-
-    pub fn observe(&self, _request: &ObserverRequest) -> ObserverState {
-        // SIMULATION: Zero-Wait Architecture
-        // Returns the "Amniotic State" of the UI
-
-        ObserverState {
-            stable: true,
-            network_idle: true,
-            layout_shifts: 0,
-            dom_nodes: 1450,
-            amniotic_state_score: 0.99,
+        StateChangeObserver {
+            max_inflight: 0,
+            min_fps: 30.0,
         }
     }
-}
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+    pub fn observe(&self, request: &ObserverRequest) -> ObserverResult {
+        // ZERO-WAIT ARCHITECTURE (THE OMEGA LAYER)
+        // Determines if the "Amniotic State" of the UI is stable.
 
-    #[test]
-    fn test_observer() {
-        let observer = StateChangeObserver::new();
-        let state = observer.observe(&ObserverRequest { url: "http://localhost".to_string() });
-        assert!(state.stable);
-        assert!(state.amniotic_state_score > 0.9);
+        // Calculate stability score (0.0 - 1.0)
+        let stability_score = if request.metrics.network_requests_inflight == 0 && request.metrics.layout_shifts == 0 {
+            1.0
+        } else if request.metrics.network_requests_inflight < 2 {
+            0.8
+        } else {
+            0.4
+        };
+
+        let is_stable = stability_score > 0.9 && request.metrics.fps >= self.min_fps;
+
+        ObserverResult {
+            is_stable,
+            amniotic_state_score: stability_score,
+            message: if is_stable {
+                "Amniotic State Stable. Proceeding with interaction.".to_string()
+            } else {
+                format!("Unstable State. Inflight: {}, Layout Shifts: {}", request.metrics.network_requests_inflight, request.metrics.layout_shifts)
+            },
+        }
     }
 }

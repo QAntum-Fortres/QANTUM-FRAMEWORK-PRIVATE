@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useState } from 'react';
-import { DashboardPage } from '@/features/dashboard/DashboardPage';
+import { HeliosMaster } from './pages/HeliosMaster';
 
 function App() {
   const [queryClient] = useState(() => new QueryClient({
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <DashboardPage />
+      <HeliosMaster />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
