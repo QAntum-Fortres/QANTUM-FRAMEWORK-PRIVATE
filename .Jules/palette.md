@@ -12,3 +12,7 @@ Format: `## YYYY-MM-DD - [Title]`
 ## 2026-01-28 - Destructive Action Confirmation
 **Learning:** Users can easily trigger destructive actions (like "Emergency Purge") if they are simple buttons. A timed "double-tap" confirmation state is a lightweight, accessible pattern that prevents errors without using intrusive modals.
 **Action:** Apply the timed reset confirmation pattern to all critical system actions (Reset, Purge, Delete).
+
+## 2026-02-04 - Semantic Navigation
+**Learning:** Using `div` elements for navigation items (even with `onClick`) completely excludes keyboard-only users. Converting these to `<button>` elements provides native tab focus and "Enter" key support for free.
+**Action:** Always use `<button>` (with `type="button"`) for interactive sidebar items, applying `w-full text-left` classes to maintain the "block-like" appearance of the original design.
