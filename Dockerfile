@@ -105,7 +105,7 @@ COPY --from=rust-builder /app/rust/target/release/lwas_economy /app/rust/lwas_ec
 # Nginx Configuration with Cognitive Routing
 # ═══════════════════════════════════════════════════════════════════════════════
 
-RUN cat > /etc/nginx/conf.d/default.conf << 'EOF'
+COPY <<EOF /etc/nginx/conf.d/default.conf
 # QANTUM Framework - Cognitive Autonomous Routing Configuration
 
 upstream backend {
@@ -128,43 +128,43 @@ server {
     location / {
         root /usr/share/nginx/html/frontend;
         index index.html index.htm;
-        try_files $uri $uri/ /index.html;
+        try_files \$uri \$uri/ /index.html;
     }
     
     # Backend API
     location /api/ {
         proxy_pass http://backend/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
     }
     
     # Rust Economy Engine
     location /economy/ {
         proxy_pass http://rust_economy/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
     }
     
     # Webhook Handler
     location /webhooks/ {
         proxy_pass http://webhook_handler/;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
     }
     
     # Health Check Endpoint
     location /health {
         access_log off;
-        return 200 "QANTUM Framework: All systems operational\n";
+        return 200 "QANTUM Framework: All systems operational\\n";
         add_header Content-Type text/plain;
     }
     
     # Metrics Endpoint
     location /metrics {
         access_log off;
-        return 200 "# QANTUM Framework Metrics\n";
+        return 200 "# QANTUM Framework Metrics\\n";
         add_header Content-Type text/plain;
     }
 }
@@ -178,7 +178,7 @@ RUN apk add --no-cache supervisor
 
 RUN mkdir -p /var/log/supervisor
 
-RUN cat > /etc/supervisord.conf << 'EOF'
+COPY <<EOF /etc/supervisord.conf
 [supervisord]
 nodaemon=true
 user=root

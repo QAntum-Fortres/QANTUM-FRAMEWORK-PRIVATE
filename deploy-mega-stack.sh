@@ -101,7 +101,7 @@ validate_environment() {
 validate_dependencies() {
     log_header "🔧 Checking Dependencies"
     
-    local required_commands=("docker" "docker-compose")
+    local required_commands=("docker")
     local missing_commands=()
     
     for cmd in "${required_commands[@]}"; do
@@ -109,6 +109,11 @@ validate_dependencies() {
             missing_commands+=("$cmd")
         fi
     done
+    
+    # Check for docker compose (new) or docker-compose (legacy)
+    if ! (docker compose version &> /dev/null || command -v docker-compose &> /dev/null); then
+        missing_commands+=("docker-compose")
+    fi
     
     if [[ ${#missing_commands[@]} -gt 0 ]]; then
         log_error "Missing required commands:"
@@ -154,8 +159,13 @@ build_docker_image() {
 test_docker_compose() {
     log_header "🧪 Testing with Docker Compose"
     
+    local compose_cmd="docker compose"
+    if command -v docker-compose &> /dev/null; then
+        compose_cmd="docker-compose"
+    fi
+    
     log_info "Starting services..."
-    if ! docker-compose -f "$DOCKER_COMPOSE_FILE" up -d; then
+    if ! $compose_cmd -f "$DOCKER_COMPOSE_FILE" up -d; then
         log_error "Failed to start services"
         return 1
     fi
@@ -165,19 +175,19 @@ test_docker_compose() {
     local elapsed=0
     
     while [[ $elapsed -lt $timeout ]]; do
-        if docker-compose -f "$DOCKER_COMPOSE_FILE" ps | grep -q "unhealthy"; then
+        if $compose_cmd -f "$DOCKER_COMPOSE_FILE" ps | grep -q "unhealthy"; then
             sleep 5
             elapsed=$((elapsed + 5))
         else
             log_success "All services are healthy"
-            docker-compose -f "$DOCKER_COMPOSE_FILE" ps
+            $compose_cmd -f "$DOCKER_COMPOSE_FILE" ps
             return 0
         fi
     done
     
     log_error "Services failed health check"
-    docker-compose -f "$DOCKER_COMPOSE_FILE" ps
-    docker-compose -f "$DOCKER_COMPOSE_FILE" logs --tail=50
+    $compose_cmd -f "$DOCKER_COMPOSE_FILE" ps
+    $compose_cmd -f "$DOCKER_COMPOSE_FILE" logs --tail=50
     return 1
 }
 
@@ -208,7 +218,11 @@ run_health_checks() {
 
 cleanup_test_environment() {
     log_info "Cleaning up test environment..."
-    docker-compose -f "$DOCKER_COMPOSE_FILE" down -v
+    local compose_cmd="docker compose"
+    if command -v docker-compose &> /dev/null; then
+        compose_cmd="docker-compose"
+    fi
+    $compose_cmd -f "$DOCKER_COMPOSE_FILE" down -v
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
