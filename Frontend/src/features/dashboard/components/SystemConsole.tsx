@@ -28,12 +28,24 @@ export function SystemConsole({ message, timestamp }: SystemConsoleProps) {
             <CardHeader className="p-4 border-b border-border/20">
                 <CardTitle className="text-sm uppercase tracking-widest text-green-700">Orchestrator Log</CardTitle>
             </CardHeader>
-            <CardContent className="p-4 h-[200px] overflow-y-auto space-y-2">
-                {logs.map((log, i) => (
-                    <div key={i} className="text-xs">
-                        <span className="opacity-50">[{log.time}]</span> {log.msg}
+            <CardContent
+                className="p-4 h-[200px] overflow-y-auto space-y-2 focus:outline-none focus:ring-1 focus:ring-green-500/50"
+                role="log"
+                aria-live="polite"
+                aria-label="System Logs"
+                tabIndex={0}
+            >
+                {logs.length === 0 ? (
+                    <div className="text-xs text-green-500/30 italic animate-pulse">
+                        /// SYSTEM INITIALIZING...
                     </div>
-                ))}
+                ) : (
+                    logs.map((log, i) => (
+                        <div key={i} className="text-xs">
+                            <span className="opacity-50">[{log.time}]</span> {log.msg}
+                        </div>
+                    ))
+                )}
                 <div ref={endRef} />
             </CardContent>
         </Card>
