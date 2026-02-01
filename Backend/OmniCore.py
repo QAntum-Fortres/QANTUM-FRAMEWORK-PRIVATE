@@ -4,6 +4,7 @@ import websockets
 import hashlib
 import random
 import requests
+import httpx
 import secrets
 import os
 from abc import ABC, abstractmethod
@@ -70,19 +71,24 @@ class ProjectMatrix:
         self.status_cache = {}
         self.last_check = 0
 
-    def check_health(self):
+    async def check_health(self):
         now = datetime.now().timestamp()
         if now - self.last_check < 60 and self.status_cache: # Check every minute
             return self.status_cache
 
         results = {}
-        for name, url in self.services.items():
-            try:
-                # Fast HEAD request to verify presence with 1s timeout
-                resp = requests.head(url, timeout=1.0)
-                results[name] = "online" if resp.status_code < 400 else "degraded"
-            except:
-                results[name] = "offline"
+        async with httpx.AsyncClient() as client:
+            async def check_single(name, url):
+                try:
+                    resp = await client.head(url, timeout=1.0)
+                    return name, "online" if resp.status_code < 400 else "degraded"
+                except:
+                    return name, "offline"
+
+            tasks = [check_single(name, url) for name, url in self.services.items()]
+            # Run all checks concurrently
+            completed = await asyncio.gather(*tasks)
+            results = dict(completed)
         
         self.status_cache = results
         self.last_check = now
@@ -229,7 +235,7 @@ async def handler(websocket):
                 f_count, loc_count = auditor.audit()
                 
                 # 5. PROJECT MATRIX (HEALTH)
-                project_status = matrix.check_health()
+                project_status = await matrix.check_health()
 
                 payload = {
                     "timestamp": datetime.now().strftime("%H:%M:%S"),
