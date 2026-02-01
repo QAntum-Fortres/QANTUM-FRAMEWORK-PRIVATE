@@ -12,3 +12,7 @@ Format: `## YYYY-MM-DD - [Title]`
 ## 2026-01-29 - Persona-Based Theming
 **Learning:** Users may require conflicting aesthetics (e.g., "Playful" vs "Serious"). Using CSS Variables + Class Toggles allows a single interface to serve multiple psychological needs (Gamification vs Professionalism) without code duplication or complete redesigns.
 **Action:** When asked for a "variant" or "redesign", first consider if a Theme Toggle can solve the user's need while preserving the original design system.
+
+## 2026-05-23 - Accessible Log Streams
+**Learning:** Auto-scrolling logs (like System Console) are inaccessible to screen readers and keyboard users if not managed correctly. Adding `role="log"`, `aria-live="polite"`, and making the container focusable (`tabIndex={0}`) transforms a passive display into an accessible tool. Empty states with "Initializing..." feedback prevent users from thinking the component is broken.
+**Action:** Always audit "read-only" displays for accessibility; just because a user can't *write* to it doesn't mean they don't need to *interact* (scroll/read) with it.
