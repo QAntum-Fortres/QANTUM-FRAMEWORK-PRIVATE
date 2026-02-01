@@ -3,6 +3,7 @@ import stripe
 import logging
 from fastapi import APIRouter, Request, HTTPException, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import selectinload
 from sqlmodel import select
 
 from app.database import get_session
@@ -26,7 +27,7 @@ PRICING_TIERS = {
 
 async def process_success(email: str, tier: str, session: AsyncSession):
     # Find user by email
-    stmt = select(User).where(User.email == email)
+    stmt = select(User).options(selectinload(User.wallet)).where(User.email == email)
     res = await session.execute(stmt)
     user = res.scalars().first()
 
@@ -47,13 +48,23 @@ async def process_success(email: str, tier: str, session: AsyncSession):
     wallet.credits += credits_to_add
 
     # 2. Unlock Modules
-    for mod_name in modules_to_unlock:
+    if modules_to_unlock:
         # check if exists
-        stmt_mod = select(UserModule).where(UserModule.user_id == user.id, UserModule.module_name == mod_name)
-        res_mod = await session.execute(stmt_mod)
-        if not res_mod.scalars().first():
-            new_mod = UserModule(user_id=user.id, module_name=mod_name)
-            session.add(new_mod)
+        unique_modules_to_unlock = set(modules_to_unlock)
+        stmt_existing = select(UserModule.module_name).where(
+            UserModule.user_id == user.id,
+            UserModule.module_name.in_(unique_modules_to_unlock)
+        )
+        res_existing = await session.execute(stmt_existing)
+        existing_modules = set(res_existing.scalars().all())
+
+        new_modules = []
+        for mod_name in unique_modules_to_unlock:
+            if mod_name not in existing_modules:
+                new_modules.append(UserModule(user_id=user.id, module_name=mod_name))
+
+        if new_modules:
+            session.add_all(new_modules)
 
     # 3. Log Transaction
     tx = Transaction(
