@@ -164,6 +164,12 @@ ledger = ImmutableLedger()  # Initialize immutable ledger
 
 async def handler(websocket):
     print(f"Client Connected: {websocket.remote_address}")
+
+    # Pre-calculate telemetry paths
+    telemetry_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "telemetry"))
+    release_bin = os.path.join(telemetry_dir, "target", "release", "lwas_telemetry_reporter")
+    debug_bin = os.path.join(telemetry_dir, "target", "debug", "lwas_telemetry_reporter")
+
     cycle_count = 0
     try:
         while True:
@@ -214,10 +220,18 @@ async def handler(websocket):
                 
                 # 3. PROJECT TELEMETRY (RUST CLOCKSPEED)
                 try:
+                    # Optimized: Run binary directly if available, fallback to cargo run
+                    if os.path.exists(release_bin):
+                        cmd = [release_bin]
+                    elif os.path.exists(debug_bin):
+                        cmd = [debug_bin]
+                    else:
+                        cmd = ["cargo", "run", "--quiet"]
+
                     # Calling the standalone high-performance Rust reporter
                     rust_output = subprocess.check_output(
-                        ["cargo", "run", "--quiet"],
-                        cwd=os.path.abspath(os.path.join(os.path.dirname(__file__), "telemetry")),
+                        cmd,
+                        cwd=telemetry_dir,
                         stderr=subprocess.DEVNULL
                     )
                     rust_stats = json.loads(rust_output.decode().strip())

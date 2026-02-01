@@ -43,3 +43,7 @@ k8s/secrets.yml
 *.swp
 *.swo
 *~
+
+# Python
+__pycache__/
+*.pyc
