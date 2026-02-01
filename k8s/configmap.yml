@@ -1,0 +1,189 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# QANTUM Framework - Kubernetes ConfigMap
+# Configuration Management for Cognitive Services
+# ═══════════════════════════════════════════════════════════════════════════════
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: qantum-config
+  labels:
+    app: qantum-framework
+data:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Application Configuration
+  # ─────────────────────────────────────────────────────────────────────────────
+  NODE_ENV: "production"
+  PORT: "8080"
+  
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Service Endpoints
+  # ─────────────────────────────────────────────────────────────────────────────
+  RUST_ECONOMY_URL: "http://localhost:8890"
+  BACKEND_URL: "http://localhost:5050"
+  WEBHOOK_URL: "http://localhost:5051"
+  
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Database Configuration
+  # ─────────────────────────────────────────────────────────────────────────────
+  POSTGRES_DB: "qantum_db"
+  POSTGRES_USER: "qantum_user"
+  POSTGRES_HOST: "postgres"
+  POSTGRES_PORT: "5432"
+  
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Cache & Message Queue
+  # ─────────────────────────────────────────────────────────────────────────────
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  RABBITMQ_HOST: "rabbitmq"
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_MANAGEMENT_PORT: "15672"
+  RABBITMQ_USER: "qantum"
+  
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Temporal Workflow
+  # ─────────────────────────────────────────────────────────────────────────────
+  TEMPORAL_ADDRESS: "temporal:7233"
+  TEMPORAL_NAMESPACE: "vortex-genesis"
+  
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Observability
+  # ─────────────────────────────────────────────────────────────────────────────
+  METRICS_PORT: "9090"
+  PROMETHEUS_URL: "http://prometheus:9090"
+  GRAFANA_URL: "http://grafana:3000"
+  
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Apoptosis Module
+  # ─────────────────────────────────────────────────────────────────────────────
+  APOPTOSIS_MAX_ENTROPY: "100"
+  APOPTOSIS_STALENESS_THRESHOLD: "2592000000"
+  LIVENESS_TOKEN_EXPIRY_MS: "300000"
+  
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Evolutionary Hardening
+  # ─────────────────────────────────────────────────────────────────────────────
+  MAX_HEALING_ATTEMPTS: "3"
+  HEALING_TIMEOUT_MS: "30000"
+  
+  # ─────────────────────────────────────────────────────────────────────────────
+  # CORS Configuration
+  # ─────────────────────────────────────────────────────────────────────────────
+  CORS_ORIGINS: "https://qantum.example.com,https://www.qantum.example.com,https://api.qantum.example.com"
+
+---
+# ═══════════════════════════════════════════════════════════════════════════════
+# Prometheus Configuration
+# ═══════════════════════════════════════════════════════════════════════════════
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  labels:
+    app: prometheus
+    tier: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+      scrape_timeout: 10s
+      evaluation_interval: 15s
+    
+    # Alertmanager configuration
+    alerting:
+      alertmanagers:
+      - static_configs:
+        - targets: []
+    
+    # Scrape configurations
+    scrape_configs:
+    # QANTUM Framework metrics
+    - job_name: 'qantum-framework'
+      static_configs:
+      - targets: ['qantum-framework:8080']
+        labels:
+          service: 'qantum-framework'
+          tier: 'fullstack'
+    
+    # Backend API metrics
+    - job_name: 'backend-api'
+      static_configs:
+      - targets: ['qantum-framework:5050']
+        labels:
+          service: 'backend'
+          tier: 'api'
+    
+    # Rust Economy Engine metrics
+    - job_name: 'rust-economy'
+      static_configs:
+      - targets: ['qantum-framework:8890']
+        labels:
+          service: 'rust-economy'
+          tier: 'engine'
+    
+    # PostgreSQL metrics
+    - job_name: 'postgres'
+      static_configs:
+      - targets: ['postgres:5432']
+        labels:
+          service: 'postgres'
+          tier: 'database'
+    
+    # Redis metrics
+    - job_name: 'redis'
+      static_configs:
+      - targets: ['redis:6379']
+        labels:
+          service: 'redis'
+          tier: 'cache'
+    
+    # RabbitMQ metrics
+    - job_name: 'rabbitmq'
+      static_configs:
+      - targets: ['rabbitmq:15672']
+        labels:
+          service: 'rabbitmq'
+          tier: 'messaging'
+    
+    # Kubernetes metrics
+    - job_name: 'kubernetes-apiservers'
+      kubernetes_sd_configs:
+      - role: endpoints
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+        action: keep
+        regex: default;kubernetes;https
+    
+    - job_name: 'kubernetes-nodes'
+      kubernetes_sd_configs:
+      - role: node
+      relabel_configs:
+      - action: labelmap
+        regex: __meta_kubernetes_node_label_(.+)
+    
+    - job_name: 'kubernetes-pods'
+      kubernetes_sd_configs:
+      - role: pod
+      relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_path]
+        action: replace
+        target_label: __metrics_path__
+        regex: (.+)
+      - source_labels: [__address__, __meta_kubernetes_pod_annotation_prometheus_io_port]
+        action: replace
+        regex: ([^:]+)(?::\d+)?;(\d+)
+        replacement: $1:$2
+        target_label: __address__
+      - action: labelmap
+        regex: __meta_kubernetes_pod_label_(.+)
+      - source_labels: [__meta_kubernetes_namespace]
+        action: replace
+        target_label: kubernetes_namespace
+      - source_labels: [__meta_kubernetes_pod_name]
+        action: replace
+        target_label: kubernetes_pod_name

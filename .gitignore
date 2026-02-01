@@ -29,3 +29,17 @@ logs/
 # OS
 .DS_Store
 Thumbs.db
+
+# Kubernetes secrets (never commit actual secrets)
+k8s/secrets.yml
+
+# Docker
+*.tar
+*.tar.gz
+
+# Temporary files
+/tmp/
+*.tmp
+*.swp
+*.swo
+*~

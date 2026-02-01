@@ -1,0 +1,182 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# QANTUM Framework - Kubernetes Ingress Configuration
+# Cognitive Routing with Automatic HTTPS
+# ═══════════════════════════════════════════════════════════════════════════════
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: qantum-ingress
+  labels:
+    app: qantum-framework
+  annotations:
+    # Nginx Ingress annotations
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    
+    # Rate limiting for DDoS protection
+    nginx.ingress.kubernetes.io/limit-connections: "100"
+    nginx.ingress.kubernetes.io/limit-rps: "50"
+    
+    # Timeouts
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    
+    # CORS settings
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
+    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization"
+    
+    # SSL/TLS configuration
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    
+    # Load balancing
+    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/session-cookie-name: "qantum-affinity"
+    nginx.ingress.kubernetes.io/session-cookie-expires: "172800"
+    nginx.ingress.kubernetes.io/session-cookie-max-age: "172800"
+    
+spec:
+  ingressClassName: nginx
+  
+  tls:
+  - hosts:
+    - qantum.example.com
+    - www.qantum.example.com
+    - api.qantum.example.com
+    secretName: qantum-tls-secret
+  
+  rules:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Main Application Domain
+  # ─────────────────────────────────────────────────────────────────────────────
+  - host: qantum.example.com
+    http:
+      paths:
+      # Frontend SPA
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: qantum-framework
+            port:
+              number: 80
+      
+      # Backend API
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: qantum-framework
+            port:
+              number: 5050
+      
+      # Rust Economy Engine
+      - path: /economy
+        pathType: Prefix
+        backend:
+          service:
+            name: qantum-framework
+            port:
+              number: 8890
+      
+      # Webhook Handler
+      - path: /webhooks
+        pathType: Prefix
+        backend:
+          service:
+            name: qantum-framework
+            port:
+              number: 5051
+      
+      # Prometheus Metrics
+      - path: /metrics
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus
+            port:
+              number: 9090
+      
+      # Grafana Dashboard
+      - path: /grafana
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 3000
+  
+  # ─────────────────────────────────────────────────────────────────────────────
+  # WWW Subdomain (redirect to main)
+  # ─────────────────────────────────────────────────────────────────────────────
+  - host: www.qantum.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: qantum-framework
+            port:
+              number: 80
+  
+  # ─────────────────────────────────────────────────────────────────────────────
+  # API Subdomain
+  # ─────────────────────────────────────────────────────────────────────────────
+  - host: api.qantum.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: qantum-framework
+            port:
+              number: 5050
+
+---
+# ═══════════════════════════════════════════════════════════════════════════════
+# Monitoring Ingress (Prometheus & Grafana)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: qantum-monitoring-ingress
+  labels:
+    app: qantum-monitoring
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: monitoring-basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: 'QANTUM Monitoring - Authentication Required'
+spec:
+  ingressClassName: nginx
+  
+  tls:
+  - hosts:
+    - monitoring.qantum.example.com
+    secretName: qantum-monitoring-tls-secret
+  
+  rules:
+  - host: monitoring.qantum.example.com
+    http:
+      paths:
+      - path: /prometheus
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus
+            port:
+              number: 9090
+      
+      - path: /grafana
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 3000
