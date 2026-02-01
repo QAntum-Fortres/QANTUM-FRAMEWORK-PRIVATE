@@ -2,6 +2,7 @@ import { spawn, ChildProcess } from 'child_process';
 import * as path from 'path';
 import * as readline from 'readline';
 import { fileURLToPath } from 'url';
+import * as fs from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,24 +44,33 @@ export class VeritasBridge {
     private process: ChildProcess | null = null;
     private rl: readline.Interface | null = null;
     private responseQueue: Array<(data: any) => void> = [];
+    private debugMode: boolean = true;
 
     constructor() {
         this.startCore();
     }
 
     private startCore() {
-        // Assume the binary is built at veritas_core/target/debug/veritas_core
-        // In production, this path would be configured differently.
-        const binaryPath = path.resolve(__dirname, '../../veritas_core/target/debug/veritas_core');
+        // Resolve path to the Rust binary
+        // Assumes running from root or standard structure
+        const binaryName = process.platform === 'win32' ? 'veritas_core.exe' : 'veritas_core';
+        const binaryPath = path.resolve(__dirname, '../../veritas_core/target/debug', binaryName);
 
-        console.log(`[VERITAS] Spawning Core: ${binaryPath}`);
+        if (this.debugMode) {
+            console.log(`[VERITAS] Linking to Neural Core at: ${binaryPath}`);
+        }
+
+        if (!fs.existsSync(binaryPath)) {
+             console.error(`[VERITAS] CRITICAL: Core binary not found at ${binaryPath}`);
+             console.error(`[VERITAS] Please run: 'cd veritas_core && cargo build'`);
+             return;
+        }
 
         try {
             this.process = spawn(binaryPath);
 
             this.process.on('error', (err) => {
                 console.error(`[VERITAS] Failed to spawn Rust core: ${err.message}`);
-                console.error(`[VERITAS] Ensure you have run 'cd veritas_core && cargo build'`);
                 this.process = null;
             });
 
@@ -76,7 +86,9 @@ export class VeritasBridge {
         }
 
         this.process.stderr?.on('data', (data) => {
-            console.error(`[VERITAS CORE ERR]: ${data}`);
+            // Forward Rust logs to Node console
+            const log = data.toString().trim();
+            if (log) console.error(`[CORE] ${log}`);
         });
 
         if (this.process.stdout) {
@@ -108,11 +120,14 @@ export class VeritasBridge {
     }
 
     private async sendCommand(commandName: string, payload: any): Promise<any> {
+        if (!this.process) {
+            throw new Error("Veritas Core is not running.");
+        }
+
         return new Promise((resolve, reject) => {
-            // Match SecureCommand structure in Rust
             const secureCmd = {
-                auth_token: "valid_token", // Mock token
-                user_id: "admin",          // Mock user
+                auth_token: "valid_token",
+                user_id: "admin",
                 command: {
                     command: commandName,
                     payload: payload

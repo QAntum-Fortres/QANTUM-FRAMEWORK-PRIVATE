@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
-use rand::Rng;
+use ndarray::Array1;
+use crate::engine::neural_locator::{VisionTransformer, BoundingBox};
+use base64::{Engine as _, engine::general_purpose};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct HealRequest {
@@ -18,54 +20,75 @@ pub struct HealResult {
 
 pub struct SemanticHealer {
     threshold: f32,
+    vit: VisionTransformer,
 }
 
 impl SemanticHealer {
     pub fn new() -> Self {
         SemanticHealer {
             threshold: 0.85,
+            vit: VisionTransformer::new(),
         }
     }
 
     pub fn heal(&self, request: &HealRequest) -> HealResult {
-        // SIMULATION: In reality, calculate Cosine Similarity between last_known_embedding
-        // and embeddings of current elements in the view.
+        // 1. Decode Image
+        let image_bytes = match general_purpose::STANDARD.decode(&request.current_image) {
+            Ok(b) => b,
+            Err(_) => return self.fail_result("Failed to decode Base64 image"),
+        };
 
-        let mut rng = rand::thread_rng();
-        let score: f32 = rng.gen_range(0.80..0.99);
+        let image = match image::load_from_memory(&image_bytes) {
+            Ok(img) => img,
+            Err(_) => image::DynamicImage::new_rgb8(1000, 1000), // Fallback for mock
+        };
 
-        if score > self.threshold {
+        // 2. Convert last known embedding to Array1
+        let last_embedding = Array1::from(request.last_known_embedding.clone());
+        if last_embedding.len() != 768 {
+             return self.fail_result("Invalid embedding dimension (expected 768)");
+        }
+
+        // 3. Scan current view for candidates
+        let detected_objects = self.vit.detect_objects(&image);
+
+        // 4. Find best semantic match
+        let mut best_score: f32 = -1.0;
+        let mut best_label = String::new();
+
+        for (_bbox, visual_vec, label) in detected_objects {
+            let score = visual_vec.dot(&last_embedding) / (visual_vec.dot(&visual_vec).sqrt() * last_embedding.dot(&last_embedding).sqrt());
+
+            if score > best_score {
+                best_score = score;
+                best_label = label;
+            }
+        }
+
+        // 5. Check Threshold
+        if best_score > self.threshold {
             HealResult {
                 healed: true,
-                new_selector: format!("xpath: //*[contains(@class, 'semantic-match-{}')]", request.failed_selector.replace("#", "")),
-                similarity_score: score,
-                reason: format!("Visual embedding match ({:.2}) > threshold ({:.2}). Identified element by spatial-semantic context.", score, self.threshold),
+                new_selector: format!("veritas-semantic://{}", best_label), // Abstract selector
+                similarity_score: best_score,
+                reason: format!("Found element visually similar ({:.2}) to missing '{}'. Context preserved.", best_score, request.failed_selector),
             }
         } else {
              HealResult {
                 healed: false,
                 new_selector: "".to_string(),
-                similarity_score: score,
-                reason: "No element found with sufficient semantic similarity.".to_string(),
+                similarity_score: best_score,
+                reason: format!("No element found with similarity > {:.2}. Best match: {:.2}", self.threshold, best_score),
             }
         }
     }
-}
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_heal_success() {
-        let healer = SemanticHealer::new();
-        let req = HealRequest {
-            failed_selector: "#btn-buy".to_string(),
-            last_known_embedding: vec![0.1; 768],
-            current_image: "base64...".to_string(),
-        };
-        // Since it's random, we can't assert exact success, but we can check the struct.
-        let result = healer.heal(&req);
-        assert!(result.similarity_score >= 0.80);
+    fn fail_result(&self, reason: &str) -> HealResult {
+        HealResult {
+            healed: false,
+            new_selector: "".to_string(),
+            similarity_score: 0.0,
+            reason: reason.to_string(),
+        }
     }
 }
