@@ -27,14 +27,43 @@
     }
   },
   "include": [
-      "src/main.tsx",
-      "src/App.tsx",
-      "src/api/client.ts",
-      "src/components/**/*",
-      "src/features/**/*",
-      "src/lib/**/*",
-      "src/stores/**/*",
-      "src/vite-env.d.ts"
+    "src/App.tsx",
+    "src/main.tsx",
+    "src/vite-env.d.ts",
+    "src/components/**/*",
+    "src/pages/**/*",
+    "src/features/**/*",
+    "src/hooks/**/*",
+    "src/lib/**/*",
+    "src/api/client.ts",
+    "src/assets/**/*",
+    "src/utils/**/*"
   ],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "exclude": [
+    "node_modules",
+    "src/modules",
+    "src/omni_core",
+    "src/security_core",
+    "src/nerve-center",
+    "src/agents",
+    "src/ai",
+    "src/biology",
+    "src/chronos",
+    "src/core",
+    "src/events",
+    "src/ghost",
+    "src/guardians",
+    "src/healing",
+    "src/intelligence",
+    "src/math",
+    "src/physics",
+    "src/reality",
+    "src/reporter",
+    "src/security",
+    "src/storage",
+    "src/swarm",
+    "src/synthesis",
+    "src/validation",
+    "src/visual"
+  ]
 }

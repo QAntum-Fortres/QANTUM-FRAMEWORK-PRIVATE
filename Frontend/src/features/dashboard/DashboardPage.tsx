@@ -5,6 +5,8 @@ import { MetricCard } from "./components/MetricCard";
 import { EntropyChart } from "./components/EntropyChart";
 import { SystemConsole } from "./components/SystemConsole";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export function DashboardPage() {
     // 1. Activate Neural Link (WebSocket)
@@ -23,6 +25,12 @@ export function DashboardPage() {
                     <p className="text-muted-foreground">Real-time system telemetry & orchestration.</p>
                 </div>
                 <div className="flex items-center space-x-2">
+                     <Button variant="ghost" size="sm" asChild className="mr-2">
+                        <Link to="/architect">
+                            <Terminal className="mr-2 h-4 w-4" />
+                            Architect Workspace
+                        </Link>
+                     </Button>
                      <Badge variant={isLoading ? "destructive" : "default"} className="animate-pulse">
                         {isLoading ? "CONNECTING..." : "SYSTEM ONLINE"}
                      </Badge>

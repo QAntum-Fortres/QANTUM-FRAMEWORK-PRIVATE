@@ -236,6 +236,33 @@ services:
       - "traefik.http.services.seo-audit.loadbalancer.server.port=8091"
 
   # ─────────────────────────────────────────────────────────────────────────────
+  # The Architect - Cognitive Node
+  # ─────────────────────────────────────────────────────────────────────────────
+  the-architect:
+    build:
+      context: ./TheArchitect
+      dockerfile: Dockerfile
+    container_name: qantum-architect
+    environment:
+      - PORT=3001
+      - DATABASE_URL=postgresql://qantum_user:${POSTGRES_PASSWORD:-qantum_secure_pass}@postgres:5432/qantum_db
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - qantum-network
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.architect.rule=PathPrefix(`/architect-api`)"
+      - "traefik.http.services.architect.loadbalancer.server.port=3001"
+
+  # ─────────────────────────────────────────────────────────────────────────────
   # Temporal Server (for workflow orchestration)
   # ─────────────────────────────────────────────────────────────────────────────
   temporal:
