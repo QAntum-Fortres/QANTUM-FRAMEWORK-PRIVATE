@@ -12,3 +12,7 @@ Format: `## YYYY-MM-DD - [Title]`
 ## 2026-01-29 - Persona-Based Theming
 **Learning:** Users may require conflicting aesthetics (e.g., "Playful" vs "Serious"). Using CSS Variables + Class Toggles allows a single interface to serve multiple psychological needs (Gamification vs Professionalism) without code duplication or complete redesigns.
 **Action:** When asked for a "variant" or "redesign", first consider if a Theme Toggle can solve the user's need while preserving the original design system.
+
+## 2026-02-18 - Promises vs Reality in UX
+**Learning:** UI text often promises interactions (like "Ctrl+K") that aren't implemented, leading to user frustration. Also, accessible components (using `<button>`) are more resilient than `<div>` soups, as they handle focus and keyboard events natively.
+**Action:** Audit UI text for promised shortcuts and verify implementation. Favor native interactive elements over custom implementations.
