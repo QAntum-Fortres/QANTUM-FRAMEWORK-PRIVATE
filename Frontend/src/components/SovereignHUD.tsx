@@ -47,9 +47,22 @@ export const SovereignHUD = () => {
     const [terminalInput, setTerminalInput] = useState('');
     const chatEndRef = useRef<HTMLDivElement>(null);
     const terminalEndRef = useRef<HTMLDivElement>(null);
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     // Derived Integrity
     const integrity = Math.max(0, 100 - (metrics.entropy * 100));
+
+    // Keyboard Shortcuts
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInputRef.current?.focus();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
 
     // Auto-scroll
     useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
@@ -143,12 +156,17 @@ export const SovereignHUD = () => {
                 {/* HEADER */}
                 <header className="h-[70px] bg-[#0a0a12]/80 backdrop-blur border-b border-[#2a2a50] flex items-center justify-between px-8 relative z-30">
                     <div className="flex items-center gap-4">
-                        <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden text-gray-400 hover:text-white">
+                        <button
+                            onClick={() => setSidebarOpen(!sidebarOpen)}
+                            className="lg:hidden text-gray-400 hover:text-white"
+                            aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
+                        >
                             {sidebarOpen ? <X /> : <Menu />}
                         </button>
                         <div className="relative hidden md:block">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                             <input
+                                ref={searchInputRef}
                                 type="text"
                                 placeholder="Search modules... (Ctrl+K)"
                                 className="bg-[var(--quantum-void)] border border-[#2a2a50] rounded-md py-1.5 pl-10 pr-4 text-sm w-64 focus:border-[var(--neon-cyan)] outline-none transition-colors"
@@ -160,8 +178,8 @@ export const SovereignHUD = () => {
                             <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`} />
                             <span className="text-[10px] font-mono font-bold text-gray-300 tracking-tighter">{isConnected ? 'ONLINE' : 'OFFLINE'}</span>
                         </div>
-                        <button className="text-gray-400 hover:text-white transition-colors"><Bell size={18} /></button>
-                        <button className="text-gray-400 hover:text-white transition-colors"><Settings size={18} /></button>
+                        <button className="text-gray-400 hover:text-white transition-colors" aria-label="Notifications"><Bell size={18} /></button>
+                        <button className="text-gray-400 hover:text-white transition-colors" aria-label="Settings"><Settings size={18} /></button>
                     </div>
                 </header>
 
@@ -264,11 +282,15 @@ export const SovereignHUD = () => {
                                                 className="w-full bg-[#020205] border border-[#2a2a50] rounded-xl py-3 pl-4 pr-20 focus:border-[var(--neon-cyan)] outline-none text-white transition-all"
                                             />
                                             <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
-                                                <button className="p-2 text-gray-400 hover:text-white"><Paperclip size={16} /></button>
-                                                <button className="p-2 text-gray-400 hover:text-white"><Mic size={16} /></button>
+                                                <button className="p-2 text-gray-400 hover:text-white" aria-label="Attach file"><Paperclip size={16} /></button>
+                                                <button className="p-2 text-gray-400 hover:text-white" aria-label="Voice input"><Mic size={16} /></button>
                                             </div>
                                         </div>
-                                        <button onClick={handleSendMessage} className="p-3 bg-[var(--neon-cyan)] text-black rounded-xl hover:bg-[var(--neon-cyan)]/80 transition-all">
+                                        <button
+                                            onClick={handleSendMessage}
+                                            className="p-3 bg-[var(--neon-cyan)] text-black rounded-xl hover:bg-[var(--neon-cyan)]/80 transition-all"
+                                            aria-label="Send message"
+                                        >
                                             <Send size={20} />
                                         </button>
                                     </div>
@@ -340,17 +362,18 @@ export const SovereignHUD = () => {
 // --- SUBCOMPONENTS ---
 
 const NavItem = ({ icon: Icon, label, active, onClick, color }: { icon: any, label: string, active: boolean, onClick: () => void, color?: string }) => (
-    <div
+    <button
+        type="button"
         onClick={onClick}
         className={`
-            flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all relative overflow-hidden group
+            w-full flex items-center gap-3 px-4 py-3 rounded-lg cursor-pointer transition-all relative overflow-hidden group outline-none focus-visible:ring-2 focus-visible:ring-[var(--neon-cyan)]
             ${active ? 'bg-gradient-to-r from-[var(--neon-cyan)]/10 to-transparent text-[var(--neon-cyan)]' : 'text-gray-400 hover:bg-white/5 hover:text-white'}
         `}
     >
         {active && <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--neon-cyan)] shadow-[0_0_10px_var(--neon-cyan)]" />}
         <Icon size={18} style={{ color: active && color ? `var(${color})` : undefined }} />
         <span className="font-medium text-sm">{label}</span>
-    </div>
+    </button>
 );
 
 const StatCard = ({ label, value, color }: { label: string, value: string, color: string }) => (
