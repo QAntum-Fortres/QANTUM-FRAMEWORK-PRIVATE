@@ -147,6 +147,17 @@
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         .status-text { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+        
+        /* Entropy warning - red flashing effect */
+        .status-indicator.entropy-warning {
+            background: var(--danger) !important;
+            box-shadow: 0 0 20px var(--danger) !important;
+            animation: flash-red 0.5s ease-in-out infinite !important;
+        }
+        @keyframes flash-red { 
+            0%, 100% { opacity: 1; transform: scale(1); } 
+            50% { opacity: 0.5; transform: scale(1.2); } 
+        }
         @media (max-width: 768px) {
             .ascii-logo {
                 font-size: 0.35rem;
@@ -241,6 +252,8 @@
             <div class="stat-card"><div class="stat-label">💀 Apoptosis Cycle</div><div class="stat-value">Phase 7</div></div>
             <div class="stat-card"><div class="stat-label">🛡️ Active Modules</div><div class="stat-value">243</div></div>
             <div class="stat-card"><div class="stat-label">⚡ Uptime</div><div class="stat-value">99.99%</div></div>
+            <div class="stat-card"><div class="stat-label">📁 Project Files</div><div class="stat-value" id="project-files">Loading...</div></div>
+            <div class="stat-card"><div class="stat-label">📝 Lines of Code</div><div class="stat-value" id="lines-of-code">Loading...</div></div>
         </div>
         <h3 style="margin: 2rem 0 1rem; text-align: center; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">🛡️ Live Immune System Status</h3>
         <div class="stats-grid" style="margin-top: 1rem;">
@@ -359,18 +372,22 @@
             particlesContainer.appendChild(particle);
         }
 
-        // WEBSOCKET CONNECTION
+        // WEBSOCKET CONNECTION TO JULESBRIDGE
         let ws;
         const statusText = document.getElementById('connection-status');
         const indicator = document.querySelector('.status-indicator');
+        let entropyData = [];
+        let entropyWarning = false;
 
         function connect() {
-            ws = new WebSocket('ws://localhost:3001');
+            // Connect to JulesBridge on port 7777
+            ws = new WebSocket('ws://localhost:7777');
 
             ws.onopen = () => {
-                statusText.innerText = 'NERVE CENTER ONLINE';
+                statusText.innerText = 'JULESBRIDGE ONLINE';
                 indicator.style.background = '#10b981';
                 indicator.style.boxShadow = '0 0 20px #10b981';
+                log('[SYSTEM] Connected to JulesBridge Neural Nexus', '#10b981');
             };
 
             ws.onmessage = (event) => {
@@ -384,21 +401,81 @@
                 indicator.style.boxShadow = '0 0 20px #ef4444';
                 setTimeout(connect, 3000);
             };
+
+            ws.onerror = () => {
+                log('[ERROR] JulesBridge connection failed', '#ef4444');
+            };
         }
 
         function handleMessage(msg) {
+            if (msg.type === 'connected') {
+                log('[NEURAL LINK] ' + msg.data.message, '#a855f7');
+            }
+            if (msg.type === 'telemetry') {
+                updateTelemetry(msg.data);
+            }
+            if (msg.type === 'log') {
+                const levelColors = {
+                    'info': '#d1d5db',
+                    'success': '#10b981',
+                    'warning': '#f59e0b',
+                    'error': '#ef4444'
+                };
+                log(`[${msg.data.level.toUpperCase()}] ${msg.data.message}`, levelColors[msg.data.level] || '#d1d5db');
+            }
+            if (msg.type === 'logs') {
+                msg.data.forEach(logEntry => {
+                    const levelColors = {
+                        'info': '#d1d5db',
+                        'success': '#10b981',
+                        'warning': '#f59e0b',
+                        'error': '#ef4444'
+                    };
+                    log(`[${logEntry.level.toUpperCase()}] ${logEntry.message}`, levelColors[logEntry.level] || '#d1d5db');
+                });
+            }
+            // Legacy message types for compatibility
             if (msg.type === 'veritas:log') {
                 log(msg.data.message);
             }
             if (msg.type === 'veritas:neural_map') {
                 log(`[ViT] Located: ${msg.data.intent} (Conf: ${(msg.data.result.confidence * 100).toFixed(1)}%)`, '#a855f7');
-                // Could draw on canvas here if coordinates provided
             }
             if (msg.type === 'veritas:goal_complete') {
                 log(`[SUCCESS] Goal Complete. Report generated.`, '#10b981');
                 msg.data.report.forEach(step => {
                      log(`  > ${step.step}: ${step.status}`, step.status === 'SUCCESS' ? '#10b981' : '#ef4444');
                 });
+            }
+        }
+
+        function updateTelemetry(data) {
+            // Update entropy data
+            entropyData.push({
+                time: Date.now(),
+                entropy: data.entropy,
+                stability: data.stability
+            });
+            
+            // Keep only last 100 data points
+            if (entropyData.length > 100) {
+                entropyData.shift();
+            }
+
+            // Check if entropy is above threshold
+            if (data.entropy > 0.01) {
+                if (!entropyWarning) {
+                    entropyWarning = true;
+                    log('[CRITICAL] Global Entropy Index exceeds threshold: ' + (data.entropy * 100).toFixed(3) + '%', '#ef4444');
+                    // Add red flashing effect to status indicator
+                    indicator.classList.add('entropy-warning');
+                }
+            } else {
+                if (entropyWarning) {
+                    entropyWarning = false;
+                    log('[RECOVERY] Entropy normalized', '#10b981');
+                    indicator.classList.remove('entropy-warning');
+                }
             }
         }
 
@@ -541,6 +618,42 @@
 
         // Initialize
         connect();
+
+        // Fetch telemetry data every 2 seconds
+        setInterval(async () => {
+            try {
+                const response = await fetch('http://localhost:7777/api/telemetry');
+                if (response.ok) {
+                    const data = await response.json();
+                    updateTelemetry(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch telemetry:', error);
+            }
+        }, 2000);
+
+        // Fetch stats on load and every 30 seconds
+        async function fetchStats() {
+            try {
+                const response = await fetch('http://localhost:7777/api/stats');
+                if (response.ok) {
+                    const data = await response.json();
+                    // Update file and LOC stats if elements exist
+                    const filesEl = document.getElementById('project-files');
+                    const locEl = document.getElementById('lines-of-code');
+                    if (filesEl) filesEl.innerText = data.totalFiles.toLocaleString();
+                    if (locEl) locEl.innerText = data.totalLOC.toLocaleString();
+                    log(`[STATS] ${data.totalFiles} files, ${data.totalLOC.toLocaleString()} LOC`, '#06b6d4');
+                }
+            } catch (error) {
+                console.error('Failed to fetch stats:', error);
+            }
+        }
+        
+        // Initial stats fetch
+        setTimeout(fetchStats, 1000);
+        // Periodic stats fetch every 30 seconds
+        setInterval(fetchStats, 30000);
     </script>
 </body>
 </html>

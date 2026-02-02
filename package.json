@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node scripts/control-server.js",
+    "jules": "npx tsx JulesBridge.ts",
+    "jules:bridge": "npx tsx JulesBridge.ts",
     "register": "npx ts-node scripts/tools/gatekeeper.ts",
     "test": "npx tsx scripts/test-cognitive-bridge.ts",
     "chat": "npx tsx PROJECT/QA-SAAS/packages/pinecone-bridge/src/console/QAntumConsole.ts",
