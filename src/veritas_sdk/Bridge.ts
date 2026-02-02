@@ -39,6 +39,27 @@ export interface HealResult {
     reason: string;
 }
 
+export interface GoalRequest {
+    goal: string;
+}
+
+export interface AgentStep {
+    step_id: string;
+    action: string;
+    observation: string;
+    reasoning: string;
+    duration_ms: number;
+    status: string;
+}
+
+export interface GoalResult {
+    success: boolean;
+    goal_id: string;
+    steps: AgentStep[];
+    audit_log_url: string;
+    total_duration_ms: number;
+}
+
 export class VeritasBridge {
     private process: ChildProcess | null = null;
     private rl: readline.Interface | null = null;
@@ -53,7 +74,7 @@ export class VeritasBridge {
         // In production, this path would be configured differently.
         const binaryPath = path.resolve(__dirname, '../../veritas_core/target/debug/veritas_core');
 
-        console.log(`[VERITAS] Spawning Core: ${binaryPath}`);
+        // console.log(`[VERITAS] Spawning Core: ${binaryPath}`);
 
         try {
             this.process = spawn(binaryPath);
@@ -66,7 +87,7 @@ export class VeritasBridge {
 
             this.process.on('exit', (code, signal) => {
                 if (code !== 0 && code !== null) {
-                    console.warn(`[VERITAS] Core exited with code ${code}`);
+                    // console.warn(`[VERITAS] Core exited with code ${code}`);
                 }
             });
 
@@ -105,6 +126,10 @@ export class VeritasBridge {
 
     public async heal(failed_selector: string, current_image: string, last_known_embedding: number[]): Promise<HealResult> {
          return this.sendCommand('Heal', { failed_selector, current_image, last_known_embedding });
+    }
+
+    public async executeGoal(goal: string): Promise<GoalResult> {
+        return this.sendCommand('Goal', { goal });
     }
 
     private async sendCommand(commandName: string, payload: any): Promise<any> {
