@@ -1,0 +1,24 @@
+services:
+  # The QANTUM Architect Node (Backend)
+  - type: web
+    name: qantum-architect
+    env: docker
+    region: frankfurt
+    plan: free
+    dockerContext: ./TheArchitect
+    dockerfilePath: ./TheArchitect/Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 10000
+    autoDeploy: true
+
+  # The Helios UI (Frontend) - Optional if you want it on Render too, otherwise keep Netlify
+  - type: web
+    name: helios-ui
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./Frontend/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 20.10.0
