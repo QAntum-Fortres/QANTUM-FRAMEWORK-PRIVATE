@@ -21,6 +21,21 @@ const app = express();
 const server = createServer(app);
 const wss = new WebSocketServer({ server });
 
+// Configuration constants
+const SUPPORTED_EXTENSIONS = [
+  '.ts', '.js', '.tsx', '.jsx', '.py', '.java', '.go', '.rs', 
+  '.c', '.cpp', '.h', '.cs', '.php', '.rb', '.swift', '.kt'
+];
+
+const ENTROPY_CONFIG = {
+  baseValue: 0.005,
+  oscillationPeriod: 10000, // ms
+  variationAmplitude: 0.005,
+  randomNoiseAmplitude: 0.002,
+  minValue: 0.001,
+  maxValue: 0.015
+};
+
 const CONFIG = {
   port: 7777,
   projectRoot: __dirname,
@@ -96,8 +111,7 @@ function countFilesAndLOC(dir: string): { files: number; loc: number } {
       } else if (stat.isFile()) {
         // Count code files
         const ext = path.extname(item);
-        if (['.ts', '.js', '.tsx', '.jsx', '.py', '.java', '.go', '.rs', 
-             '.c', '.cpp', '.h', '.cs', '.php', '.rb', '.swift', '.kt'].includes(ext)) {
+        if (SUPPORTED_EXTENSIONS.includes(ext)) {
           files++;
           try {
             const content = fs.readFileSync(fullPath, 'utf-8');
@@ -117,12 +131,15 @@ function countFilesAndLOC(dir: string): { files: number; loc: number } {
 
 // Simulate entropy fluctuation
 function updateEntropy() {
-  // Entropy oscillates between 0.001 and 0.015
-  const baseEntropy = 0.005;
-  const variation = Math.sin(Date.now() / 10000) * 0.005;
-  const randomNoise = (Math.random() - 0.5) * 0.002;
+  // Entropy oscillates using configuration parameters
+  const baseEntropy = ENTROPY_CONFIG.baseValue;
+  const variation = Math.sin(Date.now() / ENTROPY_CONFIG.oscillationPeriod) * ENTROPY_CONFIG.variationAmplitude;
+  const randomNoise = (Math.random() - 0.5) * ENTROPY_CONFIG.randomNoiseAmplitude;
   
-  systemState.entropy = Math.max(0.001, Math.min(0.015, baseEntropy + variation + randomNoise));
+  systemState.entropy = Math.max(
+    ENTROPY_CONFIG.minValue, 
+    Math.min(ENTROPY_CONFIG.maxValue, baseEntropy + variation + randomNoise)
+  );
   systemState.stability = 1 - systemState.entropy;
   systemState.lastUpdate = Date.now();
   
@@ -191,8 +208,9 @@ app.get('/api/stats', (_, res) => {
 
 // Logs endpoint
 app.get('/api/logs', (req, res) => {
-  const limit = parseInt(req.query?.limit as string) || 50;
-  res.json(logsBuffer.slice(-limit));
+  const limitParam = req.query?.limit as string;
+  const limit = limitParam && !isNaN(parseInt(limitParam)) ? parseInt(limitParam) : 50;
+  res.json(logsBuffer.slice(-Math.min(limit, MAX_LOGS)));
 });
 
 // WebSocket connection handler

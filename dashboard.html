@@ -378,6 +378,9 @@
         const indicator = document.querySelector('.status-indicator');
         let entropyData = [];
         let entropyWarning = false;
+        
+        // Configuration constants
+        const ENTROPY_CRITICAL_THRESHOLD = 0.01;
 
         function connect() {
             // Connect to JulesBridge on port 7777
@@ -463,7 +466,7 @@
             }
 
             // Check if entropy is above threshold
-            if (data.entropy > 0.01) {
+            if (data.entropy > ENTROPY_CRITICAL_THRESHOLD) {
                 if (!entropyWarning) {
                     entropyWarning = true;
                     log('[CRITICAL] Global Entropy Index exceeds threshold: ' + (data.entropy * 100).toFixed(3) + '%', '#ef4444');
