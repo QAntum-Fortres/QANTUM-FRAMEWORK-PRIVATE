@@ -66,6 +66,7 @@ mod tests {
         };
         // Since it's random, we can't assert exact success, but we can check the struct.
         let result = healer.heal(&req);
+        // It's a simulation, so just check it returns something
         assert!(result.similarity_score >= 0.80);
     }
 }

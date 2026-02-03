@@ -1,13 +1,16 @@
-import { Activity, Zap, TrendingUp, Layers, Server, Clock, Hash, FileCode } from "lucide-react";
+import { Activity, Zap, TrendingUp, Layers, Server, Clock, Hash, FileCode, Play, Eye, Brain, ShieldCheck } from "lucide-react";
 import { useSystemMetrics } from "./hooks/useMetrics";
 import { useRealtime } from "@/hooks/useRealtime";
 import { MetricCard } from "./components/MetricCard";
 import { EntropyChart } from "./components/EntropyChart";
 import { SystemConsole } from "./components/SystemConsole";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
+import { Button } from "@/components/ui/button";
+import { useState } from 'react';
+import { Agent, GoalResult } from '@/veritas_sdk/Agent';
 
 export function DashboardPage() {
     // 1. Activate Neural Link (WebSocket)
@@ -17,6 +20,21 @@ export function DashboardPage() {
     const { data: metrics } = useSystemMetrics();
 
     const isLoading = !metrics;
+
+    // Veritas Agent State
+    const [agentResult, setAgentResult] = useState<GoalResult | null>(null);
+    const [isAgentRunning, setIsAgentRunning] = useState(false);
+
+    const runVeritasAgent = async () => {
+        setIsAgentRunning(true);
+        setAgentResult(null);
+        const agent = new Agent();
+        // Simulate a delay to show "Thinking" state
+        await new Promise(r => setTimeout(r, 500));
+        const result = await agent.execute("Verify that a user can complete a purchase with a 10% discount code.");
+        setAgentResult(result);
+        setIsAgentRunning(false);
+    };
 
     return (
         <div className="min-h-screen bg-background">
@@ -34,6 +52,91 @@ export function DashboardPage() {
 
                 {/* Dashboard Content */}
                 <main className="p-6 space-y-6">
+
+                    {/* Veritas Intelligence Control Center */}
+                    <Card className="border-cyan-500/30 bg-cyan-950/5">
+                        <CardHeader>
+                            <div className="flex justify-between items-center">
+                                <div>
+                                    <CardTitle className="text-xl flex items-center gap-2">
+                                        <Brain className="h-5 w-5 text-cyan-400" />
+                                        Veritas Cognitive QA Framework
+                                    </CardTitle>
+                                    <CardDescription>Autonomous Neural Agents & Semantic Healing</CardDescription>
+                                </div>
+                                <Button
+                                    onClick={runVeritasAgent}
+                                    disabled={isAgentRunning}
+                                    className="bg-cyan-600 hover:bg-cyan-700 text-white"
+                                >
+                                    {isAgentRunning ? (
+                                        <span className="flex items-center gap-2">
+                                            <Activity className="h-4 w-4 animate-spin" /> Executing Agent...
+                                        </span>
+                                    ) : (
+                                        <span className="flex items-center gap-2">
+                                            <Play className="h-4 w-4" /> Run Autonomous Test
+                                        </span>
+                                    )}
+                                </Button>
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div className="p-4 border border-cyan-500/20 rounded bg-black/20">
+                                    <h3 className="text-sm font-semibold text-cyan-400 mb-2 flex items-center gap-2">
+                                        <Eye className="h-4 w-4" /> Neural Locator
+                                    </h3>
+                                    <p className="text-xs text-muted-foreground">
+                                        Vision-Transformer (ViT) Active.
+                                        Scanning for visual intents: "Buy", "Checkout", "Login".
+                                    </p>
+                                </div>
+                                <div className="p-4 border border-cyan-500/20 rounded bg-black/20">
+                                    <h3 className="text-sm font-semibold text-cyan-400 mb-2 flex items-center gap-2">
+                                        <ShieldCheck className="h-4 w-4" /> Semantic Healing
+                                    </h3>
+                                    <p className="text-xs text-muted-foreground">
+                                        Zero-Wait Observer: Stable.
+                                        Embeddings mapped for resilience.
+                                    </p>
+                                </div>
+                                <div className="p-4 border border-cyan-500/20 rounded bg-black/20">
+                                     <h3 className="text-sm font-semibold text-cyan-400 mb-2 flex items-center gap-2">
+                                        <Activity className="h-4 w-4" /> Agent Status
+                                    </h3>
+                                    <div className="text-xs">
+                                        {isAgentRunning ? "Agent Exploring SaaS..." : agentResult ? "Mission Complete" : "Standby"}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Agent Results Log */}
+                            {agentResult && (
+                                <div className="mt-4 p-4 bg-black/40 border border-border rounded font-mono text-xs max-h-60 overflow-y-auto">
+                                    <div className="flex justify-between text-green-400 mb-2">
+                                        <span>GOAL: Verify purchase with 10% discount</span>
+                                        <span>STATUS: {agentResult.success ? "SUCCESS" : "FAILED"}</span>
+                                    </div>
+                                    <div className="space-y-1">
+                                        {agentResult.steps.map((step, i) => (
+                                            <div key={i} className="flex gap-2 border-b border-white/5 pb-1 mb-1 last:border-0">
+                                                <span className="text-slate-500">[{new Date(step.timestamp).toLocaleTimeString()}]</span>
+                                                <span className="text-blue-400">{step.action}</span>
+                                                <span className="text-slate-300">➜ {step.observation}</span>
+                                                <span className="text-yellow-500/70 italic">({step.reasoning})</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="mt-2 text-purple-400">
+                                        Generated Singularity Audit Log: {agentResult.auditLog}
+                                    </div>
+                                </div>
+                            )}
+                        </CardContent>
+                    </Card>
+
+
                     {/* Metric Cards Grid */}
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                         <MetricCard

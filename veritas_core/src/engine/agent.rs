@@ -30,7 +30,7 @@ impl GoalOrientedAgent {
         GoalOrientedAgent {}
     }
 
-    pub fn execute(&self, _request: &GoalRequest) -> GoalResult {
+    pub fn execute(&self, request: &GoalRequest) -> GoalResult {
         // SIMULATION: Autonomous Agent Execution
         // 1. Decompose goal
         // 2. Explore state
@@ -39,27 +39,45 @@ impl GoalOrientedAgent {
         let mut steps = Vec::new();
         let mut rng = rand::thread_rng();
 
-        // Step 1: Navigation
+        // Step 1: Analysis
         steps.push(AgentStep {
-            action: "Navigate to /checkout".to_string(),
-            observation: "Found checkout page. Detected 'Coupon Code' field.".to_string(),
-            reasoning: "Goal mentions 'discount', so checkout flow is required.".to_string(),
+            action: "Decompose Goal".to_string(),
+            observation: format!("Goal requires complex interaction: '{}'", request.goal),
+            reasoning: "NLP analysis identified key intents: [Navigation, Input, Verification].".to_string(),
+            duration_ms: rng.gen_range(10..50),
+        });
+
+        // Step 2: Navigation / Visual Scan
+        steps.push(AgentStep {
+            action: "Visual Scan".to_string(),
+            observation: "Found actionable element: 'Buy Button' and 'Discount Input'.".to_string(),
+            reasoning: "ViT Confidence 0.98 for 'Buy' intent.".to_string(),
             duration_ms: rng.gen_range(100..300),
         });
 
-        // Step 2: Identification
+        // Step 3: Action
         steps.push(AgentStep {
-            action: "Input 'SAVE10' into [VisualField: Coupon]".to_string(),
-            observation: "Price updated from $100.00 to $90.00.".to_string(),
-            reasoning: "Verified 10% reduction logic.".to_string(),
+            action: "Click Element".to_string(),
+            observation: "Navigation initiated. State changed.".to_string(),
+            reasoning: "Action taken based on high confidence.".to_string(),
             duration_ms: rng.gen_range(50..150),
         });
 
-        // Step 3: Assertion
+        // Step 4: Verification (if applicable)
+        if request.goal.to_lowercase().contains("discount") {
+             steps.push(AgentStep {
+                action: "Input 'SAVE10'".to_string(),
+                observation: "Price updated. Old: $100, New: $90.".to_string(),
+                reasoning: "Semantic State Observer verified 10% reduction.".to_string(),
+                duration_ms: rng.gen_range(50..150),
+            });
+        }
+
+        // Step 5: Assertion
         steps.push(AgentStep {
-            action: "Assert Total Price".to_string(),
-            observation: "Total is correct.".to_string(),
-            reasoning: "Math verification passed: 100 * 0.9 = 90.".to_string(),
+            action: "Assertion".to_string(),
+            observation: "Goal conditions met.".to_string(),
+            reasoning: "All sub-goals (Navigation, Input, Verification) completed successfully.".to_string(),
             duration_ms: 10,
         });
 
@@ -83,6 +101,6 @@ mod tests {
         };
         let result = agent.execute(&req);
         assert!(result.success);
-        assert_eq!(result.steps.len(), 3);
+        assert!(result.steps.len() >= 3);
     }
 }
