@@ -12,3 +12,7 @@ Format: `## YYYY-MM-DD - [Title]`
 ## 2026-01-29 - Persona-Based Theming
 **Learning:** Users may require conflicting aesthetics (e.g., "Playful" vs "Serious"). Using CSS Variables + Class Toggles allows a single interface to serve multiple psychological needs (Gamification vs Professionalism) without code duplication or complete redesigns.
 **Action:** When asked for a "variant" or "redesign", first consider if a Theme Toggle can solve the user's need while preserving the original design system.
+
+## 2026-02-06 - Fake Affordances
+**Learning:** Placeholders like "Search (Ctrl+K)" that don't actually trigger on the shortcut create frustration and mistrust. It's better to hide the hint until the feature is implemented than to promise functionality that doesn't exist.
+**Action:** When auditing UI, check every keyboard shortcut hint. If it doesn't work, either implement it immediately or remove the hint.
