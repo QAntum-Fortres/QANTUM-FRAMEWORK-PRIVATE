@@ -44,47 +44,57 @@ impl NeuralLocator {
         // Mock logic based on intent
         let mut rng = rand::thread_rng();
         let confidence: f32 = rng.gen_range(0.85..0.99);
+        let intent_lower = request.intent.to_lowercase();
 
-        let location = if request.intent.to_lowercase().contains("buy") || request.intent.to_lowercase().contains("checkout") {
+        let location = if intent_lower.contains("buy") || intent_lower.contains("purchase") {
             Some(BoundingBox {
-                x: 1024 - 200, // Bottom right-ish
-                y: 768 - 100,
+                x: 100,
+                y: 300,
                 width: 150,
                 height: 50,
             })
-        } else if request.intent.to_lowercase().contains("login") {
-            Some(BoundingBox {
-                x: 800,
+        } else if intent_lower.contains("coupon") || intent_lower.contains("discount") {
+             Some(BoundingBox {
+                x: 100,
+                y: 220,
+                width: 200,
+                height: 40,
+            })
+        } else if intent_lower.contains("login") || intent_lower.contains("sign in") {
+             Some(BoundingBox {
+                x: 300,
                 y: 50,
                 width: 80,
                 height: 30,
             })
-        } else if request.intent.to_lowercase().contains("discount") {
-             Some(BoundingBox {
-                x: 400,
-                y: 500,
-                width: 200,
-                height: 40,
-            })
         } else {
-            // Random location for other elements
-            Some(BoundingBox {
-                x: rng.gen_range(0..1024),
-                y: rng.gen_range(0..768),
-                width: 100,
-                height: 40,
-            })
+            // Random location for exploratory testing
+            if rng.gen_bool(0.3) {
+                 Some(BoundingBox {
+                    x: rng.gen_range(0..500),
+                    y: rng.gen_range(0..500),
+                    width: 100,
+                    height: 40,
+                })
+            } else {
+                None
+            }
         };
 
         // Simulated Semantic Embedding (768 dimensions is standard for ViT/BERT)
         let embedding: Vec<f32> = (0..768).map(|_| rng.gen::<f32>()).collect();
+        let found = location.is_some();
 
         VisionResult {
-            found: true,
+            found,
             location,
-            confidence,
+            confidence: if found { confidence } else { 0.0 },
             semantic_embedding: embedding,
-            reasoning: format!("ViT Layer identified '{}' based on visual intent patterns (Edge detection, OCR, Iconography). Confidence: {:.2}", request.intent, confidence),
+            reasoning: if found {
+                format!("ViT Layer identified '{}' based on visual intent patterns. Confidence: {:.2}", request.intent, confidence)
+            } else {
+                format!("ViT Layer could not identify '{}' in the current visual context.", request.intent)
+            },
         }
     }
 }
