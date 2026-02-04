@@ -240,7 +240,7 @@ export class SingularityLogic {
     
     // Стъпка 4: Jaina Syadvada (Седемте гледни точки)
     processingPath.push('5. Syādvāda анализ (Джайна)');
-    const jainaResult = this.jaina.analyzeSevenFold(query, 'singularity');
+    const jainaResult = this.jaina.analyzeSevenFold(query, 'singularity-unified-perspective');
     
     // Стъпка 5: Zen Koan (Ако е парадокс)
     processingPath.push('6. Kōan анализ (Дзен)');
@@ -745,7 +745,7 @@ export class SingularityLogic {
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║                        СИНГУЛЯРЕН ОТГОВОР                                    ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
-║ ВЪПРОС: ${result.query.substring(0, 60)}...
+║ ВЪПРОС: ${result.query.length > 60 ? result.query.substring(0, 60) + '...' : result.query}
 ║
 ║ НИВО: ${s.level}
 ║ МОДУС: ${s.mode}
