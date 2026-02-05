@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, ScrollView, RefreshControl, TouchableOpacity, A
 import { apiClient, SystemStats, HealthStatus } from '../api/client';
 import { RecordingIndicator } from '../components/RecordingIndicator';
 import { screenRecordingService } from '../services/ScreenRecordingService';
-import { RecordingSession } from '../types/recording';
+import { RecordingSession, RecordingStatus } from '../types/recording';
 
 export default function Dashboard() {
     const [stats, setStats] = useState<SystemStats | null>(null);
@@ -99,7 +99,7 @@ export default function Dashboard() {
                         title="SECURE RECORD"
                         description="Test Case Capture"
                         icon="🎥"
-                        isRecording={screenRecordingService.isRecording()}
+                        isRecording={recordingSession?.status === RecordingStatus.RECORDING}
                     />
                 </TouchableOpacity>
             </View>

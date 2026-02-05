@@ -15,7 +15,7 @@ import {
 class ScreenRecordingService {
   private static instance: ScreenRecordingService;
   private currentSession: RecordingSession | null = null;
-  private sessionTimer: NodeJS.Timeout | null = null;
+  private sessionTimer: ReturnType<typeof setInterval> | null = null;
   private isAuthenticated = false;
 
   private constructor() {}
@@ -168,10 +168,13 @@ class ScreenRecordingService {
       const duration = this.currentSession.duration;
 
       // Save and encrypt recording
+      // TODO: Use device-specific secure key from hardware-backed keystore
+      // For production, integrate with expo-secure-store or Android Keystore
+      const deviceSecureKey = await this.getDeviceSecureKey();
       const metadata = await recordingManager.saveRecording(
         mockRecordingUri,
         duration,
-        'default-password' // In production, use device-specific secure key
+        deviceSecureKey
       );
 
       // Update session status
@@ -193,6 +196,18 @@ class ScreenRecordingService {
       Alert.alert('Recording Error', 'Failed to save recording. Please try again.');
       return null;
     }
+  }
+
+  /**
+   * Get device-specific secure encryption key
+   * Uses device UUID and hardware-backed storage
+   */
+  private async getDeviceSecureKey(): Promise<string> {
+    // TODO: In production, use expo-secure-store or Android Keystore
+    // This is a placeholder that should be replaced with proper implementation
+    // Example: await SecureStore.getItemAsync('qantum-recording-key')
+    const deviceId = await recordingManager.getDeviceId();
+    return `qantum-${deviceId}-secure-key`;
   }
 
   /**

@@ -27,16 +27,39 @@ export enum CognitiveActionType {
   VERIFY_BIOMETRIC = 'verify_biometric',
 }
 
+export interface RecordScreenPayload {
+  quality?: 'low' | 'medium' | 'high';
+}
+
+export interface StopRecordingPayload {
+  saveMetadata?: boolean;
+}
+
+export interface CleanupRecordingsPayload {
+  forceDelete?: boolean;
+}
+
+export interface VerifyBiometricPayload {
+  reason?: string;
+}
+
+export type CognitiveActionPayload =
+  | RecordScreenPayload
+  | StopRecordingPayload
+  | CleanupRecordingsPayload
+  | VerifyBiometricPayload
+  | Record<string, unknown>;
+
 export interface CognitiveAction {
   type: CognitiveActionType;
-  payload: Record<string, any>;
+  payload: CognitiveActionPayload;
   department?: string;
   timestamp?: Date;
 }
 
 export interface CognitiveActionResult {
   success: boolean;
-  data?: any;
+  data?: unknown;
   error?: string;
   timestamp: Date;
 }

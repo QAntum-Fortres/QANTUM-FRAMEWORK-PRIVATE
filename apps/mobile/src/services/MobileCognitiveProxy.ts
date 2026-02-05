@@ -10,12 +10,13 @@ import {
   CognitiveAction,
   CognitiveActionResult,
 } from '../types/cognitive';
+import { RecordingConfig } from '../types/recording';
 
 class MobileCognitiveProxy {
   private static instance: MobileCognitiveProxy;
   private readonly actionHandlers: Map<
     CognitiveActionType,
-    (payload: Record<string, any>) => Promise<any>
+    (payload: CognitiveAction['payload']) => Promise<unknown>
   >;
 
   private constructor() {
@@ -92,7 +93,7 @@ class MobileCognitiveProxy {
   /**
    * Handle RECORD_SCREEN action
    */
-  private async handleRecordScreen(payload: Record<string, any>): Promise<any> {
+  private async handleRecordScreen(_payload: CognitiveAction['payload']): Promise<unknown> {
     const success = await screenRecordingService.startRecording();
     return {
       success,
@@ -103,7 +104,7 @@ class MobileCognitiveProxy {
   /**
    * Handle STOP_RECORDING action
    */
-  private async handleStopRecording(payload: Record<string, any>): Promise<any> {
+  private async handleStopRecording(_payload: CognitiveAction['payload']): Promise<unknown> {
     const filename = await screenRecordingService.stopRecording();
     return {
       success: !!filename,
@@ -114,7 +115,7 @@ class MobileCognitiveProxy {
   /**
    * Handle CLEANUP_RECORDINGS action
    */
-  private async handleCleanupRecordings(payload: Record<string, any>): Promise<any> {
+  private async handleCleanupRecordings(_payload: CognitiveAction['payload']): Promise<unknown> {
     const deletedCount = await screenRecordingService.cleanupRecordings();
     return {
       success: true,
@@ -125,7 +126,7 @@ class MobileCognitiveProxy {
   /**
    * Handle VERIFY_BIOMETRIC action
    */
-  private async handleVerifyBiometric(payload: Record<string, any>): Promise<any> {
+  private async handleVerifyBiometric(_payload: CognitiveAction['payload']): Promise<unknown> {
     const authenticated = await screenRecordingService.authenticateUser();
     return {
       success: authenticated,
@@ -174,7 +175,7 @@ class MobileCognitiveProxy {
   /**
    * Update recording configuration
    */
-  async updateRecordingConfig(config: Record<string, any>) {
+  async updateRecordingConfig(config: Partial<RecordingConfig>) {
     return await recordingManager.updateConfig(config);
   }
 }

@@ -96,8 +96,17 @@ class EncryptionService {
    */
   async encryptFile(fileUri: string, password: string): Promise<EncryptionResult> {
     try {
-      // For now, we'll use base64 encoding of the file path
-      // In production, you'd read the file content and encrypt it
+      // TODO: In production, read actual file contents and encrypt them
+      // Example implementation:
+      // const fileContent = await FileSystem.readAsStringAsync(fileUri, {
+      //   encoding: FileSystem.EncodingType.Base64
+      // });
+      // const encrypted = await this.encrypt(fileContent, password);
+      // await FileSystem.writeAsStringAsync(encryptedPath, encrypted.encryptedData);
+      
+      // For now, this is a placeholder
+      // In production, this MUST read and encrypt the actual file content
+      console.warn('[EncryptionService] File encryption is placeholder - implement actual file encryption before production');
       const fileData = fileUri;
       return await this.encrypt(fileData, password);
     } catch (error) {
