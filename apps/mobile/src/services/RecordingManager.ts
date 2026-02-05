@@ -85,8 +85,8 @@ class RecordingManager {
     try {
       const metadataJson = await AsyncStorage.getItem(this.STORAGE_KEY_METADATA);
       if (metadataJson) {
-        const metadata = JSON.parse(metadataJson);
-        return metadata.map((m: any) => ({
+        const metadata: RecordingMetadata[] = JSON.parse(metadataJson);
+        return metadata.map((m) => ({
           ...m,
           timestamp: new Date(m.timestamp),
           expiresAt: new Date(m.expiresAt),

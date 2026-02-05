@@ -93,7 +93,11 @@ class MobileCognitiveProxy {
   /**
    * Handle RECORD_SCREEN action
    */
-  private async handleRecordScreen(_payload: CognitiveAction['payload']): Promise<unknown> {
+  private async handleRecordScreen(payload: CognitiveAction['payload']): Promise<unknown> {
+    // TODO: Use payload.quality to set recording quality
+    // if ('quality' in payload && payload.quality) {
+    //   await recordingManager.updateConfig({ quality: payload.quality });
+    // }
     const success = await screenRecordingService.startRecording();
     return {
       success,
@@ -104,7 +108,8 @@ class MobileCognitiveProxy {
   /**
    * Handle STOP_RECORDING action
    */
-  private async handleStopRecording(_payload: CognitiveAction['payload']): Promise<unknown> {
+  private async handleStopRecording(payload: CognitiveAction['payload']): Promise<unknown> {
+    // TODO: Use payload.saveMetadata to control metadata saving
     const filename = await screenRecordingService.stopRecording();
     return {
       success: !!filename,
@@ -115,7 +120,8 @@ class MobileCognitiveProxy {
   /**
    * Handle CLEANUP_RECORDINGS action
    */
-  private async handleCleanupRecordings(_payload: CognitiveAction['payload']): Promise<unknown> {
+  private async handleCleanupRecordings(payload: CognitiveAction['payload']): Promise<unknown> {
+    // TODO: Use payload.forceDelete to bypass expiration checks
     const deletedCount = await screenRecordingService.cleanupRecordings();
     return {
       success: true,
@@ -126,7 +132,8 @@ class MobileCognitiveProxy {
   /**
    * Handle VERIFY_BIOMETRIC action
    */
-  private async handleVerifyBiometric(_payload: CognitiveAction['payload']): Promise<unknown> {
+  private async handleVerifyBiometric(payload: CognitiveAction['payload']): Promise<unknown> {
+    // TODO: Use payload.reason to customize biometric prompt
     const authenticated = await screenRecordingService.authenticateUser();
     return {
       success: authenticated,
