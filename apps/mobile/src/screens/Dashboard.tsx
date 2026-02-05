@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, RefreshControl } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, RefreshControl, TouchableOpacity, Alert } from 'react-native';
 import { apiClient, SystemStats, HealthStatus } from '../api/client';
+import { RecordingIndicator } from '../components/RecordingIndicator';
+import { screenRecordingService } from '../services/ScreenRecordingService';
+import { RecordingSession } from '../types/recording';
 
 export default function Dashboard() {
     const [stats, setStats] = useState<SystemStats | null>(null);
     const [health, setHealth] = useState<HealthStatus | null>(null);
     const [refreshing, setRefreshing] = useState(false);
+    const [recordingSession, setRecordingSession] = useState<RecordingSession | null>(null);
 
     const loadData = async () => {
         const [statsData, healthData] = await Promise.all([
@@ -24,13 +28,48 @@ export default function Dashboard() {
 
     useEffect(() => {
         loadData();
+        
+        // Update recording session state every second
+        const interval = setInterval(() => {
+            const session = screenRecordingService.getCurrentSession();
+            setRecordingSession(session);
+        }, 1000);
+        
+        return () => clearInterval(interval);
     }, []);
+
+    const handleRecordingToggle = async () => {
+        const isRecording = screenRecordingService.isRecording();
+        
+        if (isRecording) {
+            // Stop recording
+            const filename = await screenRecordingService.stopRecording();
+            if (filename) {
+                Alert.alert(
+                    'Recording Saved',
+                    `Recording saved as ${filename}`,
+                    [{ text: 'OK' }]
+                );
+            }
+        } else {
+            // Start recording
+            const success = await screenRecordingService.startRecording();
+            if (success) {
+                Alert.alert(
+                    'Recording Started',
+                    'Screen recording in progress. Tap again to stop.',
+                    [{ text: 'OK' }]
+                );
+            }
+        }
+    };
 
     return (
         <ScrollView
             style={styles.container}
             refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         >
+            <RecordingIndicator session={recordingSession} />
             <Text style={styles.header}>⚡ QAntum Dashboard</Text>
 
             {/* Stats Grid */}
@@ -55,6 +94,14 @@ export default function Dashboard() {
                     value={stats?.departments.toString() || '...'}
                     icon="🏛️"
                 />
+                <TouchableOpacity onPress={handleRecordingToggle}>
+                    <RecordCard
+                        title="SECURE RECORD"
+                        description="Test Case Capture"
+                        icon="🎥"
+                        isRecording={screenRecordingService.isRecording()}
+                    />
+                </TouchableOpacity>
             </View>
 
             {/* Health Status */}
@@ -88,6 +135,30 @@ function StatCard({ title, value, icon }: { title: string; value: string; icon: 
             <Text style={styles.statIcon}>{icon}</Text>
             <Text style={styles.statValue}>{value}</Text>
             <Text style={styles.statTitle}>{title}</Text>
+        </View>
+    );
+}
+
+function RecordCard({ 
+    title, 
+    description, 
+    icon, 
+    isRecording 
+}: { 
+    title: string; 
+    description: string; 
+    icon: string; 
+    isRecording: boolean;
+}) {
+    return (
+        <View style={[
+            styles.statCard,
+            isRecording && styles.recordingCard
+        ]}>
+            <Text style={styles.statIcon}>{icon}</Text>
+            <Text style={styles.recordTitle}>{title}</Text>
+            <Text style={styles.recordDescription}>{description}</Text>
+            {isRecording && <Text style={styles.recordingBadge}>● RECORDING</Text>}
         </View>
     );
 }
@@ -135,6 +206,27 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: '#94a3b8',
         marginTop: 5,
+    },
+    recordTitle: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#00f5ff',
+        marginBottom: 5,
+    },
+    recordDescription: {
+        fontSize: 11,
+        color: '#94a3b8',
+    },
+    recordingCard: {
+        borderColor: '#ff0000',
+        borderWidth: 2,
+        backgroundColor: 'rgba(255, 0, 0, 0.1)',
+    },
+    recordingBadge: {
+        fontSize: 10,
+        color: '#ff0000',
+        fontWeight: 'bold',
+        marginTop: 8,
     },
     sectionTitle: {
         fontSize: 18,
