@@ -29,6 +29,7 @@ export function Header({ title = "Dashboard", subtitle, isOnline = true }: Heade
                     <input
                         type="search"
                         placeholder="Search modules..."
+                        aria-label="Search modules"
                         className="h-9 w-64 rounded-lg border border-border/50 bg-muted/30 pl-9 pr-4 text-sm outline-none placeholder:text-muted-foreground focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all"
                     />
                 </div>
@@ -48,7 +49,12 @@ export function Header({ title = "Dashboard", subtitle, isOnline = true }: Heade
                 </Badge>
 
                 {/* Notifications */}
-                <Button variant="ghost" size="icon" className="relative">
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="relative"
+                    aria-label="Notifications"
+                >
                     <Bell className="h-5 w-5 text-muted-foreground" />
                     <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-primary text-[10px] font-medium flex items-center justify-center text-primary-foreground">
                         3
@@ -56,7 +62,11 @@ export function Header({ title = "Dashboard", subtitle, isOnline = true }: Heade
                 </Button>
 
                 {/* User menu */}
-                <Button variant="ghost" className="gap-2 px-2">
+                <Button
+                    variant="ghost"
+                    className="gap-2 px-2"
+                    aria-label="User menu"
+                >
                     <div className="h-8 w-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
                         <User className="h-4 w-4 text-white" />
                     </div>
