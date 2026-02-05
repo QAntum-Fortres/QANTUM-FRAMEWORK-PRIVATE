@@ -12,3 +12,7 @@ Format: `## YYYY-MM-DD - [Title]`
 ## 2026-01-29 - Persona-Based Theming
 **Learning:** Users may require conflicting aesthetics (e.g., "Playful" vs "Serious"). Using CSS Variables + Class Toggles allows a single interface to serve multiple psychological needs (Gamification vs Professionalism) without code duplication or complete redesigns.
 **Action:** When asked for a "variant" or "redesign", first consider if a Theme Toggle can solve the user's need while preserving the original design system.
+
+## 2026-02-05 - Navigation Accessibility
+**Learning:** Icon-only buttons in persistent layout components (Headers, Sidebars) are critical accessibility gaps because they impact every page view and often lack visible text labels.
+**Action:** Audit layout components first for missing `aria-label` attributes on icon buttons to create widespread accessibility wins.
