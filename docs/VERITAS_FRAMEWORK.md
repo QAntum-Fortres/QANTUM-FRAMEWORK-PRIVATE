@@ -8,7 +8,7 @@ Veritas is a Post-Scriptum QA Framework designed to render Selenium, Cypress, an
 ### 1. Vision-Based Interface (The Eyes)
 Veritas does not rely on the DOM tree (IDs, XPaths) as a primary source. Instead, it uses a **Vision-Transformer (ViT) Layer** to analyze screenshots in real-time.
 -   **Neural Locator**: Identifies elements based on visual intent (e.g., "Buy Button", "Checkout Form") rather than HTML attributes.
--   **Tech**: Rust-based inference engine.
+-   **Tech**: Rust-based inference engine (`veritas_core`) & TypeScript SDK (`veritas_sdk`).
 
 ### 2. Semantic Healing (The Immune System)
 Veritas possesses a self-healing capability. If a button's ID changes, the framework uses **Semantic Embedding Mapping**.
@@ -36,15 +36,34 @@ The output is not a green/red report but a video replay with AI-annotated logic:
 -   "Verified total price using OBI logic."
 
 ## Getting Started
-The core is written in Rust (`veritas_core`).
-Build and run:
+
+### 1. Rust Core
+The core engine runs as a binary service.
 ```bash
 cd veritas_core
-cargo build
 cargo run
 ```
+It accepts JSON-RPC commands via Stdin.
 
-Send JSON commands via Stdin to interact with the engine.
+### 2. TypeScript SDK
+The SDK is located in `Frontend/src/veritas_sdk`.
+It provides a strongly-typed client for interacting with the core.
+
+```typescript
+import { veritas } from '@/veritas_sdk/VeritasClient';
+
+// Example: Locate an element visually
+const result = await veritas.locate(imageBase64, "Find Checkout Button");
+
+// Example: Execute a high-level goal
+const log = await veritas.executeGoal("Verify 10% discount on checkout");
+```
+
+### 3. Veritas Control Center
+The framework is integrated into the Sovereign Dashboard (`/dashboard`).
+-   Navigate to the Dashboard.
+-   Use the "Veritas Cognitive QA" panel to trigger Vision scans or Agent missions.
+-   View the "Singularity Audit Log" directly in the UI.
 
 ## Protocol Reference (JSON-RPC)
 
