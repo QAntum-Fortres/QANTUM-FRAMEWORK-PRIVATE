@@ -128,6 +128,7 @@ export function Sidebar() {
                     size="icon"
                     className="h-6 w-6 rounded-full border-border/50 bg-background shadow-md"
                     onClick={() => setCollapsed(!collapsed)}
+                    aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
                 >
                     {collapsed ? (
                         <ChevronRight className="h-3 w-3" />
