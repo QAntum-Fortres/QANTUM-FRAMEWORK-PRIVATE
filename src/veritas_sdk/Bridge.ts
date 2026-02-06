@@ -2,42 +2,10 @@ import { spawn, ChildProcess } from 'child_process';
 import * as path from 'path';
 import * as readline from 'readline';
 import { fileURLToPath } from 'url';
+import type { VisionResult, HealResult, VisionRequest, HealRequest, BoundingBox } from './types.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-export interface VisionRequest {
-    image_base64: string;
-    intent: string;
-}
-
-export interface BoundingBox {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-}
-
-export interface VisionResult {
-    found: boolean;
-    location: BoundingBox | null;
-    confidence: number;
-    semantic_embedding: number[];
-    reasoning: string;
-}
-
-export interface HealRequest {
-    failed_selector: string;
-    last_known_embedding: number[];
-    current_image: string;
-}
-
-export interface HealResult {
-    healed: boolean;
-    new_selector: string;
-    similarity_score: number;
-    reason: string;
-}
 
 export class VeritasBridge {
     private process: ChildProcess | null = null;
