@@ -2,42 +2,10 @@ import { spawn, ChildProcess } from 'child_process';
 import * as path from 'path';
 import * as readline from 'readline';
 import { fileURLToPath } from 'url';
+import type { VisionResult, HealResult, VisionRequest, HealRequest, BoundingBox } from './types.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-export interface VisionRequest {
-    image_base64: string;
-    intent: string;
-}
-
-export interface BoundingBox {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-}
-
-export interface VisionResult {
-    found: boolean;
-    location: BoundingBox | null;
-    confidence: number;
-    semantic_embedding: number[];
-    reasoning: string;
-}
-
-export interface HealRequest {
-    failed_selector: string;
-    last_known_embedding: number[];
-    current_image: string;
-}
-
-export interface HealResult {
-    healed: boolean;
-    new_selector: string;
-    similarity_score: number;
-    reason: string;
-}
 
 export class VeritasBridge {
     private process: ChildProcess | null = null;
@@ -107,9 +75,18 @@ export class VeritasBridge {
          return this.sendCommand('Heal', { failed_selector, current_image, last_known_embedding });
     }
 
-    private async sendCommand(command: string, payload: any): Promise<any> {
+    private async sendCommand(commandName: string, payload: any): Promise<any> {
         return new Promise((resolve, reject) => {
-            const msg = JSON.stringify({ command, payload });
+            // Match SecureCommand structure in Rust
+            const secureCmd = {
+                auth_token: "valid_token", // Mock token
+                user_id: "admin",          // Mock user
+                command: {
+                    command: commandName,
+                    payload: payload
+                }
+            };
+            const msg = JSON.stringify(secureCmd);
             this.process?.stdin?.write(msg + '\n');
 
             this.responseQueue.push((response: any) => {

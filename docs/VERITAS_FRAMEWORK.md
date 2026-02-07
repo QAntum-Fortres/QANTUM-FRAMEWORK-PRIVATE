@@ -1,47 +1,59 @@
-# VERITAS COGNITIVE QA FRAMEWORK (v1.0)
+# THE VERITAS COGNITIVE QA FRAMEWORK (v1.0)
 
 ## Overview
-Veritas is a Post-Scriptum QA Framework designed to render Selenium, Cypress, and Playwright obsolete. It utilizes a biological metaphor for its architecture, featuring "Eyes" (Vision), "Brain" (Agents), and "Immune System" (Healing).
+The Veritas Cognitive QA Framework represents a paradigm shift from DOM-based testing (Selenium, Cypress, Playwright) to a Vision-First, Autonomous Agent architecture. It leverages a "Neural Locator" engine to identify UI elements based on visual intent, immune to underlying HTML changes ("Semantic Healing").
 
 ## Core Architecture
 
 ### 1. Vision-Based Interface (The Eyes)
-Veritas does not rely on the DOM tree (IDs, XPaths) as a primary source. Instead, it uses a **Vision-Transformer (ViT) Layer** to analyze screenshots in real-time.
--   **Neural Locator**: Identifies elements based on visual intent (e.g., "Buy Button", "Checkout Form") rather than HTML attributes.
--   **Tech**: Rust-based inference engine.
+*   **Neural Locator**: A Rust-based engine (`veritas_core`) that processes screenshots using simulated Vision Transformers (ViT).
+*   **Independence**: Does not rely on XPath or CSS Selectors.
+*   **Intent Recognition**: Identifies "Buy Button" or "Checkout" based on visual features.
 
 ### 2. Semantic Healing (The Immune System)
-Veritas possesses a self-healing capability. If a button's ID changes, the framework uses **Semantic Embedding Mapping**.
--   **Process**: It compares the visual embedding of the missing element with current elements on the screen.
--   **Result**: Automatic recovery and update of the internal "Neural Map".
+*   If a visual match fails, the `SemanticHealer` compares current DOM embeddings with historical success patterns.
+*   Automatically updates the "Neural Map" when IDs or classes change.
 
 ### 3. Autonomous Exploratory Agents (The Brain)
-Tests are not static scripts. They are **Goal-Oriented Agents**.
--   **Input**: Natural language goals (e.g., "Verify purchase with 10% discount").
--   **Behavior**: Agents navigate, explore, and generate assertions autonomously based on the observed state.
+*   **Goal-Oriented**: Agents accept natural language goals (e.g., "Verify discount code").
+*   **Planner**: Decomposes goals into actionable steps (Navigation, Identification, Assertion).
+*   **Execution**: Autonomously interacts with the application.
 
 ### 4. Zero-Wait Architecture (The Omega Layer)
-Veritas eliminates explicit `wait()` or `sleep()` calls.
--   **State-Change Observer**: Hooks into the browser's rendering engine and network stack.
--   **Amniotic State**: The framework acts only when the UI is mathematically stable.
+*   Eliminates arbitrary `sleep()` or `wait()`.
+*   **StateChangeObserver**: Hooks into the rendering engine to act only when the UI is stable ("Amniotic State").
 
 ### 5. Distributed Swarm Execution
-Veritas supports parallel execution via a **Headless Rust-based Container Mesh**.
--   **Scale**: Capable of spinning up 1000 micro-agents.
--   **Simulation**: Tests across different regions and network latencies (3G, 5G, Fiber).
+*   Capable of spinning up micro-agents in a generic container mesh.
+*   Simulates network conditions (3G, 5G).
 
-## Singularity Audit Log
-The output is not a green/red report but a video replay with AI-annotated logic:
--   "Clicked here because I recognized the payment pattern."
--   "Verified total price using OBI logic."
+## Usage
 
-## Getting Started
-The core is written in Rust (`veritas_core`).
-Build and run:
-```bash
-cd veritas_core
-cargo build
-cargo run
+### Prerequisites
+*   Rust (Cargo)
+*   Node.js (TypeScript)
+
+### Setup
+1.  Build the Core:
+    ```bash
+    cd veritas_core
+    cargo build
+    ```
+2.  Run the SDK Demo:
+    ```bash
+    npx ts-node tests/veritas_demo.ts
+    ```
+
+### SDK Example
+```typescript
+import { AutonomousAgent } from './veritas_sdk/Agent';
+
+const agent = new AutonomousAgent();
+await agent.executeGoal({
+    description: "Verify that a user can complete a purchase with a 10% discount code."
+});
 ```
 
-Send JSON commands via Stdin to interact with the engine.
+## Future Roadmap
+*   **Real ViT Integration**: Replace simulation with ONNX Runtime.
+*   **Singularity Audit Log**: Video generation with AI annotations.

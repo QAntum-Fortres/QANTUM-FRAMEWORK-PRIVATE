@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QAntum Framework - Dashboard</title>
+    <style>
+        :root {
+            /* VS Code Dark Theme Colors */
+            --bg-primary: #1e1e1e;
+            --bg-secondary: #252526;
+            --bg-tertiary: #2d2d30;
+            --border-color: #3e3e42;
+            --text-primary: #cccccc;
+            --text-secondary: #858585;
+            --accent-blue: #007acc;
+            --accent-green: #4ec9b0;
+            --accent-yellow: #dcdcaa;
+            --accent-red: #f48771;
+            --status-green: #89d185;
+            --status-red: #f14c4c;
+            --status-yellow: #cca700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        h2 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .subtitle {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 3px;
+        }
+        
+        .stat-card:hover {
+            border-color: var(--accent-blue);
+        }
+        
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--accent-green);
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        .section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .log-container {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 12px;
+        }
+        
+        .log-entry {
+            padding: 2px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .log-time {
+            color: var(--text-secondary);
+            margin-right: 8px;
+        }
+        
+        .log-level-info { color: var(--accent-blue); }
+        .log-level-success { color: var(--status-green); }
+        .log-level-warning { color: var(--status-yellow); }
+        .log-level-error { color: var(--status-red); }
+        
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--accent-blue);
+            color: white;
+            padding: 5px 15px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 1000;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--status-green);
+        }
+        
+        .status-indicator.offline {
+            background: var(--status-red);
+        }
+        
+        .status-indicator.warning {
+            background: var(--status-yellow);
+        }
+        
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .module-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            padding: 15px;
+        }
+        
+        .module-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+        
+        .module-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        .module-tech {
+            font-size: 11px;
+            color: var(--accent-yellow);
+            margin-bottom: 5px;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        .button {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        
+        .button:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent-blue);
+        }
+        
+        .entropy-critical {
+            background: var(--status-red) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>QAntum Framework Dashboard</h1>
+            <p class="subtitle">Real-time system monitoring and telemetry</p>
+        </header>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Project Files</div>
+                <div class="stat-value" id="project-files">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Lines of Code</div>
+                <div class="stat-value" id="lines-of-code">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Active Modules</div>
+                <div class="stat-value">243</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">System Uptime</div>
+                <div class="stat-value" id="uptime">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Entropy Index</div>
+                <div class="stat-value" id="entropy">--</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Stability</div>
+                <div class="stat-value" id="stability">--</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-header">
+                <h2>System Logs</h2>
+                <button class="button" onclick="clearLogs()">Clear</button>
+            </div>
+            <div class="log-container" id="log-container">
+                <div class="log-entry">
+                    <span class="log-time">[--:--:--]</span>
+                    <span class="log-level-info">[INFO]</span>
+                    <span>Initializing dashboard...</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Core Modules</h2>
+            <div class="module-grid">
+                <div class="module-card">
+                    <div class="module-title">Nervous System</div>
+                    <div class="module-tech">Temporal.io Durable Execution</div>
+                    <div class="module-desc">Resilient workflows with persistent state across restarts</div>
+                </div>
+                <div class="module-card">
+                    <div class="module-title">Cognitive Core</div>
+                    <div class="module-tech">VortexNexus + MetaLogicEngine</div>
+                    <div class="module-desc">Hybrid reasoning combining neural patterns with formal logic</div>
+                </div>
+                <div class="module-card">
+                    <div class="module-title">Immune System</div>
+                    <div class="module-tech">Git-based Versioning</div>
+                    <div class="module-desc">Immutable history with cryptographic verification</div>
+                </div>
+                <div class="module-card">
+                    <div class="module-title">Mathematical Soul</div>
+                    <div class="module-tech">Z3 Formal Verification</div>
+                    <div class="module-desc">Transcendent reasoning beyond binary logic</div>
+                </div>
+                <div class="module-card">
+                    <div class="module-title">Metabolism</div>
+                    <div class="module-tech">Resource Optimization</div>
+                    <div class="module-desc">Adaptive resource management and waste elimination</div>
+                </div>
+                <div class="module-card">
+                    <div class="module-title">Social Consensus</div>
+                    <div class="module-tech">Adversarial Twin Protocol</div>
+                    <div class="module-desc">External reality checks preventing self-referential collapse</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="status-bar">
+        <div class="status-item">
+            <div class="status-indicator" id="status-indicator"></div>
+            <span id="status-text">Connecting...</span>
+        </div>
+        <div class="status-item">
+            <span>JulesBridge</span>
+        </div>
+        <div class="status-item">
+            <span id="memory-usage">Memory: --</span>
+        </div>
+    </div>
+    
+    <script>
+        // Configuration
+        const ENTROPY_CRITICAL_THRESHOLD = 0.01;
+        
+        // State
+        let ws;
+        const statusIndicator = document.getElementById('status-indicator');
+        const statusText = document.getElementById('status-text');
+        const logContainer = document.getElementById('log-container');
+        
+        // WebSocket connection
+        function connect() {
+            ws = new WebSocket('ws://localhost:7777');
+            
+            ws.onopen = () => {
+                statusText.textContent = 'Connected to JulesBridge';
+                statusIndicator.classList.remove('offline');
+                log('Connected to JulesBridge Neural Nexus', 'success');
+            };
+            
+            ws.onmessage = (event) => {
+                const msg = JSON.parse(event.data);
+                handleMessage(msg);
+            };
+            
+            ws.onclose = () => {
+                statusText.textContent = 'Disconnected - Retrying...';
+                statusIndicator.classList.add('offline');
+                setTimeout(connect, 3000);
+            };
+            
+            ws.onerror = () => {
+                log('Connection error', 'error');
+            };
+        }
+        
+        function handleMessage(msg) {
+            if (msg.type === 'connected') {
+                log(msg.data.message, 'info');
+            }
+            if (msg.type === 'telemetry') {
+                updateTelemetry(msg.data);
+            }
+            if (msg.type === 'log') {
+                log(msg.data.message, msg.data.level);
+            }
+            if (msg.type === 'logs') {
+                msg.data.forEach(logEntry => {
+                    log(logEntry.message, logEntry.level);
+                });
+            }
+        }
+        
+        function updateTelemetry(data) {
+            // Update entropy
+            const entropyEl = document.getElementById('entropy');
+            if (entropyEl) {
+                entropyEl.textContent = (data.entropy * 100).toFixed(3) + '%';
+            }
+            
+            // Update stability
+            const stabilityEl = document.getElementById('stability');
+            if (stabilityEl) {
+                stabilityEl.textContent = (data.stability * 100).toFixed(2) + '%';
+            }
+            
+            // Update uptime
+            const uptimeEl = document.getElementById('uptime');
+            if (uptimeEl && data.uptime) {
+                const hours = Math.floor(data.uptime / 3600);
+                const minutes = Math.floor((data.uptime % 3600) / 60);
+                uptimeEl.textContent = `${hours}h ${minutes}m`;
+            }
+            
+            // Update memory
+            const memoryEl = document.getElementById('memory-usage');
+            if (memoryEl && data.memoryUsage) {
+                const memMB = Math.round(data.memoryUsage.heapUsed / 1024 / 1024);
+                memoryEl.textContent = `Memory: ${memMB} MB`;
+            }
+            
+            // Check entropy threshold
+            if (data.entropy > ENTROPY_CRITICAL_THRESHOLD) {
+                statusIndicator.classList.add('warning');
+                log(`Critical: Entropy ${(data.entropy * 100).toFixed(3)}% exceeds threshold`, 'warning');
+            } else {
+                statusIndicator.classList.remove('warning');
+            }
+        }
+        
+        function log(message, level = 'info') {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            
+            const time = new Date().toISOString().split('T')[1].split('.')[0];
+            const levelClass = `log-level-${level}`;
+            
+            entry.innerHTML = `
+                <span class="log-time">[${time}]</span>
+                <span class="${levelClass}">[${level.toUpperCase()}]</span>
+                <span>${message}</span>
+            `;
+            
+            logContainer.appendChild(entry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            
+            // Keep only last 100 entries
+            while (logContainer.children.length > 100) {
+                logContainer.removeChild(logContainer.firstChild);
+            }
+        }
+        
+        function clearLogs() {
+            logContainer.innerHTML = '';
+            log('Logs cleared', 'info');
+        }
+        
+        // Fetch telemetry every 2 seconds
+        setInterval(async () => {
+            try {
+                const response = await fetch('http://localhost:7777/api/telemetry');
+                if (response.ok) {
+                    const data = await response.json();
+                    updateTelemetry(data);
+                }
+            } catch (error) {
+                // Silent fail
+            }
+        }, 2000);
+        
+        // Fetch stats
+        async function fetchStats() {
+            try {
+                const response = await fetch('http://localhost:7777/api/stats');
+                if (response.ok) {
+                    const data = await response.json();
+                    const filesEl = document.getElementById('project-files');
+                    const locEl = document.getElementById('lines-of-code');
+                    if (filesEl) filesEl.textContent = data.totalFiles.toLocaleString();
+                    if (locEl) locEl.textContent = data.totalLOC.toLocaleString();
+                    log(`Stats: ${data.totalFiles} files, ${data.totalLOC.toLocaleString()} LOC`, 'info');
+                }
+            } catch (error) {
+                // Silent fail
+            }
+        }
+        
+        // Initialize
+        connect();
+        setTimeout(fetchStats, 1000);
+        setInterval(fetchStats, 30000);
+    </script>
+</body>
+</html>
