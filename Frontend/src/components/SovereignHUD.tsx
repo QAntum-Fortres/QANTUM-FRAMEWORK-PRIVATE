@@ -38,6 +38,7 @@ export const SovereignHUD = () => {
     const [messages, setMessages] = useState<Message[]>([
         { id: '1', role: 'assistant', content: "Welcome back, Sovereign. Reality sync initialized. Systems operational.", timestamp: new Date() }
     ]);
+    const [confirmClear, setConfirmClear] = useState(false);
     const [inputMessage, setInputMessage] = useState('');
     const [terminalOutput, setTerminalOutput] = useState<string[]>([
         "QAntum Terminal v34.1 - Singular Command Interface",
@@ -55,7 +56,24 @@ export const SovereignHUD = () => {
     useEffect(() => { chatEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
     useEffect(() => { terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [terminalOutput]);
 
+    // Clear Chat Confirmation Timer
+    useEffect(() => {
+        if (confirmClear) {
+            const timer = setTimeout(() => setConfirmClear(false), 3000);
+            return () => clearTimeout(timer);
+        }
+    }, [confirmClear]);
+
     // Handlers
+    const handleClearChat = () => {
+        if (confirmClear) {
+            setMessages([{ id: Date.now().toString(), role: 'assistant', content: "Chat history cleared.", timestamp: new Date() }]);
+            setConfirmClear(false);
+        } else {
+            setConfirmClear(true);
+        }
+    };
+
     const handleSendMessage = () => {
         if (!inputMessage.trim()) return;
         const newMsg: Message = { id: Date.now().toString(), role: 'user', content: inputMessage, timestamp: new Date() };
@@ -143,7 +161,7 @@ export const SovereignHUD = () => {
                 {/* HEADER */}
                 <header className="h-[70px] bg-[#0a0a12]/80 backdrop-blur border-b border-[#2a2a50] flex items-center justify-between px-8 relative z-30">
                     <div className="flex items-center gap-4">
-                        <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden text-gray-400 hover:text-white">
+                        <button onClick={() => setSidebarOpen(!sidebarOpen)} className="lg:hidden text-gray-400 hover:text-white" aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}>
                             {sidebarOpen ? <X /> : <Menu />}
                         </button>
                         <div className="relative hidden md:block">
@@ -160,8 +178,8 @@ export const SovereignHUD = () => {
                             <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`} />
                             <span className="text-[10px] font-mono font-bold text-gray-300 tracking-tighter">{isConnected ? 'ONLINE' : 'OFFLINE'}</span>
                         </div>
-                        <button className="text-gray-400 hover:text-white transition-colors"><Bell size={18} /></button>
-                        <button className="text-gray-400 hover:text-white transition-colors"><Settings size={18} /></button>
+                        <button className="text-gray-400 hover:text-white transition-colors" aria-label="Notifications"><Bell size={18} /></button>
+                        <button className="text-gray-400 hover:text-white transition-colors" aria-label="Settings"><Settings size={18} /></button>
                     </div>
                 </header>
 
@@ -235,7 +253,13 @@ export const SovereignHUD = () => {
                                             <div className="text-xs text-[var(--neon-green)] flex items-center gap-1"><span className="w-1.5 h-1.5 bg-[var(--neon-green)] rounded-full"></span> Online</div>
                                         </div>
                                     </div>
-                                    <button className="p-2 hover:bg-white/10 rounded-lg"><Trash size={16} /></button>
+                                    <button
+                                        onClick={handleClearChat}
+                                        aria-label={confirmClear ? "Confirm clear chat" : "Clear chat history"}
+                                        className={`p-2 rounded-lg transition-all ${confirmClear ? 'bg-red-500/20 text-red-500 hover:bg-red-500/30' : 'hover:bg-white/10 text-gray-400'}`}
+                                    >
+                                        <Trash size={16} />
+                                    </button>
                                 </div>
 
                                 <div className="flex-1 overflow-y-auto p-4 space-y-4">
@@ -264,11 +288,11 @@ export const SovereignHUD = () => {
                                                 className="w-full bg-[#020205] border border-[#2a2a50] rounded-xl py-3 pl-4 pr-20 focus:border-[var(--neon-cyan)] outline-none text-white transition-all"
                                             />
                                             <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
-                                                <button className="p-2 text-gray-400 hover:text-white"><Paperclip size={16} /></button>
-                                                <button className="p-2 text-gray-400 hover:text-white"><Mic size={16} /></button>
+                                                <button className="p-2 text-gray-400 hover:text-white" aria-label="Attach file"><Paperclip size={16} /></button>
+                                                <button className="p-2 text-gray-400 hover:text-white" aria-label="Voice input"><Mic size={16} /></button>
                                             </div>
                                         </div>
-                                        <button onClick={handleSendMessage} className="p-3 bg-[var(--neon-cyan)] text-black rounded-xl hover:bg-[var(--neon-cyan)]/80 transition-all">
+                                        <button onClick={handleSendMessage} className="p-3 bg-[var(--neon-cyan)] text-black rounded-xl hover:bg-[var(--neon-cyan)]/80 transition-all" aria-label="Send message">
                                             <Send size={20} />
                                         </button>
                                     </div>
