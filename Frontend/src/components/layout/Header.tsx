@@ -1,4 +1,5 @@
 import { Bell, Search, User, ChevronDown } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
@@ -9,6 +10,20 @@ interface HeaderProps {
 }
 
 export function Header({ title = "Dashboard", subtitle, isOnline = true }: HeaderProps) {
+    const searchInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+                e.preventDefault();
+                searchInputRef.current?.focus();
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, []);
+
     return (
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border/50 bg-background/80 backdrop-blur-xl px-6">
             {/* Left section */}
@@ -27,10 +42,15 @@ export function Header({ title = "Dashboard", subtitle, isOnline = true }: Heade
                 <div className="relative hidden md:block">
                     <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <input
+                        ref={searchInputRef}
                         type="search"
                         placeholder="Search modules..."
-                        className="h-9 w-64 rounded-lg border border-border/50 bg-muted/30 pl-9 pr-4 text-sm outline-none placeholder:text-muted-foreground focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all"
+                        aria-label="Search modules"
+                        className="h-9 w-64 rounded-lg border border-border/50 bg-muted/30 pl-9 pr-12 text-sm outline-none placeholder:text-muted-foreground focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all"
                     />
+                    <kbd className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+                        <span className="text-xs">⌘</span>K
+                    </kbd>
                 </div>
 
                 {/* Status badge */}
@@ -48,7 +68,7 @@ export function Header({ title = "Dashboard", subtitle, isOnline = true }: Heade
                 </Badge>
 
                 {/* Notifications */}
-                <Button variant="ghost" size="icon" className="relative">
+                <Button variant="ghost" size="icon" className="relative" aria-label="Notifications">
                     <Bell className="h-5 w-5 text-muted-foreground" />
                     <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-primary text-[10px] font-medium flex items-center justify-center text-primary-foreground">
                         3
@@ -56,7 +76,7 @@ export function Header({ title = "Dashboard", subtitle, isOnline = true }: Heade
                 </Button>
 
                 {/* User menu */}
-                <Button variant="ghost" className="gap-2 px-2">
+                <Button variant="ghost" className="gap-2 px-2" aria-label="User menu">
                     <div className="h-8 w-8 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
                         <User className="h-4 w-4 text-white" />
                     </div>
