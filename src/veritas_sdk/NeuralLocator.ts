@@ -19,6 +19,14 @@ export class NeuralLocator {
     }
 
     /**
+     * Retrieves the heatmap data from a vision result.
+     * @param result The result from a locate call.
+     */
+    public getHeatmap(result: VisionResult): number[] {
+        return result.heatmap_data || [];
+    }
+
+    /**
      * Terminates the underlying bridge connection.
      */
     public disconnect() {
