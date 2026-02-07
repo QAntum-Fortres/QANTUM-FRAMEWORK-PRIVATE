@@ -1,31 +1,22 @@
-import { useEffect, useState } from 'react';
-import { NativeWebSocket } from './core/socket/NativeWebSocket';
-import { SovereignHUD } from './components/SovereignHUD';
-import { HeliosMaster } from './pages/HeliosMaster';
-
-// Initialize Neural Link
-// new NativeWebSocket();
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useState } from 'react';
+import { DashboardPage } from '@/features/dashboard/DashboardPage';
 
 function App() {
-  const [view, setView] = useState<'helios' | 'hud'>('helios');
-
-  useEffect(() => {
-    // Initialize Neural Link (Singleton)
-    NativeWebSocket.getInstance();
-  }, []);
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+      },
+    },
+  }));
 
   return (
-    <>
-      {view === 'helios' ? (
-        <div onDoubleClick={() => setView('hud')}>
-          <HeliosMaster />
-        </div>
-      ) : (
-        <div onDoubleClick={() => setView('helios')}>
-          <SovereignHUD />
-        </div>
-      )}
-    </>
+    <QueryClientProvider client={queryClient}>
+      <DashboardPage />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 

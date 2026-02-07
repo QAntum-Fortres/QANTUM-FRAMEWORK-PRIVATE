@@ -1,47 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "CommonJS",
-    "lib": [
-      "es2022",
-      "dom"
-    ],
-    "allowJs": true,
-    "checkJs": false,
-    "outDir": "./dist",
-    "rootDir": "./",
-    "removeComments": true,
-    "strict": false,
-    "noImplicitAny": false,
-    "strictNullChecks": false,
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "@core/*": [
-        "src/core/*"
-      ],
-      "@modules/*": [
-        "src/modules/*"
-      ],
-      "@scripts/*": [
-        "scripts/*"
-      ]
-    },
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": [
-    "src/**/*",
-    "scripts/**/*",
-    "tests/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.spec.ts"
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
   ]
 }
