@@ -16,6 +16,7 @@ export interface VisionResult {
     confidence: number;
     semantic_embedding: number[];
     reasoning: string;
+    audit_trail: string[];
 }
 
 export interface HealRequest {
