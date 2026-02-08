@@ -75,8 +75,10 @@ export function Sidebar() {
                         <li key={item.label}>
                             <a
                                 href={item.href}
+                                title={item.label}
+                                aria-label={item.label}
                                 className={cn(
-                                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all",
+                                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                                     "hover:bg-accent/50",
                                     item.active
                                         ? "bg-primary/10 text-primary font-medium"
@@ -101,8 +103,10 @@ export function Sidebar() {
                         <li key={item.label}>
                             <a
                                 href={item.href}
+                                title={item.label}
+                                aria-label={item.label}
                                 className={cn(
-                                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all",
+                                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                                     "text-muted-foreground hover:text-foreground hover:bg-accent/50"
                                 )}
                             >
@@ -128,6 +132,7 @@ export function Sidebar() {
                     size="icon"
                     className="h-6 w-6 rounded-full border-border/50 bg-background shadow-md"
                     onClick={() => setCollapsed(!collapsed)}
+                    aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
                 >
                     {collapsed ? (
                         <ChevronRight className="h-3 w-3" />
