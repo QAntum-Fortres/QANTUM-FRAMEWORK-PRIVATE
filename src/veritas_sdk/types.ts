@@ -31,13 +31,40 @@ export interface HealResult {
     reason: string;
 }
 
-export interface AgentGoal {
-    description: string;
-}
-
 export interface AgentStep {
     action: string;
     observation: string;
     reasoning: string;
     duration_ms: number;
+}
+
+export interface GoalRequest {
+    goal: string;
+    history: AgentStep[];
+    current_state_summary: string;
+}
+
+export interface GoalResult {
+    complete: boolean;
+    next_step: AgentStep | null;
+    audit_log_entry: string;
+}
+
+export interface ObserverRequest {
+    url: string;
+    layout_shifts: number;
+    network_pending: number;
+    dom_mutations: number;
+    last_interaction_ms: number;
+}
+
+export interface ObserverState {
+    stable: boolean;
+    amniotic_state_score: number;
+    recommendation: string;
+}
+
+// Legacy export (if used elsewhere)
+export interface AgentGoal {
+    description: string;
 }
