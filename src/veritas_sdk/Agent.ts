@@ -1,73 +1,80 @@
-/**
- * VERITAS AUTONOMOUS AGENT
- * Implements Goal-Oriented Agency using Vision-Transformer (ViT) bridges.
- */
+import { VeritasBridge } from './Bridge.ts';
 import { NeuralLocator } from './NeuralLocator.ts';
-import type { AgentGoal, VisionResult } from './types.ts';
+import type { AgentStep, VisionResult } from './types.ts';
 
 export class AutonomousAgent {
+    private bridge: VeritasBridge;
     private locator: NeuralLocator;
     private name: string;
 
     constructor(name: string = "Veritas-Agent-001") {
-        this.locator = new NeuralLocator();
+        this.bridge = new VeritasBridge();
+        this.locator = new NeuralLocator(this.bridge);
         this.name = name;
     }
 
-    public async executeGoal(goal: AgentGoal): Promise<void> {
-        console.log(`[${this.name}] Received Goal: "${goal.description}"`);
-        console.log(`[${this.name}] Initializing Vision-Transformer Layer...`);
+    public async executeGoal(goalDescription: string): Promise<void> {
+        console.log(`[${this.name}] Received Goal: "${goalDescription}"`);
 
-        // Deconstruct goal (simple heuristic for simulation)
-        const steps = this.planSteps(goal.description);
+        const history: AgentStep[] = [];
+        let done = false;
+        let steps_taken = 0;
+        const max_steps = 20; // Safety break
 
-        for (const step of steps) {
-            console.log(`[${this.name}] Executing Step: ${step}`);
-            // Mock taking a screenshot (1x1 Pixel PNG)
-            const mockScreenshot = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=";
+        while (!done && steps_taken < max_steps) {
+            steps_taken++;
+            // Mock state summary - in a real app, this comes from DOM/Accessibility Tree/Observer
+            const current_state_summary = "User is interacting with the application.";
 
-            console.log(`[${this.name}] Analyzing visual context...`);
             try {
-                const result = await this.locator.locate(mockScreenshot, step);
+                // Ask Core for the next step based on history
+                const plan = await this.bridge.planGoal(goalDescription, history, current_state_summary);
 
-                if (result.found && result.location) {
-                    console.log(`[${this.name}] 👁️ Visual Intent Identified: "${step}"`);
-                    console.log(`[${this.name}]    Location: [${result.location.x}, ${result.location.y}]`);
-                    console.log(`[${this.name}]    Confidence: ${(result.confidence * 100).toFixed(2)}%`);
-                    console.log(`[${this.name}]    Reasoning: ${result.reasoning}`);
+                if (plan.complete) {
+                    console.log(`[${this.name}] Goal Achieved! Audit Log: ${plan.audit_log_entry}`);
+                    done = true;
+                } else if (plan.next_step) {
+                    const step = plan.next_step;
+                    console.log(`[${this.name}] 🧠 Planned Action: ${step.action}`);
+                    console.log(`[${this.name}]    Reasoning: ${step.reasoning}`);
 
-                    // Simulate Action
-                    console.log(`[${this.name}] 🖱️ Action: Click at [${result.location.x + result.location.width/2}, ${result.location.y + result.location.height/2}]`);
+                    // Simulate Vision Check for the action
+                    // If action involves clicking/finding something, we use NeuralLocator
+                    const mockScreenshot = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=";
+
+                    // We interpret the action string as the intent for the visual locator
+                    const visionResult = await this.locator.locate(mockScreenshot, step.action);
+
+                    if (visionResult.found && visionResult.location) {
+                         console.log(`[${this.name}] 👁️ Visually Verified Target.`);
+                         // Update observation with success details
+                         step.observation = `Success. Found target at [${visionResult.location.x}, ${visionResult.location.y}]. ${visionResult.reasoning}`;
+                    } else {
+                         console.warn(`[${this.name}] ⚠️ Visual Check Failed.`);
+                         step.observation = "Could not visually locate target. Action attempted blindly.";
+                    }
+
+                    // Add to history so the Core knows what happened for the next iteration
+                    history.push(step);
+
+                    // Simulate execution time
+                    await new Promise(r => setTimeout(r, 100));
                 } else {
-                    console.warn(`[${this.name}] ⚠️ Could not visually locate: "${step}"`);
-                    // Here we would trigger Semantic Healing or Exploration
+                    console.warn(`[${this.name}] Core returned no plan and not complete. Stopping.`);
+                    done = true;
                 }
-            } catch (err: any) {
-                 console.error(`[${this.name}] Error during vision analysis: ${err.message}`);
-                 if (err.message.includes("ENOENT")) {
-                     console.warn(`[${this.name}] Core binary not found. Running in simulation fallback mode.`);
-                 }
+            } catch (e) {
+                console.error(`[${this.name}] Planning Error:`, e);
+                done = true;
             }
-
-            // Artificial delay for "Zero-Wait" demo (just to be readable in logs)
-            // In real zero-wait, we would hook into the event loop.
         }
 
-        console.log(`[${this.name}] Goal Complete.`);
-    }
-
-    private planSteps(goal: string): string[] {
-        // Simple NLP simulation
-        if (goal.includes("discount")) {
-            return ["Find Discount Input", "Find Apply Button", "Verify Total Price"];
+        if (steps_taken >= max_steps) {
+            console.warn(`[${this.name}] Max steps reached. Aborting.`);
         }
-        if (goal.includes("purchase")) {
-            return ["Find Product", "Find Add to Cart", "Find Checkout"];
-        }
-        return ["Analyze Page"];
     }
 
     public shutdown() {
-        this.locator.disconnect();
+        this.bridge.kill();
     }
 }

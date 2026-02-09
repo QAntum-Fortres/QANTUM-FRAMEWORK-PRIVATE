@@ -2,7 +2,14 @@ import { spawn, ChildProcess } from 'child_process';
 import * as path from 'path';
 import * as readline from 'readline';
 import { fileURLToPath } from 'url';
-import type { VisionResult, HealResult, VisionRequest, HealRequest, BoundingBox } from './types.ts';
+import type {
+    VisionResult,
+    HealResult,
+    GoalResult,
+    AgentStep,
+    ObserverRequest,
+    ObserverState
+} from './types.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -73,6 +80,14 @@ export class VeritasBridge {
 
     public async heal(failed_selector: string, current_image: string, last_known_embedding: number[]): Promise<HealResult> {
          return this.sendCommand('Heal', { failed_selector, current_image, last_known_embedding });
+    }
+
+    public async planGoal(goal: string, history: AgentStep[], current_state_summary: string): Promise<GoalResult> {
+        return this.sendCommand('Goal', { goal, history, current_state_summary });
+    }
+
+    public async observeState(request: ObserverRequest): Promise<ObserverState> {
+        return this.sendCommand('Observe', request);
     }
 
     private async sendCommand(commandName: string, payload: any): Promise<any> {

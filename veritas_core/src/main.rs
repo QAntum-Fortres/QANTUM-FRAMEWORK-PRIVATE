@@ -119,11 +119,11 @@ fn main() {
                                 print_response(result);
                              } else { print_error("Access Denied"); }
                         },
-                         Command::Goal(req) => {
+                        Command::Goal(mut req) => {
                              if rbac.authorize(&user_ctx, Role::Agent) {
                                 // Sanitize Goal Input
-                                let safe_goal = gdpr.sanitize(&req.goal);
-                                let result = agent.execute(&GoalRequest{ goal: safe_goal });
+                                req.goal = gdpr.sanitize(&req.goal);
+                                let result = agent.plan_next(&req);
                                 print_response(result);
                              } else { print_error("Access Denied"); }
                         },
