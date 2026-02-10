@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Play, ShieldCheck, Activity, BrainCircuit } from "lucide-react";
+import { Eye, Play, ShieldCheck, Activity, BrainCircuit, Loader2 } from "lucide-react";
 import { veritas } from "@/veritas_sdk/VeritasClient";
 import { AgentStep } from "@/veritas_sdk/types";
 
@@ -63,7 +63,14 @@ export function VeritasControlCenter() {
                                 <div className="absolute inset-0 bg-cyan-500/10 animate-scan" />
                             )}
                             <Button variant="outline" onClick={handleAnalyze} disabled={status !== 'IDLE'} className="relative z-10 bg-black/60 border-cyan-500/50 hover:bg-cyan-500/20">
-                                {status === 'SCANNING' ? 'ANALYZING...' : 'TRIGGER NEURAL LOCATOR'}
+                                {status === 'SCANNING' ? (
+                                    <>
+                                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                        ANALYZING...
+                                    </>
+                                ) : (
+                                    'TRIGGER NEURAL LOCATOR'
+                                )}
                             </Button>
                         </div>
                         {visionResult && (
@@ -80,12 +87,19 @@ export function VeritasControlCenter() {
                         </h3>
                         <div className="flex gap-2">
                             <input
+                                aria-label="Agent Goal"
                                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                 value={goal}
                                 onChange={(e) => setGoal(e.target.value)}
+                                disabled={status !== 'IDLE'}
                             />
                             <Button onClick={handleExecute} disabled={status !== 'IDLE'} className="bg-cyan-600 hover:bg-cyan-700">
-                                <Play className="h-4 w-4 mr-2" /> EXECUTE
+                                {status === 'EXECUTING' ? (
+                                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                ) : (
+                                    <Play className="h-4 w-4 mr-2" />
+                                )}
+                                EXECUTE
                             </Button>
                         </div>
 
