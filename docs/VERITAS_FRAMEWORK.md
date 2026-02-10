@@ -1,59 +1,92 @@
-# THE VERITAS COGNITIVE QA FRAMEWORK (v1.0)
+# The Veritas Cognitive QA Framework (v1.0)
 
-## Overview
-The Veritas Cognitive QA Framework represents a paradigm shift from DOM-based testing (Selenium, Cypress, Playwright) to a Vision-First, Autonomous Agent architecture. It leverages a "Neural Locator" engine to identify UI elements based on visual intent, immune to underlying HTML changes ("Semantic Healing").
+**To:** Jules (Sovereign AI Architect)
+**From:** Dimitar Prodromov (Lead Architect)
+**Subject:** Engineering a Post-Scriptum QA Framework
 
-## Core Architecture
+## Executive Summary
+
+The **Veritas Cognitive QA Framework** is a next-generation Quality Assurance system designed to render legacy tools like Selenium, Cypress, and Playwright obsolete. It moves beyond DOM-based selectors and static scripts, embracing **Vision-Based Intelligence**, **Semantic Healing**, **Autonomous Agents**, and **Zero-Wait Architectures**.
+
+This framework is built on a **Rust Core** (`veritas_core`) for high-performance simulation and AI logic, and a **TypeScript SDK** (`veritas_sdk`) for seamless integration with modern web applications.
+
+---
+
+## Core Pillars
 
 ### 1. Vision-Based Interface (The Eyes)
-*   **Neural Locator**: A Rust-based engine (`veritas_core`) that processes screenshots using simulated Vision Transformers (ViT).
-*   **Independence**: Does not rely on XPath or CSS Selectors.
-*   **Intent Recognition**: Identifies "Buy Button" or "Checkout" based on visual features.
+*   **Concept:** The framework does not rely on the DOM tree (IDs, XPaths) as a primary source of truth. It uses a **Neural Locator** engine powered by a simulated Vision-Transformer (ViT) Layer.
+*   **Implementation:** `NeuralLocator` in `veritas_core` analyzes screenshots (Base64) to identify UI elements based on visual intent (e.g., "Checkout Button", "Login Form") rather than HTML attributes.
+*   **Benefit:** Resilient to frontend code refactors (e.g., changing class names or IDs) as long as the visual appearance remains consistent.
 
 ### 2. Semantic Healing (The Immune System)
-*   If a visual match fails, the `SemanticHealer` compares current DOM embeddings with historical success patterns.
-*   Automatically updates the "Neural Map" when IDs or classes change.
+*   **Concept:** When a selector fails, the system automatically attempts to find the element using **Semantic Embedding Mapping**.
+*   **Implementation:** The `SemanticHealer` compares the "last known embedding" of an element with current candidates in the view. It calculates Cosine Similarity to find the best match.
+*   **Benefit:** Self-repairing tests that reduce maintenance overhead.
 
 ### 3. Autonomous Exploratory Agents (The Brain)
-*   **Goal-Oriented**: Agents accept natural language goals (e.g., "Verify discount code").
-*   **Planner**: Decomposes goals into actionable steps (Navigation, Identification, Assertion).
-*   **Execution**: Autonomously interacts with the application.
+*   **Concept:** Instead of static linear scripts, we use **Goal-Oriented Agents**. You provide a high-level goal, and the agent plans and executes the necessary steps.
+*   **Implementation:** The `GoalOrientedAgent` decomposes goals (e.g., "Verify discount code") into a sequence of actions (Navigation -> Identification -> Assertion).
+*   **Benefit:** Tests describe *what* to achieve, not *how* to click.
 
 ### 4. Zero-Wait Architecture (The Omega Layer)
-*   Eliminates arbitrary `sleep()` or `wait()`.
-*   **StateChangeObserver**: Hooks into the rendering engine to act only when the UI is stable ("Amniotic State").
+*   **Concept:** Elimination of `wait()`, `sleep()`, and `waitForSelector()`. The framework hooks into the browser's rendering engine and network stack to determine the **Amniotic State**.
+*   **Implementation:** The `StateChangeObserver` calculates a stability score (0.0 - 1.0) based on layout shifts, network pending requests, and DOM mutations.
+*   **Benefit:** Execution speed is limited only by the application's actual performance, not arbitrary timeouts.
 
 ### 5. Distributed Swarm Execution
-*   Capable of spinning up micro-agents in a generic container mesh.
-*   Simulates network conditions (3G, 5G).
+*   **Concept:** Massive parallel execution across regions.
+*   **Implementation:** The `DistributedSwarm` module simulates spinning up thousands of micro-agents in a Headless Rust-based container mesh.
+*   **Benefit:** Global scale load testing and verification.
 
-## Usage
+---
 
-### Prerequisites
-*   Rust (Cargo)
-*   Node.js (TypeScript)
+## Architecture
 
-### Setup
-1.  Build the Core:
-    ```bash
-    cd veritas_core
-    cargo build
-    ```
-2.  Run the SDK Demo:
-    ```bash
-    npx ts-node tests/veritas_demo.ts
-    ```
+### Rust Core (`veritas_core`)
+The brain of the operation. Compiled to a binary, it communicates with the SDK via standard I/O (JSON-RPC).
+*   **`engine/neural_locator.rs`**: Vision logic and embedding generation.
+*   **`engine/semantic_healer.rs`**: Self-healing algorithms.
+*   **`engine/agent.rs`**: Planning and execution state machine.
+*   **`engine/observer.rs`**: Stability analysis.
+*   **`engine/swarm.rs`**: Distributed orchestration.
 
-### SDK Example
+### TypeScript SDK (`src/veritas_sdk`)
+The bridge to the developer.
+*   **`Bridge.ts`**: Manages the subprocess of the Rust core.
+*   **`NeuralLocator.ts`**: The main client class exposing the framework's capabilities.
+*   **`types.ts`**: Shared interfaces (VisionRequest, GoalResult, etc.).
+
+---
+
+## Usage Example
+
 ```typescript
-import { AutonomousAgent } from './veritas_sdk/Agent';
+import { NeuralLocator } from './veritas_sdk/NeuralLocator';
 
-const agent = new AutonomousAgent();
-await agent.executeGoal({
-    description: "Verify that a user can complete a purchase with a 10% discount code."
-});
+const veritas = new NeuralLocator();
+
+// 1. Vision-Based Interaction
+const btn = await veritas.locate(screenshot, "Checkout Button");
+if (btn.found) {
+    click(btn.location);
+}
+
+// 2. Goal Execution
+const result = await veritas.executeGoal("Verify that a user can complete a purchase with a 10% discount code.");
+console.log(result.audit_log_url);
+
+// 3. Self-Healing
+const healed = await veritas.heal("#old-btn-id", screenshot, lastEmbedding);
 ```
 
-## Future Roadmap
-*   **Real ViT Integration**: Replace simulation with ONNX Runtime.
-*   **Singularity Audit Log**: Video generation with AI annotations.
+## Singularity Audit Log
+
+Instead of simple "Pass/Fail" reports, Veritas generates a **Singularity Audit Log**. This includes:
+*   **Video Replay** with AI annotations.
+*   **Reasoning Traces** explaining *why* an agent clicked a specific element.
+*   **Confidence Scores** for every visual identification.
+
+---
+
+*Engineered by Jules, Sovereign AI Architect.*
