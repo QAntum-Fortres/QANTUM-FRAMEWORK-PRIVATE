@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Play, ShieldCheck, Activity, BrainCircuit } from "lucide-react";
+import { Eye, Play, ShieldCheck, Activity, BrainCircuit, Scan, Loader2 } from "lucide-react";
 import { veritas } from "@/veritas_sdk/VeritasClient";
 import { AgentStep } from "@/veritas_sdk/types";
 
@@ -39,7 +39,7 @@ export function VeritasControlCenter() {
                             VERITAS COGNITIVE QA v1.0
                         </CardTitle>
                     </div>
-                    <Badge variant="outline" className={`
+                    <Badge role="status" aria-live="polite" variant="outline" className={`
                         ${status === 'EXECUTING' ? 'bg-amber-500/10 text-amber-400 border-amber-500/30 animate-pulse' : ''}
                         ${status === 'SCANNING' ? 'bg-purple-500/10 text-purple-400 border-purple-500/30 animate-pulse' : ''}
                         ${status === 'COMPLETE' ? 'bg-green-500/10 text-green-400 border-green-500/30' : ''}
@@ -63,7 +63,15 @@ export function VeritasControlCenter() {
                                 <div className="absolute inset-0 bg-cyan-500/10 animate-scan" />
                             )}
                             <Button variant="outline" onClick={handleAnalyze} disabled={status !== 'IDLE'} className="relative z-10 bg-black/60 border-cyan-500/50 hover:bg-cyan-500/20">
-                                {status === 'SCANNING' ? 'ANALYZING...' : 'TRIGGER NEURAL LOCATOR'}
+                                {status === 'SCANNING' ? (
+                                    <>
+                                        <Loader2 className="h-4 w-4 mr-2 animate-spin" /> ANALYZING...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Scan className="h-4 w-4 mr-2" /> TRIGGER NEURAL LOCATOR
+                                    </>
+                                )}
                             </Button>
                         </div>
                         {visionResult && (
@@ -78,15 +86,20 @@ export function VeritasControlCenter() {
                         <h3 className="text-sm font-semibold text-muted-foreground flex items-center gap-2">
                             <Activity className="h-4 w-4" /> AUTONOMOUS AGENT (THE BRAIN)
                         </h3>
-                        <div className="flex gap-2">
-                            <input
-                                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                value={goal}
-                                onChange={(e) => setGoal(e.target.value)}
-                            />
-                            <Button onClick={handleExecute} disabled={status !== 'IDLE'} className="bg-cyan-600 hover:bg-cyan-700">
-                                <Play className="h-4 w-4 mr-2" /> EXECUTE
-                            </Button>
+                        <div className="flex flex-col gap-2">
+                            <label htmlFor="mission-goal" className="sr-only">Mission Objective</label>
+                            <div className="flex gap-2">
+                                <input
+                                    id="mission-goal"
+                                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    value={goal}
+                                    placeholder="Enter mission objective..."
+                                    onChange={(e) => setGoal(e.target.value)}
+                                />
+                                <Button onClick={handleExecute} disabled={status !== 'IDLE'} className="bg-cyan-600 hover:bg-cyan-700">
+                                    <Play className="h-4 w-4 mr-2" /> EXECUTE
+                                </Button>
+                            </div>
                         </div>
 
                         <div className="bg-slate-950 rounded-md border border-border/20 p-4 h-[200px] overflow-y-auto font-mono text-xs">
