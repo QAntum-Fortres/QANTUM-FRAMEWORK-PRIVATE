@@ -2,7 +2,10 @@ import { spawn, ChildProcess } from 'child_process';
 import * as path from 'path';
 import * as readline from 'readline';
 import { fileURLToPath } from 'url';
-import type { VisionResult, HealResult, VisionRequest, HealRequest, BoundingBox } from './types.ts';
+import type {
+    VisionResult, HealResult, GoalResult, ObserverState,
+    VisionRequest, HealRequest, GoalRequest, ObserverRequest, SwarmRequest, SwarmStatus
+} from './types.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -75,8 +78,25 @@ export class VeritasBridge {
          return this.sendCommand('Heal', { failed_selector, current_image, last_known_embedding });
     }
 
+    public async goal(goal: string): Promise<GoalResult> {
+        return this.sendCommand('Goal', { goal });
+    }
+
+    public async observe(url: string, pending_network_requests: number, dom_mutation_rate: number, layout_shifts: number): Promise<ObserverState> {
+        return this.sendCommand('Observe', { url, pending_network_requests, dom_mutation_rate, layout_shifts });
+    }
+
+    public async swarm(target_url: string, agent_count: number, regions: string[]): Promise<SwarmStatus> {
+        return this.sendCommand('Swarm', { target_url, agent_count, regions });
+    }
+
     private async sendCommand(commandName: string, payload: any): Promise<any> {
         return new Promise((resolve, reject) => {
+            if (!this.process) {
+                reject(new Error("Veritas Core not running"));
+                return;
+            }
+
             // Match SecureCommand structure in Rust
             const secureCmd = {
                 auth_token: "valid_token", // Mock token
@@ -87,7 +107,7 @@ export class VeritasBridge {
                 }
             };
             const msg = JSON.stringify(secureCmd);
-            this.process?.stdin?.write(msg + '\n');
+            this.process.stdin?.write(msg + '\n');
 
             this.responseQueue.push((response: any) => {
                 if (response.status === 'success') {
