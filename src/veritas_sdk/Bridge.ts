@@ -46,7 +46,7 @@ export class VeritasBridge {
 
             this.process.on('exit', (code, signal) => {
                 if (code !== 0 && code !== null) {
-                    console.warn(`[VERITAS] Core exited with code ${code}`);
+                    // console.warn(`[VERITAS] Core exited with code ${code}`);
                 }
             });
 

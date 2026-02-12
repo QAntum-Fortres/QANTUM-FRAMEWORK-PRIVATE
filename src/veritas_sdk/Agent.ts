@@ -20,8 +20,8 @@ export class AutonomousAgent {
         console.log(`\n[${this.name}] 🧠 Processing Goal: "${goal.description}"`);
         console.log(`[${this.name}] 👁️ Initializing Vision-Transformer (ViT) Layer...`);
 
-        // Deconstruct goal (simple heuristic for simulation)
-        const steps = this.planSteps(goal.description);
+        try {
+            const result = await this.bridge.executeGoal(goal.description);
 
         for (const step of steps) {
             console.log(`[${this.name}] Executing Step: ${step}`);

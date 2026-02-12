@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { useSovereignStore } from '../core/socket/NativeWebSocket';
 import { NervePanel } from '../components/NervePanel';
+import { VeritasCognitiveLayer } from '../components/VeritasCognitiveLayer';
 
 // --- COMPONENTS ---
 
@@ -213,7 +214,10 @@ export const HeliosMaster = () => {
                         <h2 className="text-[10px] font-black uppercase tracking-[0.5em] opacity-40">Nerve Center / Cognitive Substrate</h2>
                         <div className="h-px bg-white/10 flex-1" />
                     </div>
-                    <NervePanel />
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <NervePanel />
+                        <VeritasCognitiveLayer />
+                    </div>
                 </div>
 
                 {/* BOTTOM LAYER: SYSTEM LOGS & ACTIONS */}

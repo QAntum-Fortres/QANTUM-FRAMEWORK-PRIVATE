@@ -14,11 +14,13 @@ pub struct AgentStep {
     pub observation: String,
     pub reasoning: String,
     pub duration_ms: u64,
+    pub status: String, // "completed", "failed"
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct GoalResult {
     pub success: bool,
+    pub goal_id: String,
     pub steps: Vec<AgentStep>,
     pub audit_log_url: String, // "Singularity Audit Log"
     pub total_duration_ms: u64,
@@ -92,6 +94,7 @@ impl GoalOrientedAgent {
             PageState::ProductListing
         };
 
+        let goal_id = Uuid::new_v4().to_string();
         let mut steps = Vec::new();
         let mut rng = rand::thread_rng();
         let mut total_duration = 0;
@@ -145,6 +148,7 @@ impl GoalOrientedAgent {
 
         GoalResult {
             success: true,
+            goal_id,
             steps,
             audit_log_url: format!("s3://veritas-logs/{}/replay.mp4", rng.gen::<u32>()),
             total_duration_ms: total_duration,
@@ -179,6 +183,11 @@ impl GoalOrientedAgent {
         }
         None
     }
+}
+
+struct PlanItem {
+    action: String,
+    expected_observation: String,
 }
 
 #[cfg(test)]

@@ -123,6 +123,14 @@ impl VisionTransformer {
     }
 }
 
+#[derive(Debug, Clone)]
+pub struct VisualElement {
+    pub intent_label: String,
+    pub embedding: Array1<f32>,
+    pub location: BoundingBox,
+    pub last_seen: u64,
+}
+
 pub struct NeuralLocator {
     vit: VisionTransformer,
     // Shared state for the Neural Map (persists across requests in this instance)
@@ -187,6 +195,7 @@ impl NeuralLocator {
         audit_trail.push(format!("ViT Attention Head #1 focused on center ({}, {})", center_x, center_y));
 
         let confidence: f32 = rng.gen_range(0.85..0.99);
+        let intent_lower = request.intent.to_lowercase();
 
         let intent_lower = request.intent.to_lowercase();
 
@@ -271,5 +280,10 @@ impl NeuralLocator {
 
         let mean = sum / count;
         (sum_sq / count) - (mean * mean)
+    }
+
+    // Helper to update the internal map (would be called after successful interactions)
+    pub fn update_map(&mut self, intent: String, element: VisualElement) {
+        self.neural_map.insert(intent, element);
     }
 }
