@@ -1,6 +1,10 @@
 import { VeritasBridge } from './Bridge.ts';
-import type { VisionResult, VisionRequest } from './types.ts';
+import type { VisionResult, HealResult, GoalResult, ObserverState, SwarmStatus } from './types.ts';
 
+/**
+ * The Veritas Neural Locator Engine.
+ * Provides the Vision-Based Interface for the QA Framework.
+ */
 export class NeuralLocator {
     private bridge: VeritasBridge;
 
@@ -16,6 +20,14 @@ export class NeuralLocator {
     public async locate(imageBase64: string, intent: string): Promise<VisionResult> {
         console.log(`[NeuralLocator] Analyzing image for intent: "${intent}"`);
         return this.bridge.locate(imageBase64, intent);
+    }
+
+    /**
+     * Retrieves the heatmap data from a vision result.
+     * @param result The result from a locate call.
+     */
+    public getHeatmap(result: VisionResult): number[] {
+        return result.heatmap_data || [];
     }
 
     /**
