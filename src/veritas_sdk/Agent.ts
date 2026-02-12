@@ -8,6 +8,8 @@ import type { AgentGoal, VisionResult } from './types.ts';
 export class AutonomousAgent {
     private locator: NeuralLocator;
     private name: string;
+    // In a real Playwright context, this would hold the Page object
+    // private page: Page;
 
     constructor(name: string = "Veritas-Agent-001") {
         this.locator = new NeuralLocator();
@@ -15,8 +17,8 @@ export class AutonomousAgent {
     }
 
     public async executeGoal(goal: AgentGoal): Promise<void> {
-        console.log(`[${this.name}] Received Goal: "${goal.description}"`);
-        console.log(`[${this.name}] Initializing Vision-Transformer Layer...`);
+        console.log(`\n[${this.name}] 🧠 Processing Goal: "${goal.description}"`);
+        console.log(`[${this.name}] 👁️ Initializing Vision-Transformer (ViT) Layer...`);
 
         // Deconstruct goal (simple heuristic for simulation)
         const steps = this.planSteps(goal.description);
@@ -49,22 +51,34 @@ export class AutonomousAgent {
                  }
             }
 
-            // Artificial delay for "Zero-Wait" demo (just to be readable in logs)
-            // In real zero-wait, we would hook into the event loop.
+                    // Simulate Action
+                    console.log(`[${this.name}] 🖱️ CLICKING at [${result.location.x + result.location.width/2}, ${result.location.y + result.location.height/2}]`);
+                } else {
+                    console.warn(`[${this.name}] ⚠️ VISUAL MISMATCH`);
+                    console.warn(`[${this.name}]    Reasoning: ${result.reasoning}`);
+                    console.log(`[${this.name}] 🩹 Initiating Semantic Healing Protocol...`);
+                    // Here we would call heal()
+                }
+            } catch (err: any) {
+                console.error(`[${this.name}] 💥 Core Error: ${err.message}`);
+            }
         }
 
-        console.log(`[${this.name}] Goal Complete.`);
+        console.log(`\n[${this.name}] 🏁 Goal Execution Finished.`);
     }
 
     private planSteps(goal: string): string[] {
-        // Simple NLP simulation
-        if (goal.includes("discount")) {
+        // Simple NLP simulation for demo
+        if (goal.toLowerCase().includes("discount")) {
             return ["Find Discount Input", "Find Apply Button", "Verify Total Price"];
         }
-        if (goal.includes("purchase")) {
+        if (goal.toLowerCase().includes("purchase")) {
             return ["Find Product", "Find Add to Cart", "Find Checkout"];
         }
-        return ["Analyze Page"];
+        if (goal.toLowerCase().includes("login")) {
+            return ["Find Username Input", "Find Password Input", "Find Login Button"];
+        }
+        return ["Analyze Page Structure"];
     }
 
     public shutdown() {

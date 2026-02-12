@@ -19,6 +19,7 @@ pub struct HealResult {
 
 pub struct SemanticHealer {
     threshold: f32,
+    vit: VisionTransformer,
 }
 
 impl SemanticHealer {
