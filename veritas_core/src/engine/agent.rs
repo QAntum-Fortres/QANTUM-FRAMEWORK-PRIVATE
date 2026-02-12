@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 use rand::Rng;
 use std::collections::{HashMap, VecDeque, HashSet};
+use uuid::Uuid;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct GoalRequest {
@@ -14,7 +15,7 @@ pub struct AgentStep {
     pub observation: String,
     pub reasoning: String,
     pub duration_ms: u64,
-    pub status: String, // "completed", "failed"
+    pub status: String, // "completed", "failed", "pending"
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -98,51 +99,66 @@ impl GoalOrientedAgent {
         let mut steps = Vec::new();
         let mut rng = rand::thread_rng();
         let mut total_duration = 0;
+        let mut step_counter = 1;
 
         steps.push(AgentStep {
+            step_id: step_counter,
             action: "Start Session".to_string(),
             observation: "Landed on Homepage".to_string(),
             reasoning: "Initial state".to_string(),
             duration_ms: 10,
+            status: "completed".to_string(),
         });
-        total_duration += d1;
+        total_duration += 10;
+        step_counter += 1;
 
         // 2. Pathfinding (BFS) using the World Model
         if let Some(path) = self.find_path(PageState::Home, &target_state) {
 
+            // Reconstruct path steps
+            // Note: find_path returns (Action, NextState)
+
             for (action, next_state) in path {
-                let duration = rng.gen_range(100..500);
+                let duration: u64 = rng.gen_range(100..500);
+                total_duration += duration;
 
-                // Specific Logic for Goal Verification during execution
                 let mut reasoning = format!("Navigating to {:?} via '{}'", next_state, action);
-
                 if next_state == PageState::Checkout && goal_lower.contains("discount") {
                     reasoning.push_str(". Will apply discount.");
                 }
 
                 steps.push(AgentStep {
+                    step_id: step_counter,
                     action: action.clone(),
                     observation: format!("Transitioned to {:?}", next_state),
                     reasoning,
                     duration_ms: duration,
+                    status: "completed".to_string(),
                 });
+                step_counter += 1;
 
                 // If we hit checkout and need discount, inject extra step
                  if next_state == PageState::Checkout && goal_lower.contains("discount") {
                      steps.push(AgentStep {
+                        step_id: step_counter,
                         action: "Input 'SAVE10'".to_string(),
                         observation: "Discount -10% applied".to_string(),
                         reasoning: "Goal Requirement: Discount".to_string(),
                         duration_ms: 100,
+                        status: "completed".to_string(),
                     });
+                    total_duration += 100;
+                    step_counter += 1;
                 }
             }
         } else {
             steps.push(AgentStep {
+                step_id: step_counter,
                 action: "Error".to_string(),
                 observation: "Could not find path".to_string(),
                 reasoning: "Target state unreachable".to_string(),
                 duration_ms: 0,
+                status: "failed".to_string(),
             });
         }
 
@@ -162,13 +178,17 @@ impl GoalOrientedAgent {
         let mut visited = HashSet::new();
         visited.insert(start);
 
+        // BFS
+        // Loop limit to prevent infinite loops in cyclic graphs
+        let mut loop_count = 0;
+
         while let Some((current, path)) = queue.pop_front() {
+            loop_count += 1;
+            if loop_count > 1000 { break; }
+
             if &current == target {
                 return Some(path);
             }
-
-            // Allow approximate match for Checkout flow (if we reach Checkout, we can assume success for purchase goal if target is Dashboard)
-            // But strict BFS is safer.
 
             if let Some(transitions) = self.world_model.get(&current) {
                 for (action, next_state) in transitions {
@@ -185,11 +205,6 @@ impl GoalOrientedAgent {
     }
 }
 
-struct PlanItem {
-    action: String,
-    expected_observation: String,
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -200,8 +215,11 @@ mod tests {
         let req = GoalRequest {
             goal: "Verify purchase with 10% discount".to_string(),
         };
-        // Expect path: Home -> ProductDetail -> Cart -> Checkout -> Dashboard
-        // + Discount step injected
+        // Expect path: Home -> ProductDetail -> Cart -> Checkout
+        // Note: My BFS logic aims for Checkout, not Dashboard for "purchase" goal in this mock
+        // because "complete_purchase" is an action FROM Checkout TO Dashboard.
+        // So target=Checkout.
+
         let result = agent.execute(&req);
 
         assert!(result.success);

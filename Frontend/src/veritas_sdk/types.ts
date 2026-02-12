@@ -21,33 +21,31 @@ export interface VisionResult {
     heatmap_data: number[];
     reasoning: string;
     processing_time_ms: number;
+    audit_trail: string[];
 }
 
-export interface HealRequest {
-    failed_selector: string;
-    last_known_embedding: number[];
-    current_image: string;
+export interface NeuralMapEntry {
+    location: BoundingBox;
+    embedding: number[];
+    last_seen: number;
 }
 
-export interface HealResult {
-    healed: boolean;
-    new_selector: string;
-    similarity_score: number;
-    reason: string;
+export interface NeuralMap {
+    // Intent -> Entry
+    memory: Record<string, NeuralMapEntry>;
 }
 
-export interface GoalRequest {
-    goal: string;
-}
-
-export interface GoalResult {
-    success: boolean;
+export interface AgentGoal {
+    id: string;
+    description: string;
+    status: 'pending' | 'active' | 'completed' | 'failed';
     steps: AgentStep[];
 }
 
 export interface AgentStep {
+    id: string;
+    description: string;
     action: string;
-    observation: string;
-    reasoning: string;
-    duration_ms: number;
+    status: 'pending' | 'success' | 'failure';
+    result?: string;
 }

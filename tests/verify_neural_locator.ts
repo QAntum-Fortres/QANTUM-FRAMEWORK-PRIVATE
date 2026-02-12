@@ -1,4 +1,5 @@
-import { NeuralLocator } from '../src/veritas_sdk/NeuralLocator.ts';
+import { NeuralLocator } from '../Frontend/src/veritas_sdk/NeuralLocator';
+import { VisionRequest } from '../Frontend/src/veritas_sdk/types';
 
 async function main() {
     console.error("STARTING TEST");
@@ -11,7 +12,13 @@ async function main() {
         const intent = "Find the Checkout Button";
 
         console.error("SENDING REQUEST");
-        const result = await locator.locate(mockImage, intent);
+
+        const request: VisionRequest = {
+            image_base64: mockImage,
+            intent: intent
+        };
+
+        const result = await locator.analyze(request);
         console.error("RESULT RECEIVED");
         console.log(JSON.stringify(result, null, 2));
 
@@ -24,9 +31,12 @@ async function main() {
         if (!result.heatmap_data) {
              throw new Error("Missing 'heatmap_data' in result");
         }
+        if (!result.audit_trail) {
+             throw new Error("Missing 'audit_trail' in result");
+        }
 
         console.log("Verification Successful: All fields present.");
-        locator.disconnect();
+        // locator.disconnect(); // Not needed for mock implementation
         process.exit(0);
 
     } catch (err) {
