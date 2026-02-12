@@ -131,6 +131,13 @@ pub struct VisualElement {
     pub last_seen: u64,
 }
 
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct NeuralMapEntry {
+    pub location: BoundingBox,
+    pub embedding: Vec<f32>,
+    pub last_seen: u64,
+}
+
 pub struct NeuralLocator {
     vit: VisionTransformer,
     // Shared state for the Neural Map (persists across requests in this instance)
@@ -304,5 +311,15 @@ impl NeuralLocator {
         let result = locator.analyze(&request);
         assert!(!result.found);
         assert!(result.reasoning.contains("Base64 decode error"));
+    }
+
+    // Called by Semantic Healer to update the map manually
+    pub fn update_map(&self, intent: String, location: BoundingBox, embedding: Vec<f32>) {
+         let mut map_lock = self.neural_map.lock().unwrap();
+         map_lock.insert(intent, NeuralMapEntry {
+            location,
+            embedding,
+            last_seen: SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs(),
+        });
     }
 }

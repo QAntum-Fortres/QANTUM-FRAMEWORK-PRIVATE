@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cpu, Zap, Key, Activity, Send, Terminal } from 'lucide-react';
 import { useNerveCenter } from '../hooks/useNerveCenter';

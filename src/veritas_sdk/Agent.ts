@@ -14,6 +14,7 @@ export class AutonomousAgent {
     constructor(name: string = "Veritas-Agent-001") {
         this.locator = new NeuralLocator();
         this.name = name;
+        this.memory = new Map();
     }
 
     public async executeGoal(goal: AgentGoal): Promise<void> {
