@@ -6,8 +6,8 @@ Real-Time Satellite Data + High-Frequency Arbitrage Model
 Usage: python core_engine.py
 """
 
-import requests
-import time
+import asyncio
+import httpx
 import os
 from datetime import datetime
 from helios_arbitrage_engine import HeliosArbitrageEngine, Node, MarketData, MeteoSnapshot
@@ -34,10 +34,10 @@ MARKET_DATA = MarketData(us_price=45.0, eu_price=150.0)
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def get_real_data(lat: float, lon: float) -> MeteoSnapshot:
+async def get_real_data_async(client: httpx.AsyncClient, lat: float, lon: float) -> MeteoSnapshot:
     try:
         url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m,shortwave_radiation&timezone=auto"
-        response = requests.get(url, timeout=5)
+        response = await client.get(url, timeout=5)
         data = response.json()['current']
         return MeteoSnapshot(
             radiation_w_m2=data['shortwave_radiation'],
@@ -87,26 +87,39 @@ def print_dashboard(sofia_meteo, ny_meteo, tokyo_meteo, engine_us_eu, engine_jp_
     
     print("\n" + Fore.WHITE + "Scanning global grid... (Ctrl+C to stop)" + Style.RESET_ALL)
 
-def main():
+async def main():
     # Setup engines
     engine_us_eu = HeliosArbitrageEngine(NODES["NY"], NODES["SOFIA"], MARKET_DATA, ai_urgency_multiplier=2.5)
     engine_jp_eu = HeliosArbitrageEngine(NODES["TOKYO"], NODES["SOFIA"], MARKET_DATA, ai_urgency_multiplier=3.0)
 
-    while True:
-        try:
-            s = get_real_data(NODES["SOFIA"].lat, NODES["SOFIA"].lon)
-            n = get_real_data(NODES["NY"].lat, NODES["NY"].lon)
-            t = get_real_data(NODES["TOKYO"].lat, NODES["TOKYO"].lon)
+    async with httpx.AsyncClient() as client:
+        while True:
+            try:
+                # Concurrent requests
+                results = await asyncio.gather(
+                    get_real_data_async(client, NODES["SOFIA"].lat, NODES["SOFIA"].lon),
+                    get_real_data_async(client, NODES["NY"].lat, NODES["NY"].lon),
+                    get_real_data_async(client, NODES["TOKYO"].lat, NODES["TOKYO"].lon)
+                )
 
-            if s and n and t:
-                # Mock high radiation for Tokyo to verify engine visualization during verification
-                t.radiation_w_m2 = max(t.radiation_w_m2, 850.0) 
+                s, n, t = results
+
+                if s and n and t:
+                    # Mock high radiation for Tokyo to verify engine visualization during verification
+                    t.radiation_w_m2 = max(t.radiation_w_m2, 850.0)
+
+                    print_dashboard(s, n, t, engine_us_eu, engine_jp_eu)
                 
-                print_dashboard(s, n, t, engine_us_eu, engine_jp_eu)
-            
-            time.sleep(5)
-        except KeyboardInterrupt:
-            break
+                await asyncio.sleep(5)
+            except KeyboardInterrupt:
+                break
+            except Exception as e:
+                # Handle unexpected errors in the loop to prevent crash, though KeyboardInterrupt is main exit
+                print(f"{Fore.RED}Error in main loop: {e}{Style.RESET_ALL}")
+                await asyncio.sleep(5)
 
 if __name__ == "__main__":
-    main()
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        pass
