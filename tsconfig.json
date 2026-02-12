@@ -37,7 +37,8 @@
   "include": [
     "src/**/*",
     "scripts/**/*",
-    "tests/**/*"
+    "tests/**/*",
+    "LogicSubstrate/**/*"
   ],
   "exclude": [
     "node_modules",
