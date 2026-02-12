@@ -2,49 +2,86 @@
  * VERITAS AUTONOMOUS AGENT
  * Implements Goal-Oriented Agency using Vision-Transformer (ViT) bridges.
  */
-import { VeritasBridge, VisionResult, GoalResult } from './Bridge.ts';
-
-export interface AgentGoal {
-    description: string;
-}
+import { NeuralLocator } from './NeuralLocator.ts';
+import type { AgentGoal, VisionResult } from './types.ts';
 
 export class AutonomousAgent {
-    private bridge: VeritasBridge;
+    private locator: NeuralLocator;
     private name: string;
+    // In a real Playwright context, this would hold the Page object
+    // private page: Page;
 
     constructor(name: string = "Veritas-Agent-001") {
-        this.bridge = new VeritasBridge();
+        this.locator = new NeuralLocator();
         this.name = name;
     }
 
-    public async executeGoal(goal: AgentGoal): Promise<GoalResult> {
-        console.log(`[${this.name}] Received Goal: "${goal.description}"`);
-        console.log(`[${this.name}] Delegating execution to Veritas Core (Rust)...`);
+    public async executeGoal(goal: AgentGoal): Promise<void> {
+        console.log(`\n[${this.name}] 🧠 Processing Goal: "${goal.description}"`);
+        console.log(`[${this.name}] 👁️ Initializing Vision-Transformer (ViT) Layer...`);
 
         try {
             const result = await this.bridge.executeGoal(goal.description);
 
-            console.log(`[${this.name}] Goal Execution Complete. Success: ${result.success}`);
-            console.log(`[${this.name}] Audit Log: ${result.audit_log_url}`);
+        for (const step of steps) {
+            console.log(`[${this.name}] Executing Step: ${step}`);
+            // Mock taking a screenshot (1x1 Pixel PNG)
+            const mockScreenshot = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=";
 
-            result.steps.forEach(step => {
-                console.log(`  > [${step.action}] -> ${step.observation} (${step.duration_ms}ms)`);
-            });
+            console.log(`[${this.name}] Analyzing visual context...`);
+            try {
+                const result = await this.locator.locate(mockScreenshot, step);
 
-            return result;
-        } catch (error) {
-            console.error(`[${this.name}] Execution Failed:`, error);
-            throw error;
+                if (result.found && result.location) {
+                    console.log(`[${this.name}] 👁️ Visual Intent Identified: "${step}"`);
+                    console.log(`[${this.name}]    Location: [${result.location.x}, ${result.location.y}]`);
+                    console.log(`[${this.name}]    Confidence: ${(result.confidence * 100).toFixed(2)}%`);
+                    console.log(`[${this.name}]    Reasoning: ${result.reasoning}`);
+
+                    // Simulate Action
+                    console.log(`[${this.name}] 🖱️ Action: Click at [${result.location.x + result.location.width/2}, ${result.location.y + result.location.height/2}]`);
+                } else {
+                    console.warn(`[${this.name}] ⚠️ Could not visually locate: "${step}"`);
+                    // Here we would trigger Semantic Healing or Exploration
+                }
+            } catch (err: any) {
+                 console.error(`[${this.name}] Error during vision analysis: ${err.message}`);
+                 if (err.message.includes("ENOENT")) {
+                     console.warn(`[${this.name}] Core binary not found. Running in simulation fallback mode.`);
+                 }
+            }
+
+                    // Simulate Action
+                    console.log(`[${this.name}] 🖱️ CLICKING at [${result.location.x + result.location.width/2}, ${result.location.y + result.location.height/2}]`);
+                } else {
+                    console.warn(`[${this.name}] ⚠️ VISUAL MISMATCH`);
+                    console.warn(`[${this.name}]    Reasoning: ${result.reasoning}`);
+                    console.log(`[${this.name}] 🩹 Initiating Semantic Healing Protocol...`);
+                    // Here we would call heal()
+                }
+            } catch (err: any) {
+                console.error(`[${this.name}] 💥 Core Error: ${err.message}`);
+            }
         }
+
+        console.log(`\n[${this.name}] 🏁 Goal Execution Finished.`);
     }
 
-    public async locateVisualIntent(intent: string): Promise<VisionResult> {
-        // Mock screenshot for demo purposes
-        const mockScreenshot = "base64_mock_data...";
-        return this.bridge.locate(mockScreenshot, intent);
+    private planSteps(goal: string): string[] {
+        // Simple NLP simulation for demo
+        if (goal.toLowerCase().includes("discount")) {
+            return ["Find Discount Input", "Find Apply Button", "Verify Total Price"];
+        }
+        if (goal.toLowerCase().includes("purchase")) {
+            return ["Find Product", "Find Add to Cart", "Find Checkout"];
+        }
+        if (goal.toLowerCase().includes("login")) {
+            return ["Find Username Input", "Find Password Input", "Find Login Button"];
+        }
+        return ["Analyze Page Structure"];
     }
 
     public shutdown() {
-        this.bridge.kill();
+        this.locator.disconnect();
     }
 }

@@ -2,86 +2,45 @@ import { spawn, ChildProcess } from 'child_process';
 import * as path from 'path';
 import * as readline from 'readline';
 import { fileURLToPath } from 'url';
+import type {
+    VisionResult, HealResult, GoalResult, ObserverState,
+    VisionRequest, HealRequest, GoalRequest, ObserverRequest, SwarmRequest, SwarmStatus
+} from './types.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-export interface VisionRequest {
-    image_base64: string;
-    intent: string;
-}
-
-export interface BoundingBox {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-}
-
-export interface VisionResult {
-    found: boolean;
-    location: BoundingBox | null;
-    confidence: number;
-    semantic_embedding: number[];
-    reasoning: string;
-}
-
-export interface HealRequest {
-    failed_selector: string;
-    last_known_embedding: number[];
-    current_image: string;
-}
-
-export interface HealResult {
-    healed: boolean;
-    new_selector: string;
-    similarity_score: number;
-    reason: string;
-}
-
-export interface GoalRequest {
-    goal: string;
-}
-
-export interface AgentStep {
-    step_id: string;
-    action: string;
-    observation: string;
-    reasoning: string;
-    duration_ms: number;
-    status: string;
-}
-
-export interface GoalResult {
-    success: boolean;
-    goal_id: string;
-    steps: AgentStep[];
-    audit_log_url: string;
-    total_duration_ms: number;
-}
 
 export class VeritasBridge {
     private process: ChildProcess | null = null;
     private rl: readline.Interface | null = null;
     private responseQueue: Array<(data: any) => void> = [];
+    private debugMode: boolean = true;
 
     constructor() {
         this.startCore();
     }
 
     private startCore() {
-        // Assume the binary is built at veritas_core/target/debug/veritas_core
-        // In production, this path would be configured differently.
-        const binaryPath = path.resolve(__dirname, '../../veritas_core/target/debug/veritas_core');
+        // Resolve path to the Rust binary
+        // Assumes running from root or standard structure
+        const binaryName = process.platform === 'win32' ? 'veritas_core.exe' : 'veritas_core';
+        const binaryPath = path.resolve(__dirname, '../../veritas_core/target/debug', binaryName);
 
-        // console.log(`[VERITAS] Spawning Core: ${binaryPath}`);
+        if (this.debugMode) {
+            console.log(`[VERITAS] Linking to Neural Core at: ${binaryPath}`);
+        }
+
+        if (!fs.existsSync(binaryPath)) {
+             console.error(`[VERITAS] CRITICAL: Core binary not found at ${binaryPath}`);
+             console.error(`[VERITAS] Please run: 'cd veritas_core && cargo build'`);
+             return;
+        }
 
         try {
             this.process = spawn(binaryPath);
 
             this.process.on('error', (err) => {
                 console.error(`[VERITAS] Failed to spawn Rust core: ${err.message}`);
-                console.error(`[VERITAS] Ensure you have run 'cd veritas_core && cargo build'`);
                 this.process = null;
             });
 
@@ -97,7 +56,9 @@ export class VeritasBridge {
         }
 
         this.process.stderr?.on('data', (data) => {
-            console.error(`[VERITAS CORE ERR]: ${data}`);
+            // Forward Rust logs to Node console
+            const log = data.toString().trim();
+            if (log) console.error(`[CORE] ${log}`);
         });
 
         if (this.process.stdout) {
@@ -128,23 +89,40 @@ export class VeritasBridge {
          return this.sendCommand('Heal', { failed_selector, current_image, last_known_embedding });
     }
 
-    public async executeGoal(goal: string): Promise<GoalResult> {
+    public async goal(goal: string): Promise<GoalResult> {
         return this.sendCommand('Goal', { goal });
     }
 
+    public async observe(url: string, pending_network_requests: number, dom_mutation_rate: number, layout_shifts: number): Promise<ObserverState> {
+        return this.sendCommand('Observe', { url, pending_network_requests, dom_mutation_rate, layout_shifts });
+    }
+
+    public async swarm(target_url: string, agent_count: number, regions: string[]): Promise<SwarmStatus> {
+        return this.sendCommand('Swarm', { target_url, agent_count, regions });
+    }
+
     private async sendCommand(commandName: string, payload: any): Promise<any> {
+        if (!this.process) {
+            throw new Error("Veritas Core is not running.");
+        }
+
         return new Promise((resolve, reject) => {
+            if (!this.process) {
+                reject(new Error("Veritas Core not running"));
+                return;
+            }
+
             // Match SecureCommand structure in Rust
             const secureCmd = {
-                auth_token: "valid_token", // Mock token
-                user_id: "admin",          // Mock user
+                auth_token: "valid_token",
+                user_id: "admin",
                 command: {
                     command: commandName,
                     payload: payload
                 }
             };
             const msg = JSON.stringify(secureCmd);
-            this.process?.stdin?.write(msg + '\n');
+            this.process.stdin?.write(msg + '\n');
 
             this.responseQueue.push((response: any) => {
                 if (response.status === 'success') {
