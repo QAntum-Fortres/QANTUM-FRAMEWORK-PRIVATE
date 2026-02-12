@@ -5,6 +5,8 @@ export interface BoundingBox {
     y: number;
     width: number;
     height: number;
+    label?: string;
+    confidence: number;
 }
 
 export interface VisionRequest {
@@ -15,9 +17,12 @@ export interface VisionRequest {
 export interface VisionResult {
     found: boolean;
     location: BoundingBox | null;
+    candidates: BoundingBox[];
     confidence: number;
     semantic_embedding: number[];
+    heatmap_data: number[];
     reasoning: string;
+    processing_time_ms: number;
 }
 
 export interface HealRequest {
