@@ -4,10 +4,12 @@ import { useRealtime } from "@/hooks/useRealtime";
 import { MetricCard } from "./components/MetricCard";
 import { EntropyChart } from "./components/EntropyChart";
 import { SystemConsole } from "./components/SystemConsole";
+import { VeritasCognitiveLayer } from "@/components/VeritasCognitiveLayer";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Header } from "@/components/layout/Header";
+import { VeritasControlCenter } from "./VeritasControlCenter";
 
 export function DashboardPage() {
     // 1. Activate Neural Link (WebSocket)
@@ -34,6 +36,9 @@ export function DashboardPage() {
 
                 {/* Dashboard Content */}
                 <main className="p-6 space-y-6">
+                    {/* Veritas Control Center */}
+                    <VeritasControlCenter />
+
                     {/* Metric Cards Grid */}
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                         <MetricCard
@@ -89,6 +94,9 @@ export function DashboardPage() {
                             timestamp={metrics?.timestamp ?? ""}
                         />
                     </div>
+
+                    {/* Veritas Cognitive Layer */}
+                    <VeritasCognitiveLayer />
 
                     {/* Additional Stats Row */}
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
