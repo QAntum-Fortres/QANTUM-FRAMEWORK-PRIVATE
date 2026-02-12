@@ -16,3 +16,7 @@ Format: `## YYYY-MM-DD - [Title]`
 ## 2026-05-20 - Dynamic Status Announcements
 **Learning:** Visual status badges with color/animation changes are great for sighted users but invisible to screen readers without ARIA attributes. `role="status"` and `aria-live="polite"` are essential for communicating state changes (like "SCANNING" -> "COMPLETE") to assistive technology.
 **Action:** Always add `role="status"` to components that display system state changes.
+
+## 2026-05-24 - Consistent Action Feedback
+**Learning:** Inconsistent loading states between similar primary actions (e.g., "Analyze" vs "Execute") create a jarring experience and reduce trust in the "silent" action. Users may double-click or doubt the system is working if one button provides feedback and another doesn't.
+**Action:** Audit all primary action buttons in a view to ensure they share the same feedback patterns (e.g., loading spinners, text changes).

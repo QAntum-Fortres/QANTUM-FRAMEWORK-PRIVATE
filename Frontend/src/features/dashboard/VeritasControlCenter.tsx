@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Play, ShieldCheck, Activity, BrainCircuit, Scan, Cpu } from "lucide-react";
+import { Eye, Play, ShieldCheck, Activity, BrainCircuit, Scan, Cpu, Loader2 } from "lucide-react";
 import { veritas } from "@/veritas_sdk/VeritasClient";
 import { AgentStep, VisionResult } from "@/veritas_sdk/types";
 
@@ -129,7 +129,15 @@ export function VeritasControlCenter() {
                                     onChange={(e) => setGoal(e.target.value)}
                                 />
                                 <Button onClick={handleExecute} disabled={status !== 'IDLE'} className="bg-cyan-600 hover:bg-cyan-700">
-                                    <Play className="h-4 w-4 mr-2" /> EXECUTE
+                                    {status === 'EXECUTING' ? (
+                                        <>
+                                            <Loader2 className="h-4 w-4 mr-2 animate-spin" /> EXECUTING...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Play className="h-4 w-4 mr-2" /> EXECUTE
+                                        </>
+                                    )}
                                 </Button>
                             </div>
                         </div>
