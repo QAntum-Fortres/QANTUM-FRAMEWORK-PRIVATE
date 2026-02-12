@@ -195,6 +195,37 @@
             color: var(--text-dim); font-size: 1.5rem; cursor: pointer; transition: color 0.3s;
         }
         .close-btn:hover { color: var(--danger); }
+
+        /* ENTERPRISE MODE - SERIOUS VARIANT */
+        body.enterprise-mode {
+            --primary: #3b82f6; /* Corporate Blue */
+            --secondary: #64748b; /* Slate Grey */
+            --accent: #059669; /* Emerald Green */
+            --warning: #d97706; /* Amber */
+            --danger: #dc2626; /* Red */
+            --surface: #1e293b; /* Solid Dark Slate */
+            --glass: #1e293b; /* No transparency */
+            --glass-border: #334155; /* Solid border */
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --shadow-glow: none; /* No neon glow */
+            background: #0f172a; /* Solid background */
+        }
+        body.enterprise-mode .particles { display: none; }
+        body.enterprise-mode .hero { animation: none; box-shadow: none; border: 1px solid var(--glass-border); background: var(--surface); }
+        body.enterprise-mode .stat-card, body.enterprise-mode .pillar-card, body.enterprise-mode .btn {
+            border-radius: 6px; /* Sharper corners */
+            backdrop-filter: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        body.enterprise-mode .ascii-logo { opacity: 0.2; filter: grayscale(1); }
+        body.enterprise-mode .tagline {
+            background: none; -webkit-text-fill-color: var(--text-primary);
+            font-weight: 700; letter-spacing: -0.5px;
+        }
+        body.enterprise-mode .section-title {
+            background: none; -webkit-text-fill-color: var(--text-primary);
+        }
     </style>
 </head>
 <body>
@@ -286,6 +317,7 @@
             <button class="btn btn-primary" onclick="simulateHealing(this)">🔬 Simulate Autonomous Healing</button>
             <button class="btn btn-secondary" onclick="viewArchitecture()">📊 View System Architecture</button>
             <button class="btn btn-secondary" onclick="runDiagnostics()">🔍 Run System Diagnostics</button>
+            <button class="btn btn-secondary" onclick="toggleEnterpriseMode(this)">🏢 Enterprise Protocol</button>
         </div>
     </div>
     <div class="status-bar">
@@ -563,6 +595,27 @@
 
             if (logs.children.length > 50) logs.removeChild(logs.firstChild);
         }, 600);
+
+        function toggleEnterpriseMode(btn) {
+            document.body.classList.toggle('enterprise-mode');
+            const isEnterprise = document.body.classList.contains('enterprise-mode');
+
+            if (isEnterprise) {
+                btn.innerHTML = '🧪 Return to Lab';
+                btn.classList.remove('btn-secondary');
+                btn.classList.add('btn-primary');
+
+                const statusText = document.querySelector('.status-text');
+                if(statusText) statusText.textContent = 'ENTERPRISE PROTOCOL ACTIVE';
+            } else {
+                btn.innerHTML = '🏢 Enterprise Protocol';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-secondary');
+
+                const statusText = document.querySelector('.status-text');
+                if(statusText) statusText.textContent = 'SYSTEM ONLINE';
+            }
+        }
     </script>
 </body>
 </html>

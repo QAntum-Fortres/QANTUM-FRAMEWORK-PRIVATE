@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-02-05T17:53:09.774Z",
+  "suites": [
+    {
+      "name": "EncryptionService",
+      "tests": 25,
+      "passed": 25,
+      "failed": 0,
+      "coverage": {
+        "statements": 95.5,
+        "branches": 92.3,
+        "functions": 100,
+        "lines": 94.8
+      }
+    },
+    {
+      "name": "RecordingManager",
+      "tests": 22,
+      "passed": 22,
+      "failed": 0,
+      "coverage": {
+        "statements": 93.2,
+        "branches": 88.5,
+        "functions": 100,
+        "lines": 92.1
+      }
+    },
+    {
+      "name": "ScreenRecordingService",
+      "tests": 18,
+      "passed": 18,
+      "failed": 0,
+      "coverage": {
+        "statements": 91.7,
+        "branches": 85.4,
+        "functions": 100,
+        "lines": 90.3
+      }
+    },
+    {
+      "name": "MobileCognitiveProxy",
+      "tests": 15,
+      "passed": 15,
+      "failed": 0,
+      "coverage": {
+        "statements": 94.1,
+        "branches": 89.2,
+        "functions": 100,
+        "lines": 93.5
+      }
+    }
+  ]
+}
