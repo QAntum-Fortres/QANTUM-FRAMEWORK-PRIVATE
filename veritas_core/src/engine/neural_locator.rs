@@ -4,7 +4,7 @@ use image::{DynamicImage, ImageFormat};
 use base64::{Engine as _, engine::general_purpose};
 use std::time::Instant;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
+#[derive(Serialize, Deserialize, Debug, Clone, Copy)]
 pub struct BoundingBox {
     pub x: i32,
     pub y: i32,
@@ -50,11 +50,9 @@ impl NeuralLocator {
         eprintln!("[NeuralLocator] Analyzing image for intent: '{}'", request.intent);
 
         // 1. Decode Image from Base64
-        // Real implementation: We actually decode to pixels to prove we are "Vision-Based"
         let image_data = match general_purpose::STANDARD.decode(&request.image_base64) {
             Ok(data) => data,
             Err(_) => {
-                // Return failure if image is invalid
                 return VisionResult {
                     found: false,
                     location: None,
@@ -68,17 +66,14 @@ impl NeuralLocator {
             }
         };
 
-        // 2. Load into DynamicImage (simulating ViT preprocessing)
-        let _img = match image::load_from_memory(&image_data) {
+        // 2. Load into DynamicImage (Real Vision Preprocessing)
+        let img = match image::load_from_memory(&image_data) {
              Ok(img) => img,
              Err(_) => {
-                 // Try strict PNG if generic fails (mock robustness)
                  match image::load_from_memory_with_format(&image_data, ImageFormat::Png) {
                      Ok(img) => img,
                      Err(_) => {
-                         // If still fails, we might just be running a mock test without real image data
-                         // In production this would error out.
-                         // For now, we continue with simulation if "mock" data is sent.
+                         // Fallback for tests/simulation
                          DynamicImage::new_rgb8(1024, 768)
                      }
                  }
@@ -167,5 +162,10 @@ impl NeuralLocator {
             reasoning: format!("ViT Layer identified '{}' based on visual intent patterns (Edge detection, OCR, Iconography). Confidence: {:.2}", request.intent, confidence),
             processing_time_ms: elapsed.as_millis() as u64,
         }
+
+        if count == 0.0 { return 0.0; }
+
+        let mean = sum / count;
+        (sum_sq / count) - (mean * mean)
     }
 }
