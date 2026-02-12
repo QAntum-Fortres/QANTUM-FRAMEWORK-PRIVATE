@@ -4,6 +4,7 @@ import {
     Activity, Cpu,
     Layers, ExternalLink, RefreshCw, AlertTriangle
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useSovereignStore } from '../core/socket/NativeWebSocket';
 import { NervePanel } from '../components/NervePanel';
 import { VeritasCognitiveLayer } from '../components/VeritasCognitiveLayer';
@@ -123,7 +124,13 @@ export const HeliosMaster = () => {
                         </h1>
                     </div>
 
-                    <div className="flex gap-4">
+                    <div className="flex gap-4 items-center">
+                        <Link
+                            to="/pricing"
+                            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-widest hover:shadow-lg transition-all mr-4"
+                        >
+                            Upgrade Plan
+                        </Link>
                         <SubstrateCard
                             icon={Cpu}
                             label="Ryzen 7950X"
@@ -206,6 +213,16 @@ export const HeliosMaster = () => {
                         description="Autonomous analysis of meta, mobile, and performance. Generates (0-100) Veritas score."
                     />
                 </motion.div>
+
+                {/* VERITAS COGNITIVE QA */}
+                <div className="mb-12">
+                     <div className="flex items-center gap-4 mb-6">
+                        <div className="h-px bg-white/10 flex-1" />
+                        <h2 className="text-[10px] font-black uppercase tracking-[0.5em] opacity-40">Veritas Intelligence</h2>
+                        <div className="h-px bg-white/10 flex-1" />
+                    </div>
+                    <VeritasDashboard />
+                </div>
 
                 {/* MIDDLE LAYER: NERVE CENTER */}
                 <div className="mb-12">
