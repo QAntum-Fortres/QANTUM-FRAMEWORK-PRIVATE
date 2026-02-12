@@ -145,6 +145,10 @@ impl NeuralLocator {
         }
     }
 
+    /// Simulates the full Vision Transformer pipeline:
+    /// 1. Preprocessing (Base64 -> Image -> Tensor)
+    /// 2. Inference (Tensor -> Embeddings + BBox)
+    /// 3. Post-processing (Formatting)
     pub fn analyze(&self, request: &VisionRequest) -> VisionResult {
         let start_time = Instant::now();
         eprintln!("[NeuralLocator] Analyzing image for intent: '{}'", request.intent);
@@ -226,6 +230,8 @@ impl NeuralLocator {
                 label: Some("Input Field".to_string()),
                 confidence,
             })
+        } else if intent == "FAIL_TEST" {
+            None
         } else {
             audit_trail.push("Intent classification: GENERAL_INTERACTION".to_string());
             Some(BoundingBox {
@@ -285,5 +291,18 @@ impl NeuralLocator {
     // Helper to update the internal map (would be called after successful interactions)
     pub fn update_map(&mut self, intent: String, element: VisualElement) {
         self.neural_map.insert(intent, element);
+    }
+
+    #[test]
+    fn test_invalid_base64() {
+        let locator = NeuralLocator::new();
+        let request = VisionRequest {
+            image_base64: "invalid_base64_string".to_string(),
+            intent: "anything".to_string(),
+        };
+
+        let result = locator.analyze(&request);
+        assert!(!result.found);
+        assert!(result.reasoning.contains("Base64 decode error"));
     }
 }
