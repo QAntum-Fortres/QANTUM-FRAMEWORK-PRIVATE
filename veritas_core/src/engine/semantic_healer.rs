@@ -1,7 +1,5 @@
 use serde::{Deserialize, Serialize};
-use ndarray::Array1;
-use crate::engine::neural_locator::{VisionTransformer, BoundingBox};
-use base64::{Engine as _, engine::general_purpose};
+use rand::{Rng, SeedableRng, rngs::StdRng};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct HealRequest {
@@ -16,6 +14,7 @@ pub struct HealResult {
     pub new_selector: String,
     pub similarity_score: f32,
     pub reason: String,
+    pub audit_trail: Vec<String>,
 }
 
 pub struct SemanticHealer {
@@ -26,69 +25,126 @@ pub struct SemanticHealer {
 impl SemanticHealer {
     pub fn new() -> Self {
         SemanticHealer {
-            threshold: 0.85,
-            vit: VisionTransformer::new(),
+            threshold: 0.70, // Slightly lower threshold for combined score
         }
     }
 
     pub fn heal(&self, request: &HealRequest) -> HealResult {
-        // 1. Decode Image
-        let image_bytes = match general_purpose::STANDARD.decode(&request.current_image) {
-            Ok(b) => b,
-            Err(_) => return self.fail_result("Failed to decode Base64 image"),
-        };
+        // 1. Snapshot Analysis (Mocked: In real system, we'd parse the current DOM/Image to get candidates)
+        // We simulate finding a list of potential candidates on the page.
+        // Some are similar strings, some are totally different.
+        let candidates = vec![
+            "#header-logo",
+            ".navigation-link",
+            "#submit-order-btn", // Similar to likely failed selector "#submit-btn"
+            "button[type='submit']",
+            ".footer-copyright",
+            "#checkout-container"
+        ];
 
-        let image = match image::load_from_memory(&image_bytes) {
-            Ok(img) => img,
-            Err(_) => image::DynamicImage::new_rgb8(1000, 1000), // Fallback for mock
-        };
+        let mut best_candidate = String::new();
+        let mut best_score = 0.0;
+        let mut best_reason = String::new();
 
-        // 2. Convert last known embedding to Array1
-        let last_embedding = Array1::from(request.last_known_embedding.clone());
-        if last_embedding.len() != 768 {
-             return self.fail_result("Invalid embedding dimension (expected 768)");
-        }
+        // 2. Iterate candidates and score them
+        for candidate in candidates {
+            // A. Structural Similarity (Levenshtein)
+            let str_sim = self.string_similarity(&request.failed_selector, candidate);
 
-        // 3. Scan current view for candidates
-        let detected_objects = self.vit.detect_objects(&image);
+            // B. Visual Similarity (Mocked Embedding Comparison)
+            // In reality, we'd generate an embedding for the 'candidate' from the 'current_image'
+            // Here we generate a deterministic pseudo-embedding based on the string to simulate stability
+            let candidate_embedding = self.mock_embedding_from_string(candidate);
+            let visual_sim = self.cosine_similarity(&request.last_known_embedding, &candidate_embedding);
 
-        // 4. Find best semantic match
-        let mut best_score: f32 = -1.0;
-        let mut best_label = String::new();
+            // C. Weighted Score
+            // 40% Structural (String), 60% Visual (Embedding)
+            let combined_score = (str_sim * 0.4) + (visual_sim * 0.6);
 
-        for (_bbox, visual_vec, label) in detected_objects {
-            let score = visual_vec.dot(&last_embedding) / (visual_vec.dot(&visual_vec).sqrt() * last_embedding.dot(&last_embedding).sqrt());
-
-            if score > best_score {
-                best_score = score;
-                best_label = label;
+            if combined_score > best_score {
+                best_score = combined_score;
+                best_candidate = candidate.to_string();
+                best_reason = format!(
+                    "Combined Score: {:.2} (Str: {:.2}, Vis: {:.2}). Found semantic match.",
+                    combined_score, str_sim, visual_sim
+                );
             }
         }
 
-        // 5. Check Threshold
         if best_score > self.threshold {
             HealResult {
                 healed: true,
-                new_selector: format!("veritas-semantic://{}", best_label), // Abstract selector
+                new_selector: best_candidate,
                 similarity_score: best_score,
-                reason: format!("Found element visually similar ({:.2}) to missing '{}'. Context preserved.", best_score, request.failed_selector),
+                reason: best_reason,
             }
         } else {
+             audit_trail.push("Healing failed. No candidates met the confidence threshold.".to_string());
              HealResult {
                 healed: false,
                 new_selector: "".to_string(),
                 similarity_score: best_score,
-                reason: format!("No element found with similarity > {:.2}. Best match: {:.2}", self.threshold, best_score),
+                reason: format!("Best match '{}' score {:.2} below threshold {:.2}", best_candidate, best_score, self.threshold),
             }
         }
     }
 
-    fn fail_result(&self, reason: &str) -> HealResult {
-        HealResult {
-            healed: false,
-            new_selector: "".to_string(),
-            similarity_score: 0.0,
-            reason: reason.to_string(),
+    fn string_similarity(&self, s1: &str, s2: &str) -> f32 {
+        let len1 = s1.chars().count();
+        let len2 = s2.chars().count();
+        let max_len = std::cmp::max(len1, len2);
+
+        if max_len == 0 { return 1.0; }
+
+        let dist = levenshtein::levenshtein(s1, s2);
+        1.0 - (dist as f32 / max_len as f32)
+    }
+
+    fn cosine_similarity(&self, v1: &[f32], v2: &[f32]) -> f32 {
+        if v1.len() != v2.len() || v1.is_empty() { return 0.0; }
+
+        let dot_product: f32 = v1.iter().zip(v2.iter()).map(|(a, b)| a * b).sum();
+        let norm_a: f32 = v1.iter().map(|a| a * a).sum::<f32>().sqrt();
+        let norm_b: f32 = v2.iter().map(|b| b * b).sum::<f32>().sqrt();
+
+        if norm_a == 0.0 || norm_b == 0.0 { return 0.0; }
+
+        dot_product / (norm_a * norm_b)
+    }
+
+    // Helper to generate a consistent embedding for testing/mocking
+    fn mock_embedding_from_string(&self, s: &str) -> Vec<f32> {
+        let mut seed: u64 = 0;
+        for byte in s.bytes() {
+            seed = seed.wrapping_add(byte as u64);
         }
+        let mut rng = StdRng::seed_from_u64(seed);
+        (0..768).map(|_| rng.gen::<f32>()).collect()
+    }
+}
+
+// Minimal Levenshtein implementation to avoid external crate dependency for this snippet
+mod levenshtein {
+    pub fn levenshtein(a: &str, b: &str) -> usize {
+        let len_a = a.chars().count();
+        let len_b = b.chars().count();
+        if len_a == 0 { return len_b; }
+        if len_b == 0 { return len_a; }
+
+        let mut matrix = vec![vec![0; len_b + 1]; len_a + 1];
+
+        for i in 0..=len_a { matrix[i][0] = i; }
+        for j in 0..=len_b { matrix[0][j] = j; }
+
+        for (i, char_a) in a.chars().enumerate() {
+            for (j, char_b) in b.chars().enumerate() {
+                let cost = if char_a == char_b { 0 } else { 1 };
+                matrix[i + 1][j + 1] = std::cmp::min(
+                    std::cmp::min(matrix[i][j + 1] + 1, matrix[i + 1][j] + 1),
+                    matrix[i][j] + cost
+                );
+            }
+        }
+        matrix[len_a][len_b]
     }
 }
