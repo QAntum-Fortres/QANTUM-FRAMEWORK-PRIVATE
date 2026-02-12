@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
-    Activity, Shield, Zap, Cpu, Globe, Terminal,
+    Activity, Cpu,
     Layers, ExternalLink, RefreshCw, AlertTriangle
 } from 'lucide-react';
 import { useSovereignStore } from '../core/socket/NativeWebSocket';

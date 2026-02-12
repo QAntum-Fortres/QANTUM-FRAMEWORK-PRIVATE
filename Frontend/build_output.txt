@@ -1,0 +1,3 @@
+tsconfig.node.json(21,5): error TS5023: Unknown compiler option 'erasableSyntaxOnly'.
+tsconfig.app.json(39,18): error TS6306: Referenced project '/app/Frontend/tsconfig.node.json' must have setting "composite": true.
+tsconfig.app.json(39,18): error TS6310: Referenced project '/app/Frontend/tsconfig.node.json' may not disable emit.
