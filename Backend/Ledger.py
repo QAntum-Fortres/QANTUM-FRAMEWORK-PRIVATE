@@ -1,6 +1,8 @@
 import hashlib
 import json
 from datetime import datetime
+from collections import deque
+from itertools import pairwise
 
 class Block:
     def __init__(self, index, timestamp, data, previous_hash):
@@ -16,8 +18,8 @@ class Block:
         return hashlib.sha256(block_string.encode()).hexdigest()
 
 class ImmutableLedger:
-    def __init__(self):
-        self.chain = [self.create_genesis_block()]
+    def __init__(self, max_len=10000):
+        self.chain = deque([self.create_genesis_block()], maxlen=max_len)
         print("/// LEDGER INITIALIZED: GENESIS BLOCK SEALED ///")
 
     def create_genesis_block(self):
@@ -53,9 +55,7 @@ class ImmutableLedger:
         return "MAINTAIN_BALANCE"
 
     def is_chain_valid(self):
-        for i in range(1, len(self.chain)):
-            current = self.chain[i]
-            previous = self.chain[i-1]
+        for previous, current in pairwise(self.chain):
             if current.hash != current.calculate_hash():
                 return False
             if current.previous_hash != previous.hash:
