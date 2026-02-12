@@ -3,8 +3,8 @@ import * as path from 'path';
 import * as readline from 'readline';
 import { fileURLToPath } from 'url';
 import type {
-    VisionResult, HealResult, GoalResult, ObserverState, SwarmStatus,
-    VisionRequest, HealRequest, GoalRequest, ObserverRequest, SwarmRequest
+    VisionResult, HealResult, GoalResult, ObserverState,
+    VisionRequest, HealRequest, GoalRequest, ObserverRequest, SwarmRequest, SwarmStatus
 } from './types.ts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -82,16 +82,21 @@ export class VeritasBridge {
         return this.sendCommand('Goal', { goal });
     }
 
-    public async observe(url: string, threshold?: number): Promise<ObserverState> {
-        return this.sendCommand('Observe', { url, threshold });
+    public async observe(url: string, pending_network_requests: number, dom_mutation_rate: number, layout_shifts: number): Promise<ObserverState> {
+        return this.sendCommand('Observe', { url, pending_network_requests, dom_mutation_rate, layout_shifts });
     }
 
-    public async swarm(agent_count: number, regions: string[], task_goal: string): Promise<SwarmStatus> {
-        return this.sendCommand('Swarm', { agent_count, regions, task_goal });
+    public async swarm(target_url: string, agent_count: number, regions: string[]): Promise<SwarmStatus> {
+        return this.sendCommand('Swarm', { target_url, agent_count, regions });
     }
 
     private async sendCommand(commandName: string, payload: any): Promise<any> {
         return new Promise((resolve, reject) => {
+            if (!this.process) {
+                reject(new Error("Veritas Core not running"));
+                return;
+            }
+
             // Match SecureCommand structure in Rust
             const secureCmd = {
                 auth_token: "valid_token", // Mock token
@@ -102,7 +107,7 @@ export class VeritasBridge {
                 }
             };
             const msg = JSON.stringify(secureCmd);
-            this.process?.stdin?.write(msg + '\n');
+            this.process.stdin?.write(msg + '\n');
 
             this.responseQueue.push((response: any) => {
                 if (response.status === 'success') {

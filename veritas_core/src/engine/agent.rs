@@ -1,12 +1,13 @@
 use serde::{Deserialize, Serialize};
 use rand::Rng;
+use std::collections::{HashMap, VecDeque, HashSet};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct GoalRequest {
     pub goal: String, // e.g. "Verify purchase with 10% discount"
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct AgentStep {
     pub step_id: u32,
     pub action: String,
@@ -23,57 +24,124 @@ pub struct GoalResult {
     pub total_duration_ms: u64,
 }
 
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
+enum PageState {
+    Home,
+    ProductListing,
+    ProductDetail,
+    Cart,
+    Checkout,
+    Login,
+    Dashboard,
+}
+
 pub struct GoalOrientedAgent {
-    // Agent state
+    world_model: HashMap<PageState, Vec<(String, PageState)>>, // Action -> Next State
 }
 
 impl GoalOrientedAgent {
     pub fn new() -> Self {
-        GoalOrientedAgent {}
+        let mut world_model = HashMap::new();
+
+        // Build a simplified graph of the application (The "World Model")
+        world_model.insert(PageState::Home, vec![
+            ("click_product".to_string(), PageState::ProductDetail),
+            ("click_login".to_string(), PageState::Login),
+            ("search".to_string(), PageState::ProductListing),
+        ]);
+
+        world_model.insert(PageState::ProductListing, vec![
+            ("click_product".to_string(), PageState::ProductDetail),
+            ("filter".to_string(), PageState::ProductListing),
+        ]);
+
+        world_model.insert(PageState::ProductDetail, vec![
+            ("add_to_cart".to_string(), PageState::Cart),
+            ("back".to_string(), PageState::ProductListing),
+        ]);
+
+        world_model.insert(PageState::Cart, vec![
+            ("checkout".to_string(), PageState::Checkout),
+            ("remove_item".to_string(), PageState::Cart),
+        ]);
+
+        world_model.insert(PageState::Checkout, vec![
+            ("apply_discount".to_string(), PageState::Checkout),
+            ("complete_purchase".to_string(), PageState::Dashboard),
+        ]);
+
+        world_model.insert(PageState::Login, vec![
+            ("submit_credentials".to_string(), PageState::Dashboard),
+        ]);
+
+        world_model.insert(PageState::Dashboard, vec![
+            ("logout".to_string(), PageState::Home),
+        ]);
+
+        GoalOrientedAgent { world_model }
     }
 
     pub fn execute(&self, request: &GoalRequest) -> GoalResult {
-        // SIMULATION: Autonomous Agent Execution
-        // 1. Decompose goal
-        // 2. Explore state
-        // 3. Act
+        // 1. Parse Goal (NLP Simulation)
+        let goal_lower = request.goal.to_lowercase();
+        let target_state = if goal_lower.contains("login") {
+            PageState::Dashboard // Login -> Dashboard
+        } else if goal_lower.contains("purchase") || goal_lower.contains("checkout") {
+            PageState::Checkout // Aim for Checkout, then complete purchase manually
+        } else {
+            PageState::ProductListing
+        };
 
         let mut steps = Vec::new();
         let mut rng = rand::thread_rng();
         let mut total_duration = 0;
 
-        // Step 1: Navigation
-        let d1 = rng.gen_range(100..300);
         steps.push(AgentStep {
-            step_id: 1,
-            action: "Navigate to /checkout".to_string(),
-            observation: "Found checkout page. Detected 'Coupon Code' field.".to_string(),
-            reasoning: format!("Goal '{}' implies checkout flow.", request.goal),
-            duration_ms: d1,
+            action: "Start Session".to_string(),
+            observation: "Landed on Homepage".to_string(),
+            reasoning: "Initial state".to_string(),
+            duration_ms: 10,
         });
         total_duration += d1;
 
-        // Step 2: Identification
-        let d2 = rng.gen_range(50..150);
-        steps.push(AgentStep {
-            step_id: 2,
-            action: "Input 'SAVE10' into [VisualField: Coupon]".to_string(),
-            observation: "Price updated from $100.00 to $90.00.".to_string(),
-            reasoning: "Verified 10% reduction logic.".to_string(),
-            duration_ms: d2,
-        });
-        total_duration += d2;
+        // 2. Pathfinding (BFS) using the World Model
+        if let Some(path) = self.find_path(PageState::Home, &target_state) {
 
-        // Step 3: Assertion
-        let d3 = 10;
-        steps.push(AgentStep {
-            step_id: 3,
-            action: "Assert Total Price".to_string(),
-            observation: "Total is correct.".to_string(),
-            reasoning: "Math verification passed: 100 * 0.9 = 90.".to_string(),
-            duration_ms: d3,
-        });
-        total_duration += d3;
+            for (action, next_state) in path {
+                let duration = rng.gen_range(100..500);
+
+                // Specific Logic for Goal Verification during execution
+                let mut reasoning = format!("Navigating to {:?} via '{}'", next_state, action);
+
+                if next_state == PageState::Checkout && goal_lower.contains("discount") {
+                    reasoning.push_str(". Will apply discount.");
+                }
+
+                steps.push(AgentStep {
+                    action: action.clone(),
+                    observation: format!("Transitioned to {:?}", next_state),
+                    reasoning,
+                    duration_ms: duration,
+                });
+
+                // If we hit checkout and need discount, inject extra step
+                 if next_state == PageState::Checkout && goal_lower.contains("discount") {
+                     steps.push(AgentStep {
+                        action: "Input 'SAVE10'".to_string(),
+                        observation: "Discount -10% applied".to_string(),
+                        reasoning: "Goal Requirement: Discount".to_string(),
+                        duration_ms: 100,
+                    });
+                }
+            }
+        } else {
+            steps.push(AgentStep {
+                action: "Error".to_string(),
+                observation: "Could not find path".to_string(),
+                reasoning: "Target state unreachable".to_string(),
+                duration_ms: 0,
+            });
+        }
 
         GoalResult {
             success: true,
@@ -81,5 +149,56 @@ impl GoalOrientedAgent {
             audit_log_url: format!("s3://veritas-logs/{}/replay.mp4", rng.gen::<u32>()),
             total_duration_ms: total_duration,
         }
+    }
+
+    fn find_path(&self, start: PageState, target: &PageState) -> Option<Vec<(String, PageState)>> {
+        let mut queue = VecDeque::new();
+        queue.push_back((start.clone(), Vec::new())); // (CurrentState, PathSoFar)
+
+        let mut visited = HashSet::new();
+        visited.insert(start);
+
+        while let Some((current, path)) = queue.pop_front() {
+            if &current == target {
+                return Some(path);
+            }
+
+            // Allow approximate match for Checkout flow (if we reach Checkout, we can assume success for purchase goal if target is Dashboard)
+            // But strict BFS is safer.
+
+            if let Some(transitions) = self.world_model.get(&current) {
+                for (action, next_state) in transitions {
+                    if !visited.contains(next_state) {
+                        visited.insert(next_state.clone());
+                        let mut new_path = path.clone();
+                        new_path.push((action.clone(), next_state.clone()));
+                        queue.push_back((next_state.clone(), new_path));
+                    }
+                }
+            }
+        }
+        None
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_agent_planning() {
+        let agent = GoalOrientedAgent::new();
+        let req = GoalRequest {
+            goal: "Verify purchase with 10% discount".to_string(),
+        };
+        // Expect path: Home -> ProductDetail -> Cart -> Checkout -> Dashboard
+        // + Discount step injected
+        let result = agent.execute(&req);
+
+        assert!(result.success);
+        assert!(result.steps.len() >= 4);
+
+        let has_discount = result.steps.iter().any(|s| s.action.contains("SAVE10"));
+        assert!(has_discount);
     }
 }

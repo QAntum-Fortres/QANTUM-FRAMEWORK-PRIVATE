@@ -1,8 +1,12 @@
+// Core Data Structures mirroring Rust definitions
+
 export interface BoundingBox {
     x: number;
     y: number;
     width: number;
     height: number;
+    label?: string;
+    confidence: number;
 }
 
 export interface VisionRequest {
@@ -13,10 +17,12 @@ export interface VisionRequest {
 export interface VisionResult {
     found: boolean;
     location: BoundingBox | null;
+    candidates: BoundingBox[];
     confidence: number;
     semantic_embedding: number[];
+    heatmap_data: number[];
     reasoning: string;
-    audit_trail: string[];
+    processing_time_ms: number;
 }
 
 export interface HealRequest {
@@ -49,33 +55,32 @@ export interface GoalResult {
     success: boolean;
     steps: AgentStep[];
     audit_log_url: string;
-    total_duration_ms: number;
 }
 
 export interface ObserverRequest {
     url: string;
-    threshold?: number;
+    pending_network_requests: number;
+    dom_mutation_rate: number;
+    layout_shifts: number;
 }
 
 export interface ObserverState {
     stable: boolean;
     network_idle: boolean;
-    layout_shifts: number;
-    dom_nodes: number;
+    layout_shifts_score: number;
+    dom_stability_score: number;
     amniotic_state_score: number;
-    pending_requests: number;
 }
 
 export interface SwarmRequest {
+    target_url: string;
     agent_count: number;
     regions: string[];
-    task_goal: string;
 }
 
 export interface SwarmStatus {
     active_agents: number;
-    completed_tasks: number;
-    throughput_tps: number;
-    region_health: Record<string, string>;
-    logs: string[];
+    avg_latency: number;
+    success_rate: number;
+    total_requests: number;
 }

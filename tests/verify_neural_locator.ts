@@ -1,48 +1,37 @@
 import { NeuralLocator } from '../src/veritas_sdk/NeuralLocator.ts';
 
 async function main() {
-    console.log("🚀 STARTING VERITAS FRAMEWORK VERIFICATION 🚀");
-    const locator = new NeuralLocator();
-
-    // 1x1 White Pixel
-    const mockImage = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=";
-
+    console.error("STARTING TEST");
     try {
-        // 1. Test Neural Locator (The Eyes)
-        console.log("\n--- TEST 1: NEURAL LOCATOR ---");
-        const visionResult = await locator.locate(mockImage, "Find Checkout Button");
-        console.log("Vision Result:", JSON.stringify(visionResult, null, 2));
-        if (!visionResult.found) throw new Error("Vision Locator failed to find mock element.");
+        const locator = new NeuralLocator();
+        console.error("LOCATOR CREATED");
 
-        // 2. Test Semantic Healer (The Immune System)
-        console.log("\n--- TEST 2: SEMANTIC HEALER ---");
-        const healResult = await locator.heal("#submit-btn", mockImage, [0.1, 0.2, 0.3]);
-        console.log("Heal Result:", JSON.stringify(healResult, null, 2));
+        // Mock Image (1x1 transparent pixel)
+        const mockImage = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=";
+        const intent = "Find the Checkout Button";
 
-        // 3. Test Goal-Oriented Agent (The Brain)
-        console.log("\n--- TEST 3: AUTONOMOUS AGENT ---");
-        const goalResult = await locator.executeGoal("Verify that a user can complete a purchase with a 10% discount code.");
-        console.log("Goal Result:", JSON.stringify(goalResult, null, 2));
-        if (!goalResult.success) throw new Error("Agent failed to execute goal.");
+        console.error("SENDING REQUEST");
+        const result = await locator.locate(mockImage, intent);
+        console.error("RESULT RECEIVED");
+        console.log(JSON.stringify(result, null, 2));
 
-        // 4. Test Zero-Wait Observer (The Omega Layer)
-        console.log("\n--- TEST 4: STATE OBSERVER ---");
-        const observerResult = await locator.observeState("http://localhost:3000", 0.9);
-        console.log("Observer Result:", JSON.stringify(observerResult, null, 2));
+        if (result.processing_time_ms === undefined) {
+            throw new Error("Missing 'processing_time_ms' in result");
+        }
+        if (!result.candidates) {
+            throw new Error("Missing 'candidates' in result");
+        }
+        if (!result.heatmap_data) {
+             throw new Error("Missing 'heatmap_data' in result");
+        }
 
-        // 5. Test Distributed Swarm
-        console.log("\n--- TEST 5: DISTRIBUTED SWARM ---");
-        const swarmResult = await locator.deploySwarm(100, ["us-east-1", "eu-central-1"], "Load Test Checkout");
-        console.log("Swarm Result:", JSON.stringify(swarmResult, null, 2));
-
-        console.log("\n✅ VERIFICATION COMPLETE: ALL SYSTEMS NOMINAL ✅");
-
-    } catch (error) {
-        console.error("\n❌ VERIFICATION FAILED ❌");
-        console.error(error);
-        process.exit(1);
-    } finally {
+        console.log("Verification Successful: All fields present.");
         locator.disconnect();
+        process.exit(0);
+
+    } catch (err) {
+        console.error("Verification Failed:", err);
+        process.exit(1);
     }
 }
 

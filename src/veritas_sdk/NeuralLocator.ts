@@ -23,35 +23,11 @@ export class NeuralLocator {
     }
 
     /**
-     * Attempts to heal a broken selector using Semantic Embedding Mapping.
+     * Retrieves the heatmap data from a vision result.
+     * @param result The result from a locate call.
      */
-    public async heal(failedSelector: string, currentImage: string, lastKnownEmbedding: number[]): Promise<HealResult> {
-        console.log(`[NeuralLocator] Healing selector: "${failedSelector}"`);
-        return this.bridge.heal(failedSelector, currentImage, lastKnownEmbedding);
-    }
-
-    /**
-     * Executes a high-level goal using the Autonomous Agent Brain.
-     */
-    public async executeGoal(goal: string): Promise<GoalResult> {
-        console.log(`[NeuralLocator] Executing Goal: "${goal}"`);
-        return this.bridge.goal(goal);
-    }
-
-    /**
-     * Observes the Amniotic State of the UI (Zero-Wait Architecture).
-     */
-    public async observeState(url: string, threshold?: number): Promise<ObserverState> {
-        console.log(`[NeuralLocator] Observing state for: "${url}"`);
-        return this.bridge.observe(url, threshold);
-    }
-
-    /**
-     * Deploys a Distributed Swarm of micro-agents.
-     */
-    public async deploySwarm(count: number, regions: string[], goal: string): Promise<SwarmStatus> {
-        console.log(`[NeuralLocator] Deploying Swarm of ${count} agents...`);
-        return this.bridge.swarm(count, regions, goal);
+    public getHeatmap(result: VisionResult): number[] {
+        return result.heatmap_data || [];
     }
 
     /**
