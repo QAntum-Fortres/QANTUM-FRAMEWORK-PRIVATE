@@ -14,6 +14,7 @@ pub struct HealResult {
     pub new_selector: String,
     pub similarity_score: f32,
     pub reason: String,
+    pub audit_trail: Vec<String>,
 }
 
 pub struct SemanticHealer {
@@ -77,6 +78,7 @@ impl SemanticHealer {
                 reason: best_reason,
             }
         } else {
+             audit_trail.push("Healing failed. No candidates met the confidence threshold.".to_string());
              HealResult {
                 healed: false,
                 new_selector: "".to_string(),

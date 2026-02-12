@@ -9,6 +9,7 @@ pub struct GoalRequest {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct AgentStep {
+    pub step_id: u32,
     pub action: String,
     pub observation: String,
     pub reasoning: String,
@@ -20,6 +21,7 @@ pub struct GoalResult {
     pub success: bool,
     pub steps: Vec<AgentStep>,
     pub audit_log_url: String, // "Singularity Audit Log"
+    pub total_duration_ms: u64,
 }
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
@@ -92,6 +94,7 @@ impl GoalOrientedAgent {
 
         let mut steps = Vec::new();
         let mut rng = rand::thread_rng();
+        let mut total_duration = 0;
 
         steps.push(AgentStep {
             action: "Start Session".to_string(),
@@ -99,6 +102,7 @@ impl GoalOrientedAgent {
             reasoning: "Initial state".to_string(),
             duration_ms: 10,
         });
+        total_duration += d1;
 
         // 2. Pathfinding (BFS) using the World Model
         if let Some(path) = self.find_path(PageState::Home, &target_state) {
@@ -143,6 +147,7 @@ impl GoalOrientedAgent {
             success: true,
             steps,
             audit_log_url: format!("s3://veritas-logs/{}/replay.mp4", rng.gen::<u32>()),
+            total_duration_ms: total_duration,
         }
     }
 

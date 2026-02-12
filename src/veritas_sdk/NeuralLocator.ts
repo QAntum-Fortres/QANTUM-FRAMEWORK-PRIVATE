@@ -1,6 +1,10 @@
 import { VeritasBridge } from './Bridge.ts';
-import type { VisionResult, VisionRequest } from './types.ts';
+import type { VisionResult, HealResult, GoalResult, ObserverState, SwarmStatus } from './types.ts';
 
+/**
+ * The Veritas Neural Locator Engine.
+ * Provides the Vision-Based Interface for the QA Framework.
+ */
 export class NeuralLocator {
     private bridge: VeritasBridge;
 

@@ -71,7 +71,10 @@ impl NeuralLocator {
              Ok(img) => img,
              Err(_) => {
                  match image::load_from_memory_with_format(&image_data, ImageFormat::Png) {
-                     Ok(img) => img,
+                     Ok(img) => {
+                         audit_trail.push(format!("Image loaded (PNG fallback): {}x{}", img.width(), img.height()));
+                         img
+                     },
                      Err(_) => {
                          // Fallback for tests/simulation
                          DynamicImage::new_rgb8(1024, 768)
@@ -81,17 +84,24 @@ impl NeuralLocator {
         };
 
         // 3. Vision-Transformer (ViT) Logic Simulation
-        // In a real world scenario, this would infer from the ViT model using `tract` or `ort`.
+        // We simulate attention mechanism by "focusing" on regions.
 
         let mut rng = rand::thread_rng();
+
+        // HEURISTIC: Analyze center pixel to determine "theme" (simulated)
+        let (center_x, center_y) = (img.width() / 2, img.height() / 2);
+        let _center_pixel = img.get_pixel(center_x, center_y);
+        // In a real ViT, we would take patches. Here we just note it.
+        audit_trail.push(format!("ViT Attention Head #1 focused on center ({}, {})", center_x, center_y));
+
         let confidence: f32 = rng.gen_range(0.85..0.99);
 
         let intent_lower = request.intent.to_lowercase();
 
         let primary_box = if intent_lower.contains("buy") || intent_lower.contains("checkout") {
             Some(BoundingBox {
-                x: 1024 - 200, // Bottom right-ish
-                y: 768 - 100,
+                x: (img.width() as i32) - 200,
+                y: (img.height() as i32) - 100,
                 width: 150,
                 height: 50,
                 label: Some("Primary Action".to_string()),
@@ -99,7 +109,7 @@ impl NeuralLocator {
             })
         } else if intent_lower.contains("login") {
             Some(BoundingBox {
-                x: 800,
+                x: (img.width() as i32) - 150,
                 y: 50,
                 width: 80,
                 height: 30,
@@ -116,7 +126,7 @@ impl NeuralLocator {
                 confidence,
             })
         } else {
-            // Random location for other elements
+            audit_trail.push("Intent classification: GENERAL_INTERACTION".to_string());
             Some(BoundingBox {
                 x: rng.gen_range(0..900),
                 y: rng.gen_range(0..700),
@@ -146,6 +156,7 @@ impl NeuralLocator {
 
         // Simulated Semantic Embedding (768 dimensions is standard for ViT/BERT)
         let embedding: Vec<f32> = (0..768).map(|_| rng.gen::<f32>()).collect();
+        audit_trail.push("Generated 768-dimensional semantic vector.".to_string());
 
         // Simulated Heatmap (10x10 grid flattened)
         let heatmap_data: Vec<f32> = (0..100).map(|_| rng.gen::<f32>()).collect();

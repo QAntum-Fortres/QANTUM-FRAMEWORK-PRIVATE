@@ -36,6 +36,7 @@ export interface HealResult {
     new_selector: string;
     similarity_score: number;
     reason: string;
+    audit_trail: string[];
 }
 
 export interface GoalRequest {
@@ -43,6 +44,7 @@ export interface GoalRequest {
 }
 
 export interface AgentStep {
+    step_id: number;
     action: string;
     observation: string;
     reasoning: string;
