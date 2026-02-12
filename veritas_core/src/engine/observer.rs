@@ -18,8 +18,7 @@ pub struct ObserverState {
 }
 
 pub struct StateChangeObserver {
-    // Configuration thresholds
-    network_threshold: u32,
+    pub network_threshold: u32,
 }
 
 impl StateChangeObserver {
@@ -67,10 +66,9 @@ impl StateChangeObserver {
     }
 }
 
-        let mut score = 1.0;
-        if layout_shifts > 0 { score -= 0.1 * (layout_shifts as f32); }
-        if pending_requests > 0 { score -= 0.2 * (pending_requests as f32); }
-        if score < 0.0 { score = 0.0; }
+#[cfg(test)]
+mod tests {
+    use super::*;
 
     #[test]
     fn test_observer_stable() {
