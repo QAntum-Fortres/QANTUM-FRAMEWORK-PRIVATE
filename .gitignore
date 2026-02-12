@@ -30,15 +30,16 @@ logs/
 .DS_Store
 Thumbs.db
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.db
-.venv/
-env/
-venv/
+# Kubernetes secrets (never commit actual secrets)
+k8s/secrets.yml
 
-# Verification
-verify_*.py
-*.png
+# Docker
+*.tar
+*.tar.gz
+
+# Temporary files
+/tmp/
+*.tmp
+*.swp
+*.swo
+*~

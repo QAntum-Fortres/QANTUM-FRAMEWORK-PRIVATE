@@ -1,7 +1,47 @@
 version: '3.8'
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# QANTUM Framework - Full Stack Docker Compose
+# Mega Hybrid Autonomous Cognitive Sovereign Meta-Logical Framework
+# Enhanced with RabbitMQ, Traefik, and comprehensive observability
+# ═══════════════════════════════════════════════════════════════════════════════
+
 services:
+  # ─────────────────────────────────────────────────────────────────────────────
+  # Traefik - Reverse Proxy with Automatic HTTPS
+  # ─────────────────────────────────────────────────────────────────────────────
+  traefik:
+    image: traefik:v2.10
+    container_name: qantum-traefik
+    command:
+      - --api.insecure=true
+      - --api.dashboard=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      - --certificatesresolvers.myresolver.acme.httpchallenge=true
+      - --certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web
+      - --certificatesresolvers.myresolver.acme.email=admin@qantum.example.com
+      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080" # Traefik dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - traefik_letsencrypt:/letsencrypt
+    networks:
+      - qantum-network
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+
+  # ─────────────────────────────────────────────────────────────────────────────
   # PostgreSQL Database
+  # ─────────────────────────────────────────────────────────────────────────────
   postgres:
     image: postgres:15-alpine
     container_name: qantum-postgres
@@ -21,7 +61,9 @@ services:
       timeout: 5s
       retries: 5
 
+  # ─────────────────────────────────────────────────────────────────────────────
   # Backend - Python API Services
+  # ─────────────────────────────────────────────────────────────────────────────
   backend:
     build:
       context: ./Backend
@@ -33,19 +75,38 @@ services:
       - RUST_ECONOMY_URL=http://rust-economy:8890
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
       - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - REDIS_URL=redis://redis:6379
+      - RABBITMQ_URL=amqp://qantum:${RABBITMQ_PASSWORD:-rabbitmq_pass}@rabbitmq:5672/
     ports:
       - "5050:8080"
       - "8765:8765"
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
     networks:
       - qantum-network
     volumes:
       - ./Backend:/app
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.rule=Host(`api.localhost`) || PathPrefix(`/api`)"
+      - "traefik.http.services.backend.loadbalancer.server.port=8080"
+      - "traefik.http.routers.backend.entrypoints=web"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
+  # ─────────────────────────────────────────────────────────────────────────────
   # Rust Economy Server
+  # ─────────────────────────────────────────────────────────────────────────────
   rust-economy:
     build:
       context: ./Backend/rust_core
@@ -54,16 +115,33 @@ services:
     environment:
       - RUST_LOG=info
       - DATABASE_URL=postgresql://qantum_user:${POSTGRES_PASSWORD:-qantum_secure_pass}@postgres:5432/qantum_db
+      - REDIS_URL=redis://redis:6379
     ports:
       - "8890:8890"
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     networks:
       - qantum-network
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rust-economy.rule=PathPrefix(`/economy`)"
+      - "traefik.http.services.rust-economy.loadbalancer.server.port=8890"
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
 
+  # ─────────────────────────────────────────────────────────────────────────────
   # Webhook Handler
+  # ─────────────────────────────────────────────────────────────────────────────
   webhook-handler:
     build:
       context: ./Backend
@@ -74,15 +152,23 @@ services:
       - RUST_ECONOMY_URL=http://rust-economy:8890
       - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
       - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - RABBITMQ_URL=amqp://qantum:${RABBITMQ_PASSWORD:-rabbitmq_pass}@rabbitmq:5672/
     ports:
       - "5051:5051"
     depends_on:
       - rust-economy
+      - rabbitmq
     networks:
       - qantum-network
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.webhook.rule=PathPrefix(`/webhooks`)"
+      - "traefik.http.services.webhook.loadbalancer.server.port=5051"
 
+  # ─────────────────────────────────────────────────────────────────────────────
   # Frontend - React/Vite Application
+  # ─────────────────────────────────────────────────────────────────────────────
   frontend:
     build:
       context: ./Frontend
@@ -92,15 +178,22 @@ services:
       - VITE_BACKEND_URL=http://localhost:5050
       - VITE_RUST_ECONOMY_URL=http://localhost:8890
     ports:
-      - "8080:8080"
+      - "8081:8080"
     depends_on:
       - backend
       - rust-economy
     networks:
       - qantum-network
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`localhost`) || Host(`qantum.localhost`)"
+      - "traefik.http.services.frontend.loadbalancer.server.port=8080"
+      - "traefik.http.routers.frontend.entrypoints=web"
 
+  # ─────────────────────────────────────────────────────────────────────────────
   # Dashboard Service (Nginx)
+  # ─────────────────────────────────────────────────────────────────────────────
   dashboard:
     image: nginx:alpine
     container_name: qantum-dashboard
@@ -108,12 +201,18 @@ services:
       - ./Dashboard_Final:/usr/share/nginx/html:ro
       - ./nginx-dashboard.conf:/etc/nginx/conf.d/default.conf:ro
     ports:
-      - "8081:80"
+      - "8082:80"
     networks:
       - qantum-network
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`dashboard.localhost`)"
+      - "traefik.http.services.dashboard.loadbalancer.server.port=80"
 
+  # ─────────────────────────────────────────────────────────────────────────────
   # SEO Audit Micro-SaaS Module
+  # ─────────────────────────────────────────────────────────────────────────────
   seo-audit:
     build:
       context: ./micro-saas/seo-audit-module
@@ -122,15 +221,23 @@ services:
     environment:
       - PORT=8091
       - RUST_ECONOMY_URL=http://rust-economy:8890
+      - REDIS_URL=redis://redis:6379
     ports:
       - "8091:8091"
     depends_on:
       - rust-economy
+      - redis
     networks:
       - qantum-network
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.seo-audit.rule=PathPrefix(`/seo`)"
+      - "traefik.http.services.seo-audit.loadbalancer.server.port=8091"
 
+  # ─────────────────────────────────────────────────────────────────────────────
   # Temporal Server (for workflow orchestration)
+  # ─────────────────────────────────────────────────────────────────────────────
   temporal:
     image: temporalio/auto-setup:1.22.0
     container_name: qantum-temporal
@@ -147,8 +254,16 @@ services:
         condition: service_healthy
     networks:
       - qantum-network
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
 
+  # ─────────────────────────────────────────────────────────────────────────────
   # Temporal UI
+  # ─────────────────────────────────────────────────────────────────────────────
   temporal-ui:
     image: temporalio/ui:2.20.0
     container_name: qantum-temporal-ui
@@ -156,16 +271,24 @@ services:
       - TEMPORAL_ADDRESS=temporal:7233
       - TEMPORAL_CORS_ORIGINS=http://localhost:3000
     ports:
-      - "8082:8080"
+      - "8083:8080"
     depends_on:
       - temporal
     networks:
       - qantum-network
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.temporal-ui.rule=Host(`temporal.localhost`)"
+      - "traefik.http.services.temporal-ui.loadbalancer.server.port=8080"
 
+  # ─────────────────────────────────────────────────────────────────────────────
   # Redis (for caching and session management)
+  # ─────────────────────────────────────────────────────────────────────────────
   redis:
     image: redis:7-alpine
     container_name: qantum-redis
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-redis_pass}
     ports:
       - "6379:6379"
     volumes:
@@ -174,12 +297,59 @@ services:
       - qantum-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
 
+  # ─────────────────────────────────────────────────────────────────────────────
+  # RabbitMQ (Message Queue) - NEW
+  # ─────────────────────────────────────────────────────────────────────────────
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    container_name: qantum-rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=qantum
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD:-rabbitmq_pass}
+      - RABBITMQ_DEFAULT_VHOST=/
+    ports:
+      - "5672:5672"   # AMQP port
+      - "15672:15672" # Management UI
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - qantum-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.localhost`)"
+      - "traefik.http.services.rabbitmq.loadbalancer.server.port=15672"
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  # ─────────────────────────────────────────────────────────────────────────────
   # Prometheus (monitoring)
+  # ─────────────────────────────────────────────────────────────────────────────
   prometheus:
     image: prom/prometheus:latest
     container_name: qantum-prometheus
@@ -189,19 +359,37 @@ services:
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--web.enable-lifecycle'
     ports:
       - "9090:9090"
     networks:
       - qantum-network
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.rule=Host(`prometheus.localhost`)"
+      - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+        reservations:
+          cpus: '0.25'
+          memory: 512M
 
+  # ─────────────────────────────────────────────────────────────────────────────
   # Grafana (visualization)
+  # ─────────────────────────────────────────────────────────────────────────────
   grafana:
     image: grafana/grafana:latest
     container_name: qantum-grafana
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:?GRAFANA_PASSWORD must be set in .env}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin123}
       - GF_SERVER_ROOT_URL=http://localhost:3000
+      - GF_INSTALL_PLUGINS=redis-datasource,rabbitmq-datasource
     volumes:
       - grafana_data:/var/lib/grafana
     ports:
@@ -211,13 +399,46 @@ services:
     networks:
       - qantum-network
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.localhost`)"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# Networks
+# ═══════════════════════════════════════════════════════════════════════════════
 networks:
   qantum-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# Volumes
+# ═══════════════════════════════════════════════════════════════════════════════
 volumes:
   postgres_data:
+    driver: local
   redis_data:
+    driver: local
+  rabbitmq_data:
+    driver: local
   prometheus_data:
+    driver: local
   grafana_data:
+    driver: local
+  traefik_letsencrypt:
+    driver: local
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# 🌌 Together with logic, we are invincible. We build only eternal foundations.
+# ═══════════════════════════════════════════════════════════════════════════════

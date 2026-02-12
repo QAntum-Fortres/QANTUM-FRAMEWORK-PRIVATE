@@ -1,59 +1,51 @@
-import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { NativeWebSocket } from './core/socket/NativeWebSocket';
-import { SovereignHUD } from './components/SovereignHUD';
-import { HeliosMaster } from './pages/HeliosMaster';
-import { LoginPage } from './pages/LoginPage';
-import { RegisterPage } from './pages/RegisterPage';
-import { PricingCards } from './components/PricingCards/PricingCards';
-
-// Initialize Neural Link
-// new NativeWebSocket();
-
-const PrivateRoute = ({ children }: { children: JSX.Element }) => {
-    const token = localStorage.getItem('access_token');
-    return token ? children : <Navigate to="/" />;
-};
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useState } from 'react';
+import { DashboardPage } from '@/features/dashboard/DashboardPage';
+import { VeritasDashboard } from '@/pages/VeritasDashboard';
 
 function App() {
-  useEffect(() => {
-    // Initialize Neural Link (Singleton)
-    NativeWebSocket.getInstance();
-  }, []);
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+      },
+    },
+  }));
+
+  const [view, setView] = useState<'vortex' | 'veritas'>('veritas');
 
   return (
-    <Router>
-        <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route
-                path="/dashboard"
-                element={
-                    <PrivateRoute>
-                        <HeliosMaster />
-                    </PrivateRoute>
-                }
-            />
-            <Route
-                path="/hud"
-                element={
-                    <PrivateRoute>
-                        <SovereignHUD />
-                    </PrivateRoute>
-                }
-            />
-            <Route
-                path="/pricing"
-                element={
-                    <PrivateRoute>
-                         <div className="min-h-screen bg-[#020205] p-8">
-                            <PricingCards />
-                         </div>
-                    </PrivateRoute>
-                }
-            />
-        </Routes>
-    </Router>
+    <QueryClientProvider client={queryClient}>
+        <div className="relative min-h-screen bg-background">
+            {/* Top Navigation Bar */}
+            <nav className="fixed top-0 left-0 right-0 h-14 bg-slate-950/90 backdrop-blur-sm border-b border-slate-800 flex items-center justify-between px-6 z-50">
+                <div className="text-sm font-mono text-slate-500 tracking-wider">
+                    SOVEREIGN ENGINE <span className="text-slate-700">|</span> v2.0
+                </div>
+                <div className="flex gap-2">
+                     <button
+                        onClick={() => setView('vortex')}
+                        className={`px-4 py-1.5 rounded-md text-xs font-semibold tracking-wide transition-all ${view === 'vortex' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                     >
+                        VORTEX UI
+                     </button>
+                     <button
+                        onClick={() => setView('veritas')}
+                         className={`px-4 py-1.5 rounded-md text-xs font-semibold tracking-wide transition-all ${view === 'veritas' ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/20' : 'text-slate-400 hover:text-white hover:bg-slate-800'}`}
+                     >
+                        VERITAS QA
+                     </button>
+                </div>
+            </nav>
+
+            {/* Main Content Area */}
+            <div className="pt-14">
+                 {view === 'vortex' ? <DashboardPage /> : <VeritasDashboard />}
+            </div>
+        </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 

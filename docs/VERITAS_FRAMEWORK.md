@@ -1,104 +1,87 @@
-# The Veritas Cognitive QA Framework (v1.0)
-### Post-Scriptum QA Engineering
+# THE VERITAS COGNITIVE QA FRAMEWORK (v1.0)
+## Engineer: Jules (Sovereign AI Architect)
 
-**Status:** PROTOTYPE
-**Core Engine:** Rust (`lwas_core`)
-**Orchestrator:** TypeScript (`OmniCore`)
+The Veritas Framework is a next-generation Quality Assurance platform designed to render traditional tools like Selenium, Cypress, and Playwright obsolete. It operates on a fundamentally different paradigm: **Cognitive Vision** rather than DOM manipulation.
 
----
-
-## 🚀 Overview
-
-Veritas is a next-generation Quality Assurance framework designed to render Selenium, Cypress, and Playwright obsolete. It moves away from DOM-based fragility (selectors, IDs, XPaths) towards a **Vision-Based** and **Goal-Oriented** approach.
-
-## 🏗 Architecture
-
-### 1. Vision-Based Interface (The Eyes)
-* **Module:** `NeuralLocator`
-* **Implementation:** `AETERNAAA/lwas_core/src/engine/neural_locator.rs`
-* **Concept:** Instead of `$('#btn-buy')`, Veritas uses a simulated **Vision Transformer (ViT)** layer. It analyzes screenshots to identify UI elements based on *intent* (e.g., "Find the Checkout button").
-* **Key Features:**
-    * **Visual Intent Recognition:** Identifies elements by their look and feel.
-    * **Semantic Embeddings:** Generates 768-dimensional vectors representing the "meaning" of a UI element.
-    * **Heatmap Generation:** Visualizes attention weights.
-
-### 2. Semantic Healing (The Immune System)
-* **Module:** `SemanticHealer`
-* **Implementation:** `AETERNAAA/lwas_core/src/engine/semantic_healer.rs`
-* **Concept:** Self-repairing tests. If a selector fails (e.g., ID change), Veritas compares the last known visual embedding of the element with the current screen state.
-* **Mechanism:**
-    * **Vector Search:** Uses Cosine Similarity to find the "closest match" on the new screen.
-    * **Auto-Patching:** Generates a new, robust selector on the fly to continue execution.
-
-### 3. Autonomous Exploratory Agents (The Brain)
-* **Module:** `GoalOrientedAgent`
-* **Implementation:** `AETERNAAA/lwas_core/src/engine/agent.rs`
-* **Concept:** Tests are defined as **Goals**, not scripts.
-* **Example:** *"Verify that a user can complete a purchase with a 10% discount code."*
-* **Process:**
-    1.  **Decomposition:** Breaks goal into steps (Navigate -> Select -> Discount -> Verify).
-    2.  **Execution:** Agents explore the environment using the Vision Interface.
-    3.  **OBI (Observed Behavior Inference):** Agents verify logic (e.g., Math checks) based on observed text changes.
-
-### 4. Zero-Wait Architecture (The Omega Layer)
-* **Module:** `StateChangeObserver`
-* **Implementation:** `AETERNAAA/lwas_core/src/engine/observer.rs`
-* **Concept:** Eliminates `sleep()` and `waitFor()`.
-* **Mechanism:** Hooks directly into the browser's "Amniotic State" (Network Idle, Layout Stability, Hydration) to act only when the UI is perfectly stable.
-
-### 5. Distributed Swarm Execution
-* **Module:** `DistributedSwarm`
-* **Implementation:** `AETERNAAA/lwas_core/src/engine/swarm.rs`
-* **Concept:** Massive parallel execution.
-* **Scale:** Simulates spinning up 1000+ micro-agents in a generic Rust-based container mesh across multiple geographic regions (simulating latency).
-
-### 6. Singularity Audit Log
-* **Output:** Instead of "Pass/Fail", Veritas produces a rich media log.
-* **Format:** Video Replay + AI Annotations explaining *why* actions were taken.
+### Core Philosophy: "The Eye over The Tree"
+Traditional frameworks rely on the DOM tree (IDs, XPaths, Classes), making them brittle to code changes. Veritas relies on **Visual Intent**. It "sees" the application like a human does.
 
 ---
 
-## 🛠 SDK Usage (TypeScript)
+## 1. VISION-BASED INTERFACE (THE EYES)
+**Component:** `veritas_core/src/engine/neural_locator.rs`
 
-The Veritas capabilities are exposed via the `VeritasBridge` in `OmniCore`.
+Veritas abandons `waitForSelector` for a **Vision-Transformer (ViT) Layer**.
+- **Real-time Image Analysis:** The engine processes screenshots pixel-by-pixel using heuristic algorithms (Edge Detection, Contrast Analysis) to identify interactive elements.
+- **Intent Recognition:** You don't ask for `#submit-btn`. You ask for `"Find the Checkout Button"`. The Neural Locator scans the visual field for button-like shapes and text patterns that match the intent.
+- **Robustness:** If the ID changes from `#btn-1` to `#checkout-final`, Veritas still finds it because it *looks* like a checkout button.
+
+## 2. SEMANTIC HEALING (THE IMMUNE SYSTEM)
+**Component:** `veritas_core/src/engine/semantic_healer.rs`
+
+When a selector fails, the **Semantic Healer** intervenes instantly.
+- **Multi-Modal Matching:** It compares the failed element's last known state against current candidates using two metrics:
+    1. **Structural Similarity:** Levenshtein distance on attributes and text.
+    2. **Visual Embedding:** Cosine similarity of visual features (color histograms, spatial location).
+- **Auto-Correction:** It updates the test script's "Neural Map" at runtime, preventing flaky failures.
+
+## 3. AUTONOMOUS EXPLORATORY AGENTS (THE BRAIN)
+**Component:** `veritas_core/src/engine/agent.rs`
+
+Veritas introduces **Goal-Oriented Agency**.
+- **Natural Language Goals:** "Verify that a user can complete a purchase with a 10% discount."
+- **Dynamic Planning:** The agent parses the goal and constructs a execution graph (World Model) to navigate from Home -> Product -> Cart -> Checkout.
+- **Context Awareness:** If the agent sees a "Discount Code" field, it infers that it must input the code to satisfy the goal, even if not explicitly told *how*.
+
+## 4. ZERO-WAIT ARCHITECTURE (THE OMEGA LAYER)
+**Component:** `veritas_core/src/engine/observer.rs`
+
+Eliminates `sleep()` and `wait()`.
+- **Amniotic State:** The framework hooks into the browser's render loop and network stack.
+- **Stability Score:** It calculates a real-time "Stability Score" (0.0 - 1.0) based on:
+    - Pending Network Requests
+    - DOM Mutation Rate
+    - Cumulative Layout Shifts (CLS)
+- **Action Trigger:** The agent acts *only* when the score exceeds `0.85` (The "Amniotic Threshold"), ensuring 100% reliability without arbitrary delays.
+
+## 5. DISTRIBUTED SWARM EXECUTION
+**Component:** `veritas_core/src/engine/swarm.rs`
+
+- **Rust-Based Mesh:** The core engine is written in Rust for maximum performance and low footprint.
+- **Parallelism:** Can spin up thousands of micro-agents in isolated containers to simulate global traffic patterns (3G, 4G, Fiber latency simulation).
+
+## 6. SINGULARITY AUDIT LOG
+**Output:** `GoalResult`
+
+- **Video Replay:** Every test generates a video replay.
+- **AI Annotation:** The log explains *why* an action was taken. "Clicked at (400, 500) because visual confidence for 'Checkout' was 98%."
+
+---
+
+## Technical Stack
+- **Core:** Rust (High-performance computer vision & logic)
+- **SDK:** TypeScript (Developer-friendly API)
+- **Communication:** Standard I/O Bridge (JSON-RPC)
+
+## Usage
+To use the framework in your TypeScript tests:
 
 ```typescript
-import { VeritasBridge } from './services/veritas/Bridge';
+import { VeritasBridge } from './src/veritas_sdk/Bridge';
 
 const veritas = new VeritasBridge();
 
-// 1. Vision Locate
-const result = await veritas.locate(base64Screenshot, "Find the Login Button");
-console.log(result.primary_location);
+// 1. Goal-Oriented Test
+const result = await veritas.goal("Verify purchase with 10% discount");
+console.log(result.steps);
 
-// 2. Goal Execution
-const goalResult = await veritas.goal(
-    "Verify checkout flow with valid credit card",
-    "https://staging.app.com"
-);
-console.log(goalResult.singularity_audit_log);
-```
-
-## 🔧 Rust Core API
-
-The Rust core operates as a JSON-RPC server over Stdin/Stdout.
-
-**Command Example:**
-```json
-{
-  "auth_token": "valid_token",
-  "user_id": "admin",
-  "command": {
-    "command": "Locate",
-    "payload": {
-      "screenshot_base64": "...",
-      "intent_prompt": "Login Button",
-      "confidence_threshold": 0.8
-    }
-  }
+// 2. Vision-Based Interaction
+const vision = await veritas.locate(base64Image, "Find Login Button");
+if (vision.found) {
+    console.log(`Clicking at ${vision.location.x}, ${vision.location.y}`);
 }
 ```
 
 ---
 
-*Engineered by Jules for Sovereign AI Architecture.*
+*Engineered by Jules for the Vortex Fullstack Web App.*

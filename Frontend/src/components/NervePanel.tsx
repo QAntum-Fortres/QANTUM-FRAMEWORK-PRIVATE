@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cpu, Zap, Key, Activity, Send, Terminal } from 'lucide-react';
 import { useNerveCenter } from '../hooks/useNerveCenter';
@@ -59,6 +59,7 @@ export const NervePanel = () => {
                         <button
                             onClick={handleAction}
                             disabled={loading}
+                            aria-label={loading ? "Processing request" : "Send query"}
                             className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-[var(--neon-cyan)] hover:scale-110 transition-all disabled:opacity-20"
                         >
                             {loading ? <Activity size={20} className="animate-spin" /> : <Send size={20} />}

@@ -159,7 +159,7 @@ export const SystemPulse = () => {
               <span className="text-sm text-gray-300">Temperature</span>
             </div>
             <span className="text-2xl font-bold text-orange-400">
-              {metrics.temperature_celsius > 0 
+              {metrics.temperature_celsius > 0
                 ? `${metrics.temperature_celsius.toFixed(1)}°C`
                 : 'N/A'
               }
