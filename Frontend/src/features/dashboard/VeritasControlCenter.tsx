@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Play, ShieldCheck, Activity, BrainCircuit, Scan, Cpu } from "lucide-react";
+import { Eye, Play, ShieldCheck, Activity, BrainCircuit, Scan, Cpu, Loader2 } from "lucide-react";
 import { veritas } from "@/veritas_sdk/VeritasClient";
 import { AgentStep, VisionResult } from "@/veritas_sdk/types";
 
@@ -78,7 +78,12 @@ export function VeritasControlCenter() {
                                 </div>
                             )}
 
-                            <Button variant="outline" onClick={handleAnalyze} disabled={status !== 'IDLE'} className="relative z-10 bg-black/60 border-cyan-500/50 hover:bg-cyan-500/20">
+                            <Button
+                                variant="outline"
+                                onClick={handleAnalyze}
+                                disabled={status !== 'IDLE'}
+                                className="relative z-10 bg-black/60 border-cyan-500/50 hover:bg-cyan-500/20"
+                            >
                                 {status === 'SCANNING' ? (
                                     <>
                                         <Loader2 className="h-4 w-4 mr-2 animate-spin" /> ANALYZING...
@@ -128,8 +133,20 @@ export function VeritasControlCenter() {
                                     placeholder="Enter mission objective..."
                                     onChange={(e) => setGoal(e.target.value)}
                                 />
-                                <Button onClick={handleExecute} disabled={status !== 'IDLE'} className="bg-cyan-600 hover:bg-cyan-700">
-                                    <Play className="h-4 w-4 mr-2" /> EXECUTE
+                                <Button
+                                    onClick={handleExecute}
+                                    disabled={status !== 'IDLE'}
+                                    className="bg-cyan-600 hover:bg-cyan-700"
+                                >
+                                    {status === 'EXECUTING' ? (
+                                        <>
+                                            <Loader2 className="h-4 w-4 mr-2 animate-spin" /> EXECUTING...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Play className="h-4 w-4 mr-2" /> EXECUTE
+                                        </>
+                                    )}
                                 </Button>
                             </div>
                         </div>
