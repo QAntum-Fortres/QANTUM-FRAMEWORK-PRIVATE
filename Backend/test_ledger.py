@@ -65,6 +65,28 @@ def test_hash_uniqueness():
     assert len(hashes) == len(set(hashes)), "All hashes should be unique"
     print("✅ TEST 5 PASSED: Hash uniqueness")
 
+def test_sliding_window():
+    """Test that ledger caps size at max_len"""
+    max_len = 10
+    ledger = ImmutableLedger(max_len=max_len)
+
+    # Add 15 entries
+    for i in range(15):
+        ledger.add_entry(0.5, 0.5, 0.5)
+
+    assert len(ledger.chain) == max_len, f"Chain length should be {max_len}, got {len(ledger.chain)}"
+
+    # Blocks: 0 (Genesis), 1, 2, ..., 15. Total 16 blocks.
+    # Keep last 10: 6, 7, ..., 15.
+
+    first_block = ledger.chain[0]
+    last_block = ledger.chain[-1]
+
+    assert first_block.index == 6, f"First block index should be 6, got {first_block.index}"
+    assert last_block.index == 15, f"Last block index should be 15, got {last_block.index}"
+
+    print("✅ TEST 6 PASSED: Sliding window")
+
 if __name__ == "__main__":
     print("\n" + "="*50)
     print("🧪 SOVEREIGN ENGINE - TEST SUITE")
@@ -76,6 +98,7 @@ if __name__ == "__main__":
         test_chain_integrity()
         test_decision_logic()
         test_hash_uniqueness()
+        test_sliding_window()
         
         print("\n" + "="*50)
         print("🎉 ALL TESTS PASSED!")
