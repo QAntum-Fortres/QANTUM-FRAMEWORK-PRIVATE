@@ -31,8 +31,7 @@ export class GoalAgent {
 
                 resolve({
                     success: true,
-                    steps: steps,
-                    audit_log_url: "mock-video-replay.mp4"
+                    steps: steps
                 });
             }, 2000);
         });
