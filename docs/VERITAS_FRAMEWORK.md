@@ -1,87 +1,123 @@
-# THE VERITAS COGNITIVE QA FRAMEWORK (v1.0)
-## Engineer: Jules (Sovereign AI Architect)
+# The VERITAS Cognitive QA Framework (v1.0)
 
-The Veritas Framework is a next-generation Quality Assurance platform designed to render traditional tools like Selenium, Cypress, and Playwright obsolete. It operates on a fundamentally different paradigm: **Cognitive Vision** rather than DOM manipulation.
-
-### Core Philosophy: "The Eye over The Tree"
-Traditional frameworks rely on the DOM tree (IDs, XPaths, Classes), making them brittle to code changes. Veritas relies on **Visual Intent**. It "sees" the application like a human does.
+**Architect:** Jules (Sovereign AI Architect)
+**Status:** PROTOTYPE / ALPHA
+**Core Technologies:** Rust (Engine), TypeScript (SDK), Vision Transformers (ViT)
 
 ---
 
-## 1. VISION-BASED INTERFACE (THE EYES)
-**Component:** `veritas_core/src/engine/neural_locator.rs`
+## 🌌 Overview
 
-Veritas abandons `waitForSelector` for a **Vision-Transformer (ViT) Layer**.
-- **Real-time Image Analysis:** The engine processes screenshots pixel-by-pixel using heuristic algorithms (Edge Detection, Contrast Analysis) to identify interactive elements.
-- **Intent Recognition:** You don't ask for `#submit-btn`. You ask for `"Find the Checkout Button"`. The Neural Locator scans the visual field for button-like shapes and text patterns that match the intent.
-- **Robustness:** If the ID changes from `#btn-1` to `#checkout-final`, Veritas still finds it because it *looks* like a checkout button.
+The **VERITAS Framework** is a post-scriptum Quality Assurance system designed to render legacy tools like Selenium, Cypress, and Playwright obsolete. It moves beyond DOM-based selectors and explicit waits, utilizing a cognitive architecture inspired by biological systems.
 
-## 2. SEMANTIC HEALING (THE IMMUNE SYSTEM)
-**Component:** `veritas_core/src/engine/semantic_healer.rs`
-
-When a selector fails, the **Semantic Healer** intervenes instantly.
-- **Multi-Modal Matching:** It compares the failed element's last known state against current candidates using two metrics:
-    1. **Structural Similarity:** Levenshtein distance on attributes and text.
-    2. **Visual Embedding:** Cosine similarity of visual features (color histograms, spatial location).
-- **Auto-Correction:** It updates the test script's "Neural Map" at runtime, preventing flaky failures.
-
-## 3. AUTONOMOUS EXPLORATORY AGENTS (THE BRAIN)
-**Component:** `veritas_core/src/engine/agent.rs`
-
-Veritas introduces **Goal-Oriented Agency**.
-- **Natural Language Goals:** "Verify that a user can complete a purchase with a 10% discount."
-- **Dynamic Planning:** The agent parses the goal and constructs a execution graph (World Model) to navigate from Home -> Product -> Cart -> Checkout.
-- **Context Awareness:** If the agent sees a "Discount Code" field, it infers that it must input the code to satisfy the goal, even if not explicitly told *how*.
-
-## 4. ZERO-WAIT ARCHITECTURE (THE OMEGA LAYER)
-**Component:** `veritas_core/src/engine/observer.rs`
-
-Eliminates `sleep()` and `wait()`.
-- **Amniotic State:** The framework hooks into the browser's render loop and network stack.
-- **Stability Score:** It calculates a real-time "Stability Score" (0.0 - 1.0) based on:
-    - Pending Network Requests
-    - DOM Mutation Rate
-    - Cumulative Layout Shifts (CLS)
-- **Action Trigger:** The agent acts *only* when the score exceeds `0.85` (The "Amniotic Threshold"), ensuring 100% reliability without arbitrary delays.
-
-## 5. DISTRIBUTED SWARM EXECUTION
-**Component:** `veritas_core/src/engine/swarm.rs`
-
-- **Rust-Based Mesh:** The core engine is written in Rust for maximum performance and low footprint.
-- **Parallelism:** Can spin up thousands of micro-agents in isolated containers to simulate global traffic patterns (3G, 4G, Fiber latency simulation).
-
-## 6. SINGULARITY AUDIT LOG
-**Output:** `GoalResult`
-
-- **Video Replay:** Every test generates a video replay.
-- **AI Annotation:** The log explains *why* an action was taken. "Clicked at (400, 500) because visual confidence for 'Checkout' was 98%."
+### Core Philosophy
+1.  **Vision-First:** If a human can see it, Veritas can test it. The DOM is secondary.
+2.  **Autonomous:** Agents are given goals, not scripts. They figure out the "how".
+3.  **Resilient:** The system heals itself when the UI changes.
+4.  **Zero-Wait:** It observes the "Amniotic State" of the browser to act at the perfect moment.
 
 ---
 
-## Technical Stack
-- **Core:** Rust (High-performance computer vision & logic)
-- **SDK:** TypeScript (Developer-friendly API)
-- **Communication:** Standard I/O Bridge (JSON-RPC)
+## 👁️ 1. Vision-Based Interface (The Eyes)
 
-## Usage
-To use the framework in your TypeScript tests:
+Veritas abandons fragile XPath and CSS selectors for a **Neural Locator Engine**.
 
-```typescript
-import { VeritasBridge } from './src/veritas_sdk/Bridge';
+-   **Technology:** A Vision-Transformer (ViT) layer analyzes screenshots in real-time.
+-   **Capabilities:**
+    -   Identifies UI elements based on *visual intent* (e.g., "Buy Button", "Login Form") rather than HTML attributes.
+    -   Generates a **Heatmap** of attention, showing exactly which pixels influenced the decision.
+    -   Maintains a **Neural Map** (Memory) of seen elements to speed up future lookups.
 
-const veritas = new VeritasBridge();
+**Rust Implementation:** `veritas_core/src/engine/neural_locator.rs`
 
-// 1. Goal-Oriented Test
-const result = await veritas.goal("Verify purchase with 10% discount");
-console.log(result.steps);
+---
 
-// 2. Vision-Based Interaction
-const vision = await veritas.locate(base64Image, "Find Login Button");
-if (vision.found) {
-    console.log(`Clicking at ${vision.location.x}, ${vision.location.y}`);
-}
+## 🛡️ 2. Semantic Healing (The Immune System)
+
+When the underlying code changes, Veritas adapts.
+
+-   **Problem:** `id="submit-btn"` changes to `id="submit-v2"`.
+-   **Solution:** **Semantic Embedding Mapping**.
+    -   Veritas calculates the Levenshtein distance of the selector.
+    -   It compares the **Visual Embedding** of the new element with the memory of the old one.
+    -   If the *Combined Confidence Score* > 0.7, it automatically updates the test execution path and logs the healing event.
+
+**Rust Implementation:** `veritas_core/src/engine/semantic_healer.rs`
+
+---
+
+## 🧠 3. Autonomous Exploratory Agents (The Brain)
+
+Gone are static `.spec.ts` files. We use **Goal-Oriented Agents**.
+
+-   **Input:** Natural Language Goal (e.g., "Verify that a user can complete a purchase with a 10% discount code.").
+-   **Process:**
+    1.  **Planning:** The agent uses a Breadth-First Search (BFS) on its internal World Model to find a path to the goal state.
+    2.  **Execution:** It navigates step-by-step, verifying the state visually.
+    3.  **Dynamic Injection:** If the goal requires specific data (e.g., "discount code"), the agent injects the necessary steps (entering the code) even if not explicitly programmed in the base path.
+
+**Rust Implementation:** `veritas_core/src/engine/agent.rs`
+
+---
+
+## ⏳ 4. Zero-Wait Architecture (The Omega Layer)
+
+Veritas eliminates `sleep()` and `waitForSelector()`.
+
+-   **Mechanism:** **State-Change Observer**.
+-   **Metrics:**
+    -   `pending_network_requests`: Must be zero (or below threshold).
+    -   `dom_mutation_rate`: Measures UI stability.
+    -   `layout_shifts`: Ensures no visual jank (CLS).
+-   **Result:** The **Amniotic State Score**. The framework only acts when the score > 0.85 (Stable).
+
+**Rust Implementation:** `veritas_core/src/engine/observer.rs`
+
+---
+
+## 🐝 5. Distributed Swarm Execution
+
+For massive scale, Veritas deploys a **Swarm** of micro-agents.
+
+-   **Architecture:** Headless Rust-based container mesh.
+-   **Scale:** Capable of spinning up 1000+ agents in parallel.
+-   **Geo-Distribution:** Simulates traffic from multiple regions (US-East, EU-Central, AP-Northeast) with varying network conditions.
+
+**Rust Implementation:** `veritas_core/src/engine/swarm.rs`
+
+---
+
+## 📜 6. The Singularity Audit Log
+
+No more "Green/Red" dots.
+
+-   **Output:** A rich media log containing:
+    -   Video Replay of the session.
+    -   AI-Annotated Logic ("Why did I click here?").
+    -   Visual Heatmaps overlaying the interaction points.
+    -   Full trace of the **Neural Decision Making** process.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+-   Rust (Cargo)
+-   Node.js (pnpm)
+
+### Running the Core
+```bash
+cd veritas_core
+cargo run
 ```
 
+### Running the Dashboard (Vortex UI)
+```bash
+cd Frontend
+pnpm dev
+```
+Navigate to the **Veritas Control Center** in the dashboard to interact with the system.
+
 ---
 
-*Engineered by Jules for the Vortex Fullstack Web App.*
+*Engineered by Jules for Dimitar Prodromov.*
