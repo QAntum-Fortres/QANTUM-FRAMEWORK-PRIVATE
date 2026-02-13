@@ -271,13 +271,18 @@ export class WhisperService extends EventEmitter {
         const tempPath = path.join(process.cwd(), `.whisper_temp_${Date.now()}.${format}`);
 
         try {
-            fs.writeFileSync(tempPath, buffer);
+            await fs.promises.writeFile(tempPath, buffer);
             const result = await this.transcribe(tempPath, language);
             return result;
         } finally {
             // Clean up temp file
-            if (fs.existsSync(tempPath)) {
-                fs.unlinkSync(tempPath);
+            try {
+                await fs.promises.unlink(tempPath);
+            } catch (error) {
+                // Ignore if file doesn't exist
+                if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+                    console.error('Failed to delete temp file:', error);
+                }
             }
         }
     }
