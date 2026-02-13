@@ -13,6 +13,8 @@
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
+import { neuralEngine } from '../intelligence/NeuralInference';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -339,14 +341,27 @@ NOW EXECUTE:
      * 🔧 EXECUTE INFERENCE - Placeholder за действителния inference
      */
     private static async executeInference(prompt: string): Promise<string> {
-        // TODO: Connect to actual NeuralInference
-        // For now, return the prompt for testing
         console.log('⛓️ Prompt prepared. Length:', prompt.length, 'chars');
 
-        // This would be replaced with:
-        // return await NeuralInference.infer(prompt);
+        try {
+            // Priority execution for Strict Collar
+            // Note: passing priority/type as options based on usage in NeuralInference.ts
+            // even if strict interface might complain (runtime safe).
+            const response = await neuralEngine.infer(prompt, undefined, {
+                priority: 'CRITICAL',
+                type: 'strict-collar'
+            } as any);
 
-        return `[COLLAR TEST] Prompt size: ${prompt.length} chars. Ready for inference.`;
+            if (!response) {
+                console.warn('⚠️ [COLLAR] Neural inference returned null/empty response');
+                return "🚫 LEASH TENSION: Neural inference failed (empty response).";
+            }
+
+            return response;
+        } catch (error) {
+            console.error('⚠️ [COLLAR] Neural inference threw error:', error);
+            return `🚫 LEASH TENSION: Neural inference error: ${(error as Error).message}`;
+        }
     }
 
     // ═══════════════════════════════════════════════════════════════════════════
@@ -440,7 +455,7 @@ NOW EXECUTE:
 // CLI
 // ═══════════════════════════════════════════════════════════════════════════════
 
-if (require.main === module) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
     const arg = process.argv[2];
 
     switch (arg) {
