@@ -193,16 +193,21 @@ class AdaptiveOllamaAgent {
         }
     }
     saveLogs() {
-        try {
-            const dir = path.dirname(this.logFilePath);
-            if (!fs.existsSync(dir)) {
-                fs.mkdirSync(dir, { recursive: true });
-            }
-            fs.writeFileSync(this.logFilePath, JSON.stringify(this.logs, null, 2));
-        }
-        catch (error) {
-            console.error('[QANTUM] Failed to save logs:', error);
-        }
+        const content = JSON.stringify(this.logs, null, 2);
+        const dir = path.dirname(this.logFilePath);
+
+        if (!this.writeQueue) this.writeQueue = Promise.resolve();
+
+        this.writeQueue = this.writeQueue.then(async () => {
+             try {
+                if (!fs.existsSync(dir)) {
+                    await fs.promises.mkdir(dir, { recursive: true });
+                }
+                await fs.promises.writeFile(this.logFilePath, content);
+             } catch (error) {
+                 console.error('[QANTUM] Failed to save logs:', error);
+             }
+        });
     }
     log(entry) {
         this.logs.push(entry);
