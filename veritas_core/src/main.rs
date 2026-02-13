@@ -5,7 +5,7 @@ mod omega;
 use std::io::{self, BufRead};
 use std::collections::HashSet;
 use serde::{Deserialize, Serialize};
-use engine::neural_locator::{NeuralLocator, VisionRequest};
+use engine::neural_locator::{NeuralLocator, VisionRequest, VisionCompareRequest};
 use engine::semantic_healer::{SemanticHealer, HealRequest};
 use engine::agent::{GoalOrientedAgent, GoalRequest};
 use engine::observer::{StateChangeObserver, ObserverRequest};
@@ -26,6 +26,7 @@ struct SecureCommand {
 #[derive(Serialize, Deserialize, Debug)]
 #[serde(tag = "command", content = "payload")]
 enum Command {
+    Compare(VisionCompareRequest),
     Locate(VisionRequest),
     Heal(HealRequest),
     Goal(GoalRequest),
@@ -110,6 +111,12 @@ fn main() {
                         Command::Locate(req) => {
                              if rbac.authorize(&user_ctx, Role::Viewer) {
                                 let result = locator.analyze(&req);
+                                print_response(result);
+                             } else { print_error("Access Denied"); }
+                        },
+                        Command::Compare(req) => {
+                             if rbac.authorize(&user_ctx, Role::Viewer) {
+                                let result = locator.compare(&req);
                                 print_response(result);
                              } else { print_error("Access Denied"); }
                         },

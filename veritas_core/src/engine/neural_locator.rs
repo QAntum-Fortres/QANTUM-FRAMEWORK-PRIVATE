@@ -5,11 +5,10 @@ use base64::{Engine as _, engine::general_purpose};
 use image::{DynamicImage, GenericImageView};
 use ndarray::Array1;
 use rand::Rng;
-use image::{DynamicImage, ImageFormat};
-use base64::{Engine as _, engine::general_purpose};
-use std::time::Instant;
+use image::{ImageFormat};
+use std::time::{Instant, SystemTime, UNIX_EPOCH};
 
-#[derive(Serialize, Deserialize, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct BoundingBox {
     pub x: i32,
     pub y: i32,
@@ -37,12 +36,31 @@ pub struct VisionResult {
     pub processing_time_ms: u64,
 }
 
+#[derive(Serialize, Deserialize, Debug)]
+pub struct VisionCompareRequest {
+    pub image_a_base64: String,
+    pub image_b_base64: String,
+}
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct VisionCompareResult {
+    pub similarity_score: f32,
+    pub diff_reason: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct NeuralMapEntry {
+    pub location: BoundingBox,
+    pub embedding: Vec<f32>,
+    pub last_seen: u64,
+}
+
 /// Represents the "Memory" of the UI structure based on previous visual scans.
 /// Maps a semantic key (hash of embedding or intent) to a spatial location and embedding.
 #[derive(Debug, Clone)]
 pub struct NeuralMap {
-    // Intent -> (Last Known Embedding, Last Known Location)
-    pub memory: HashMap<String, (Vec<f32>, BoundingBox)>,
+    // Intent -> NeuralMapEntry
+    pub memory: HashMap<String, NeuralMapEntry>,
 }
 
 impl NeuralMap {
@@ -53,10 +71,14 @@ impl NeuralMap {
     }
 
     pub fn update(&mut self, intent: &str, embedding: Vec<f32>, location: BoundingBox) {
-        self.memory.insert(intent.to_string(), (embedding, location));
+        self.memory.insert(intent.to_string(), NeuralMapEntry {
+            location,
+            embedding,
+            last_seen: SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs(),
+        });
     }
 
-    pub fn get(&self, intent: &str) -> Option<&(Vec<f32>, BoundingBox)> {
+    pub fn get(&self, intent: &str) -> Option<&NeuralMapEntry> {
         self.memory.get(intent)
     }
 }
@@ -73,7 +95,7 @@ impl VisionTransformer {
 
     /// Simulates encoding text intent into a vector space (e.g. CLIP Text Encoder)
     pub fn encode_text(&self, text: &str) -> Array1<f32> {
-        let mut rng = rand::thread_rng();
+        let _rng = rand::thread_rng();
         // Deterministic-ish simulation based on string length to simulate "semantic" difference
         let seed = text.len() as u64;
         // In reality, we'd run the text through a Transformer
@@ -89,33 +111,33 @@ impl VisionTransformer {
         // We will generate a few "detected" elements.
 
         let mut objects = Vec::new();
-        let mut rng = rand::thread_rng();
+        // let mut rng = rand::thread_rng(); // Unused
 
         // 1. A "Buy/Checkout" looking button
         objects.push((
-            BoundingBox { x: 800, y: 600, width: 150, height: 50 },
+            BoundingBox { x: 800, y: 600, width: 150, height: 50, label: Some("Primary Action".to_string()), confidence: 0.95 },
             self.encode_text("buy checkout submit"), // Simulate visual feature matching "buy" concept
             "primary_button".to_string()
         ));
 
         // 2. A "Login" field
         objects.push((
-            BoundingBox { x: 400, y: 300, width: 200, height: 40 },
+            BoundingBox { x: 400, y: 300, width: 200, height: 40, label: Some("Auth Trigger".to_string()), confidence: 0.92 },
             self.encode_text("login username user"),
             "text_input".to_string()
         ));
 
         // 3. A "Discount" field
         objects.push((
-            BoundingBox { x: 400, y: 400, width: 200, height: 40 },
+            BoundingBox { x: 400, y: 400, width: 200, height: 40, label: Some("Input Field".to_string()), confidence: 0.88 },
             self.encode_text("discount coupon code"),
             "text_input".to_string()
         ));
 
         // 4. Random noise element
         objects.push((
-            BoundingBox { x: 10, y: 10, width: 50, height: 50 },
-             Array1::from_iter((0..768).map(|_| rng.gen::<f32>())),
+            BoundingBox { x: 10, y: 10, width: 50, height: 50, label: Some("Generic Element".to_string()), confidence: 0.5 },
+            Array1::from_iter((0..768).map(|_| rand::thread_rng().gen::<f32>())),
             "logo".to_string()
         ));
 
@@ -131,17 +153,10 @@ pub struct VisualElement {
     pub last_seen: u64,
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct NeuralMapEntry {
-    pub location: BoundingBox,
-    pub embedding: Vec<f32>,
-    pub last_seen: u64,
-}
-
 pub struct NeuralLocator {
-    vit: VisionTransformer,
+    pub vit: VisionTransformer, // Made public for SemanticHealer
     // Shared state for the Neural Map (persists across requests in this instance)
-    neural_map: Arc<Mutex<NeuralMap>>,
+    pub neural_map: Arc<Mutex<NeuralMap>>, // Made public for SemanticHealer
 }
 
 impl NeuralLocator {
@@ -159,6 +174,7 @@ impl NeuralLocator {
     pub fn analyze(&self, request: &VisionRequest) -> VisionResult {
         let start_time = Instant::now();
         eprintln!("[NeuralLocator] Analyzing image for intent: '{}'", request.intent);
+        let mut audit_trail: Vec<String> = Vec::new();
 
         // 1. Decode Image from Base64
         let image_data = match general_purpose::STANDARD.decode(&request.image_base64) {
@@ -201,13 +217,11 @@ impl NeuralLocator {
 
         // HEURISTIC: Analyze center pixel to determine "theme" (simulated)
         let (center_x, center_y) = (img.width() / 2, img.height() / 2);
-        let _center_pixel = img.get_pixel(center_x, center_y);
+        // let _center_pixel = img.get_pixel(center_x, center_y);
         // In a real ViT, we would take patches. Here we just note it.
         audit_trail.push(format!("ViT Attention Head #1 focused on center ({}, {})", center_x, center_y));
 
         let confidence: f32 = rng.gen_range(0.85..0.99);
-        let intent_lower = request.intent.to_lowercase();
-
         let intent_lower = request.intent.to_lowercase();
 
         let primary_box = if intent_lower.contains("buy") || intent_lower.contains("checkout") {
@@ -237,7 +251,7 @@ impl NeuralLocator {
                 label: Some("Input Field".to_string()),
                 confidence,
             })
-        } else if intent == "FAIL_TEST" {
+        } else if request.intent == "FAIL_TEST" {
             None
         } else {
             audit_trail.push("Intent classification: GENERAL_INTERACTION".to_string());
@@ -277,7 +291,6 @@ impl NeuralLocator {
 
         let elapsed = start_time.elapsed();
 
-    fn error_result(&self, msg: &str) -> VisionResult {
         VisionResult {
             found: primary_box.is_some(),
             location: primary_box,
@@ -288,17 +301,73 @@ impl NeuralLocator {
             reasoning: format!("ViT Layer identified '{}' based on visual intent patterns (Edge detection, OCR, Iconography). Confidence: {:.2}", request.intent, confidence),
             processing_time_ms: elapsed.as_millis() as u64,
         }
-
-        if count == 0.0 { return 0.0; }
-
-        let mean = sum / count;
-        (sum_sq / count) - (mean * mean)
     }
 
-    // Helper to update the internal map (would be called after successful interactions)
-    pub fn update_map(&mut self, intent: String, element: VisualElement) {
-        self.neural_map.insert(intent, element);
+    pub fn compare(&self, request: &VisionCompareRequest) -> VisionCompareResult {
+        // 1. Decode Image A
+        let img_a = match general_purpose::STANDARD.decode(&request.image_a_base64) {
+            Ok(data) => image::load_from_memory(&data).unwrap_or_else(|_| DynamicImage::new_rgb8(1, 1)),
+            Err(_) => DynamicImage::new_rgb8(1, 1),
+        };
+
+        // 2. Decode Image B
+        let img_b = match general_purpose::STANDARD.decode(&request.image_b_base64) {
+            Ok(data) => image::load_from_memory(&data).unwrap_or_else(|_| DynamicImage::new_rgb8(1, 1)),
+            Err(_) => DynamicImage::new_rgb8(1, 1),
+        };
+
+        // 3. Compare dimensions
+        if img_a.width() != img_b.width() || img_a.height() != img_b.height() {
+             return VisionCompareResult {
+                similarity_score: 0.0,
+                diff_reason: Some(format!("Dimensions differ: {}x{} vs {}x{}", img_a.width(), img_a.height(), img_b.width(), img_b.height())),
+            };
+        }
+
+        // 4. Pixel-wise comparison (Simple RMSE or percent difference)
+        let mut diff_sum: u64 = 0;
+        let mut pixel_count: u64 = 0;
+
+        for (x, y, p_a) in img_a.pixels() {
+            let p_b = img_b.get_pixel(x, y);
+            // Compare RGB
+            let d_r = (p_a[0] as i32 - p_b[0] as i32).abs();
+            let d_g = (p_a[1] as i32 - p_b[1] as i32).abs();
+            let d_b = (p_a[2] as i32 - p_b[2] as i32).abs();
+
+            diff_sum += (d_r + d_g + d_b) as u64;
+            pixel_count += 1;
+        }
+
+        if pixel_count == 0 {
+            return VisionCompareResult { similarity_score: 1.0, diff_reason: None };
+        }
+
+        // Max possible difference per pixel is 255 * 3 = 765
+        let max_diff = pixel_count as f64 * 765.0;
+        let normalized_diff = diff_sum as f64 / max_diff;
+        let similarity = 1.0 - normalized_diff;
+
+        VisionCompareResult {
+            similarity_score: similarity as f32,
+            diff_reason: if similarity < 1.0 { Some(format!("Similarity: {:.2}%", similarity * 100.0)) } else { None },
+        }
     }
+
+    // Called by Semantic Healer to update the map manually
+    pub fn update_map(&self, intent: String, location: BoundingBox, embedding: Vec<f32>) {
+         let mut map_lock = self.neural_map.lock().unwrap();
+         map_lock.memory.insert(intent, NeuralMapEntry {
+            location,
+            embedding,
+            last_seen: SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs(),
+        });
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
 
     #[test]
     fn test_invalid_base64() {
@@ -310,16 +379,6 @@ impl NeuralLocator {
 
         let result = locator.analyze(&request);
         assert!(!result.found);
-        assert!(result.reasoning.contains("Base64 decode error"));
-    }
-
-    // Called by Semantic Healer to update the map manually
-    pub fn update_map(&self, intent: String, location: BoundingBox, embedding: Vec<f32>) {
-         let mut map_lock = self.neural_map.lock().unwrap();
-         map_lock.insert(intent, NeuralMapEntry {
-            location,
-            embedding,
-            last_seen: SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs(),
-        });
+        assert!(result.reasoning.contains("Failed to decode Base64 image data."));
     }
 }
