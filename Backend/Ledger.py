@@ -2,6 +2,7 @@ import hashlib
 import json
 from datetime import datetime
 
+
 class Block:
     def __init__(self, index, timestamp, data, previous_hash):
         self.index = index
@@ -12,12 +13,19 @@ class Block:
 
     def calculate_hash(self):
         # SHA‑256 hash of the block contents; any change breaks the chain
-        block_string = json.dumps(self.data, sort_keys=True) + str(self.index) + str(self.timestamp) + self.previous_hash
+        block_string = (
+            json.dumps(self.data, sort_keys=True)
+            + str(self.index)
+            + str(self.timestamp)
+            + self.previous_hash
+        )
         return hashlib.sha256(block_string.encode()).hexdigest()
 
+
 class ImmutableLedger:
-    def __init__(self):
+    def __init__(self, max_size=1000):
         self.chain = [self.create_genesis_block()]
+        self.max_size = max_size
         print("/// LEDGER INITIALIZED: GENESIS BLOCK SEALED ///")
 
     def create_genesis_block(self):
@@ -32,17 +40,24 @@ class ImmutableLedger:
             "bio_stress": round(bio_stress, 4),
             "market_risk": round(market_risk, 4),
             "energy_load": round(energy_load, 4),
-            "decision": self._decide_strategy(bio_stress, market_risk)
+            "decision": self._decide_strategy(bio_stress, market_risk),
         }
         new_block = Block(
             index=prev_block.index + 1,
             timestamp=datetime.now().isoformat(),
             data=data,
-            previous_hash=prev_block.hash
+            previous_hash=prev_block.hash,
         )
         self.chain.append(new_block)
+
+        # Enforce sliding window if max_size is set
+        if self.max_size and len(self.chain) > self.max_size:
+            self.chain.pop(0)
+
         short_hash = new_block.hash[:8]
-        print(f"🔒 BLK #{new_block.index} | PROOF: {short_hash}... | STRATEGY: {data['decision']}")
+        print(
+            f"🔒 BLK #{new_block.index} | PROOF: {short_hash}... | STRATEGY: {data['decision']}"
+        )
         return new_block
 
     def _decide_strategy(self, bio, market):
@@ -55,7 +70,7 @@ class ImmutableLedger:
     def is_chain_valid(self):
         for i in range(1, len(self.chain)):
             current = self.chain[i]
-            previous = self.chain[i-1]
+            previous = self.chain[i - 1]
             if current.hash != current.calculate_hash():
                 return False
             if current.previous_hash != previous.hash:
