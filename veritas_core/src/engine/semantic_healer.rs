@@ -19,7 +19,6 @@ pub struct HealResult {
 
 pub struct SemanticHealer {
     threshold: f32,
-    vit: VisionTransformer,
 }
 
 impl SemanticHealer {
@@ -30,6 +29,9 @@ impl SemanticHealer {
     }
 
     pub fn heal(&self, request: &HealRequest) -> HealResult {
+        let mut audit_trail = Vec::new();
+        audit_trail.push(format!("Initiating Semantic Healing for selector: '{}'", request.failed_selector));
+
         // 1. Snapshot Analysis (Mocked: In real system, we'd parse the current DOM/Image to get candidates)
         // We simulate finding a list of potential candidates on the page.
         // Some are similar strings, some are totally different.
@@ -41,6 +43,8 @@ impl SemanticHealer {
             ".footer-copyright",
             "#checkout-container"
         ];
+
+        audit_trail.push(format!("Identified {} DOM candidates for analysis.", candidates.len()));
 
         let mut best_candidate = String::new();
         let mut best_score = 0.0;
@@ -72,11 +76,13 @@ impl SemanticHealer {
         }
 
         if best_score > self.threshold {
+            audit_trail.push(format!("Healing SUCCESS: '{}' replaces '{}'", best_candidate, request.failed_selector));
             HealResult {
                 healed: true,
                 new_selector: best_candidate,
                 similarity_score: best_score,
                 reason: best_reason,
+                audit_trail,
             }
         } else {
              audit_trail.push("Healing failed. No candidates met the confidence threshold.".to_string());
@@ -85,6 +91,7 @@ impl SemanticHealer {
                 new_selector: "".to_string(),
                 similarity_score: best_score,
                 reason: format!("Best match '{}' score {:.2} below threshold {:.2}", best_candidate, best_score, self.threshold),
+                audit_trail,
             }
         }
     }
@@ -123,7 +130,7 @@ impl SemanticHealer {
     }
 }
 
-// Minimal Levenshtein implementation to avoid external crate dependency for this snippet
+// Minimal Levenshtein implementation to avoid external crate dependency
 mod levenshtein {
     pub fn levenshtein(a: &str, b: &str) -> usize {
         let len_a = a.chars().count();
@@ -146,5 +153,30 @@ mod levenshtein {
             }
         }
         matrix[len_a][len_b]
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_levenshtein_distance() {
+        assert_eq!(levenshtein::levenshtein("kitten", "sitting"), 3);
+        assert_eq!(levenshtein::levenshtein("rosettacode", "raisethysword"), 8);
+    }
+
+    #[test]
+    fn test_semantic_healer_logic() {
+        let healer = SemanticHealer::new();
+        let request = HealRequest {
+            failed_selector: "#submit-btn".to_string(),
+            last_known_embedding: vec![0.5; 768],
+            current_image: "mock_base64".to_string(),
+        };
+        let result = healer.heal(&request);
+        // We expect it to find something similar to #submit-btn, like #submit-order-btn
+        assert!(result.healed);
+        assert!(result.new_selector.contains("submit"));
     }
 }
