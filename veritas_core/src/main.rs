@@ -109,6 +109,7 @@ fn main() {
                     match secure_cmd.command {
                         Command::Locate(req) => {
                              if rbac.authorize(&user_ctx, Role::Viewer) {
+                                // Calls the Vision-Based Neural Locator Engine
                                 let result = locator.analyze(&req);
                                 print_response(result);
                              } else { print_error("Access Denied"); }

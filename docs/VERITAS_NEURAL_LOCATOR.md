@@ -1,80 +1,70 @@
-# Veritas Neural Locator (Vision-Based Interface)
+# Veritas Neural Locator Engine
 
-## Overview
+**Version:** 1.0.0
+**Module:** `veritas_core::engine::neural_locator`
+**Architect:** Jules
 
-The Neural Locator is the "Eyes" of the Veritas Cognitive QA Framework. It replaces traditional DOM-based element selection (ID, XPath, CSS selectors) with a Vision-Transformer (ViT) based approach. This allows the framework to interact with the application based on *visual intent* rather than underlying implementation details, making it immune to DOM refactors and class name changes.
+## Philosophy: Vision-Based Interface (The Eyes)
+
+The Neural Locator is the "Eyes" of the Veritas QA Framework. Unlike traditional tools (Selenium, Playwright) that rely on the DOM tree (Selectors, XPaths, IDs), Veritas analyzes the rendered pixels of the application. This allows it to:
+
+1.  **See what the user sees**: If a button is covered by a modal, Veritas knows it's not clickable, whereas DOM selectors might still find it.
+2.  **Survive DOM refactors**: If `id="btn-submit"` changes to `class="submit-order-v2"`, Veritas still recognizes the visual pattern of a "Checkout Button".
+3.  **Cross-Platform Agnosticism**: The logic works on Web, Mobile, or Desktop screenshots equally well.
 
 ## Architecture
 
-The Neural Locator consists of two main components:
-1.  **Core Engine (Rust)**: Located in `veritas_core/src/engine/neural_locator.rs`. This component processes images, runs the inference logic (simulated for now), and returns structured vision data.
-2.  **SDK Layer (TypeScript)**: Located in `src/veritas_sdk/`. This provides a high-level API for agents to interact with the core engine.
+The engine is implemented in **Rust** for high-performance image processing and memory safety. It runs as a standalone binary (`veritas_core`) and communicates with the TypeScript SDK via a secure Stdin/Stdout bridge.
 
-## Data Structures
+### The Pipeline
 
-### VisionRequest
-The input payload sent to the Neural Locator.
-```rust
-struct VisionRequest {
-    image_base64: String, // Screenshot in Base64
-    intent: String,       // Natural language description (e.g., "Find Checkout Button")
-}
-```
-
-### VisionResult
-The structured output from the Neural Locator.
-```rust
-struct VisionResult {
-    found: bool,
-    location: Option<BoundingBox>,
-    candidates: Vec<BoundingBox>, // All potential matches
-    confidence: f32,              // 0.0 to 1.0
-    semantic_embedding: Vec<f32>, // 768-dim vector for semantic healing
-    heatmap_data: Vec<f32>,       // Flattened attention heatmap
-    reasoning: String,            // AI explanation of the finding
-    processing_time_ms: u64,      // Latency in milliseconds
-}
-```
-
-### BoundingBox
-```rust
-struct BoundingBox {
-    x: i32,
-    y: i32,
-    width: i32,
-    height: i32,
-    label: Option<String>,
-    confidence: f32,
-}
-```
+1.  **Vision Request**: The SDK captures a screenshot (Base64) and an Intent (Natural Language, e.g., "Find the Checkout Button").
+2.  **Decoding**: The Rust core decodes the image into a `DynamicImage`.
+3.  **Vision Transformer (ViT) Layer**:
+    *   **Preprocessing**: Converts image to Grayscale (`Luma8`).
+    *   **Detection**: Uses a **Variance-Based Block Saliency** algorithm. It divides the image into 20x20 blocks and calculates pixel variance. High variance indicates "interesting" content (text, edges, buttons).
+    *   **Clustering**: Runs a **Connected Components** algorithm on the active blocks to merge them into Bounding Boxes.
+    *   **Classification**: Applies **Heuristic Classification** based on geometric properties:
+        *   **Aspect Ratio**: Distinguishes Buttons (>1.5), Inputs (>4.0), and Sidebar items (<0.5).
+        *   **Position**: Identifies Profile Icons (Top-Right), Navigation (Top/Left).
+        *   **Relative Size**: Identifies Containers vs. Atomic Elements.
+4.  **Intent Matching**: The classified bounding boxes are scored against the user's Intent using fuzzy keyword matching and semantic boosting.
+5.  **Neural Map**: High-confidence findings are stored in an in-memory `NeuralMap`. Future requests check this map first to boost confidence if the element is found near its last known location (Temporal Consistency).
+6.  **Result**: Returns a `VisionResult` with the best match, confidence score, and reasoning.
 
 ## Usage
 
 ### TypeScript SDK
 
 ```typescript
-import { veritas } from '@/veritas_sdk/VeritasClient';
+import { NeuralLocator } from './veritas_sdk/NeuralLocator';
 
-const result = await veritas.locate(base64Image, "Find the 'Add to Cart' button");
+const locator = new NeuralLocator();
+const screenshot = await page.screenshot({ encoding: 'base64' });
 
-if (result.found && result.location) {
-    console.log(`Found at (${result.location.x}, ${result.location.y}) with confidence ${result.confidence}`);
-    // Click the center of the bounding box
-} else {
-    console.log("Element not found. Reasoning:", result.reasoning);
+// "Find the Login Button"
+const result = await locator.locate(screenshot, "Login Button");
+
+if (result.found) {
+    console.log(`Found at (${result.location.x}, ${result.location.y})`);
+    // Click coordinates...
 }
 ```
 
-### Dashboard Integration
+### Rust Core
 
-The Veritas Control Center in the dashboard visualizes the Neural Locator's output, showing:
-- The identified bounding box overlay.
-- The number of candidate matches.
-- The processing latency.
-- The reasoning behind the selection.
+The `NeuralLocator` struct exposes the `analyze` method:
+
+```rust
+let locator = NeuralLocator::new();
+let result = locator.analyze(&VisionRequest {
+    image_base64: "...",
+    intent: "checkout".to_string()
+});
+```
 
 ## Future Roadmap
 
-1.  **Real Model Integration**: Replace the simulation logic in `neural_locator.rs` with `tract-onnx` or `ort` to run actual ViT models (e.g., CLIP or specialized UI detection models).
-2.  **Heatmap Visualization**: Render the `heatmap_data` as a semi-transparent overlay on the dashboard to debug attention focus.
-3.  **Semantic Healing**: Use the `semantic_embedding` vector to find the nearest match when the primary match fails or moves significantly.
+*   **Deep Learning Integration**: Replace the Variance/Heuristic layer with a real ONNX-loaded MobileNet or YoloV8 model for object detection.
+*   **CLIP Embeddings**: Replace simulated embeddings with real CLIP (Contrastive Language-Image Pre-Training) vectors for true semantic matching.
+*   **OCR Integration**: Add Tesseract or similar to read text within identified bounding boxes for higher precision.
