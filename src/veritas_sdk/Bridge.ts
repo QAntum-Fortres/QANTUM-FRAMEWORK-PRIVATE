@@ -1,6 +1,7 @@
 import { spawn, ChildProcess } from 'child_process';
 import * as path from 'path';
 import * as readline from 'readline';
+import * as fs from 'fs';
 import { fileURLToPath } from 'url';
 import type {
     VisionResult, HealResult, GoalResult, ObserverState,

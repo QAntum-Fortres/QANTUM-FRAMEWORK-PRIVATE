@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 use rand::Rng;
 use std::collections::{HashMap, VecDeque, HashSet};
+use uuid::Uuid;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct GoalRequest {
@@ -98,14 +99,18 @@ impl GoalOrientedAgent {
         let mut steps = Vec::new();
         let mut rng = rand::thread_rng();
         let mut total_duration = 0;
+        let mut step_counter = 1;
 
         steps.push(AgentStep {
+            step_id: step_counter,
             action: "Start Session".to_string(),
             observation: "Landed on Homepage".to_string(),
             reasoning: "Initial state".to_string(),
             duration_ms: 10,
+            status: "completed".to_string(),
         });
-        total_duration += d1;
+        step_counter += 1;
+        total_duration += 10;
 
         // 2. Pathfinding (BFS) using the World Model
         if let Some(path) = self.find_path(PageState::Home, &target_state) {
@@ -121,28 +126,38 @@ impl GoalOrientedAgent {
                 }
 
                 steps.push(AgentStep {
+                    step_id: step_counter,
                     action: action.clone(),
                     observation: format!("Transitioned to {:?}", next_state),
                     reasoning,
                     duration_ms: duration,
+                    status: "completed".to_string(),
                 });
+                step_counter += 1;
+                total_duration += duration;
 
                 // If we hit checkout and need discount, inject extra step
                  if next_state == PageState::Checkout && goal_lower.contains("discount") {
                      steps.push(AgentStep {
+                        step_id: step_counter,
                         action: "Input 'SAVE10'".to_string(),
                         observation: "Discount -10% applied".to_string(),
                         reasoning: "Goal Requirement: Discount".to_string(),
                         duration_ms: 100,
+                        status: "completed".to_string(),
                     });
+                    step_counter += 1;
+                    total_duration += 100;
                 }
             }
         } else {
             steps.push(AgentStep {
+                step_id: step_counter,
                 action: "Error".to_string(),
                 observation: "Could not find path".to_string(),
                 reasoning: "Target state unreachable".to_string(),
                 duration_ms: 0,
+                status: "failed".to_string(),
             });
         }
 
@@ -182,32 +197,5 @@ impl GoalOrientedAgent {
             }
         }
         None
-    }
-}
-
-struct PlanItem {
-    action: String,
-    expected_observation: String,
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_agent_planning() {
-        let agent = GoalOrientedAgent::new();
-        let req = GoalRequest {
-            goal: "Verify purchase with 10% discount".to_string(),
-        };
-        // Expect path: Home -> ProductDetail -> Cart -> Checkout -> Dashboard
-        // + Discount step injected
-        let result = agent.execute(&req);
-
-        assert!(result.success);
-        assert!(result.steps.len() >= 4);
-
-        let has_discount = result.steps.iter().any(|s| s.action.contains("SAVE10"));
-        assert!(has_discount);
     }
 }

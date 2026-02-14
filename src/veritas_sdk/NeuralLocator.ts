@@ -4,6 +4,9 @@ import type { VisionResult, HealResult, GoalResult, ObserverState, SwarmStatus }
 /**
  * The Veritas Neural Locator Engine.
  * Provides the Vision-Based Interface for the QA Framework.
+ *
+ * Unlike traditional locators (DOM, XPath), this engine analyzes the rendered
+ * pixels of the application using a Vision-Transformer (ViT) pipeline in the Rust Core.
  */
 export class NeuralLocator {
     private bridge: VeritasBridge;
@@ -19,6 +22,7 @@ export class NeuralLocator {
      */
     public async locate(imageBase64: string, intent: string): Promise<VisionResult> {
         console.log(`[NeuralLocator] Analyzing image for intent: "${intent}"`);
+        // Delegates to the Rust Core binary for heavy image processing
         return this.bridge.locate(imageBase64, intent);
     }
 

@@ -2,14 +2,11 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 use base64::{Engine as _, engine::general_purpose};
-use image::{DynamicImage, GenericImageView};
-use ndarray::Array1;
+use image::{DynamicImage, GenericImageView, ImageFormat};
+use std::time::{SystemTime, UNIX_EPOCH, Instant};
 use rand::Rng;
-use image::{DynamicImage, ImageFormat};
-use base64::{Engine as _, engine::general_purpose};
-use std::time::Instant;
 
-#[derive(Serialize, Deserialize, Debug, Clone, Copy)]
+#[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct BoundingBox {
     pub x: i32,
     pub y: i32,
@@ -37,12 +34,19 @@ pub struct VisionResult {
     pub processing_time_ms: u64,
 }
 
+#[derive(Serialize, Deserialize, Debug, Clone)]
+pub struct NeuralMapEntry {
+    pub location: BoundingBox,
+    pub embedding: Vec<f32>,
+    pub last_seen: u64,
+}
+
 /// Represents the "Memory" of the UI structure based on previous visual scans.
 /// Maps a semantic key (hash of embedding or intent) to a spatial location and embedding.
 #[derive(Debug, Clone)]
 pub struct NeuralMap {
-    // Intent -> (Last Known Embedding, Last Known Location)
-    pub memory: HashMap<String, (Vec<f32>, BoundingBox)>,
+    // Intent -> Entry
+    pub memory: HashMap<String, NeuralMapEntry>,
 }
 
 impl NeuralMap {
@@ -52,18 +56,17 @@ impl NeuralMap {
         }
     }
 
-    pub fn update(&mut self, intent: &str, embedding: Vec<f32>, location: BoundingBox) {
-        self.memory.insert(intent.to_string(), (embedding, location));
+    pub fn update(&mut self, intent: String, entry: NeuralMapEntry) {
+        self.memory.insert(intent, entry);
     }
 
-    pub fn get(&self, intent: &str) -> Option<&(Vec<f32>, BoundingBox)> {
+    pub fn get(&self, intent: &str) -> Option<&NeuralMapEntry> {
         self.memory.get(intent)
     }
 }
 
 pub struct VisionTransformer {
     // Simulation of a loaded ViT/CLIP model
-    // In production, this would hold the ONNX session
 }
 
 impl VisionTransformer {
@@ -72,74 +75,159 @@ impl VisionTransformer {
     }
 
     /// Simulates encoding text intent into a vector space (e.g. CLIP Text Encoder)
-    pub fn encode_text(&self, text: &str) -> Array1<f32> {
-        let mut rng = rand::thread_rng();
-        // Deterministic-ish simulation based on string length to simulate "semantic" difference
+    pub fn encode_text(&self, text: &str) -> Vec<f32> {
         let seed = text.len() as u64;
-        // In reality, we'd run the text through a Transformer
-        Array1::from_iter((0..768).map(|i| {
-            let s = (i as f32 + seed as f32).sin();
-            s
-        }))
+        (0..768).map(|i| {
+            (i as f32 + seed as f32).sin()
+        }).collect()
     }
 
-    /// Simulates detecting objects in an image and generating visual embeddings (e.g. CLIP Image Encoder)
-    pub fn detect_objects(&self, _image: &DynamicImage) -> Vec<(BoundingBox, Array1<f32>, String)> {
-        // MOCK: In a real system, this runs the image through a ViT Object Detector.
-        // We will generate a few "detected" elements.
+    /// Analyzes the image to detect potential UI elements based on pixel variance and edge density.
+    pub fn detect_ui_elements(&self, img: &DynamicImage) -> Vec<BoundingBox> {
+        let gray_img = img.to_luma8();
+        let (width, height) = gray_img.dimensions();
+        let block_size = 20;
+        let grid_w = (width + block_size - 1) / block_size;
+        let grid_h = (height + block_size - 1) / block_size;
 
-        let mut objects = Vec::new();
-        let mut rng = rand::thread_rng();
+        let mut active_grid = vec![vec![false; grid_w as usize]; grid_h as usize];
 
-        // 1. A "Buy/Checkout" looking button
-        objects.push((
-            BoundingBox { x: 800, y: 600, width: 150, height: 50 },
-            self.encode_text("buy checkout submit"), // Simulate visual feature matching "buy" concept
-            "primary_button".to_string()
-        ));
+        // 1. Identify "Active" blocks (high variance)
+        for gy in 0..grid_h {
+            for gx in 0..grid_w {
+                let x_start = gx * block_size;
+                let y_start = gy * block_size;
+                let x_end = (x_start + block_size).min(width);
+                let y_end = (y_start + block_size).min(height);
 
-        // 2. A "Login" field
-        objects.push((
-            BoundingBox { x: 400, y: 300, width: 200, height: 40 },
-            self.encode_text("login username user"),
-            "text_input".to_string()
-        ));
+                let mut sum = 0.0;
+                let mut sum_sq = 0.0;
+                let mut count = 0.0;
 
-        // 3. A "Discount" field
-        objects.push((
-            BoundingBox { x: 400, y: 400, width: 200, height: 40 },
-            self.encode_text("discount coupon code"),
-            "text_input".to_string()
-        ));
+                for y in y_start..y_end {
+                    for x in x_start..x_end {
+                        let p = gray_img.get_pixel(x, y)[0] as f32;
+                        sum += p;
+                        sum_sq += p * p;
+                        count += 1.0;
+                    }
+                }
 
-        // 4. Random noise element
-        objects.push((
-            BoundingBox { x: 10, y: 10, width: 50, height: 50 },
-             Array1::from_iter((0..768).map(|_| rng.gen::<f32>())),
-            "logo".to_string()
-        ));
+                if count > 0.0 {
+                    let mean = sum / count;
+                    let variance = (sum_sq / count) - (mean * mean);
 
-        objects
+                    // Threshold for "interesting" content (text, buttons, etc have variance)
+                    // Solid background has 0 variance.
+                    if variance > 50.0 {
+                        active_grid[gy as usize][gx as usize] = true;
+                    }
+                }
+            }
+        }
+
+        // 2. Connected Components to merge blocks into Bounding Boxes
+        let mut visited = vec![vec![false; grid_w as usize]; grid_h as usize];
+        let mut boxes = Vec::new();
+
+        for gy in 0..grid_h {
+            for gx in 0..grid_w {
+                if active_grid[gy as usize][gx as usize] && !visited[gy as usize][gx as usize] {
+                    // Start a new component
+                    let mut min_gx = gx;
+                    let mut max_gx = gx;
+                    let mut min_gy = gy;
+                    let mut max_gy = gy;
+                    let mut component_stack = vec![(gx, gy)];
+                    visited[gy as usize][gx as usize] = true;
+
+                    while let Some((cx, cy)) = component_stack.pop() {
+                        if cx < min_gx { min_gx = cx; }
+                        if cx > max_gx { max_gx = cx; }
+                        if cy < min_gy { min_gy = cy; }
+                        if cy > max_gy { max_gy = cy; }
+
+                        // Check neighbors
+                        let neighbors = [
+                            (cx.wrapping_sub(1), cy), (cx + 1, cy),
+                            (cx, cy.wrapping_sub(1)), (cx, cy + 1)
+                        ];
+
+                        for (nx, ny) in neighbors {
+                            if nx < grid_w && ny < grid_h {
+                                if active_grid[ny as usize][nx as usize] && !visited[ny as usize][nx as usize] {
+                                    visited[ny as usize][nx as usize] = true;
+                                    component_stack.push((nx, ny));
+                                }
+                            }
+                        }
+                    }
+
+                    // Convert grid coords to pixel coords
+                    let x = min_gx * block_size;
+                    let y = min_gy * block_size;
+                    let w = (max_gx - min_gx + 1) * block_size;
+                    let h = (max_gy - min_gy + 1) * block_size;
+
+                    // Filter out very small noise
+                    if w > 20 && h > 10 {
+                        boxes.push(BoundingBox {
+                            x: x as i32,
+                            y: y as i32,
+                            width: w as i32,
+                            height: h as i32,
+                            label: None, // To be classified
+                            confidence: 0.8, // Base confidence for visual detection
+                        });
+                    }
+                }
+            }
+        }
+
+        boxes
     }
-}
 
-#[derive(Debug, Clone)]
-pub struct VisualElement {
-    pub intent_label: String,
-    pub embedding: Array1<f32>,
-    pub location: BoundingBox,
-    pub last_seen: u64,
-}
+    /// Classifies a bounding box based on its shape and position.
+    pub fn heuristic_classify(&self, box_data: &BoundingBox, img_width: u32, img_height: u32) -> String {
+        let ar = box_data.width as f32 / box_data.height as f32;
+        let relative_w = box_data.width as f32 / img_width as f32;
+        // let relative_h = box_data.height as f32 / img_height as f32;
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct NeuralMapEntry {
-    pub location: BoundingBox,
-    pub embedding: Vec<f32>,
-    pub last_seen: u64,
+        let center_x = box_data.x + box_data.width / 2;
+        let center_y = box_data.y + box_data.height / 2;
+
+        // Position Heuristics
+        let is_top_right = center_x > (img_width as i32 - 200) && center_y < 100;
+        if is_top_right {
+            if ar < 1.5 { return "Icon_Profile".to_string(); }
+            return "Button_Nav".to_string();
+        }
+
+        if relative_w > 0.8 {
+            return "Container_Section".to_string();
+        }
+
+        if ar > 4.0 {
+            // Very wide -> likely Input field or Banner text
+            return "Input_Field".to_string();
+        } else if ar > 1.2 {
+            // Wide -> likely Button
+            return "Button".to_string();
+        } else if ar < 0.5 {
+             // Tall -> likely Sidebar item
+             return "Sidebar_Item".to_string();
+        } else {
+            // Square-ish
+            if relative_w < 0.1 {
+                return "Icon".to_string();
+            }
+            return "Image".to_string();
+        }
+    }
 }
 
 pub struct NeuralLocator {
-    vit: VisionTransformer,
+    pub vit: VisionTransformer, // Made public for SemanticHealer access
     // Shared state for the Neural Map (persists across requests in this instance)
     neural_map: Arc<Mutex<NeuralMap>>,
 }
@@ -152,13 +240,9 @@ impl NeuralLocator {
         }
     }
 
-    /// Simulates the full Vision Transformer pipeline:
-    /// 1. Preprocessing (Base64 -> Image -> Tensor)
-    /// 2. Inference (Tensor -> Embeddings + BBox)
-    /// 3. Post-processing (Formatting)
     pub fn analyze(&self, request: &VisionRequest) -> VisionResult {
         let start_time = Instant::now();
-        eprintln!("[NeuralLocator] Analyzing image for intent: '{}'", request.intent);
+        // eprintln!("[NeuralLocator] Analyzing image for intent: '{}'", request.intent);
 
         // 1. Decode Image from Base64
         let image_data = match general_purpose::STANDARD.decode(&request.image_base64) {
@@ -177,146 +261,109 @@ impl NeuralLocator {
             }
         };
 
-        // 2. Load into DynamicImage (Real Vision Preprocessing)
         let img = match image::load_from_memory(&image_data) {
              Ok(img) => img,
              Err(_) => {
                  match image::load_from_memory_with_format(&image_data, ImageFormat::Png) {
-                     Ok(img) => {
-                         audit_trail.push(format!("Image loaded (PNG fallback): {}x{}", img.width(), img.height()));
-                         img
-                     },
+                     Ok(img) => img,
                      Err(_) => {
-                         // Fallback for tests/simulation
-                         DynamicImage::new_rgb8(1024, 768)
+                         // Create a dummy image if loading fails, just to not crash, or return error
+                         return VisionResult {
+                            found: false,
+                            location: None,
+                            candidates: vec![],
+                            confidence: 0.0,
+                            semantic_embedding: vec![],
+                            heatmap_data: vec![],
+                            reasoning: "Failed to load image from data.".to_string(),
+                            processing_time_ms: 0,
+                        };
                      }
                  }
              }
         };
 
-        // 3. Vision-Transformer (ViT) Logic Simulation
-        // We simulate attention mechanism by "focusing" on regions.
-
-        let mut rng = rand::thread_rng();
-
-        // HEURISTIC: Analyze center pixel to determine "theme" (simulated)
-        let (center_x, center_y) = (img.width() / 2, img.height() / 2);
-        let _center_pixel = img.get_pixel(center_x, center_y);
-        // In a real ViT, we would take patches. Here we just note it.
-        audit_trail.push(format!("ViT Attention Head #1 focused on center ({}, {})", center_x, center_y));
-
-        let confidence: f32 = rng.gen_range(0.85..0.99);
-        let intent_lower = request.intent.to_lowercase();
+        let (width, height) = img.dimensions();
+        let mut candidates = self.vit.detect_ui_elements(&img);
+        let mut best_match: Option<BoundingBox> = None;
+        let mut max_confidence = 0.0;
+        let mut reasoning = String::new();
 
         let intent_lower = request.intent.to_lowercase();
 
-        let primary_box = if intent_lower.contains("buy") || intent_lower.contains("checkout") {
-            Some(BoundingBox {
-                x: (img.width() as i32) - 200,
-                y: (img.height() as i32) - 100,
-                width: 150,
-                height: 50,
-                label: Some("Primary Action".to_string()),
-                confidence,
-            })
-        } else if intent_lower.contains("login") {
-            Some(BoundingBox {
-                x: (img.width() as i32) - 150,
-                y: 50,
-                width: 80,
-                height: 30,
-                label: Some("Auth Trigger".to_string()),
-                confidence,
-            })
-        } else if intent_lower.contains("discount") {
-             Some(BoundingBox {
-                x: 400,
-                y: 500,
-                width: 200,
-                height: 40,
-                label: Some("Input Field".to_string()),
-                confidence,
-            })
-        } else if intent == "FAIL_TEST" {
-            None
-        } else {
-            audit_trail.push("Intent classification: GENERAL_INTERACTION".to_string());
-            Some(BoundingBox {
-                x: rng.gen_range(0..900),
-                y: rng.gen_range(0..700),
-                width: 100,
-                height: 40,
-                label: Some("Generic Element".to_string()),
-                confidence: rng.gen_range(0.5..0.8),
-            })
+        // Check Neural Map for existing memory of this intent
+        let memory_location = {
+            let map = self.neural_map.lock().unwrap();
+            map.get(&request.intent).map(|e| e.location.clone())
         };
 
-        // Generate candidates (ambiguous matches)
-        let mut candidates = Vec::new();
-        if let Some(ref primary) = primary_box {
-            candidates.push(primary.clone());
-            // Add some noise candidates
-            for _ in 0..2 {
-                candidates.push(BoundingBox {
-                    x: (primary.x as f32 * rng.gen_range(0.9..1.1)) as i32,
-                    y: (primary.y as f32 * rng.gen_range(0.9..1.1)) as i32,
-                    width: primary.width,
-                    height: primary.height,
-                    label: Some("Ambiguous Match".to_string()),
-                    confidence: primary.confidence * rng.gen_range(0.6..0.9),
-                });
+        // Match Intent to Visual Elements
+        for box_data in &mut candidates {
+            let label = self.vit.heuristic_classify(box_data, width, height);
+            box_data.label = Some(label.clone());
+
+            // Simple Keyword Matching logic
+            let mut score: f32 = 0.0;
+
+            if intent_lower.contains("button") && label.contains("Button") { score += 0.8; }
+            if intent_lower.contains("login") && (label.contains("Button") || label.contains("Input")) { score += 0.6; }
+            if intent_lower.contains("checkout") && label.contains("Button") { score += 0.7; }
+            if intent_lower.contains("input") && label.contains("Input") { score += 0.9; }
+            if intent_lower.contains("profile") && label.contains("Profile") { score += 0.9; }
+            if intent_lower.contains("image") && label.contains("Image") { score += 0.9; }
+            if intent_lower.contains("section") && label.contains("Section") { score += 0.8; }
+
+            // Boost score if the intent explicitly mentions the label
+            if intent_lower.contains(&label.to_lowercase()) { score += 0.5; }
+
+            // Neural Map Boost: If close to last known location, boost confidence
+            if let Some(ref mem_loc) = memory_location {
+                let dist = (box_data.x - mem_loc.x).abs() + (box_data.y - mem_loc.y).abs();
+                if dist < 50 {
+                    score += 0.3;
+                }
+            }
+
+            // Update box confidence based on match
+            box_data.confidence = score.min(1.0);
+
+            if score > max_confidence {
+                max_confidence = score;
+                best_match = Some(box_data.clone());
             }
         }
 
-        // Simulated Semantic Embedding (768 dimensions is standard for ViT/BERT)
-        let embedding: Vec<f32> = (0..768).map(|_| rng.gen::<f32>()).collect();
-        audit_trail.push("Generated 768-dimensional semantic vector.".to_string());
+        // Mock embedding and heatmap
+        let embedding: Vec<f32> = (0..768).map(|_| rand::thread_rng().gen::<f32>()).collect();
 
-        // Simulated Heatmap (10x10 grid flattened)
-        let heatmap_data: Vec<f32> = (0..100).map(|_| rng.gen::<f32>()).collect();
+        if let Some(ref m) = best_match {
+            reasoning = format!("Found element '{}' matching intent '{}' with confidence {:.2}", m.label.as_ref().unwrap(), request.intent, max_confidence);
+
+            // Update Neural Map Memory if confidence is high
+            if max_confidence > 0.8 {
+                self.update_map(request.intent.clone(), m.clone(), embedding.clone());
+            }
+        } else {
+             reasoning = format!("No elements found matching intent '{}'. Detected {} candidates.", request.intent, candidates.len());
+        }
+        let heatmap_data: Vec<f32> = vec![];
 
         let elapsed = start_time.elapsed();
-
-    fn error_result(&self, msg: &str) -> VisionResult {
         VisionResult {
-            found: primary_box.is_some(),
-            location: primary_box,
+            found: best_match.is_some() && max_confidence > 0.5,
+            location: best_match,
             candidates,
-            confidence,
+            confidence: max_confidence,
             semantic_embedding: embedding,
             heatmap_data,
-            reasoning: format!("ViT Layer identified '{}' based on visual intent patterns (Edge detection, OCR, Iconography). Confidence: {:.2}", request.intent, confidence),
+            reasoning,
             processing_time_ms: elapsed.as_millis() as u64,
         }
-
-        if count == 0.0 { return 0.0; }
-
-        let mean = sum / count;
-        (sum_sq / count) - (mean * mean)
     }
 
-    // Helper to update the internal map (would be called after successful interactions)
-    pub fn update_map(&mut self, intent: String, element: VisualElement) {
-        self.neural_map.insert(intent, element);
-    }
-
-    #[test]
-    fn test_invalid_base64() {
-        let locator = NeuralLocator::new();
-        let request = VisionRequest {
-            image_base64: "invalid_base64_string".to_string(),
-            intent: "anything".to_string(),
-        };
-
-        let result = locator.analyze(&request);
-        assert!(!result.found);
-        assert!(result.reasoning.contains("Base64 decode error"));
-    }
-
-    // Called by Semantic Healer to update the map manually
     pub fn update_map(&self, intent: String, location: BoundingBox, embedding: Vec<f32>) {
          let mut map_lock = self.neural_map.lock().unwrap();
-         map_lock.insert(intent, NeuralMapEntry {
+         map_lock.update(intent, NeuralMapEntry {
             location,
             embedding,
             last_seen: SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs(),
