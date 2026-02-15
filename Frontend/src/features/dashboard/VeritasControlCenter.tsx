@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Eye, Play, ShieldCheck, Activity, BrainCircuit, Scan, Cpu, Loader2 } from "lucide-react";
+import { Eye, Play, ShieldCheck, Activity, BrainCircuit, Scan, Cpu, Loader2, X } from "lucide-react";
 import { veritas } from "@/veritas_sdk/VeritasClient";
 import { AgentStep, VisionResult } from "@/veritas_sdk/types";
 
@@ -121,13 +121,29 @@ export function VeritasControlCenter() {
                         <div className="flex flex-col gap-2">
                             <label htmlFor="mission-goal" className="sr-only">Mission Objective</label>
                             <div className="flex gap-2">
-                                <input
-                                    id="mission-goal"
-                                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                                    value={goal}
-                                    placeholder="Enter mission objective..."
-                                    onChange={(e) => setGoal(e.target.value)}
-                                />
+                                <div className="relative flex-1">
+                                    <input
+                                        id="mission-goal"
+                                        className="flex h-10 w-full rounded-md border border-input bg-background pl-3 pr-8 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        value={goal}
+                                        placeholder="Enter mission objective..."
+                                        onChange={(e) => setGoal(e.target.value)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' && status === 'IDLE') {
+                                                handleExecute();
+                                            }
+                                        }}
+                                    />
+                                    {goal && (
+                                        <button
+                                            onClick={() => setGoal('')}
+                                            className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                                            aria-label="Clear mission objective"
+                                        >
+                                            <X className="h-4 w-4" />
+                                        </button>
+                                    )}
+                                </div>
                                 <Button
                                     onClick={handleExecute}
                                     disabled={status !== 'IDLE'}
@@ -141,6 +157,9 @@ export function VeritasControlCenter() {
                                     ) : (
                                         <>
                                             <Play className="h-4 w-4 mr-2" /> EXECUTE
+                                            <kbd className="hidden sm:inline-flex ml-2 h-5 items-center gap-1 rounded border bg-black/20 px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+                                                <span className="text-xs">↵</span>
+                                            </kbd>
                                         </>
                                     )}
                                 </Button>
