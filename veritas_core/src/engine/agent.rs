@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 use rand::Rng;
 use std::collections::{HashMap, VecDeque, HashSet};
+use uuid::Uuid;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct GoalRequest {
@@ -98,12 +99,15 @@ impl GoalOrientedAgent {
         let mut steps = Vec::new();
         let mut rng = rand::thread_rng();
         let mut total_duration = 0;
+        let d1 = 10;
 
         steps.push(AgentStep {
+            step_id: 0,
             action: "Start Session".to_string(),
             observation: "Landed on Homepage".to_string(),
             reasoning: "Initial state".to_string(),
-            duration_ms: 10,
+            duration_ms: d1,
+            status: "completed".to_string(),
         });
         total_duration += d1;
 
@@ -121,28 +125,36 @@ impl GoalOrientedAgent {
                 }
 
                 steps.push(AgentStep {
+                    step_id: steps.len() as u32,
                     action: action.clone(),
                     observation: format!("Transitioned to {:?}", next_state),
                     reasoning,
                     duration_ms: duration,
+                    status: "completed".to_string(),
                 });
+                total_duration += duration;
 
                 // If we hit checkout and need discount, inject extra step
                  if next_state == PageState::Checkout && goal_lower.contains("discount") {
                      steps.push(AgentStep {
+                        step_id: steps.len() as u32,
                         action: "Input 'SAVE10'".to_string(),
                         observation: "Discount -10% applied".to_string(),
                         reasoning: "Goal Requirement: Discount".to_string(),
                         duration_ms: 100,
+                        status: "completed".to_string(),
                     });
+                    total_duration += 100;
                 }
             }
         } else {
             steps.push(AgentStep {
+                step_id: steps.len() as u32,
                 action: "Error".to_string(),
                 observation: "Could not find path".to_string(),
                 reasoning: "Target state unreachable".to_string(),
                 duration_ms: 0,
+                status: "failed".to_string(),
             });
         }
 

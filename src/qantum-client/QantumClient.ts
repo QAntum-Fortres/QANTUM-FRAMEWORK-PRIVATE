@@ -23,6 +23,9 @@
 
 import { chromium, firefox, webkit, Browser, BrowserContext, Page } from 'playwright';
 import { EventEmitter } from 'events';
+import { VeritasBridge } from '../veritas_sdk/Bridge.ts';
+import * as fs from 'fs';
+import * as path from 'path';
 
 /**
  * Browser options for QAntum client
@@ -87,12 +90,14 @@ export class QantumPage {
   private page: Page;
   private options: QantumBrowserOptions;
   private emitter: EventEmitter;
+  private client: QantumClient;
   private actions: Array<{ name: string; duration: number }> = [];
 
-  constructor(page: Page, options: QantumBrowserOptions, emitter: EventEmitter) {
+  constructor(page: Page, options: QantumBrowserOptions, client: QantumClient) {
     this.page = page;
     this.options = options;
-    this.emitter = emitter;
+    this.emitter = client;
+    this.client = client;
   }
 
   /**
@@ -306,12 +311,58 @@ export class QantumPage {
    */
   async expectVisualMatch(name: string, options?: { threshold?: number }): Promise<boolean> {
     const screenshot = await this.screenshot();
+    const screenshotBase64 = screenshot.toString('base64');
     
-    // TODO: Compare with baseline using AI vision
-    // For now, just save the baseline
-    this.emitter.emit('visualTest', { name, threshold: options?.threshold || 0.01 });
+    const baselineDir = path.resolve(process.cwd(), 'tests', 'visual-baselines');
+    if (!fs.existsSync(baselineDir)) {
+        fs.mkdirSync(baselineDir, { recursive: true });
+    }
+
+    const baselinePath = path.join(baselineDir, `${name}.png`);
+
+    if (!fs.existsSync(baselinePath)) {
+        console.log(`[Visual] Creating baseline for '${name}' at ${baselinePath}`);
+        fs.writeFileSync(baselinePath, screenshot);
+        this.emitter.emit('visualTest', { name, threshold: options?.threshold || 0.01, result: 'baseline_created' });
+        return true;
+    }
+
+    console.log(`[Visual] Comparing '${name}' against baseline...`);
+    const baseline = fs.readFileSync(baselinePath);
+    const baselineBase64 = baseline.toString('base64');
+
+    // Initialize bridge if needed
+    if (!this.client.bridge) {
+         this.client.bridge = new VeritasBridge();
+    }
     
-    return true;
+    try {
+        const result = await this.client.bridge.compare(baselineBase64, screenshotBase64);
+        const passed = result.similarity_score >= (1.0 - (options?.threshold || 0.01));
+
+        console.log(`[Visual] Score: ${result.similarity_score}, Passed: ${passed}`);
+
+        if (!passed) {
+             const failuresDir = path.resolve(process.cwd(), 'tests', 'visual-failures');
+             if (!fs.existsSync(failuresDir)) fs.mkdirSync(failuresDir, { recursive: true });
+             const failedPath = path.join(failuresDir, `${name}-failed.png`);
+             fs.writeFileSync(failedPath, screenshot);
+             console.warn(`[Visual] Test failed. Saved failure to ${failedPath}. Reason: ${result.diff_reason}`);
+        }
+
+        this.emitter.emit('visualTest', {
+            name,
+            threshold: options?.threshold || 0.01,
+            passed,
+            score: result.similarity_score,
+            reason: result.diff_reason
+        });
+
+        return passed;
+    } catch (err) {
+        console.error(`[Visual] Error comparing images:`, err);
+        return false;
+    }
   }
 
   /**
@@ -411,6 +462,7 @@ export class QantumClient extends EventEmitter {
   private context: BrowserContext | null = null;
   private pages: QantumPage[] = [];
   private options: QantumBrowserOptions;
+  public bridge: VeritasBridge | null = null;
   private stats = {
     totalActions: 0,
     failedActions: 0,
@@ -454,6 +506,10 @@ export class QantumClient extends EventEmitter {
 
     if (this.options.recordTrace) {
       await this.context.tracing.start({ screenshots: true, snapshots: true });
+    }
+
+    if (this.options.aiMode) {
+        this.bridge = new VeritasBridge();
     }
 
     this.emit('launched', { browser: this.options.browser });
@@ -560,6 +616,11 @@ export class QantumClient extends EventEmitter {
       await this.browser.close();
       this.browser = null;
       this.context = null;
+    }
+
+    if (this.bridge) {
+        this.bridge.kill();
+        this.bridge = null;
     }
 
     this.emit('closed', { stats: this.stats });

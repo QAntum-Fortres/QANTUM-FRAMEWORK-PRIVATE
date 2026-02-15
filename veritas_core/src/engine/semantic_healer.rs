@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use rand::{Rng, SeedableRng, rngs::StdRng};
+use crate::engine::neural_locator::VisionTransformer;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct HealRequest {
@@ -26,10 +27,12 @@ impl SemanticHealer {
     pub fn new() -> Self {
         SemanticHealer {
             threshold: 0.70, // Slightly lower threshold for combined score
+            vit: VisionTransformer::new(),
         }
     }
 
     pub fn heal(&self, request: &HealRequest) -> HealResult {
+        let mut audit_trail = Vec::new();
         // 1. Snapshot Analysis (Mocked: In real system, we'd parse the current DOM/Image to get candidates)
         // We simulate finding a list of potential candidates on the page.
         // Some are similar strings, some are totally different.
@@ -77,6 +80,7 @@ impl SemanticHealer {
                 new_selector: best_candidate,
                 similarity_score: best_score,
                 reason: best_reason,
+                audit_trail,
             }
         } else {
              audit_trail.push("Healing failed. No candidates met the confidence threshold.".to_string());
@@ -85,6 +89,7 @@ impl SemanticHealer {
                 new_selector: "".to_string(),
                 similarity_score: best_score,
                 reason: format!("Best match '{}' score {:.2} below threshold {:.2}", best_candidate, best_score, self.threshold),
+                audit_trail,
             }
         }
     }

@@ -84,3 +84,13 @@ export interface SwarmStatus {
     success_rate: number;
     total_requests: number;
 }
+
+export interface VisionCompareRequest {
+    image_a_base64: string;
+    image_b_base64: string;
+}
+
+export interface VisionCompareResult {
+    similarity_score: number;
+    diff_reason?: string;
+}

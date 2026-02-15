@@ -1,10 +1,11 @@
 import { spawn, ChildProcess } from 'child_process';
+import * as fs from 'fs';
 import * as path from 'path';
 import * as readline from 'readline';
 import { fileURLToPath } from 'url';
 import type {
     VisionResult, HealResult, GoalResult, ObserverState,
-    VisionRequest, HealRequest, GoalRequest, ObserverRequest, SwarmRequest, SwarmStatus
+    VisionRequest, HealRequest, GoalRequest, ObserverRequest, SwarmRequest, SwarmStatus, VisionCompareResult
 } from './types.ts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -83,6 +84,10 @@ export class VeritasBridge {
 
     public async locate(image_base64: string, intent: string): Promise<VisionResult> {
         return this.sendCommand('Locate', { image_base64, intent });
+    }
+
+    public async compare(image_a_base64: string, image_b_base64: string): Promise<VisionCompareResult> {
+        return this.sendCommand('Compare', { image_a_base64, image_b_base64 });
     }
 
     public async heal(failed_selector: string, current_image: string, last_known_embedding: number[]): Promise<HealResult> {
